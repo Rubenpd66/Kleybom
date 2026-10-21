@@ -466,6 +466,7 @@ export const es = {
     descansoQueda: (s: number) => `Quedan ${s} s de descanso`,
     descansoFin: "¡A por la siguiente serie!",
     saltarDescanso: "Saltar descanso",
+    cerrarAviso: "Cerrar aviso",
   },
   medidas: {
     titulo: "Peso y medidas",

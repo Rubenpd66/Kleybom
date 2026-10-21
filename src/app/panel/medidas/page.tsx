@@ -91,11 +91,11 @@ async function Contenido({ searchParams }: { searchParams: Params }) {
                       <td className="hidden p-3 sm:table-cell">{fmt(f.chest_cm, "cm")}</td>
                       <td className="p-3">
                         <div className="flex items-center justify-end gap-2">
-                          <Link href={`/panel/medidas?fecha=${f.date}`} aria-label={t.editar(fecha)} className="font-bold text-azul underline">
+                          <Link href={`/panel/medidas?fecha=${f.date}`} aria-label={t.editar(fecha)} className="inline-flex h-10 w-10 items-center justify-center rounded-md font-bold text-azul hover:bg-tiza">
                             ✎
                           </Link>
                           <form action={borrarMedida.bind(null, f.id)}>
-                            <button type="submit" aria-label={t.borrar(fecha)} className="font-bold text-azul underline">
+                            <button type="submit" aria-label={t.borrar(fecha)} className="inline-flex h-10 w-10 items-center justify-center rounded-md font-bold text-azul hover:bg-tiza">
                               ✕
                             </button>
                           </form>

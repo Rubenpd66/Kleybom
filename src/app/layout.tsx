@@ -42,7 +42,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           {es.nav.saltarAlContenido}
         </a>
         <Header />
-        <div id="contenido" className="flex flex-1 flex-col">
+        {/* Como mínimo una pantalla: el pie empieza fuera de la vista y no salta al llegar el contenido (CLS). */}
+        <div id="contenido" className="flex min-h-screen flex-1 flex-col">
           {children}
         </div>
         <Footer />

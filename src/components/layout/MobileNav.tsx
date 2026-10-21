@@ -1,15 +1,29 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { es } from "@/lib/i18n/es";
 
 export default function MobileNav({ conSesion = false }: { conSesion?: boolean }) {
   const [abierto, setAbierto] = useState(false);
+  const boton = useRef<HTMLButtonElement>(null);
+
+  // Escape cierra el menú y devuelve el foco al botón (lo esperado con teclado).
+  useEffect(() => {
+    if (!abierto) return;
+    const alPulsar = (e: KeyboardEvent) => {
+      if (e.key !== "Escape") return;
+      setAbierto(false);
+      boton.current?.focus();
+    };
+    document.addEventListener("keydown", alPulsar);
+    return () => document.removeEventListener("keydown", alPulsar);
+  }, [abierto]);
 
   return (
     <div className="md:hidden">
       <button
+        ref={boton}
         type="button"
         aria-expanded={abierto}
         aria-controls="menu-movil"

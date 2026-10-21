@@ -205,6 +205,7 @@ export default function LiveSession({
               descanso.stop();
               setAvisarFin(false);
             }}
+            aria-label={descanso.running ? undefined : t.cerrarAviso}
             className="h-10 rounded-md border-[1.5px] border-hierro px-4 text-sm font-bold"
           >
             {descanso.running ? t.saltarDescanso : "✕"}
