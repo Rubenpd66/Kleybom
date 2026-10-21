@@ -1,7 +1,7 @@
 # PROGRESO
 
 ## Fase actual
-Fase 4 (Construcción), versión 0.1. Hechas: Tareas 1 a 8. Tareas 1 a 13 hechas y v0.1 desplegada. Tareas 14 y 15 hechas. Tareas 14-19 hechas. v0.2 terminada (Tareas 14-23). v0.3 terminada. v0.4: Tareas 35-39 hechas. Siguiente: Tarea 40 (peso y medidas). El usuario pidió continuar sin parar hasta el final, avisando solo cuando haga falta su mano (claves o configuraciones en webs).
+Fase 4 (Construcción), versión 0.1. Hechas: Tareas 1 a 8. Tareas 1 a 13 hechas y v0.1 desplegada. Tareas 14 y 15 hechas. Tareas 14-19 hechas. v0.2 terminada (Tareas 14-23). v0.3 terminada. v0.4: Tareas 35-40 hechas. Siguiente: Tarea 41 (lógica de estadísticas). El usuario pidió continuar sin parar hasta el final, avisando solo cuando haga falta su mano (claves o configuraciones en webs).
 
 ## Tareas del plan completadas
 - Tarea 1: proyecto Next.js 16 + Tailwind 4 + TypeScript creado y compilando (`npm run build` OK).
@@ -49,6 +49,7 @@ Fase 4 (Construcción), versión 0.1. Hechas: Tareas 1 a 8. Tareas 1 a 13 hechas
 - Tarea 37: `sessionReducer` en `src/lib/training/session.ts` (8 tests): registrar/editar/borrar series con validación (0–1000 kg, 1–200 reps, RPE 1–10) y terminar (sin series no termina).
 - Tarea 38: `/entreno` (privado). Sin `?id`: sesiones planificadas de hoy con rutina (botón Empezar) y formulario rutina + día. Con `?id`: `LiveSession` por ejercicio del día (objetivo, "La última vez" de la sesión anterior, registrar/quitar series). **Cada serie se guarda al momento** (`registrarSerie`), así que al recargar o cerrar no se pierde nada. Terminar marca la sesión planificada como "hecha" y muestra el resumen (series, volumen y comparación con la última sesión de la misma rutina y día). 3 tests de navegador. Enlace desde el calendario.
 - Tarea 39: temporizador de descanso. `createRestTimer` (lógica sin React, 7 tests con reloj simulado; calcula desde la hora de fin, así no se desajusta con la pestaña en segundo plano) y `useRestTimer` (hook con `useSyncExternalStore`). **Sin instalar librerías** (no hacía falta Testing Library). Conectado a `LiveSession`: al registrar una serie arranca el descanso de la rutina; aviso fijo abajo con "Saltar descanso" y mensaje al terminar.
+- Tarea 40: `/panel/medidas` (privado): formulario de peso, cintura, cadera y pecho (todo opcional, una medición por día: si ya existe se sustituye) e historial con editar y borrar. `validateMeasurement` (7 tests; mismos límites que la base, fecha no futura, todos los errores a la vez). Aviso de datos de salud. Enlace desde el panel. 3 tests de navegador.
 
 ## Hecho
 - Comprobado: node v24.22.0, npm 11.19.1, git 2.51.0.

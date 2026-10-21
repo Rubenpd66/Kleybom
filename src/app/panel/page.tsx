@@ -24,6 +24,11 @@ async function Contenido() {
         </Link>
       </p>
       <p className="mt-3">
+        <Link href="/panel/medidas" className="font-bold text-azul underline">
+          {es.medidas.enlace}
+        </Link>
+      </p>
+      <p className="mt-3">
         <Link href="/panel/perfil" className="font-bold text-azul underline">
           {es.perfil.enlace}
         </Link>
