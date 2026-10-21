@@ -1,7 +1,7 @@
 # PROGRESO
 
 ## Fase actual
-Fase 4 (Construcción), versión 0.1. Hechas: Tareas 1 a 5. Siguiente: Tarea 6 (normalizar texto de búsqueda).
+Fase 4 (Construcción), versión 0.1. Hechas: Tareas 1 a 6. Siguiente: Tarea 7 (consultas de ejercicios).
 
 ## Tareas del plan completadas
 - Tarea 1: proyecto Next.js 16 + Tailwind 4 + TypeScript creado y compilando (`npm run build` OK).
@@ -9,6 +9,7 @@ Fase 4 (Construcción), versión 0.1. Hechas: Tareas 1 a 5. Siguiente: Tarea 6 (
 - Tarea 3: textos en `src/lib/i18n/es.ts`, cabecera, pie con aviso de salud y menú móvil; colores y tipografías del diseño aplicados. Tests del menú en 375 px pasan. La fuente se llama `Big_Shoulders` en next/font (Google la renombró); el aviso de "fallback font" en el build es inofensivo. Los enlaces del menú dan 404 hasta que existan las páginas.
 - Tarea 4: proyecto Supabase `forja` (id `gftajanocydijwtzvjhe`, región eu-central-1) creado. Para liberar hueco en el plan gratuito (límite 2) se pausaron `sello` y `sello-dev` (reactivables desde Supabase). Clientes en `src/lib/supabase/`, `GET /api/health` con test. Claves en `.env.local` (no está en git). `.mcp.json` limitado a este proyecto. Instalados `@supabase/supabase-js` y `@supabase/ssr`.
 - Tarea 5: migración `supabase/migrations/20261021120000_catalogo_ejercicios.sql` aplicada en `forja`: tablas muscles, equipment, exercises, exercise_muscles, exercise_equipment con RLS (solo lectura pública). Comprobado: anónimo lee y no puede escribir; avisos de seguridad: ninguno.
+- Tarea 6: `normalizeText` en `src/lib/text/normalize.ts` con 3 tests (minúsculas, sin tildes, espacios colapsados).
 
 ## Hecho
 - Comprobado: node v24.22.0, npm 11.19.1, git 2.51.0.
