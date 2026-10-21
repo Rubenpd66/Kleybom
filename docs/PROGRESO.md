@@ -1,7 +1,7 @@
 # PROGRESO
 
 ## Fase actual
-Fase 4 (Construcción), versión 0.1. Hechas: Tareas 1 a 8. Tareas 1 a 13 hechas y v0.1 desplegada. Tareas 14 y 15 hechas. Tareas 14-19 hechas. v0.2 terminada (Tareas 14-23). v0.3: Tareas 24-32 hechas. Siguiente: Tarea 33 (Open Food Facts por código de barras) y 34 (recetas). El usuario pidió continuar sin parar hasta el final, avisando solo cuando haga falta su mano (claves o configuraciones en webs).
+Fase 4 (Construcción), versión 0.1. Hechas: Tareas 1 a 8. Tareas 1 a 13 hechas y v0.1 desplegada. Tareas 14 y 15 hechas. Tareas 14-19 hechas. v0.2 terminada (Tareas 14-23). v0.3: Tareas 24-33 hechas. Siguiente: Tarea 34 (recetas). El usuario pidió continuar sin parar hasta el final, avisando solo cuando haga falta su mano (claves o configuraciones en webs).
 
 ## Tareas del plan completadas
 - Tarea 1: proyecto Next.js 16 + Tailwind 4 + TypeScript creado y compilando (`npm run build` OK).
@@ -40,6 +40,7 @@ Fase 4 (Construcción), versión 0.1. Hechas: Tareas 1 a 8. Tareas 1 a 13 hechas
 - Tarea 30: `/nutricion/objetivos` (privado; `/nutricion` añadido a las rutas privadas). Formulario con cálculo en directo (`TargetsForm`), mensajes concretos para datos fuera de rango, aviso de salud visible y del mínimo de seguridad cuando se aplica. Se rellena con los datos del perfil (sexo, edad desde la fecha de nacimiento, altura). La acción `guardarObjetivos` recalcula en el servidor y guarda en `nutrition_goals`. 3 tests de navegador.
 - Tarea 31: `summarizeDay` en `src/lib/nutrition/diary.ts` (4 tests): nutrientes por comida (desayuno, comida, cena, snack) y del día con `scaleNutrients`/`sumNutrients`; día vacío = ceros; un nulo marca `incomplete`; ignora gramos imposibles.
 - Tarea 32: `/nutricion` (diario, privado). Día por `?dia=` (por defecto hoy en la zona horaria del perfil) con día anterior/siguiente; resumen del día contra los objetivos (barra de progreso, macros, aviso si faltan datos); 4 comidas (`MealSection`, editar gramos con error claro, quitar); `FoodPicker` (buscar, elegir comida y gramos, añadir). Acciones `anadirEntrada`/`editarGramos`/`borrarEntrada` validan en el servidor (`validarGramos`, 3 tests). Usuario nuevo: guía breve y enlace para calcular objetivos. 4 tests de navegador. `/alimentos` ya se enlaza desde el diario.
+- Tarea 33: productos envasados por código de barras con Open Food Facts, consultados en directo (sin copiar a `foods`, por la ODbL) y con atribución: `src/lib/foods/openfoodfacts.ts` (`parseOffProduct`, `fetchOffProduct`, 8 tests con respuestas guardadas; la de "sin nutrientes" es la real con los nutrientes borrados), ruta `GET /api/openfoodfacts/[barcode]` y página `/alimentos/codigo`. Tabla nutricional extraída a `NutritionTable`. **Decisión pendiente del usuario:** el plan condicionaba esta tarea a que confirmara la estrategia de licencia; se ha hecho con la estrategia prudente del brief y se puede retirar si no la aprueba. Los productos envasados aún no se pueden añadir al diario.
 
 ## Hecho
 - Comprobado: node v24.22.0, npm 11.19.1, git 2.51.0.

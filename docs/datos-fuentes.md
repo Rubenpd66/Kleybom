@@ -18,3 +18,11 @@
 - **Por qué no Foundation Foods:** es más moderno pero solo tiene 363 alimentos y a muchos les falta la energía.
 - **Cómo se importa:** `node scripts/import-usda/run.ts <ruta al JSON> --dry-run` cuenta; sin `--dry-run` escribe. Repetible: no pisa los nombres ya traducidos.
 - **Nombres en español:** traducidos por nosotros (Tarea 26) con el glosario de `docs/glosario-alimentos.md`. Se quitaron además 23 productos de marca que el primer filtro no detectó (quedan 6.038 alimentos).
+
+## Open Food Facts (productos envasados por código de barras)
+- **Qué es:** base colaborativa de productos envasados. API: `https://world.openfoodfacts.org/api/v2/product/<código>`.
+- **Licencia:** base de datos bajo Open Database License (ODbL): exige atribución y "compartir igual" si se mezcla con otra base. Las fotos tienen otra licencia (CC BY-SA) y no las mostramos.
+- **Cómo la usamos (Tarea 33):** se consulta en directo desde `/alimentos/codigo` y `/api/openfoodfacts/<código>`. **No se copian sus datos a nuestra tabla `foods`** (así no se mezcla con USDA y no se activa el "compartir igual"). Se muestra siempre la atribución con enlace a la ficha del producto. Las respuestas se cachean un día.
+- **Identificación:** se envía el User-Agent `Forja/0.3 (https://forja-five-zeta.vercel.app)`, como pide Open Food Facts.
+- **Limitación:** como no se guardan en nuestra base, los productos envasados todavía no se pueden apuntar en el diario de comidas.
+- **Pendiente de confirmar por el usuario:** que esta estrategia de licencia le parece bien (el plan lo dejaba a su decisión).

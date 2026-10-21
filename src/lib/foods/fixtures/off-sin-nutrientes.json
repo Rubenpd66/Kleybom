@@ -1,0 +1,15 @@
+{
+ "code": "3017620422003",
+ "product": {
+  "brands": "Nutella, Ferrero",
+  "code": "3017620422003",
+  "image_front_small_url": "https://images.openfoodfacts.org/images/products/301/762/042/2003/front_en.879.200.jpg",
+  "nutriments": {},
+  "nutrition_data": "on",
+  "nutrition_data_prepared_per": "100g",
+  "product_name": "Nutella",
+  "product_name_es": "Nutella"
+ },
+ "status": 1,
+ "status_verbose": "product found"
+}

@@ -225,6 +225,17 @@ export const es = {
     noEncontradoTitulo: "Alimento no encontrado",
     noEncontrado: "No existe ningún alimento con esa dirección. Puede que se haya movido o que esté mal escrita.",
     verTodos: "Buscar alimentos",
+    codigoTitulo: "Producto envasado",
+    codigoBuscar: "Buscar por código de barras",
+    codigoEtiqueta: "Código de barras (EAN)",
+    codigoAyuda: "Son los números que hay debajo de las barras, de 8 a 14 cifras.",
+    codigoNoValido: "Ese código no es válido. Escribe solo los números que hay debajo de las barras (de 8 a 14 cifras).",
+    codigoNoEncontrado: "No hemos encontrado ese producto en Open Food Facts. Revisa el número o busca el alimento por su nombre.",
+    codigoSinNutrientes: "Este producto está en Open Food Facts pero no tiene información nutricional. Busca un alimento parecido por su nombre.",
+    codigoError: "Open Food Facts no responde ahora mismo. Inténtalo de nuevo en unos minutos.",
+    marca: "Marca",
+    fuenteOff:
+      "Datos de Open Food Facts (openfoodfacts.org), disponibles bajo la licencia Open Database License (ODbL). Los aporta su comunidad y pueden contener errores: revisa la etiqueta del envase.",
     categorias: {
       "Baked Products": "Panadería y bollería",
       "Beef Products": "Carne de vacuno",

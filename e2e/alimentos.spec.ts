@@ -59,3 +59,16 @@ test("en móvil no hay scroll horizontal", async ({ page }) => {
     expect(desborda, ruta).toBe(false);
   }
 });
+
+test("código de barras: un código no válido da un mensaje claro", async ({ page }) => {
+  await page.goto("/alimentos");
+  await page.getByRole("link", { name: "Buscar por código de barras" }).click();
+  await page.getByLabel("Código de barras (EAN)").fill("12ab");
+  await page.getByRole("button", { name: "Buscar" }).click();
+  await expect(page.locator("main [role=alert]")).toContainText("no es válido");
+});
+
+test("la API de Open Food Facts rechaza códigos no válidos", async ({ request }) => {
+  const r = await request.get("/api/openfoodfacts/abc");
+  expect(r.status()).toBe(400);
+});

@@ -43,7 +43,12 @@ async function Contenido({ searchParams }: { searchParams: Params }) {
           {t.buscar}
         </button>
       </form>
-      <p className="mt-2 text-sm text-acero">{t.ayuda}</p>
+      <p className="mt-2 text-sm text-acero">
+        {t.ayuda}{" "}
+        <Link href="/alimentos/codigo" className="text-azul underline">
+          {t.codigoBuscar}
+        </Link>
+      </p>
 
       <p className="mt-8 text-sm text-acero" aria-live="polite">
         {t.resultados(total)}
