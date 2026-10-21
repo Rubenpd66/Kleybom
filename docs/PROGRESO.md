@@ -1,7 +1,7 @@
 # PROGRESO
 
 ## Fase actual
-Fase 2 (Plan) terminada: `docs/plan.md` escrito (51 tareas en 5 versiones). A la espera de que el usuario lo revise y dé el OK para la Fase 3 (Diseño).
+Fase 3 (Diseño) terminada: `docs/diseno.md` y maqueta `docs/diseno/inicio.html`. A la espera de que el usuario apruebe la propuesta de la página de inicio antes de pasar a la Fase 4 (Construcción).
 
 ## Hecho
 - Comprobado: node v24.22.0, npm 11.19.1, git 2.51.0.
@@ -17,8 +17,10 @@ Fase 2 (Plan) terminada: `docs/plan.md` escrito (51 tareas en 5 versiones). A la
 - Fase 2: plan en `docs/plan.md` con modelo/esfuerzo recomendado por tarea (para cuidar la cuota del plan Pro). Esquema `LocalBusiness` sustituido por `WebSite`/`Organization`/`Article` (la web no tiene local físico). Fórmulas de nutrición (Tarea 29) marcadas como "a verificar con fuente fiable antes de implementar".
 - Modelo/esfuerzo por fase acordado: Fase 2 `opusplan` + medium; Fases 3-6 Sonnet, low/medium; no usar xhigh/max; `/clear` entre tareas; imágenes Nano Banana en Gemini.
 
+- Fase 3: identidad "temple del acero" (gris acero → ámbar → azul templado) sobre fondo claro; Big Shoulders Display + Schibsted Grotesk; portada con selector de músculos en vivo; un solo movimiento automático. Descartado el diseño oscuro con naranja por ser el típico del sector.
+
 ## Siguiente tarea
-Fase 3 (Diseño): skill frontend-design, resultado en `docs/diseno.md` y propuesta de la página de inicio para que el usuario la apruebe antes de construir el resto. Pendiente del usuario: revisar `docs/plan.md`, autenticar los conectores con `/mcp` (Vercel, Supabase) y crear el token de GitHub.
+Que el usuario apruebe (o pida cambios en) la maqueta de la página de inicio. Luego Fase 4 (Construcción) siguiendo `docs/plan.md` desde la Tarea 1. Pendiente del usuario: revisar `docs/plan.md`, autenticar los conectores con `/mcp` (Vercel, Supabase) y crear el token de GitHub.
 
 ## Decisiones tomadas
 - Sin pagos; solo donaciones voluntarias. Porqué: evitar las obligaciones legales de cobrar.

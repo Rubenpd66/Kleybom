@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Forja · Propuesta de página de inicio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800&family=Schibsted+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --tiza:#EDEFEA; --papel:#F8F9F6; --hierro:#1C2126; --acero:#4F5D68; --linea:#C9CFC8;
+  --temple:#F0B429; --temple-osc:#8A5F00; --azul:#2F5D8A;
+  --display:'Big Shoulders Display','Arial Narrow',sans-serif;
+  --texto:'Schibsted Grotesk',system-ui,sans-serif;
+  --s1:4px;--s2:8px;--s3:12px;--s4:16px;--s5:24px;--s6:32px;--s7:48px;--s8:72px;--s9:112px;
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:var(--tiza);color:var(--hierro);font:400 1.0625rem/1.6 var(--texto);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--azul);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 var(--s5)}
+h1,h2,h3{font-family:var(--display);font-weight:800;line-height:.98;letter-spacing:.005em}
+h1{font-size:clamp(3.2rem,8.5vw,6.6rem)}
+h2{font-size:clamp(2.2rem,4.6vw,3.6rem)}
+h3{font-size:1.7rem;line-height:1.05}
+p{max-width:62ch}
+
+/* Cabecera */
+header{border-bottom:1px solid var(--linea);background:var(--tiza)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:var(--s5);height:72px}
+.logo{font:800 2rem/1 var(--display);text-decoration:none;letter-spacing:.02em}
+.logo span{color:var(--temple-osc)}
+nav ul{display:flex;gap:var(--s5);list-style:none;padding:0}
+nav a{text-decoration:none;font-weight:500;padding:var(--s2) 0;border-bottom:2px solid transparent}
+nav a:hover{border-color:var(--temple)}
+.btn{display:inline-block;padding:14px 22px;border-radius:6px;font-weight:700;text-decoration:none;border:2px solid var(--hierro);transition:transform .15s,background .15s}
+.btn-principal{background:var(--hierro);color:var(--tiza)}
+.btn-principal:hover{background:#000;transform:translateY(-2px)}
+.btn-sec{background:transparent}
+.btn-sec:hover{background:var(--papel)}
+@media(max-width:760px){nav ul{display:none}.bar{height:64px}}
+
+/* Portada */
+.hero{padding:var(--s8) 0 var(--s9);display:grid;grid-template-columns:7fr 5fr;gap:var(--s7);align-items:start}
+.hero h1 em{font-style:normal;position:relative;white-space:nowrap}
+.hero .lead{font-size:1.25rem;margin:var(--s5) 0 var(--s6);color:var(--acero)}
+.acciones{display:flex;gap:var(--s3);flex-wrap:wrap}
+.nota{margin-top:var(--s4);font-size:.95rem;color:var(--acero)}
+/* Barra de temple: la única animación automática */
+.temple{height:10px;margin-top:var(--s6);border-radius:2px;background:linear-gradient(90deg,var(--acero),var(--temple) 55%,var(--azul));transform-origin:left;animation:calentar 1.4s cubic-bezier(.2,.7,.2,1) both}
+@keyframes calentar{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@media(prefers-reduced-motion:reduce){.temple{animation:none}html{scroll-behavior:auto}.btn{transition:none}}
+@media(max-width:900px){.hero{grid-template-columns:1fr;padding:var(--s7) 0 var(--s8)}}
+
+/* Selector (demo) */
+.selector{background:var(--hierro);color:var(--tiza);border-radius:12px;padding:var(--s5)}
+.selector h2{font-size:2rem;margin-bottom:var(--s2)}
+.selector .sub{color:#B9C2C9;font-size:.95rem;margin-bottom:var(--s4)}
+.chips{display:flex;flex-wrap:wrap;gap:var(--s2);margin-bottom:var(--s5)}
+.chip{font:500 .95rem var(--texto);background:transparent;color:var(--tiza);border:1.5px solid #5d6a74;border-radius:999px;padding:8px 14px;cursor:pointer}
+.chip:hover{border-color:var(--temple)}
+.chip[aria-pressed="true"]{background:var(--temple);border-color:var(--temple);color:var(--hierro);font-weight:700}
+.resultados{list-style:none;padding:0;display:grid;gap:var(--s2)}
+.resultados li a{display:grid;grid-template-columns:1fr auto;gap:var(--s3);padding:var(--s3) var(--s4);border-radius:6px;background:#262d33;text-decoration:none}
+.resultados li a:hover{background:#2f383f}
+.resultados b{font-weight:700}
+.resultados small{color:#B9C2C9;display:block}
+.nivel{align-self:center;font-size:.85rem;color:var(--hierro);background:var(--tiza);padding:2px 10px;border-radius:999px}
+.vacio{padding:var(--s4);color:#B9C2C9}
+
+/* Secciones */
+section{padding:var(--s9) 0;border-top:1px solid var(--linea)}
+.dos{display:grid;grid-template-columns:5fr 6fr;gap:var(--s8);align-items:start}
+.dos.inv{grid-template-columns:6fr 5fr}
+@media(max-width:900px){.dos,.dos.inv{grid-template-columns:1fr;gap:var(--s6)}section{padding:var(--s8) 0}}
+.intro p{margin-top:var(--s4);color:var(--acero)}
+
+/* Ficha de ejercicio */
+.ficha{background:var(--papel);border:1.5px solid var(--hierro);border-radius:12px;overflow:hidden}
+.ficha-img{aspect-ratio:16/8;background:repeating-linear-gradient(135deg,#dfe3dd 0 14px,#e8ebe5 14px 28px);display:grid;place-items:center;color:var(--acero);font-size:.9rem;border-bottom:1.5px solid var(--hierro)}
+.ficha-cuerpo{padding:var(--s5)}
+.ficha h3{margin-bottom:var(--s2)}
+.meta{display:flex;flex-wrap:wrap;gap:var(--s2);margin-bottom:var(--s4)}
+.meta span{font-size:.9rem;border:1.5px solid var(--hierro);border-radius:4px;padding:2px 10px}
+.meta .p{background:var(--temple);border-color:var(--temple)}
+.ficha ol{padding-left:1.2em;display:grid;gap:var(--s2);margin-bottom:var(--s4)}
+.ficha .error{border-left:4px solid var(--azul);padding-left:var(--s3);color:var(--acero)}
+.ficha .lic{margin-top:var(--s4);font-size:.85rem;color:var(--acero)}
+
+/* Lista de contenidos (no son tarjetas iguales) */
+.lista{list-style:none;padding:0;margin-top:var(--s6);border-top:1.5px solid var(--hierro)}
+.lista li{display:grid;grid-template-columns:11rem 1fr;gap:var(--s5);padding:var(--s4) 0;border-bottom:1px solid var(--linea)}
+.lista b{font:800 1.5rem/1.1 var(--display)}
+@media(max-width:600px){.lista li{grid-template-columns:1fr;gap:var(--s1)}}
+
+/* Nutrición */
+.alimento{background:var(--papel);border:1.5px solid var(--hierro);border-radius:12px;padding:var(--s5)}
+.alimento table{width:100%;border-collapse:collapse;margin-top:var(--s3);font-variant-numeric:tabular-nums}
+.alimento th{font-weight:500;text-align:left;color:var(--acero);padding:6px 0;font-size:.95rem}
+.alimento td{text-align:right;padding:6px 0;border-top:1px solid var(--linea)}
+.alimento td.nulo{color:var(--acero)}
+.barra{display:flex;height:14px;border-radius:2px;overflow:hidden;margin:var(--s4) 0 var(--s2)}
+.barra i{display:block}
+.leyenda{display:flex;gap:var(--s4);font-size:.9rem;flex-wrap:wrap;color:var(--acero)}
+.leyenda b{display:inline-block;width:10px;height:10px;margin-right:6px;border-radius:2px}
+
+/* Progreso */
+.grafico{background:var(--papel);border:1.5px solid var(--hierro);border-radius:12px;padding:var(--s5)}
+.grafico svg{width:100%;height:auto;display:block}
+.grafico figcaption{margin-top:var(--s3);font-size:.9rem;color:var(--acero)}
+
+/* Apoyo */
+.apoyo{background:var(--hierro);color:var(--tiza);border-top:0}
+.apoyo p{color:#C9D1D7;margin-top:var(--s4)}
+.apoyo .btn{margin-top:var(--s5);background:var(--temple);border-color:var(--temple);color:var(--hierro)}
+.apoyo .btn:hover{background:#ffc94d}
+
+footer{padding:var(--s7) 0;background:var(--tiza);font-size:.95rem;color:var(--acero)}
+footer .wrap{display:grid;gap:var(--s4)}
+footer ul{list-style:none;padding:0;display:flex;gap:var(--s5);flex-wrap:wrap}
+.salud{border-left:4px solid var(--temple);padding-left:var(--s4);max-width:70ch}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap bar">
+    <a class="logo" href="#">Forja<span>.</span></a>
+    <nav aria-label="Principal">
+      <ul>
+        <li><a href="#">Ejercicios</a></li>
+        <li><a href="#">Rutinas</a></li>
+        <li><a href="#">Calendario</a></li>
+        <li><a href="#">Nutrición</a></li>
+        <li><a href="#">Estadísticas</a></li>
+      </ul>
+    </nav>
+    <a class="btn btn-sec" href="#">Entrar</a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap hero">
+    <div>
+      <h1>Entrena, come y progresa. Sin pagar ni buscar vídeos.</h1>
+      <p class="lead">Ejercicios con ficha completa, rutinas, calendario, alimentos y estadísticas. Todo en un solo sitio, gratis y sin letra pequeña.</p>
+      <div class="acciones">
+        <a class="btn btn-principal" href="#">Explorar ejercicios</a>
+        <a class="btn btn-sec" href="#">Crear mi cuenta</a>
+      </div>
+      <p class="nota">Puedes consultar ejercicios y alimentos sin registrarte.</p>
+      <div class="temple" aria-hidden="true"></div>
+    </div>
+
+    <div class="selector" role="region" aria-labelledby="sel-t">
+      <h2 id="sel-t">¿Qué quieres trabajar hoy?</h2>
+      <p class="sub">Elige un músculo y mira qué puedes hacer.</p>
+      <div class="chips" id="chips">
+        <button class="chip" aria-pressed="true" data-m="pecho">Pecho</button>
+        <button class="chip" aria-pressed="false" data-m="espalda">Espalda</button>
+        <button class="chip" aria-pressed="false" data-m="piernas">Piernas</button>
+        <button class="chip" aria-pressed="false" data-m="hombros">Hombros</button>
+        <button class="chip" aria-pressed="false" data-m="brazos">Brazos</button>
+        <button class="chip" aria-pressed="false" data-m="core">Abdomen</button>
+      </div>
+      <ul class="resultados" id="res" aria-live="polite"></ul>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap dos">
+      <div class="intro">
+        <h2>Cada ejercicio, explicado de verdad.</h2>
+        <p>Músculos que trabaja, cómo hacerlo paso a paso, errores típicos y quién ha escrito la información. Sin saltar entre vídeos de cinco minutos para una sola respuesta.</p>
+        <ul class="lista">
+          <li><b>Rutinas</b><span>Plantillas por objetivo y nivel, o crea la tuya eligiendo ejercicios.</span></li>
+          <li><b>Calendario</b><span>Planifica la semana y marca lo que has hecho.</span></li>
+          <li><b>Registro</b><span>Anota series y pesos, y compara con tu última sesión.</span></li>
+        </ul>
+      </div>
+      <article class="ficha" aria-label="Ejemplo de ficha de ejercicio">
+        <div class="ficha-img">Aquí irá la imagen del ejercicio</div>
+        <div class="ficha-cuerpo">
+          <h3>Sentadilla con barra</h3>
+          <div class="meta">
+            <span class="p">Cuádriceps</span><span class="p">Glúteos</span><span>Isquiotibiales</span><span>Nivel intermedio</span>
+          </div>
+          <ol>
+            <li>Coloca la barra sobre la parte alta de la espalda y los pies a la anchura de los hombros.</li>
+            <li>Baja con el pecho alto, llevando la cadera hacia atrás y las rodillas hacia fuera.</li>
+            <li>Sube empujando el suelo, sin perder la posición de la espalda.</li>
+          </ol>
+          <p class="error"><b>Error común:</b> las rodillas se juntan al subir. Piensa en abrirlas hacia fuera.</p>
+          <p class="lic">Texto de ejemplo para la propuesta de diseño. Las fichas reales mostrarán la fuente y la licencia de cada ejercicio.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap dos inv">
+      <div class="alimento" aria-label="Ejemplo de ficha de alimento">
+        <h3>Plátano, crudo</h3>
+        <table>
+          <tr><th scope="col">Por 100 g</th><th scope="col" style="text-align:right">Cantidad</th></tr>
+          <tr><td style="text-align:left">Energía</td><td>89 kcal</td></tr>
+          <tr><td style="text-align:left">Proteínas</td><td>1,1 g</td></tr>
+          <tr><td style="text-align:left">Hidratos de carbono</td><td>22,8 g</td></tr>
+          <tr><td style="text-align:left">Grasas</td><td>0,3 g</td></tr>
+          <tr><td style="text-align:left">Fibra</td><td class="nulo">— sin dato</td></tr>
+        </table>
+        <div class="barra" role="img" aria-label="Reparto de calorías: 93 % hidratos, 4 % proteínas, 3 % grasas"><i style="width:93%;background:var(--temple)"></i><i style="width:4%;background:var(--azul)"></i><i style="width:3%;background:var(--hierro)"></i></div>
+        <div class="leyenda"><span><b style="background:var(--temple)"></b>Hidratos</span><span><b style="background:var(--azul)"></b>Proteínas</span><span><b style="background:var(--hierro)"></b>Grasas</span></div>
+      </div>
+      <div class="intro">
+        <h2>Alimentos con los datos a la vista.</h2>
+        <p>Busca un alimento, indica cuántos gramos has comido y mira el total del día frente a tu objetivo. Si falta un dato, lo verás marcado: nunca lo rellenamos con un cero.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap dos">
+      <div class="intro">
+        <h2>Tu progreso, a la vista.</h2>
+        <p>Volumen semanal, fuerza estimada, peso y constancia. Tus datos son tuyos: puedes descargarlos o borrar tu cuenta cuando quieras.</p>
+      </div>
+      <figure class="grafico">
+        <svg viewBox="0 0 520 220" role="img" aria-label="Ejemplo: peso levantado semanal con tendencia creciente en ocho semanas">
+          <line x1="30" y1="190" x2="510" y2="190" stroke="#C9CFC8"/>
+          <line x1="30" y1="120" x2="510" y2="120" stroke="#C9CFC8" stroke-dasharray="3 5"/>
+          <line x1="30" y1="50" x2="510" y2="50" stroke="#C9CFC8" stroke-dasharray="3 5"/>
+          <polyline fill="none" stroke="#2F5D8A" stroke-width="3" stroke-linejoin="round" points="50,170 110,158 170,162 230,138 290,128 350,132 410,100 470,84"/>
+          <g fill="#F0B429" stroke="#1C2126" stroke-width="2"><circle cx="50" cy="170" r="5"/><circle cx="110" cy="158" r="5"/><circle cx="170" cy="162" r="5"/><circle cx="230" cy="138" r="5"/><circle cx="290" cy="128" r="5"/><circle cx="350" cy="132" r="5"/><circle cx="410" cy="100" r="5"/><circle cx="470" cy="84" r="5"/></g>
+          <text x="30" y="210" font-size="12" fill="#4F5D68">Sem. 1</text><text x="455" y="210" font-size="12" fill="#4F5D68">Sem. 8</text>
+        </svg>
+        <figcaption>Gráfico de ejemplo con datos inventados para la propuesta.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="apoyo">
+    <div class="wrap">
+      <h2>Gratis de verdad.</h2>
+      <p>Forja no cobra ni tiene planes de pago. Si te sirve y quieres ayudar a que siga creciendo, puedes hacer una donación voluntaria. Si no, sigue entrenando: tienes todo igual.</p>
+      <a class="btn" href="#">Apoyar el proyecto</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="salud">Forja ofrece información general y no sustituye a un médico, nutricionista o entrenador. Si tienes una condición de salud, consulta antes con un profesional.</p>
+    <ul>
+      <li><a href="#">Aviso legal</a></li>
+      <li><a href="#">Privacidad</a></li>
+      <li><a href="#">Cookies</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script>
+const datos={
+  pecho:[["Press de banca","Pectoral · Tríceps","Intermedio"],["Flexiones","Pectoral · Hombro","Principiante"],["Aperturas con mancuernas","Pectoral","Intermedio"]],
+  espalda:[["Dominadas","Dorsal · Bíceps","Avanzado"],["Remo con barra","Dorsal · Trapecio","Intermedio"],["Jalón al pecho","Dorsal","Principiante"]],
+  piernas:[["Sentadilla con barra","Cuádriceps · Glúteos","Intermedio"],["Peso muerto rumano","Isquiotibiales · Glúteos","Intermedio"],["Zancadas","Cuádriceps · Glúteos","Principiante"]],
+  hombros:[["Press militar","Deltoides · Tríceps","Intermedio"],["Elevaciones laterales","Deltoides","Principiante"],["Pájaros","Deltoides posterior","Principiante"]],
+  brazos:[["Curl con barra","Bíceps","Principiante"],["Fondos en banco","Tríceps","Principiante"],["Press francés","Tríceps","Intermedio"]],
+  core:[["Plancha","Abdomen · Lumbar","Principiante"],["Elevación de piernas","Abdomen inferior","Intermedio"],["Rueda abdominal","Abdomen","Avanzado"]]
+};
+const res=document.getElementById('res'),chips=document.querySelectorAll('.chip');
+function pinta(m){
+  res.innerHTML=(datos[m]||[]).map(e=>`<li><a href="#"><span><b>${e[0]}</b><small>${e[1]}</small></span><span class="nivel">${e[2]}</span></a></li>`).join('')||'<li class="vacio">No hay ejercicios para este músculo todavía.</li>';
+}
+chips.forEach(c=>c.addEventListener('click',()=>{chips.forEach(x=>x.setAttribute('aria-pressed',x===c));pinta(c.dataset.m)}));
+pinta('pecho');
+</script>
+</body>
+</html>
