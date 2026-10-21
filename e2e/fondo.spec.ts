@@ -40,13 +40,25 @@ test.describe("con prefers-reduced-motion: reduce", () => {
   });
 });
 
-// Que tampoco se descargue three.js en móvil se comprobó con la build de producción
-// (9 scripts frente a 12 en escritorio); `next dev` precarga los módulos dinámicos y aquí no sirve.
-test("en móvil (375 px) no se dibuja el fondo", async ({ page }) => {
+// En móvil el fondo (versión ligera) no se carga al abrir la página, solo tras el primer gesto:
+// así no frena la carga. Que three.js no se descargue antes se comprueba con la build de producción;
+// `next dev` precarga los módulos dinámicos.
+test("en móvil (375 px) el fondo aparece tras el primer gesto, no al abrir la página", async ({ page }) => {
   await page.setViewportSize({ width: 375, height: 700 });
   await page.goto("/estadisticas");
-  await page.waitForTimeout(5000); // más que la espera hasta que el navegador está libre
+  await page.waitForTimeout(4000); // más que la espera hasta que el navegador está libre
   await expect(lienzo(page)).not.toHaveClass(/fondo-visible/);
-  await expect(lienzo(page)).not.toHaveAttribute("data-animando", /.*/);
+  await page.mouse.wheel(0, 300);
+  await expect(lienzo(page)).toHaveClass(/fondo-visible/, { timeout: 15000 });
   expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(375);
+});
+
+test("al cambiar de tema el fondo se vuelve a dibujar con los colores nuevos", async ({ page }) => {
+  await page.goto("/guias");
+  await expect(lienzo(page)).toHaveClass(/fondo-visible/, { timeout: 15000 });
+  const antes = await lienzo(page).elementHandle();
+  await page.getByRole("button", { name: /Cambiar a modo (oscuro|claro)/ }).click();
+  await expect(lienzo(page)).toHaveClass(/fondo-visible/, { timeout: 15000 });
+  // Lienzo nuevo (la escena lee los colores al montarse).
+  expect(await page.evaluate((viejo) => viejo !== document.querySelector("canvas.fondo-3d"), antes)).toBe(true);
 });

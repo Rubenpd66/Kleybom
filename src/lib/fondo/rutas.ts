@@ -39,13 +39,16 @@ export function escenaDeRuta(ruta: string): Escena | null {
 
 export const SECCIONES = POR_SECCION;
 
-// ¿Merece la pena dibujar el fondo 3D en este aparato? En móvil el texto ocupa todo el ancho
-// (el fondo apenas se vería) y three.js gasta batería y datos; tampoco con "ahorro de datos"
-// ni en aparatos con poca memoria. Medido: en móvil subía el tiempo de bloqueo hasta 870 ms.
+// Cómo dibujar el fondo 3D en este aparato:
+// - "completo": ordenador o tableta; se carga cuando el navegador queda libre tras abrir la página.
+// - "ligero": móvil o poca memoria; menos objetos y fotogramas, y se carga tras el primer toque o
+//   desplazamiento (cargarlo al abrir subía el bloqueo hasta 870 ms en un móvil medio).
+// - "ninguno": con "ahorro de datos" o muy poca memoria no se descarga three.js.
+export type ModoFondo = "completo" | "ligero" | "ninguno";
 export const ANCHO_MINIMO_FONDO = 768;
-export function debeMostrarFondo({ ancho, ahorroDatos, memoriaGb }: { ancho: number; ahorroDatos?: boolean; memoriaGb?: number }): boolean {
-  if (ancho < ANCHO_MINIMO_FONDO) return false;
-  if (ahorroDatos) return false;
-  if (memoriaGb !== undefined && memoriaGb < 4) return false;
-  return true;
+export function modoFondo({ ancho, ahorroDatos, memoriaGb }: { ancho: number; ahorroDatos?: boolean; memoriaGb?: number }): ModoFondo {
+  if (ahorroDatos) return "ninguno";
+  if (memoriaGb !== undefined && memoriaGb < 2) return "ninguno";
+  if (ancho < ANCHO_MINIMO_FONDO || (memoriaGb !== undefined && memoriaGb < 4)) return "ligero";
+  return "completo";
 }

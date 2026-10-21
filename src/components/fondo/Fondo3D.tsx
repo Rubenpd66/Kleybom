@@ -1,18 +1,20 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { useEffect, useRef } from "react";
-import { debeMostrarFondo, escenaDeRuta, type Escena } from "@/lib/fondo/rutas";
+import { useEffect, useRef, useSyncExternalStore } from "react";
+import { suscribirTema, temaActual } from "@/components/layout/TemaToggle";
+import { escenaDeRuta, modoFondo, type Escena } from "@/lib/fondo/rutas";
 
-// Fondo 3D decorativo de cada sección. No retrasa la carga: three.js se descarga cuando el navegador
-// está libre. Va detrás del contenido, no recibe clics y lo ignoran los lectores de pantalla.
-// Con "reducir movimiento" o sin tarjeta gráfica se ve quieto. Sin WebGL, en móvil o con ahorro de datos no aparece
-// y la página funciona igual.
+// Fondo 3D de cada sección. No retrasa la carga: three.js se descarga cuando el navegador está libre
+// (en móvil, tras el primer toque o desplazamiento). Va detrás del contenido, no recibe clics y lo
+// ignoran los lectores de pantalla. Con "reducir movimiento" o sin tarjeta gráfica se ve quieto;
+// con ahorro de datos o sin WebGL no aparece. La página funciona igual en todos los casos.
 export default function Fondo3D() {
   const escena = escenaDeRuta(usePathname());
+  const tema = useSyncExternalStore(suscribirTema, temaActual, () => "claro");
   if (!escena) return null;
-  // La key crea un lienzo nuevo en cada sección (cada escena tiene su propio contexto WebGL).
-  return <Lienzo key={escena} escena={escena} />;
+  // La key crea un lienzo nuevo al cambiar de sección o de tema (cada escena lee los colores al montarse).
+  return <Lienzo key={`${escena}-${tema}`} escena={escena} />;
 }
 
 function Lienzo({ escena }: { escena: Escena }) {
@@ -21,28 +23,37 @@ function Lienzo({ escena }: { escena: Escena }) {
   useEffect(() => {
     const lienzo = ref.current;
     if (!lienzo) return;
+    const nav = navigator as Navigator & { connection?: { saveData?: boolean }; deviceMemory?: number };
+    const modo = modoFondo({ ancho: window.innerWidth, ahorroDatos: nav.connection?.saveData, memoriaGb: nav.deviceMemory });
+    if (modo === "ninguno") return;
+
     let desmontar: (() => void) | undefined;
     let cancelado = false;
-
-    // Se decide antes de descargar nada: en móvil o con ahorro de datos, three.js ni se pide.
-    const nav = navigator as Navigator & { connection?: { saveData?: boolean }; deviceMemory?: number };
-    if (!debeMostrarFondo({ ancho: window.innerWidth, ahorroDatos: nav.connection?.saveData, memoriaGb: nav.deviceMemory })) return;
-
     const empezar = async () => {
       const { capacidadWebGL, montarEscena } = await import("./escenas");
       const capacidad = capacidadWebGL();
       if (cancelado || capacidad === "ninguna") return;
       const quieta = capacidad === "lenta" || window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      desmontar = montarEscena(lienzo, escena, quieta);
+      desmontar = montarEscena(lienzo, escena, { quieta, ligero: modo === "ligero" });
       lienzo.classList.add("fondo-visible");
     };
 
-    // Espera a que la página haya cargado y el navegador esté libre.
+    // Ordenador: cuando el navegador queda libre. Móvil: con el primer gesto de la persona.
     const libre = window.requestIdleCallback ?? ((f: () => void) => window.setTimeout(f, 1200));
-    const id = libre(() => void empezar(), { timeout: 4000 });
+    const cancelarLibre = window.cancelIdleCallback ?? window.clearTimeout;
+    const GESTOS = ["pointerdown", "scroll", "keydown", "touchstart"] as const;
+    let idLibre: number | undefined;
+    const alGesto = () => {
+      GESTOS.forEach((g) => window.removeEventListener(g, alGesto));
+      idLibre = libre(() => void empezar(), { timeout: 2000 });
+    };
+    if (modo === "completo") idLibre = libre(() => void empezar(), { timeout: 4000 });
+    else GESTOS.forEach((g) => window.addEventListener(g, alGesto, { passive: true, once: true }));
+
     return () => {
       cancelado = true;
-      (window.cancelIdleCallback ?? window.clearTimeout)(id);
+      GESTOS.forEach((g) => window.removeEventListener(g, alGesto));
+      if (idLibre !== undefined) cancelarLibre(idLibre);
       desmontar?.();
     };
   }, [escena]);

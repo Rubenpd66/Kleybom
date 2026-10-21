@@ -7,14 +7,14 @@ type Tema = "claro" | "oscuro";
 const EVENTO = "cambio-tema";
 
 // Tema que se ve ahora: el elegido a mano o, si no, el del sistema.
-function temaActual(): Tema {
+export function temaActual(): Tema {
   const elegido = document.documentElement.dataset.tema;
   if (elegido === "claro" || elegido === "oscuro") return elegido;
   return window.matchMedia("(prefers-color-scheme: dark)").matches ? "oscuro" : "claro";
 }
 
 // Avisa cuando cambia el tema: por este botón o porque cambia el del sistema.
-function suscribir(aviso: () => void) {
+export function suscribirTema(aviso: () => void) {
   const sistema = window.matchMedia("(prefers-color-scheme: dark)");
   sistema.addEventListener("change", aviso);
   window.addEventListener(EVENTO, aviso);
@@ -38,7 +38,7 @@ export function cambiarTema() {
 // Botón sol/luna. La elección se guarda en este navegador; SCRIPT_TEMA (src/lib/tema.ts) la aplica antes de pintar.
 export default function TemaToggle() {
   // En el servidor no se sabe el tema: se pinta la luna y se corrige al hidratar.
-  const tema = useSyncExternalStore(suscribir, temaActual, () => "claro" as Tema);
+  const tema = useSyncExternalStore(suscribirTema, temaActual, () => "claro" as Tema);
   const oscuro = tema === "oscuro";
   return (
     <button

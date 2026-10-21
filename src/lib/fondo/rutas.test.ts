@@ -1,13 +1,14 @@
 import { describe, expect, it } from "vitest";
-import { ESCENAS, SECCIONES, debeMostrarFondo, escenaDeRuta } from "./rutas";
+import { ESCENAS, SECCIONES, escenaDeRuta, modoFondo } from "./rutas";
 
-describe("cuándo se dibuja el fondo 3D", () => {
-  it("solo en pantallas anchas, sin ahorro de datos y con memoria suficiente", () => {
-    expect(debeMostrarFondo({ ancho: 1280 })).toBe(true);
-    expect(debeMostrarFondo({ ancho: 768, memoriaGb: 8 })).toBe(true);
-    expect(debeMostrarFondo({ ancho: 412 })).toBe(false);
-    expect(debeMostrarFondo({ ancho: 1280, ahorroDatos: true })).toBe(false);
-    expect(debeMostrarFondo({ ancho: 1280, memoriaGb: 2 })).toBe(false);
+describe("cómo se dibuja el fondo 3D", () => {
+  it("completo en pantallas anchas, ligero en móvil o con poca memoria, y nada con ahorro de datos", () => {
+    expect(modoFondo({ ancho: 1280 })).toBe("completo");
+    expect(modoFondo({ ancho: 768, memoriaGb: 8 })).toBe("completo");
+    expect(modoFondo({ ancho: 412 })).toBe("ligero");
+    expect(modoFondo({ ancho: 1280, memoriaGb: 3 })).toBe("ligero");
+    expect(modoFondo({ ancho: 1280, memoriaGb: 1 })).toBe("ninguno");
+    expect(modoFondo({ ancho: 412, ahorroDatos: true })).toBe("ninguno");
   });
 });
 

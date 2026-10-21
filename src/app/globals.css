@@ -132,7 +132,16 @@ body {
   transition: opacity 600ms ease;
 }
 .fondo-3d.fondo-visible {
-  opacity: 0.5;
+  opacity: 0.6;
+}
+/* En oscuro las luces ámbar destacan sin restar contraste al texto claro. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-tema="claro"]) .fondo-3d.fondo-visible {
+    opacity: 0.85;
+  }
+}
+:root[data-tema="oscuro"] .fondo-3d.fondo-visible {
+  opacity: 0.85;
 }
 
 /* Tarjetas de listados: solo cambia el fondo, sin moverse. */
