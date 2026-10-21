@@ -1,0 +1,69 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { Suspense } from "react";
+import RoutineCard from "@/components/routines/RoutineCard";
+import RoutineFilters from "@/components/routines/RoutineFilters";
+import { es } from "@/lib/i18n/es";
+import { listRoutines, type RoutineFilters as Filtros } from "@/lib/routines/queries";
+import { GOALS, LEVELS } from "@/lib/routines/validate";
+
+const t = es.rutinas;
+
+export const metadata: Metadata = { title: `${t.titulo} — ${es.marca}`, description: t.descripcion };
+
+type Params = Promise<Record<string, string | string[] | undefined>>;
+
+function uno(v: string | string[] | undefined): string | undefined {
+  const s = Array.isArray(v) ? v[0] : v;
+  return s?.trim() || undefined;
+}
+
+async function Contenido({ searchParams }: { searchParams: Params }) {
+  const sp = await searchParams;
+  const goal = uno(sp.goal);
+  const level = uno(sp.level);
+  const filtros: Filtros = {
+    goal: GOALS.find((g) => g === goal),
+    level: LEVELS.find((l) => l === level),
+  };
+  const rutinas = await listRoutines(filtros);
+
+  return (
+    <>
+      <div className="mt-8">
+        <RoutineFilters filtros={filtros} />
+      </div>
+      <p className="mt-8 text-sm text-acero" aria-live="polite">
+        {t.resultados(rutinas.length)}
+      </p>
+      {rutinas.length === 0 ? (
+        <div className="mt-4 rounded-xl border border-linea bg-papel p-6">
+          <p>{t.vacio}</p>
+          <Link href="/rutinas" className="mt-4 inline-block font-bold text-azul underline">
+            {t.quitarFiltros}
+          </Link>
+        </div>
+      ) : (
+        <ul aria-label={t.listaEtiqueta} className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {rutinas.map((r) => (
+            <RoutineCard key={r.id} rutina={r} />
+          ))}
+        </ul>
+      )}
+    </>
+  );
+}
+
+export default function RutinasPage(props: PageProps<"/rutinas">) {
+  return (
+    <main className="mx-auto w-full max-w-[1180px] flex-1 px-6 py-12">
+      <h1 className="font-display text-[clamp(2.2rem,6vw,3.6rem)] font-extrabold leading-none">
+        {t.titulo}
+      </h1>
+      <p className="mt-3 max-w-[62ch] text-acero">{t.descripcion}</p>
+      <Suspense fallback={<p className="mt-8 text-acero">{es.ejercicios.cargando}</p>}>
+        <Contenido searchParams={props.searchParams} />
+      </Suspense>
+    </main>
+  );
+}

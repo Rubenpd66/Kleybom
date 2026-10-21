@@ -1,7 +1,7 @@
 # PROGRESO
 
 ## Fase actual
-Fase 4 (Construcción), versión 0.1. Hechas: Tareas 1 a 8. Tareas 1 a 13 hechas y v0.1 desplegada. Tareas 14 y 15 hechas. Tarea 16 hecha. Siguiente: Tarea 17 (páginas de rutinas).
+Fase 4 (Construcción), versión 0.1. Hechas: Tareas 1 a 8. Tareas 1 a 13 hechas y v0.1 desplegada. Tareas 14 y 15 hechas. Tareas 14-17 hechas. Siguiente: Tarea 18 (lógica del constructor de rutinas).
 
 ## Tareas del plan completadas
 - Tarea 1: proyecto Next.js 16 + Tailwind 4 + TypeScript creado y compilando (`npm run build` OK).
@@ -23,6 +23,7 @@ Fase 4 (Construcción), versión 0.1. Hechas: Tareas 1 a 8. Tareas 1 a 13 hechas
 - Tarea 14 (v0.2): tablas `routines` y `routine_exercises` (migración `20261021160000_rutinas.sql`, aplicada en `forja`). Plantillas públicas = `owner_id` nulo (exigen `slug`); rutinas propias solo del dueño y se borran con su cuenta. `routine_exercises.exercise_id` es `on delete restrict` (borrar un ejercicio del catálogo no vacía rutinas en silencio). La base ya impone series 1–20, reps 1–100, descanso 0–600, reps_max ≥ reps_min y posición única por día. 8 tests de seguridad con cuentas reales A y B (`e2e/rutinas-seguridad.spec.ts`): B/anónimo no ven ni tocan lo de A; nadie crea ni edita plantillas desde la web (solo con la clave de servicio); valores imposibles rechazados; al borrar la cuenta se borran sus rutinas y no las plantillas. Avisos de seguridad: ninguno; la base quedó sin datos de prueba.
 - Tarea 15: `validateRoutine` en `src/lib/routines/validate.ts` (también exporta `GOALS` y `LEVELS`), con 10 tests. Usa los mismos límites que la base de datos y devuelve todos los errores a la vez, indicando de qué ejercicio hablan ("Ejercicio 2: ...").
 - Tarea 16 (redacción): 6 plantillas en `scripts/seed-rutinas/rutinas.ts` (cuerpo completo principiante 3d, torso/pierna 4d, empuje/tirón/pierna 6d, fuerza básica 3d, movilidad en casa, iniciación sin material 3d), con descripciones, consejos y aviso de salud. Usan 47 ejercicios del catálogo, todos comprobados en la base. 14 tests (validan cada rutina con `validateRoutine`). `node scripts/seed-rutinas/run.ts --dry-run` comprueba los ejercicios y regenera `docs/contenido-rutinas.md` sin tocar la base; sin `--dry-run` carga las plantillas (se puede repetir: actualiza por slug). **Cargadas en la base el 21/10/2026 tras la revisión del usuario** (6 rutinas, 109 ejercicios en total; un anónimo las lee). Nota para la Tarea 17: los ejercicios por tiempo (planchas, estiramientos) se guardan como 1 repetición con la duración en la nota; al mostrarlos hay que enseñar la nota, no "3 × 1".
+- Tarea 17: `/rutinas` (listado de plantillas filtrable por objetivo y nivel; formulario GET como en ejercicios) y `/rutinas/[slug]` (descripción, días, series × repeticiones, descanso, notas y enlace a cada ficha). `listRoutines` y `getRoutineBySlug` en `src/lib/routines/queries.ts` (solo plantillas públicas; las rutinas propias irán en el panel) con 7 tests, y `formatearSeries` (los ejercicios por tiempo salen como "3 series" + la duración en la nota). 8 tests de navegador. Ruta inexistente: misma solución que en ejercicios (estado 200 + `noindex`). Ya está en `main`, así que Vercel lo despliega solo.
 
 ## Hecho
 - Comprobado: node v24.22.0, npm 11.19.1, git 2.51.0.
