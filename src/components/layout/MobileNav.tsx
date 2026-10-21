@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { es } from "@/lib/i18n/es";
 
-export default function MobileNav() {
+export default function MobileNav({ conSesion = false }: { conSesion?: boolean }) {
   const [abierto, setAbierto] = useState(false);
 
   return (
@@ -38,11 +38,11 @@ export default function MobileNav() {
             ))}
             <li className="py-3">
               <Link
-                href="/entrar"
+                href={conSesion ? "/panel" : "/entrar"}
                 onClick={() => setAbierto(false)}
                 className="inline-block rounded-md border-[1.5px] border-hierro px-4 py-2 font-bold"
               >
-                {es.nav.entrar}
+                {conSesion ? es.nav.miPanel : es.nav.entrar}
               </Link>
             </li>
           </ul>
