@@ -1,7 +1,7 @@
 # PROGRESO
 
 ## Fase actual
-Fase 4 (Construcción), versión 0.1. Hechas: Tareas 1 a 8. Tareas 1 a 13 hechas y v0.1 desplegada. Tareas 14 y 15 hechas. Tareas 14-19 hechas. Tareas 20-22 hechas. Siguiente: Tarea 23 (pantalla del calendario). El usuario pidió continuar sin parar hasta el final, avisando solo cuando haga falta su mano (claves o configuraciones en webs).
+Fase 4 (Construcción), versión 0.1. Hechas: Tareas 1 a 8. Tareas 1 a 13 hechas y v0.1 desplegada. Tareas 14 y 15 hechas. Tareas 14-19 hechas. v0.2 terminada (Tareas 14-23). Siguiente: Tarea 24 (v0.3 Nutrición). El usuario pidió continuar sin parar hasta el final, avisando solo cuando haga falta su mano (claves o configuraciones en webs).
 
 ## Tareas del plan completadas
 - Tarea 1: proyecto Next.js 16 + Tailwind 4 + TypeScript creado y compilando (`npm run build` OK).
@@ -29,6 +29,8 @@ Fase 4 (Construcción), versión 0.1. Hechas: Tareas 1 a 8. Tareas 1 a 13 hechas
 - Tarea 20: botón "Imprimir / guardar PDF" (`window.print()`) en el detalle de rutina; estilos `@media print` en `src/app/rutinas/[slug]/print.css` (sin cabecera, pie ni botón; tabla con bordes). El detalle ahora muestra cada día como tabla (ejercicio, series y repeticiones, descanso). 2 tests nuevos (emulación de impresión y clic en el botón).
 - Tarea 21: tabla `planned_sessions` (migración `20261021170000`; fecha, rutina y día de rutina opcionales, nota ≤ 300, estado planificada/hecha/saltada). RLS de dueño; `on delete cascade` con la cuenta; si se borra la rutina la sesión se conserva (`set null`). Al crear o editar, la rutina elegida debe ser visible para el usuario (plantilla o suya): nadie puede apuntar a la rutina privada de otro. 7 tests de seguridad con cuentas reales A/B. Avisos de seguridad: ninguno.
 - Tarea 22: `src/lib/calendar/dates.ts` sin librerías: `toLocalDateKey(d, tz)` (con `Intl.DateTimeFormat`), `daysInMonth`, `monthGrid(year, month)` (meses 1–12, semanas de lunes a domingo con relleno) y `addMonths`. 14 tests, incluidos cambios de hora de Madrid, bisiestos (2028, 2000, 2100) y cambio de año.
+- Tarea 23: `/calendario` (privado). Cuadrícula mensual (`MonthView`, tabla accesible: cada día es un enlace con etiqueta tipo "lunes, 2 de noviembre de 2026, 1 sesión"), navegación por meses con `?mes=AAAA-MM` y día elegido con `&dia=AAAA-MM-DD` (funciona sin JavaScript). Formulario para planificar (`PlanSessionDialog`: no es ventana modal, es un panel; fecha, rutina —plantillas y propias—, día de la rutina, nota) y, por sesión, marcar hecha/saltada/planificada o borrar. El "hoy" usa la zona horaria del perfil (por defecto Europe/Madrid). Mensaje de inicio para usuarios sin nada planificado. `validarSesion` con 7 tests; 5 tests de navegador. **A revisar en la Fase 5 (accesibilidad):** en otros formularios el `<select>` va dentro del `<label>` y Chrome añade la opción elegida al nombre accesible; en el calendario ya se usa `htmlFor`.
+- **Cierre v0.2:** se despliega sola en Vercel al subir a `main`.
 
 ## Hecho
 - Comprobado: node v24.22.0, npm 11.19.1, git 2.51.0.
