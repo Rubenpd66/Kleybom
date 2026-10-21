@@ -1,0 +1,44 @@
+/* Estilos de impresión de la rutina: solo contenido, sin cabecera, pie ni botones. */
+@media print {
+  header,
+  footer,
+  .no-print,
+  a[href="#contenido"] {
+    display: none !important;
+  }
+
+  body {
+    background: #fff;
+    color: #000;
+    font-size: 11pt;
+  }
+
+  main {
+    padding: 0 !important;
+    max-width: none !important;
+  }
+
+  a {
+    color: #000 !important;
+    text-decoration: none !important;
+  }
+
+  section {
+    break-inside: avoid;
+  }
+
+  h2 {
+    break-after: avoid;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  th,
+  td {
+    border: 1px solid #000;
+    padding: 4px 8px;
+  }
+}

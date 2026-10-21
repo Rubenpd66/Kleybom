@@ -63,3 +63,28 @@ test("en móvil no hay scroll horizontal", async ({ page }) => {
     expect(desborda, ruta).toBe(false);
   }
 });
+
+test("al imprimir no salen la cabecera, el pie ni el botón, y sí la tabla de la rutina", async ({ page }) => {
+  await page.goto("/rutinas/fuerza-basica-3-dias");
+  await expect(page.getByRole("button", { name: "Imprimir / guardar PDF" })).toBeVisible();
+  await expect(page.locator("header")).toBeVisible();
+
+  await page.emulateMedia({ media: "print" });
+  await expect(page.locator("header")).toBeHidden();
+  await expect(page.locator("footer").first()).toBeHidden();
+  await expect(page.getByRole("button", { name: "Imprimir / guardar PDF" })).toBeHidden();
+  await expect(page.getByRole("table").first()).toBeVisible();
+  await expect(page.getByRole("heading", { level: 1, name: /Fuerza básica/ })).toBeVisible();
+});
+
+test("el botón de imprimir abre el diálogo de impresión", async ({ page }) => {
+  await page.addInitScript(() => {
+    (window as unknown as { __impreso: number }).__impreso = 0;
+    window.print = () => {
+      (window as unknown as { __impreso: number }).__impreso++;
+    };
+  });
+  await page.goto("/rutinas/fuerza-basica-3-dias");
+  await page.getByRole("button", { name: "Imprimir / guardar PDF" }).click();
+  expect(await page.evaluate(() => (window as unknown as { __impreso: number }).__impreso)).toBe(1);
+});

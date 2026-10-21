@@ -112,6 +112,10 @@ export const es = {
     noEncontradaTitulo: "Rutina no encontrada",
     noEncontrada: "No existe ninguna rutina con esa dirección. Puede que se haya movido o que esté mal escrita.",
     verTodas: "Ver todas las rutinas",
+    imprimir: "Imprimir / guardar PDF",
+    columnaEjercicio: "Ejercicio",
+    columnaSeries: "Series y repeticiones",
+    columnaDescanso: "Descanso",
   },
   constructor: {
     titulo: "Crear mi rutina",

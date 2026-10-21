@@ -2,9 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense, cache } from "react";
+import PrintButton from "@/components/routines/PrintButton";
 import { es } from "@/lib/i18n/es";
 import { formatearSeries } from "@/lib/routines/format";
 import { getRoutineBySlug } from "@/lib/routines/queries";
+import "./print.css";
 
 const t = es.rutinas;
 const obtener = cache((slug: string) => getRoutineBySlug(slug));
@@ -39,6 +41,9 @@ async function Contenido({ params }: { params: Promise<{ slug: string }> }) {
         <span className="rounded-full border border-hierro px-3 py-0.5 text-sm">{t.niveles[r.level]}</span>
         <span className="text-sm text-acero">{t.dias(r.days_per_week)}</span>
       </p>
+      <div className="mt-4">
+        <PrintButton />
+      </div>
       {r.description && (
         <p className="mt-6 max-w-[62ch] whitespace-pre-line">{r.description}</p>
       )}
@@ -49,19 +54,37 @@ async function Contenido({ params }: { params: Promise<{ slug: string }> }) {
         r.dias.map((d) => (
           <section key={d.dia} className="mt-10">
             <h2 className="font-display text-[1.7rem] font-bold">{t.dia(d.dia)}</h2>
-            <ul className="mt-3 flex flex-col divide-y divide-linea rounded-xl border border-linea bg-papel">
-              {d.ejercicios.map((e) => (
-                <li key={e.exercise.slug} className="flex flex-col gap-1 p-4">
-                  <Link href={`/ejercicios/${e.exercise.slug}`} className="font-bold text-azul underline">
-                    {e.exercise.name_es}
-                  </Link>
-                  <span className="text-sm">
-                    {formatearSeries(e.sets, e.reps_min, e.reps_max)} · {t.descanso(e.rest_seconds)}
-                  </span>
-                  {e.notes && <span className="text-sm text-acero">{e.notes}</span>}
-                </li>
-              ))}
-            </ul>
+            <div className="mt-3 overflow-x-auto rounded-xl border border-linea bg-papel">
+              <table className="w-full text-left text-sm">
+                <thead>
+                  <tr className="border-b border-linea">
+                    <th scope="col" className="p-3 font-bold">
+                      {t.columnaEjercicio}
+                    </th>
+                    <th scope="col" className="p-3 font-bold">
+                      {t.columnaSeries}
+                    </th>
+                    <th scope="col" className="p-3 font-bold">
+                      {t.columnaDescanso}
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-linea">
+                  {d.ejercicios.map((e, i) => (
+                    <tr key={`${d.dia}-${i}`}>
+                      <td className="p-3">
+                        <Link href={`/ejercicios/${e.exercise.slug}`} className="font-bold text-azul underline">
+                          {e.exercise.name_es}
+                        </Link>
+                        {e.notes && <span className="mt-1 block text-acero">{e.notes}</span>}
+                      </td>
+                      <td className="p-3 whitespace-nowrap">{formatearSeries(e.sets, e.reps_min, e.reps_max)}</td>
+                      <td className="p-3 whitespace-nowrap">{e.rest_seconds} s</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </section>
         ))
       )}
