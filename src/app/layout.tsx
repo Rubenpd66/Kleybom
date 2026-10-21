@@ -3,7 +3,7 @@ import { Big_Shoulders, Schibsted_Grotesk } from "next/font/google";
 import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
 import { es } from "@/lib/i18n/es";
-import { SITE_URL } from "@/lib/seo/site";
+import { IMAGEN_COMPARTIR, SITE_URL } from "@/lib/seo/site";
 import "./globals.css";
 
 const titulos = Big_Shoulders({
@@ -22,7 +22,13 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: es.meta.titulo,
   description: es.meta.descripcion,
-  openGraph: { siteName: es.marca, locale: "es_ES", type: "website" },
+  openGraph: {
+    siteName: es.marca,
+    locale: "es_ES",
+    type: "website",
+    images: [IMAGEN_COMPARTIR],
+  },
+  twitter: { card: "summary_large_image" },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { mensajeDeError, validarCredenciales } from "./validate";
+import { mensajeDeError, validarConsentimientos, validarCredenciales } from "./validate";
 
 describe("validarCredenciales", () => {
   it("acepta un correo y una contraseña de 8 o más caracteres", () => {
@@ -25,5 +25,14 @@ describe("mensajeDeError", () => {
   it("usa un mensaje general si el código no se conoce", () => {
     expect(mensajeDeError("algo_raro")).toMatch(/inténtalo de nuevo/i);
     expect(mensajeDeError(undefined)).toMatch(/inténtalo de nuevo/i);
+  });
+});
+
+describe("validarConsentimientos", () => {
+  it("exige aceptar la privacidad y el tratamiento de datos de salud", () => {
+    expect(validarConsentimientos(false, true)).toMatch(/política de privacidad/);
+    expect(validarConsentimientos(true, false)).toMatch(/datos de salud/);
+    expect(validarConsentimientos(false, false)).toMatch(/política de privacidad/);
+    expect(validarConsentimientos(true, true)).toBeNull();
   });
 });

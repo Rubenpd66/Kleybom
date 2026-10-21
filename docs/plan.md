@@ -354,8 +354,8 @@
 
 ### Tarea 46: Imágenes con Nano Banana `[Gemini · —]`
 **Archivos:** `docs/estilo-imagenes.md`, imágenes en `public/img/`.
-- [ ] Definir un estilo visual único y los prompts. Generar en Gemini/Antigravity (ahorra cuota de Claude).
-- [ ] Optimizar el tamaño, usar `next/image` y escribir texto alternativo en cada una. Guardar los prompts usados. Commit.
+- [x] Definir un estilo visual único y los prompts. Generar en Gemini/Antigravity (ahorra cuota de Claude).
+- [x] Optimizar el tamaño, usar `next/image` y escribir texto alternativo en cada una. Guardar los prompts usados. Commit.
 
 ### Tarea 47: Animaciones 2D `[Sonnet · medium]`
 **Archivos:** `src/components/motion/`, ajustes puntuales en componentes existentes.
@@ -380,7 +380,7 @@
 
 ### Tarea 51: Legal y cookies `[Sonnet · medium]`
 **Archivos:** crear `src/app/legal/aviso-legal/`, `privacidad/`, `cookies/`, `src/components/CookieBanner.tsx`.
-- [ ] Redactar los textos con los datos reales del titular (pedirlos al usuario) y mencionar datos de salud, conservación, derechos y borrado. Recomendar revisión por un profesional antes de publicar.
-- [ ] Banner solo si hay analítica o cookies no técnicas; sin analítica, solo informar. Test: sin consentimiento no se carga ningún script de analítica. Commit.
+- [x] Redactar los textos con los datos reales del titular (pedirlos al usuario) y mencionar datos de salud, conservación, derechos y borrado. Recomendar revisión por un profesional antes de publicar.
+- [x] Banner solo si hay analítica o cookies no técnicas; sin analítica, solo informar. Test: sin consentimiento no se carga ningún script de analítica. Commit.
 
 **Cierre v0.5:** Fase 5 (calidad) y Fase 6 (despliegue) del proceso general.

@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import Secciones from "@/components/content/Secciones";
 import { getGuideBySlug, listGuides, readingMinutes } from "@/lib/guides";
 import { es } from "@/lib/i18n/es";
-import { articleLd, jsonLd } from "@/lib/seo/site";
+import { IMAGEN_COMPARTIR, articleLd, jsonLd } from "@/lib/seo/site";
 
 const t = es.guias;
 const fecha = (iso: string) =>
@@ -25,7 +26,7 @@ export async function generateMetadata(props: PageProps<"/guias/[slug]">): Promi
     title: `${g.titulo} — ${es.marca}`,
     description: g.resumen,
     alternates: { canonical: `/guias/${g.slug}` },
-    openGraph: { type: "article", title: g.titulo, description: g.resumen, publishedTime: g.publicada, modifiedTime: g.actualizada },
+    openGraph: { type: "article", title: g.titulo, description: g.resumen, publishedTime: g.publicada, modifiedTime: g.actualizada, images: [IMAGEN_COMPARTIR] },
   };
 }
 
@@ -53,24 +54,7 @@ export default async function GuiaPage(props: PageProps<"/guias/[slug]">) {
           {t.aviso}
         </p>
 
-        {g.secciones.map((s) => (
-          <section key={s.titulo} className="mt-10">
-            <h2 className="font-display text-[1.7rem] font-bold">{s.titulo}</h2>
-            <div className="mt-3 flex max-w-[62ch] flex-col gap-3">
-              {s.bloques.map((b, i) =>
-                b.tipo === "p" ? (
-                  <p key={i}>{b.texto}</p>
-                ) : (
-                  <ul key={i} className="flex list-disc flex-col gap-2 pl-6">
-                    {b.items.map((x) => (
-                      <li key={x}>{x}</li>
-                    ))}
-                  </ul>
-                ),
-              )}
-            </div>
-          </section>
-        ))}
+        <Secciones secciones={g.secciones} />
 
         <section className="mt-10 rounded-xl border border-linea bg-papel p-5">
           <h2 className="font-display text-2xl font-bold">{t.enForja}</h2>

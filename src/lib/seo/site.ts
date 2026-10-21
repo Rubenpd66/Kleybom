@@ -10,7 +10,15 @@ export const url = (ruta: string) => `${SITE_URL}${ruta === "/" ? "" : ruta}`;
 export const RUTAS_NO_INDEXABLES = ["/panel", "/rutinas/nueva", "/calendario", "/nutricion", "/entreno", "/estadisticas", "/api/", "/auth/"];
 
 // Páginas públicas sin parámetros.
-export const PAGINAS_ESTATICAS = ["/", "/ejercicios", "/rutinas", "/alimentos", "/alimentos/codigo", "/recetas", "/guias"];
+export const PAGINAS_ESTATICAS = ["/", "/ejercicios", "/rutinas", "/alimentos", "/alimentos/codigo", "/recetas", "/guias", "/aviso-legal", "/privacidad", "/cookies"];
+
+// Imagen al compartir en redes. Un `openGraph` de página sustituye al del layout, así que hay que repetirla.
+export const IMAGEN_COMPARTIR = {
+  url: "/img/compartir.jpg",
+  width: 1200,
+  height: 630,
+  alt: "Forja: un gimnasio luminoso con una tableta que muestra estadísticas de entrenamiento",
+};
 
 // JSON para <script type="application/ld+json">: se escapa "<" para que ningún texto cierre la etiqueta.
 export function jsonLd(datos: object): string {

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import CalorieBar from "@/components/foods/CalorieBar";
 import NutritionTable from "@/components/foods/NutritionTable";
+import FotoEntreno from "@/components/home/FotoEntreno";
 import MuscleSelector from "@/components/home/MuscleSelector";
 import { COLOR_SERIE, LineChart } from "@/components/stats/Charts";
 import { getHomeData } from "@/lib/home/queries";
@@ -55,6 +56,7 @@ export default async function Home() {
         </div>
         <MuscleSelector grupos={grupos} />
       </div>
+      <FotoEntreno />
 
       <Seccion>
         <div>

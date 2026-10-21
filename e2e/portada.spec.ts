@@ -35,6 +35,26 @@ test("muestra una ficha de ejercicio y un alimento reales, con su fuente", async
   await expect(page.getByText("Gráfico de ejemplo con datos inventados.")).toBeVisible();
 });
 
+test("la foto carga con texto alternativo: vertical en móvil y horizontal en escritorio", async ({ page }) => {
+  const foto = page.getByRole("img", { name: /se ata las zapatillas/ });
+  for (const [ancho, archivo] of [[375, "entreno-vertical"], [1280, "entreno-horizontal"]] as const) {
+    await page.setViewportSize({ width: ancho, height: 800 });
+    await page.goto("/");
+    await foto.scrollIntoViewIfNeeded();
+    await expect(foto).toHaveJSProperty("complete", true);
+    expect(await foto.evaluate((i: HTMLImageElement) => i.currentSrc)).toContain(archivo);
+    expect(await foto.evaluate((i: HTMLImageElement) => i.naturalWidth)).toBeGreaterThan(0);
+  }
+});
+
+test("al compartir en redes se usa la imagen de 1200 × 630", async ({ page }) => {
+  for (const ruta of ["/", "/guias/descanso"]) {
+    await page.goto(ruta);
+    await expect(page.locator('meta[property="og:image"]')).toHaveAttribute("content", /\/img\/compartir\.jpg$/);
+    await expect(page.locator('meta[property="og:image:width"]')).toHaveAttribute("content", "1200");
+  }
+});
+
 test("en móvil (375 px) la portada no tiene scroll horizontal", async ({ page }) => {
   await page.setViewportSize({ width: 375, height: 700 });
   await page.goto("/");

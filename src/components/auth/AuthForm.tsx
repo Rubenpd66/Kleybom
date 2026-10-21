@@ -22,7 +22,7 @@ export default function AuthForm({
     <form action={enviar} noValidate className="mt-8 flex max-w-sm flex-col gap-4">
       <label className="flex flex-col gap-1 text-sm font-bold">
         {t.correo}
-        <input name="correo" type="email" autoComplete="email" required className={campo} />
+        <input name="correo" type="email" autoComplete="email" required defaultValue={estado.valores?.correo} className={campo} />
       </label>
       <label className="flex flex-col gap-1 text-sm font-bold">
         {t.contrasena}
@@ -48,13 +48,23 @@ export default function AuthForm({
       )}
 
       {registro && (
-        <p className="text-xs text-acero">
-          {t.privacidadAntes}{" "}
-          <Link href="/privacidad" className="text-azul underline">
-            {t.privacidadEnlace}
-          </Link>
-          .
-        </p>
+        <fieldset className="flex flex-col gap-3 text-sm">
+          <legend className="mb-2 font-bold">{t.consentimientos}</legend>
+          <label className="flex gap-3">
+            <input name="privacidad" type="checkbox" value="si" required defaultChecked={estado.valores?.privacidad} className="mt-0.5 h-5 w-5 shrink-0 accent-hierro" />
+            <span>
+              {t.privacidadAntes}{" "}
+              <Link href="/privacidad" className="text-azul underline" target="_blank">
+                {t.privacidadEnlace}
+              </Link>{" "}
+              {t.privacidadDespues}
+            </span>
+          </label>
+          <label className="flex gap-3">
+            <input name="salud" type="checkbox" value="si" required defaultChecked={estado.valores?.salud} className="mt-0.5 h-5 w-5 shrink-0 accent-hierro" />
+            <span>{t.consentimientoSalud}</span>
+          </label>
+        </fieldset>
       )}
 
       <button

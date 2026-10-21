@@ -60,8 +60,12 @@ export const es = {
     ayudaContrasena: "Mínimo 8 caracteres.",
     noTienes: "¿Aún no tienes cuenta?",
     yaTienes: "¿Ya tienes cuenta?",
-    privacidadAntes: "Al crear tu cuenta aceptas la",
+    consentimientos: "Antes de crear la cuenta",
+    privacidadAntes: "He leído y acepto la",
     privacidadEnlace: "política de privacidad",
+    privacidadDespues: "y tengo 14 años o más.",
+    consentimientoSalud:
+      "Doy mi consentimiento expreso para que Forja guarde los datos de salud que yo apunte (peso, medidas, comidas y entrenos) solo para mostrarme mi progreso. Puedo retirarlo cuando quiera borrando esos datos o mi cuenta.",
     panel: "Mi panel",
     sesionComo: "Has entrado como",
     salir: "Cerrar sesión",
