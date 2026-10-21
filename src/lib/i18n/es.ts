@@ -29,8 +29,6 @@ export const es = {
     aviso:
       "Información general: no sustituye a un médico, nutricionista o entrenador.",
     enlaces: [
-      { href: "/guias", label: "Guías" },
-      { href: "/recetas", label: "Recetas" },
       { href: "/aviso-legal", label: "Aviso legal" },
       { href: "/privacidad", label: "Privacidad" },
       { href: "/cookies", label: "Cookies" },
@@ -327,8 +325,11 @@ export const es = {
     hoy: "Hoy",
     resumen: "Resumen del día",
     deObjetivo: (kcal: number) => `de ${kcal} kcal`,
-    sinObjetivos: "Aún no tienes objetivos.",
+    objetivosTitulo: "Objetivos",
+    objetivosDetalle: (kcal: number) => `${kcal} kcal al día · cambiar`,
     calcularObjetivos: "Calcular mis objetivos",
+    panelAlimentos: (n: number) => `${n.toLocaleString("es-ES")} alimentos`,
+    panelRecetas: (n: number) => (n === 1 ? "1 receta" : `${n} recetas`),
     verObjetivos: "Ver o cambiar mis objetivos",
     incompleto: "Algún alimento no tiene todos los datos: los totales pueden quedarse cortos.",
     vacio:
@@ -346,7 +347,6 @@ export const es = {
     anadir: (n: string) => `Añadir ${n}`,
     sinResultados: "No hay alimentos con ese nombre. Prueba con otra palabra.",
     porCien: (kcal: string) => `${kcal} por 100 g`,
-    explorar: "Explorar todos los alimentos",
     errorGeneral: "No se ha podido guardar. Inténtalo de nuevo en unos minutos.",
     errorFecha: "La fecha no es válida.",
     errorComida: "Elige una comida de la lista.",

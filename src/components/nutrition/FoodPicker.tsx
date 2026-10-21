@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useId, useRef, useState, useTransition } from "react";
 import { anadirEntrada, buscarAlimentos, type AlimentoEncontrado } from "@/app/nutricion/actions";
 import { formatNutriente } from "@/lib/foods/format";
@@ -108,15 +107,6 @@ export default function FoodPicker({ fecha }: { fecha: string }) {
           ))}
         </ul>
       )}
-      <p className="mt-3 text-sm">
-        <Link href="/alimentos" className="text-azul underline">
-          {t.explorar}
-        </Link>
-        {" · "}
-        <Link href="/recetas" className="text-azul underline">
-          {es.recetas.enlace}
-        </Link>
-      </p>
     </section>
   );
 }

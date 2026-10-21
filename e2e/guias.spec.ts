@@ -7,9 +7,10 @@ test.beforeAll(async ({ request }) => {
   await request.get(`/guias/${guias[0].slug}`);
 });
 
-test("el listado muestra las 5 guías y se llega desde el pie", async ({ page }) => {
+test("el listado muestra las 5 guías y se llega desde la portada", async ({ page }) => {
   await page.goto("/");
-  await page.getByRole("contentinfo").getByRole("link", { name: "Guías" }).click();
+  await expect(page.getByRole("contentinfo").getByRole("link", { name: "Guías" })).toHaveCount(0);
+  await page.getByRole("navigation", { name: "Secciones" }).getByRole("link", { name: /Guías/ }).click();
   await expect(page).toHaveURL(/\/guias$/);
   await expect(page.getByRole("heading", { level: 1, name: "Guías" })).toBeVisible();
   await expect(page.getByRole("list", { name: "Guías" }).getByRole("listitem")).toHaveCount(5);

@@ -6,11 +6,13 @@ import AvisoInvitado from "@/components/auth/AvisoInvitado";
 import ProgressBar from "@/components/motion/ProgressBar";
 import FoodPicker from "@/components/nutrition/FoodPicker";
 import MealSection from "@/components/nutrition/MealSection";
+import Icono, { type NombreIcono } from "@/components/ui/Icono";
 import { getCurrentUser } from "@/lib/auth/session";
 import { toLocalDateKey } from "@/lib/calendar/dates";
 import { getUserTimezone, ZONA_POR_DEFECTO } from "@/lib/calendar/queries";
 import { esClaveDeDia } from "@/lib/calendar/validate";
 import { formatNutriente } from "@/lib/foods/format";
+import { getHomeData } from "@/lib/home/queries";
 import { es } from "@/lib/i18n/es";
 import { MEALS, summarizeDay } from "@/lib/nutrition/diary";
 import { getGoals, listEntries } from "@/lib/nutrition/queries";
@@ -22,6 +24,25 @@ export const metadata: Metadata = { title: `${t.titulo} — ${es.marca}`, robots
 type Params = Promise<Record<string, string | string[] | undefined>>;
 const uno = (v: string | string[] | undefined) => (Array.isArray(v) ? v[0] : v)?.trim() ?? "";
 const nombreDia = new Intl.DateTimeFormat("es-ES", { weekday: "long", day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
+
+// Panel que lleva a otra sección: icono, cifra o título y flecha (como los accesos de la portada).
+function Panel({ href, icono, titulo, detalle }: { href: string; icono: NombreIcono; titulo: string; detalle: string }) {
+  return (
+    <Link
+      href={href}
+      className="acceso group flex h-full flex-col justify-between gap-4 rounded-xl border-[1.5px] border-hierro bg-papel p-4 hover:border-temple"
+    >
+      <span className="flex items-start justify-between gap-3">
+        <span className="font-display text-[1.7rem] font-bold leading-tight group-hover:text-temple-osc">{titulo}</span>
+        <Icono nombre={icono} className="h-8 w-8 shrink-0 text-acero group-hover:text-temple-osc" />
+      </span>
+      <span className="flex items-center justify-between gap-2 text-sm text-acero">
+        {detalle}
+        <span aria-hidden="true" className="flecha font-bold text-temple-osc">→</span>
+      </span>
+    </Link>
+  );
+}
 
 function moverDia(dia: string, delta: number) {
   const d = new Date(`${dia}T00:00:00Z`);
@@ -39,7 +60,10 @@ async function Contenido({ searchParams }: { searchParams: Params }) {
   const pedido = uno(sp.dia);
   const dia = esClaveDeDia(pedido) ? pedido : hoy;
 
-  const [entradas, objetivos] = usuario ? await Promise.all([listEntries(usuario.id, dia), getGoals(usuario.id)]) : [[], null];
+  const [[entradas, objetivos], { cifras }] = await Promise.all([
+    usuario ? Promise.all([listEntries(usuario.id, dia), getGoals(usuario.id)]) : Promise.resolve([[], null] as [Awaited<ReturnType<typeof listEntries>>, null]),
+    getHomeData(),
+  ]);
   const resumen = summarizeDay(entradas);
 
   return (
@@ -58,46 +82,57 @@ async function Contenido({ searchParams }: { searchParams: Params }) {
         </Link>
       </nav>
 
-      <section aria-labelledby="resumen" className="mt-6 rounded-xl border-[1.5px] border-hierro bg-papel p-5">
-        <h2 id="resumen" className="font-display text-[1.7rem] font-bold">
-          {t.resumen}
-        </h2>
-        <p className="mt-2 font-display text-4xl font-extrabold">
-          {formatNutriente(resumen.total.kcal, "kcal")}
-          {objetivos && <span className="ml-2 text-base font-normal text-acero">{t.deObjetivo(objetivos.kcal)}</span>}
-        </p>
-        {objetivos && (
-          <div className="mt-3">
-            <ProgressBar
-              porcentaje={((resumen.total.kcal ?? 0) / objetivos.kcal) * 100}
-              etiqueta={`${Math.round(((resumen.total.kcal ?? 0) / objetivos.kcal) * 100)} % del objetivo de calorías`}
-            />
-          </div>
-        )}
-        <dl className="mt-4 grid grid-cols-3 gap-3 text-sm">
-          {(["protein_g", "carbs_g", "fat_g"] as const).map((k) => (
-            <div key={k}>
-              <dt className="text-acero">{t.macros[k]}</dt>
-              <dd className="font-bold">
-                {formatNutriente(resumen.total[k], "g")}
-                {objetivos && <span className="font-normal text-acero"> / {objetivos[k]} g</span>}
-              </dd>
-            </div>
-          ))}
-        </dl>
-        {resumen.incomplete && <p className="mt-3 text-sm text-acero">{t.incompleto}</p>}
-        <p className="mt-4 text-sm">
-          {!objetivos && <span>{t.sinObjetivos} </span>}
-          <Link href="/nutricion/objetivos" className="font-bold text-azul underline">
-            {objetivos ? t.verObjetivos : t.calcularObjetivos}
-          </Link>
-        </p>
-      </section>
-
       {usuario && entradas.length === 0 && <p className="mt-6 max-w-[62ch] rounded-xl border border-linea bg-papel p-4">{t.vacio}</p>}
 
+      {/* En pantalla ancha: resumen y objetivos arriba; comidas a la izquierda y "añadir" a la derecha.
+          En móvil, uno debajo de otro: resumen, objetivos, añadir y, al final, las comidas. */}
       <div className="mt-6 grid gap-6 lg:grid-cols-[3fr_2fr]">
-        <div className="flex flex-col gap-4">
+        <section aria-labelledby="resumen" className="rounded-xl border-[1.5px] border-hierro bg-papel p-5">
+          <h2 id="resumen" className="font-display text-[1.7rem] font-bold">
+            {t.resumen}
+          </h2>
+          <p className="mt-2 font-display text-4xl font-extrabold">
+            {formatNutriente(resumen.total.kcal, "kcal")}
+            {objetivos && <span className="ml-2 text-base font-normal text-acero">{t.deObjetivo(objetivos.kcal)}</span>}
+          </p>
+          {objetivos && (
+            <div className="mt-3">
+              <ProgressBar
+                porcentaje={((resumen.total.kcal ?? 0) / objetivos.kcal) * 100}
+                etiqueta={`${Math.round(((resumen.total.kcal ?? 0) / objetivos.kcal) * 100)} % del objetivo de calorías`}
+              />
+            </div>
+          )}
+          <dl className="mt-4 grid grid-cols-3 gap-3 text-sm">
+            {(["protein_g", "carbs_g", "fat_g"] as const).map((k) => (
+              <div key={k}>
+                <dt className="text-acero">{t.macros[k]}</dt>
+                <dd className="font-bold">
+                  {formatNutriente(resumen.total[k], "g")}
+                  {objetivos && <span className="font-normal text-acero"> / {objetivos[k]} g</span>}
+                </dd>
+              </div>
+            ))}
+          </dl>
+          {resumen.incomplete && <p className="mt-3 text-sm text-acero">{t.incompleto}</p>}
+        </section>
+
+        <Panel
+          href="/nutricion/objetivos"
+          icono="objetivos"
+          titulo={t.objetivosTitulo}
+          detalle={objetivos ? t.objetivosDetalle(objetivos.kcal) : t.calcularObjetivos}
+        />
+
+        <div className="flex flex-col gap-4 lg:col-start-2 lg:row-start-2 lg:self-start">
+          <FoodPicker fecha={dia} />
+          <div className="grid grid-cols-2 gap-4">
+            <Panel href="/alimentos" icono="alimentos" titulo={es.inicio.accesos.alimentos} detalle={t.panelAlimentos(cifras.alimentos)} />
+            <Panel href="/recetas" icono="recetas" titulo={es.inicio.accesos.recetas} detalle={t.panelRecetas(cifras.recetas)} />
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-4 lg:col-start-1 lg:row-start-2">
           {MEALS.map((m) => (
             <MealSection
               key={m}
@@ -106,9 +141,6 @@ async function Contenido({ searchParams }: { searchParams: Params }) {
               total={resumen.byMeal[m]}
             />
           ))}
-        </div>
-        <div>
-          <FoodPicker fecha={dia} />
         </div>
       </div>
     </>

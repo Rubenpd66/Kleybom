@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import MuscleSelector from "@/components/home/MuscleSelector";
+import Icono from "@/components/ui/Icono";
 import { GUIAS } from "@/lib/guides/content";
 import { getHomeData } from "@/lib/home/queries";
 import { es } from "@/lib/i18n/es";
@@ -16,12 +17,12 @@ export default async function Home() {
   const { grupos, cifras } = await getHomeData();
   // Accesos a cada sección: una cifra grande y una palabra.
   const accesos = [
-    { href: "/ejercicios", cifra: miles(cifras.ejercicios), texto: t.accesos.ejercicios },
-    { href: "/rutinas", cifra: miles(cifras.rutinas), texto: t.accesos.rutinas },
-    { href: "/alimentos", cifra: miles(cifras.alimentos), texto: t.accesos.alimentos },
-    { href: "/recetas", cifra: miles(cifras.recetas), texto: t.accesos.recetas },
-    { href: "/guias", cifra: String(GUIAS.length), texto: t.accesos.guias },
-    { href: "/estadisticas", cifra: "∞", texto: t.accesos.progreso },
+    { href: "/ejercicios", cifra: miles(cifras.ejercicios), texto: t.accesos.ejercicios, icono: "ejercicios" as const },
+    { href: "/rutinas", cifra: miles(cifras.rutinas), texto: t.accesos.rutinas, icono: "rutinas" as const },
+    { href: "/alimentos", cifra: miles(cifras.alimentos), texto: t.accesos.alimentos, icono: "alimentos" as const },
+    { href: "/recetas", cifra: miles(cifras.recetas), texto: t.accesos.recetas, icono: "recetas" as const },
+    { href: "/guias", cifra: String(GUIAS.length), texto: t.accesos.guias, icono: "guias" as const },
+    { href: "/estadisticas", cifra: "∞", texto: t.accesos.progreso, icono: "progreso" as const },
   ];
 
   return (
@@ -52,7 +53,10 @@ export default async function Home() {
                 href={a.href}
                 className="acceso group flex h-full flex-col justify-between gap-6 rounded-2xl border border-linea bg-papel/70 p-5 backdrop-blur-sm hover:border-temple"
               >
-                <span className="font-display text-5xl font-extrabold leading-none tabular-nums group-hover:text-temple-osc">{a.cifra}</span>
+                <span className="flex items-start justify-between gap-3">
+                  <span className="font-display text-5xl font-extrabold leading-none tabular-nums group-hover:text-temple-osc">{a.cifra}</span>
+                  <Icono nombre={a.icono} className="h-9 w-9 shrink-0 text-acero group-hover:text-temple-osc" />
+                </span>
                 <span className="flex items-center justify-between font-medium">
                   {a.texto}
                   <span aria-hidden="true" className="flecha text-temple-osc">→</span>

@@ -44,7 +44,10 @@ test.describe("con una cuenta de prueba", () => {
     await page.goto(`/nutricion?dia=${DIA}`);
     await expect(page.getByRole("heading", { level: 1, name: "Diario de comidas" })).toBeVisible();
     await expect(page.getByText("Aún no has apuntado nada este día")).toBeVisible();
-    await expect(page.getByRole("link", { name: "Calcular mis objetivos" })).toBeVisible();
+    await expect(page.getByRole("link", { name: /Calcular mis objetivos/ })).toHaveAttribute("href", "/nutricion/objetivos");
+    // Paneles hacia el catálogo de alimentos y las recetas, debajo de "Añadir un alimento".
+    await expect(page.getByRole("main").getByRole("link", { name: /^Alimentos/ })).toHaveAttribute("href", "/alimentos");
+    await expect(page.getByRole("main").getByRole("link", { name: /^Recetas/ })).toHaveAttribute("href", "/recetas");
   });
 
   test("añadir un alimento con gramos, ver el total contra el objetivo, editar y borrar", async ({ page }) => {
