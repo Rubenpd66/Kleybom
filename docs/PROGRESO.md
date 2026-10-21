@@ -1,7 +1,7 @@
 # PROGRESO
 
 ## Fase actual
-Fase 4 (Construcción), versión 0.1. Hechas: Tareas 1 a 6. Siguiente: Tarea 7 (consultas de ejercicios).
+Fase 4 (Construcción), versión 0.1. Hechas: Tareas 1 a 7. Siguiente: Tarea 8 (importador de wger).
 
 ## Tareas del plan completadas
 - Tarea 1: proyecto Next.js 16 + Tailwind 4 + TypeScript creado y compilando (`npm run build` OK).
@@ -10,6 +10,7 @@ Fase 4 (Construcción), versión 0.1. Hechas: Tareas 1 a 6. Siguiente: Tarea 7 (
 - Tarea 4: proyecto Supabase `forja` (id `gftajanocydijwtzvjhe`, región eu-central-1) creado. Para liberar hueco en el plan gratuito (límite 2) se pausaron `sello` y `sello-dev` (reactivables desde Supabase). Clientes en `src/lib/supabase/`, `GET /api/health` con test. Claves en `.env.local` (no está en git). `.mcp.json` limitado a este proyecto. Instalados `@supabase/supabase-js` y `@supabase/ssr`.
 - Tarea 5: migración `supabase/migrations/20261021120000_catalogo_ejercicios.sql` aplicada en `forja`: tablas muscles, equipment, exercises, exercise_muscles, exercise_equipment con RLS (solo lectura pública). Comprobado: anónimo lee y no puede escribir; avisos de seguridad: ninguno.
 - Tarea 6: `normalizeText` en `src/lib/text/normalize.ts` con 3 tests (minúsculas, sin tildes, espacios colapsados).
+- Tarea 7: `listExercises` y `getExerciseBySlug` en `src/lib/exercises/queries.ts` (24 por página) con 8 tests sobre un cliente falso en memoria. Migración `20261021130000_exercises_search_text.sql` aplicada: columna `search_text` + índice trigram. **El importador (Tarea 8) debe rellenar `search_text` con `normalizeText(name_es)`.** Límite conocido: el filtro por músculo/material pasa una lista de ids en la URL; vale para cientos de ejercicios, revisar si el catálogo crece mucho.
 
 ## Hecho
 - Comprobado: node v24.22.0, npm 11.19.1, git 2.51.0.
