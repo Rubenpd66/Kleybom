@@ -16,11 +16,25 @@ Leída por Claude Code, Codex y Gemini. Estado actual en `docs/PROGRESO.md`.
 - Animación 2D: por decidir en Fase 3. 3D: Three.js / React Three Fiber, cargado bajo demanda.
 
 ## Comandos
-Pendientes: se rellenan cuando se cree el proyecto (instalar, arrancar, build, test).
+- Instalar: `npm install` (o `npm ci` para una copia exacta)
+- Arrancar en local: `npm run dev` (http://localhost:3000)
+- Build de producción: `npm run build`
+- Revisar el código: `npm run lint`
+- Tests: pendientes (Tarea 2 del plan: Vitest y Playwright)
+
+Versiones instaladas: Next.js 16, React 19, Tailwind CSS 4, TypeScript 5.
 
 ## Estructura de carpetas
-- `docs/` — brief, plan, diseño, progreso, entrega
-- Resto: se define al crear el proyecto Next.js.
+- `src/app/` — páginas y rutas (App Router)
+- `src/lib/` — lógica pura y sus tests (cálculos, consultas)
+- `src/components/` — componentes de interfaz
+- `public/` — archivos estáticos
+- `docs/` — brief, plan, diseño (+ maqueta en `docs/diseno/`), progreso, entrega
+- `supabase/migrations/` — SQL de la base de datos (se crea en la Tarea 5)
+
+## Notas técnicas
+- `npm audit` avisa de 5 vulnerabilidades altas, todas en la herramienta de desarrollo ESLint (`braces`/`fast-glob`), no en el código que se publica. No usar `npm audit fix --force`: bajaría la versión de Next.js. Revisar de nuevo al actualizar dependencias.
+- Hay un `package-lock.json` en `C:\Users\RUBEN` (fuera del proyecto) que Next.js ignora; el aviso en el build es inofensivo.
 
 ## Reglas
 - Secretos SIEMPRE en `.env`, nunca en git. Mantener un `.env.example` sin valores reales.

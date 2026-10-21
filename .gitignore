@@ -29,3 +29,10 @@ Thumbs.db
 # Herramientas de IA (salidas locales)
 graphify-out/
 .claude/settings.local.json
+.playwright-mcp/
+
+# Next.js / TypeScript
+/out/
+*.tsbuildinfo
+next-env.d.ts
+*.pem

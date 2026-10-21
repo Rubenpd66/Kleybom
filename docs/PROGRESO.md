@@ -1,7 +1,10 @@
 # PROGRESO
 
 ## Fase actual
-Fase 3 (Diseño) terminada: `docs/diseno.md` y maqueta `docs/diseno/inicio.html`. A la espera de que el usuario apruebe la propuesta de la página de inicio antes de pasar a la Fase 4 (Construcción).
+Fase 4 (Construcción), versión 0.1. Hecha: Tarea 1 (proyecto Next.js). Siguiente: Tarea 2 (tests).
+
+## Tareas del plan completadas
+- Tarea 1: proyecto Next.js 16 + Tailwind 4 + TypeScript creado y compilando (`npm run build` OK).
 
 ## Hecho
 - Comprobado: node v24.22.0, npm 11.19.1, git 2.51.0.
