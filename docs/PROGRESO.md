@@ -1,7 +1,7 @@
 # PROGRESO
 
 ## Fase actual
-Fase 4 (Construcción), versión 0.1. Hechas: Tareas 1 a 8. Tareas 1 a 13 hechas y v0.1 desplegada. Tareas 14 y 15 hechas. Tareas 14-19 hechas. v0.2 terminada (Tareas 14-23). v0.3: Tareas 24-25 hechas. Siguiente: Tarea 26 (nombres de alimentos en español). El usuario pidió continuar sin parar hasta el final, avisando solo cuando haga falta su mano (claves o configuraciones en webs).
+Fase 4 (Construcción), versión 0.1. Hechas: Tareas 1 a 8. Tareas 1 a 13 hechas y v0.1 desplegada. Tareas 14 y 15 hechas. Tareas 14-19 hechas. v0.2 terminada (Tareas 14-23). v0.3: Tareas 24-26 hechas. Siguiente: Tarea 27 (buscador y ficha de alimentos). El usuario pidió continuar sin parar hasta el final, avisando solo cuando haga falta su mano (claves o configuraciones en webs).
 
 ## Tareas del plan completadas
 - Tarea 1: proyecto Next.js 16 + Tailwind 4 + TypeScript creado y compilando (`npm run build` OK).
@@ -33,6 +33,7 @@ Fase 4 (Construcción), versión 0.1. Hechas: Tareas 1 a 8. Tareas 1 a 13 hechas
 - **Cierre v0.2:** se despliega sola en Vercel al subir a `main`.
 - Tarea 24: tablas `foods` (por 100 g; nutrientes NULL si se desconocen; lectura pública, sin escritura desde la web; índice trigram en `search_text`; clave única fuente+id), `meal_entries` (diario; gramos 0–5000; comida desayuno/comida/cena/snack; `food_id` con `restrict`) y `nutrition_goals` (uno por usuario; kcal 800–6000). RLS de dueño y cascada con la cuenta. 6 tests de seguridad con cuentas reales. Avisos: ninguno.
 - Tarea 25: importados 6.061 alimentos genéricos de USDA SR Legacy (CC0) con `scripts/import-usda/` (`parseUsdaFood` + 7 tests + 3 fixtures reales; la de "unidades" es una variante modificada a mano del plátano). **Cambio respecto al plan:** no hizo falta pedir la clave de API al usuario: se usó la descarga completa, que no la necesita. Fuente y cita en `docs/datos-fuentes.md`. De momento `name_es` = nombre en inglés.
+- Tarea 26: nombres de los alimentos en español (España). Sin API de pago: traducción por segmentos (USDA usa "alimento, variante, preparación") con `scripts/translate-foods/`: `cabezas.tsv` (656 alimentos principales con su género), `diccionario-*.tsv` (≈2.500 segmentos; `@` concuerda o/a/os/as, `#` plural de -e; claves `Alimento|segmento` para casos que dependen del alimento, p. ej. pechuga en aves y pecho en cordero) y `traducciones/lote-01.tsv` (400 nombres de panadería hechos a mano, con prioridad). `apply.ts --dry-run` informa de segmentos sin traducir (0) y genera `docs/muestra-traduccion-alimentos.md` (100 nombres para revisar). Aplicado: 6.038 traducidos, 23 productos de marca quitados del catálogo (quedan 6.038 alimentos). `search_text` incluye español e inglés y el `slug` sale del nombre en español. Glosario en `docs/glosario-alimentos.md`. 8 tests. **Revisión del usuario (opcional, no bloquea):** mirar la muestra y avisar de errores que se repitan.
 
 ## Hecho
 - Comprobado: node v24.22.0, npm 11.19.1, git 2.51.0.

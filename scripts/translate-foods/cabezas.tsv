@@ -1,0 +1,656 @@
+Beef	Vacuno	m
+Pork	Cerdo	m
+Lamb	Cordero	m
+Fish	Pescado	m
+Chicken	Pollo	m
+Beverages	Bebida	f
+Soup	Sopa	f
+Snacks	Aperitivo	m
+Beans	Alubias	fp
+Veal	Ternera	f
+Turkey	Pavo	m
+Nuts	Frutos secos	mp
+Potatoes	Patatas	fp
+Cheese	Queso	m
+Oil	Aceite	m
+Game meat	Carne de caza	f
+Candies	Golosinas	fp
+Salad dressing	Aliño para ensalada	m
+Puddings	Pudin	m
+Milk	Leche	f
+Alcoholic beverage	Bebida alcohólica	f
+Seeds	Semillas	fp
+Squash	Calabaza	f
+Spices	Especia	f
+Sauce	Salsa	f
+Mollusks	Molusco	m
+Corn	Maíz	m
+Sausage	Salchicha	f
+Peppers	Pimientos	mp
+Yogurt	Yogur	m
+Crustaceans	Crustáceo	m
+Egg	Huevo	m
+Rice	Arroz	m
+Peas	Guisantes	mp
+Mushrooms	Setas	fp
+Wheat flour	Harina de trigo	f
+Cabbage	Col	f
+Rolls	Panecillos	mp
+Cereals	Cereales	mp
+Lima beans	Habas de Lima	fp
+Ostrich	Avestruz	m
+Pasta	Pasta	f
+Margarine-like	Similar a margarina	m
+Gravy	Salsa de carne (gravy)	f
+Onions	Cebolla	f
+Alcoholic Beverage	Bebida alcohólica	f
+Noodles	Fideos	mp
+Apricots	Albaricoques	mp
+Frankfurter	Salchicha de Fráncfort	f
+Peanuts	Cacahuetes	mp
+Syrups	Sirope	m
+Margarine	Margarina	f
+Peaches	Melocotones	mp
+Cowpeas	Caupí (judía de vaca)	m
+Soybeans	Soja	f
+Ice creams	Helado	m
+Tomatoes	Tomates	mp
+Cherries	Cerezas	fp
+Broccoli	Brócoli	m
+Cornmeal	Harina de maíz	f
+Pears	Peras	fp
+Tofu	Tofu	m
+Emu	Emú	m
+Bologna	Embutido tipo bolonia	m
+Frostings	Cobertura para repostería	f
+Frozen novelties	Helado de palo	m
+Duck	Pato	m
+Sweet potato	Boniato	m
+Shortening	Grasa vegetal	f
+Apples	Manzanas	fp
+Grapefruit	Pomelo	m
+Pineapple	Piña	f
+Plums	Ciruelas	fp
+Carrots	Zanahorias	fp
+Wheat	Trigo	m
+Cream	Nata	f
+Orange juice	Zumo de naranja	m
+Asparagus	Espárragos	mp
+Cauliflower	Coliflor	f
+Tomato products	Producto de tomate	m
+Pie	Tarta	f
+Soymilk	Bebida de soja	f
+Ham	Jamón	m
+Salami	Salami	m
+Beets	Remolacha	f
+Seaweed	Alga	f
+Spinach	Espinacas	fp
+Succotash	Succotash (maíz y habas)	m
+Taro	Taro	m
+Turnip greens	Grelos (hojas de nabo)	mp
+Waffles	Gofres	mp
+Cereals ready-to-eat	Cereales listos para comer	mp
+Corn flour	Harina de maíz	f
+Cream substitute	Sustituto de nata	m
+Apple juice	Zumo de manzana	m
+Figs	Higos	mp
+Fruit cocktail	Cóctel de frutas	m
+Grapefruit juice	Zumo de pomelo	m
+Chickpeas (garbanzo beans, bengal gram)	Garbanzos	mp
+Lentils	Lentejas	fp
+Mung beans	Judías mungo	fp
+Peanut butter	Crema de cacahuete	f
+Pork sausage	Salchicha de cerdo	f
+Desserts	Postre	m
+Gelatin desserts	Postre de gelatina	m
+Pickles	Encurtidos	mp
+Radishes	Rábanos	mp
+Tortillas	Tortillas de maíz o trigo	fp
+Butter	Mantequilla	f
+Fish oil	Aceite de pescado	m
+Blueberries	Arándanos	mp
+Plantains	Plátano macho	m
+Raspberries	Frambuesas	fp
+Bratwurst	Salchicha bratwurst	f
+Sweeteners	Edulcorante	m
+Artichokes	Alcachofas	fp
+Balsam-pear (bitter gourd)	Melón amargo	m
+Brussels sprouts	Coles de Bruselas	fp
+Collards	Berza	f
+Cowpeas (blackeyes)	Judías de ojo negro	fp
+Gourd	Calabacín de estropajo	m
+Kale	Col rizada (kale)	f
+Mustard greens	Hojas de mostaza	fp
+Okra	Okra	f
+Pumpkin	Calabaza	f
+Turnips	Nabos	mp
+Vegetables	Verduras	fp
+Fruit salad	Macedonia de frutas	f
+Grapes	Uvas	fp
+Pineapple juice	Zumo de piña	m
+Bacon	Beicon	m
+Winged beans	Judías aladas	fp
+Goose	Oca	f
+Pheasant	Faisán	m
+Frozen yogurts	Yogur helado	m
+Toppings	Cobertura	f
+Lettuce	Lechuga	f
+Peas and carrots	Guisantes y zanahorias	mp
+Sweet rolls	Bollos dulces	mp
+Cranberry juice cocktail	Bebida de zumo de arándano rojo	f
+Lemonade	Limonada	f
+Spaghetti	Espaguetis	mp
+Cheese food	Preparado de queso	m
+Dessert topping	Cobertura para postres	f
+Ice cream	Helado	m
+Sour cream	Nata agria	f
+Whey	Suero de leche	m
+Fat	Grasa	f
+Mayonnaise	Mayonesa	f
+Oranges	Naranjas	fp
+Tangerines	Mandarinas	fp
+Broadbeans (fava beans)	Habas	fp
+Refried beans	Frijoles refritos	mp
+Soy flour	Harina de soja	f
+Quail	Codorniz	f
+Turkey from whole	Pavo entero	m
+Chicken breast	Pechuga de pollo	f
+Kielbasa	Salchicha kielbasa	f
+Pate	Paté	m
+Vinegar	Vinagre	m
+Pie fillings	Relleno para tartas	m
+Rennin	Postre de cuajo	m
+Sugars	Azúcar	m
+Bamboo shoots	Brotes de bambú	mp
+Butterbur	Petasites (fuki)	m
+Eggplant	Berenjena	f
+Leeks	Puerros	mp
+Peas and onions	Guisantes y cebollas	mp
+Toaster pastries	Pastelitos para tostadora	mp
+Waffle	Gofre	m
+Carbonated beverage	Refresco	m
+Water	Agua	f
+Millet	Mijo	m
+Barley	Cebada	f
+Rye flour	Harina de centeno	f
+Cheese spread	Queso para untar	m
+Ice cream sandwich	Sándwich de helado	m
+Creamy dressing	Aliño cremoso	m
+Sandwich spread	Crema para sándwich	f
+Shortening frying (heavy duty)	Grasa para freír (uso intensivo)	f
+Applesauce	Compota de manzana	f
+Avocados	Aguacates	mp
+Blackberries	Moras	fp
+Currants	Grosellas	fp
+Grape juice	Zumo de uva	m
+Melons	Melones	mp
+Olives	Aceitunas	fp
+Persimmons	Caquis	mp
+Prunes	Ciruelas pasas	fp
+Rhubarb	Ruibarbo	m
+Strawberries	Fresas	fp
+Hyacinth beans	Judías jacinto	fp
+Lupins	Altramuces	mp
+Mothbeans	Judías moth	fp
+Mungo beans	Judías mungo negras (urad)	fp
+Pigeon peas (red gram)	Guandú	m
+Yardlong beans	Judías espárrago	fp
+Poultry	Ave	f
+Squab	Pichón	m
+Turkey breast	Pechuga de pavo	f
+Beerwurst	Embutido de cerveza (beerwurst)	m
+Popcorn	Palomitas	fp
+Snack	Aperitivo	m
+Seasoning mix	Mezcla de condimentos	f
+Vanilla extract	Extracto de vainilla	m
+Baking chocolate	Chocolate para repostería	m
+Chocolate	Chocolate	m
+Cocoa	Cacao	m
+Egg custards	Natillas de huevo	fp
+Flan	Flan	m
+Jams and preserves	Mermeladas y confituras	fp
+Jellies	Jaleas	fp
+Syrup	Sirope	m
+Amaranth leaves	Hojas de amaranto	fp
+Arrowhead	Sagitaria	f
+Beet greens	Hojas de remolacha	fp
+Borage	Borraja	f
+Broadbeans	Habas	fp
+Burdock root	Raíz de bardana	f
+Cardoon	Cardo	m
+Celeriac	Apionabo	m
+Celery	Apio	m
+Chard	Acelgas	fp
+Chayote	Chayote	m
+Chrysanthemum	Crisantemo	m
+Cress	Berro	m
+Dandelion greens	Hojas de diente de león	fp
+Dock	Acedera	f
+Drumstick leaves	Hojas de moringa	fp
+Drumstick pods	Vainas de moringa	fp
+Hyacinth-beans	Judías jacinto	fp
+Jute	Yute	m
+Kohlrabi	Colinabo	m
+Lambsquarters	Cenizo	m
+Lotus root	Raíz de loto	f
+Mountain yam	Ñame de montaña	m
+Mustard spinach	Espinaca mostaza	f
+Parsnips	Chirivías	fp
+Pickle relish	Encurtido picado (relish)	m
+Pigeonpeas	Guandú	m
+Pokeberry shoots	Brotes de hierba carmín	mp
+Pumpkin leaves	Hojas de calabaza	fp
+Purslane	Verdolaga	f
+Rutabagas	Colinabo sueco	m
+Salsify	Salsifí	m
+Sesbania flower	Flor de sesbania	f
+Sweet potato leaves	Hojas de boniato	fp
+Turnip greens and turnips	Grelos y nabos	mp
+Water convolvulus	Espinaca de agua	f
+Waxgourd	Calabaza de cera	f
+Yam	Ñame	m
+Yambean (jicama)	Jícama	f
+Yardlong bean	Judía espárrago	f
+Popovers	Popovers (bollos huecos)	mp
+Puff pastry	Hojaldre	m
+Taco shells	Tortillas para tacos	fp
+Alcoholic beverages	Bebida alcohólica	f
+Amaranth grain	Amaranto en grano	m
+Buckwheat groats	Alforfón (trigo sarraceno) en grano	m
+Bulgur	Bulgur	m
+Corn grain	Maíz en grano	m
+Couscous	Cuscús	m
+Hominy	Maíz pozolero	m
+Macaroni	Macarrones	mp
+Oat bran	Salvado de avena	m
+Quinoa	Quinoa	f
+Rice flour	Harina de arroz	f
+Rice noodles	Fideos de arroz	mp
+Semolina	Sémola	f
+Sorghum flour	Harina de sorgo	f
+Spelt	Espelta	f
+Teff	Teff	m
+Wild rice	Arroz salvaje	m
+Beverage	Bebida	f
+Cheese product	Producto de queso	m
+Egg substitute	Sustituto de huevo	m
+Ice cream bar	Helado de palo	m
+Milk shakes	Batido	m
+Protein supplement	Suplemento de proteína	m
+Margarine-like spread with yogurt	Untable tipo margarina con yogur	m
+Salad Dressing	Aliño para ensalada	m
+Shortening industrial	Grasa industrial	f
+Salmon nuggets	Nuggets de salmón	mp
+Salmon	Salmón	m
+Bananas	Plátanos	mp
+Boysenberries	Moras boysen	fp
+Dates	Dátiles	mp
+Gooseberries	Grosellas espinosas	fp
+Guava nectar	Néctar de guayaba	m
+Guavas	Guayabas	fp
+Jackfruit	Yaca	f
+Juice	Zumo	m
+Jujube	Azufaifa	f
+Lime juice	Zumo de lima	m
+Litchis	Lichis	mp
+Longans	Longanes	mp
+Nance	Nance	m
+Passion-fruit juice	Zumo de maracuyá	m
+Peach nectar	Néctar de melocotón	m
+Pear nectar	Néctar de pera	m
+Raisins	Pasas	fp
+Bison	Bisonte	m
+Hummus	Hummus	m
+Meatballs	Albóndigas	fp
+Peanut flour	Harina de cacahuete	f
+Soy protein concentrate	Concentrado de proteína de soja	m
+Soy protein isolate	Aislado de proteína de soja	m
+Soy sauce made from soy and wheat (shoyu)	Salsa de soja de soja y trigo (shoyu)	f
+Soymilk (All flavors)	Bebida de soja (todos los sabores)	f
+Soymilk (all flavors)	Bebida de soja (todos los sabores)	f
+Tempeh	Tempeh	m
+Canadian bacon	Lomo embuchado tipo canadiense	m
+Pork loin	Lomo de cerdo	m
+Chicken breast tenders	Tiras de pechuga de pollo	fp
+Chicken patty	Hamburguesa de pollo	f
+Guinea hen	Pintada	f
+Luncheon meat	Fiambre	m
+Pastrami	Pastrami	m
+Pretzels	Pretzels	mp
+Tortilla chips	Totopos (nachos)	mp
+Dip	Salsa para mojar	f
+Wasabi	Wasabi	m
+Spearmint	Hierbabuena	f
+Chewing gum	Chicle	m
+Jams	Mermeladas	fp
+Pectin	Pectina	f
+Sweetener	Edulcorante	m
+Broccoli raab	Grelos de brócoli (rapini)	mp
+Catsup	Kétchup	m
+Chives	Cebollino	m
+Cucumber	Pepino	m
+Edamame	Edamame	m
+Fiddlehead ferns	Brotes de helecho	mp
+Ginger root	Raíz de jengibre	f
+Grape leaves	Hojas de parra	fp
+Hearts of palm	Palmitos	mp
+New Zealand spinach	Espinaca de Nueva Zelanda	f
+Nopales	Nopales	mp
+Onion rings	Aros de cebolla	mp
+Parsley	Perejil	m
+Potato puffs	Croquetas de patata	fp
+Pumpkin flowers	Flores de calabaza	fp
+Shallots	Chalotas	fp
+Sweet Potatoes	Boniatos	mp
+Taro leaves	Hojas de taro	fp
+Taro shoots	Brotes de taro	mp
+Tomato juice	Zumo de tomate	m
+Tree fern	Helecho arborescente	m
+Vegetable juice cocktail	Zumo de verduras	m
+Waterchestnuts	Castañas de agua	fp
+Sage Valley	@MARCA	m
+Strudel	Strudel	m
+Tart	Tartaleta	f
+Toaster Pastries	Pastelitos para tostadora	mp
+Tostada shells	Tostadas de maíz	fp
+Wonton wrappers (includes egg roll wrappers)	Obleas para wonton (incluye las de rollito de primavera)	fp
+Beef composite	Vacuno, mezcla de cortes	m
+Limeade	Limonada de lima	f
+Malt beverage	Bebida de malta	f
+Shake	Batido	m
+Strawberry-flavor beverage mix	Preparado para bebida sabor fresa	m
+Whiskey sour mix	Preparado para whisky sour	m
+Incaparina	Incaparina	f
+Arrowroot flour	Harina de arrurruz	f
+Barley flour or meal	Harina de cebada	f
+Barley malt flour	Harina de malta de cebada	f
+Buckwheat	Alforfón (trigo sarraceno)	m
+Buckwheat flour	Harina de alforfón	f
+Corn bran	Salvado de maíz	m
+Cornstarch	Maicena (almidón de maíz)	f
+Millet flour	Harina de mijo	f
+Oat flour	Harina de avena	f
+Rice bran	Salvado de arroz	m
+Rye grain	Centeno en grano	m
+Sorghum grain	Sorgo en grano	m
+Tapioca	Tapioca	f
+Triticale	Triticale	m
+Triticale flour	Harina de triticale	f
+Vital wheat gluten	Gluten de trigo	m
+Wheat bran	Salvado de trigo	m
+Wheat flours	Harina de trigo	f
+Wheat germ	Germen de trigo	m
+Butter oil	Mantequilla clarificada	f
+Cheese sauce	Salsa de queso	f
+Cheese substitute	Sustituto de queso	m
+Dulce de Leche	Dulce de leche	m
+Eggnog	Ponche de huevo	m
+Eggs	Huevos	mp
+Fat free ice cream	Helado sin grasa	m
+Ice cream cone	Cucurucho de helado	m
+Ice cream cookie sandwich	Sándwich de helado con galleta	m
+Ice cream sundae cone	Cucurucho de helado con toppings	m
+Imitation cheese	Imitación de queso	f
+Light ice cream	Helado ligero	m
+Milk dessert bar	Barrita helada láctea	f
+Milk substitutes	Sustituto de la leche	m
+Nutritional supplement for people with diabetes	Suplemento nutricional para personas con diabetes	m
+Parmesan cheese topping	Queso parmesano para espolvorear	m
+Reddi Wip Fat Free Whipped Topping	@MARCA	f
+Sour dressing	Aderezo agrio	m
+Whipped cream substitute	Sustituto de nata montada	m
+Whipped topping	Cobertura batida	f
+Animal fat	Grasa animal	f
+Butter replacement	Sustituto de mantequilla	m
+Dressing	Aliño	m
+Lard	Manteca de cerdo	f
+Margarine Spread	Margarina para untar	f
+Margarine-like shortening	Grasa tipo margarina	f
+Margarine-like vegetable-oil spread	Untable vegetal tipo margarina	m
+Mayonnaise dressing	Aliño tipo mayonesa	m
+Shortening bread	Grasa para panadería	f
+Shortening cake mix	Grasa para bizcochos	f
+Shortening confectionery	Grasa para confitería	f
+Shortening household soybean (hydrogenated) and palm	Grasa vegetal doméstica de soja (hidrogenada) y palma	f
+Vegetable oil-butter spread	Untable de aceite vegetal y mantequilla	m
+Vegetable oil	Aceite vegetal	m
+Frog legs	Ancas de rana	fp
+Jellyfish	Medusa	f
+Turtle	Tortuga	f
+Abiyuch	Abiyuch	m
+Acerola juice	Zumo de acerola	m
+Acerola	Acerola	f
+Apricot nectar	Néctar de albaricoque	m
+Baobab powder	Baobab en polvo	m
+Blackberry juice	Zumo de mora	m
+Breadfruit	Fruta del pan	f
+Candied fruit	Fruta confitada	f
+Carambola	Carambola	f
+Carissa	Carissa (ciruela de Natal)	f
+Cherimoya	Chirimoya	f
+Cherry juice	Zumo de cereza	m
+Clementines	Clementinas	fp
+Crabapples	Manzanas silvestres	fp
+Cranberries	Arándanos rojos	mp
+Cranberry juice blend	Mezcla de zumo de arándano rojo	f
+Cranberry juice	Zumo de arándano rojo	m
+Cranberry sauce	Salsa de arándano rojo	f
+Cranberry-orange relish	Condimento de arándano rojo y naranja	m
+Custard-apple	Anona	f
+Durian	Durián	m
+Elderberries	Bayas de saúco	fp
+Feijoa	Feijoa	f
+Goji berries	Bayas de goji	fp
+Groundcherries	Uchuvas (physalis)	fp
+Guanabana nectar	Néctar de guanábana	m
+Guava sauce	Salsa de guayaba	f
+Horned melon (Kiwano)	Kiwano (melón cornudo)	m
+Java-plum	Ciruela de Java	f
+Kiwifruit	Kiwi	m
+Kumquats	Kumquats	mp
+Lemon juice from concentrate	Zumo de limón a partir de concentrado	m
+Lemon juice	Zumo de limón	m
+Lemon peel	Piel de limón	f
+Lemons	Limones	mp
+Limes	Limas	fp
+Loganberries	Moras de Logan	fp
+Loquats	Nísperos	mp
+Mammy-apple	Mamey amarillo	m
+Mango nectar	Néctar de mango	m
+Mango	Mango	m
+Mangos	Mangos	mp
+Mangosteen	Mangostán	m
+Maraschino cherries	Cerezas al marrasquino	fp
+Melon balls	Bolitas de melón	fp
+Mulberries	Moras de morera	fp
+Naranjilla (lulo) pulp	Pulpa de lulo (naranjilla)	f
+Nectarines	Nectarinas	fp
+Oheloberries	Bayas de ohelo	fp
+Orange peel	Piel de naranja	f
+Orange Pineapple Juice Blend	Mezcla de zumo de naranja y piña	f
+Orange-grapefruit juice	Zumo de naranja y pomelo	m
+Papaya nectar	Néctar de papaya	m
+Papaya	Papaya	f
+Papayas	Papayas	fp
+Passion-fruit	Maracuyá (fruta de la pasión)	m
+Pitanga	Pitanga (cereza de Surinam)	f
+Pomegranate juice	Zumo de granada	m
+Pomegranates	Granadas	fp
+Prickly pears	Higos chumbos	mp
+Prune juice	Zumo de ciruela pasa	m
+Prune puree	Puré de ciruela pasa	m
+Pummelo	Pomelo chino (pummelo)	m
+Quinces	Membrillos	mp
+Rambutan	Rambután	m
+Raspberry juice concentrate	Concentrado de zumo de frambuesa	m
+Rose-apples	Pomarrosas	fp
+Roselle	Flor de Jamaica (rosella)	f
+Rowal	Rowal	m
+Sapodilla	Zapote chico	m
+Sapote	Zapote	m
+Soursop	Guanábana	f
+Sugar-apples	Anón (chirimoya dulce)	m
+Tamarind nectar	Néctar de tamarindo	m
+Tamarinds	Tamarindos	mp
+Tangerine juice	Zumo de mandarina	m
+Watermelon	Sandía	f
+Bacon bits	Trocitos de beicon	mp
+Carob flour	Harina de algarroba	f
+Chickpea flour (besan)	Harina de garbanzo (besan)	f
+Chili with beans	Chili con alubias	m
+Falafel	Falafel	m
+Frijoles rojos volteados (Refried beans, red, canned)	Frijoles rojos volteados (frijoles refritos rojos, en conserva)	mp
+Luncheon slices	Lonchas de fiambre	fp
+Meat extender	Extensor de carne	m
+Miso	Miso	m
+Natto	Natto	m
+Okara	Okara	f
+Papad	Papad	m
+Peanut butter with omega-3	Crema de cacahuete con omega 3	f
+Peanut spread	Crema para untar de cacahuete	f
+Soy meal	Harina de soja (torta)	f
+Soy sauce made from hydrolyzed vegetable protein	Salsa de soja de proteína vegetal hidrolizada	f
+Soy sauce made from soy (tamari)	Salsa de soja de soja (tamari)	f
+Soy sauce	Salsa de soja	f
+Soybean	Soja	f
+Tofu yogurt	Yogur de tofu	m
+Vegetarian fillets	Filetes vegetarianos	mp
+Vegetarian meatloaf or patties	Pastel de carne o hamburguesas vegetarianas	m
+Veggie burgers or soyburgers	Hamburguesas vegetales o de soja	fp
+Vermicelli	Fideos finos	mp
+Yokan	Yokan (dulce de judía azuki)	m
+Canada Goose	Barnacla canadiense	f
+Dove	Paloma	f
+Pate de foie gras	Paté de foie gras	m
+Ruffed Grouse	Grévol engolado	m
+Turkey and gravy	Pavo con salsa	m
+Turkey roast	Asado de pavo	m
+Turkey sticks	Palitos de pavo	mp
+Turkey thigh	Muslo de pavo	m
+Bacon and beef sticks	Palitos de beicon y vacuno	mp
+Barbecue loaf	Fiambre a la barbacoa	m
+Blood sausage	Morcilla	f
+Bockwurst	Salchicha bockwurst	f
+Braunschweiger (a liver sausage)	Braunschweiger (embutido de hígado)	m
+Cheesefurter	Salchicha con queso	f
+Chicken spread	Crema de pollo para untar	f
+Corned beef loaf	Fiambre de corned beef	m
+Dutch brand loaf	Fiambre estilo holandés	m
+Ham and cheese loaf or roll	Fiambre de jamón y queso	m
+Ham and cheese spread	Crema de jamón y queso para untar	f
+Ham salad spread	Crema de ensalada de jamón para untar	f
+Headcheese	Queso de cabeza (cabeza de jabalí)	m
+Honey roll sausage	Embutido con miel	m
+Knackwurst	Salchicha knackwurst	f
+Lebanon bologna	Embutido Lebanon bologna	m
+Liver cheese	Fiambre de hígado	m
+Liver sausage	Embutido de hígado	m
+Liverwurst spread	Paté de hígado para untar	m
+Luncheon sausage	Embutido de fiambre	m
+Luxury loaf	Fiambre de lujo	m
+Macaroni and cheese loaf	Fiambre de macarrones con queso	m
+Mortadella	Mortadela	f
+Mother's loaf	Fiambre casero	m
+Olive loaf	Fiambre con aceitunas	m
+Peppered loaf	Fiambre a la pimienta	m
+Pepperoni	Pepperoni	m
+Pickle and pimiento loaf	Fiambre con pepinillo y pimiento	m
+Picnic loaf	Fiambre de picnic	m
+Polish sausage	Salchicha polaca	f
+Pork sausage rice links	Salchichas de cerdo con arroz	fp
+Poultry salad sandwich spread	Crema de ensalada de ave para sándwich	f
+Roast beef spread	Crema de rosbif para untar	f
+Roast beef	Rosbif	m
+Scrapple	Scrapple (pastel de cerdo y harina)	m
+Swisswurst	Salchicha suiza	f
+Thuringer	Embutido de Turingia	m
+Yachtwurst	Embutido yachtwurst	m
+Breakfast bar	Barrita de desayuno	f
+Breakfast bars	Barritas de desayuno	fp
+Cheese puffs and twists	Gusanitos de queso	mp
+Formulated bar	Barrita formulada	f
+Granola bar	Barrita de granola	f
+Milk and cereal bar	Barrita de leche y cereales	f
+Potato chips	Patatas fritas de bolsa	fp
+Rice and Wheat cereal bar	Barrita de cereales de arroz y trigo	f
+Rice cake	Tortita de arroz	f
+Rice crackers	Galletas de arroz	fp
+Fish broth	Caldo de pescado	m
+Potato soup	Sopa de patata	f
+Split pea soup	Sopa de guisantes partidos	f
+Split pea with ham soup	Sopa de guisantes partidos con jamón	f
+Basil	Albahaca	f
+Capers	Alcaparras	fp
+Dill weed	Eneldo	m
+Horseradish	Rábano picante	m
+Mustard	Mostaza	f
+Peppermint	Menta	f
+Rosemary	Romero	m
+Salt	Sal	f
+Thyme	Tomillo	m
+Chocolate-flavored hazelnut spread	Crema de cacao y avellanas	f
+Fruit butters	Crema de fruta	f
+Fruit syrup	Sirope de frutas	m
+Gelatins	Gelatina	f
+Gums	Gomas	fp
+Honey	Miel	f
+Marmalade	Mermelada	f
+Milk dessert	Postre lácteo	m
+Molasses	Melaza	f
+Pudding	Pudin	m
+Sherbet	Sorbete	m
+Sugar	Azúcar	m
+Alfalfa seeds	Semillas de alfalfa	fp
+Arrowroot	Arrurruz	m
+Arugula	Rúcula	f
+Carrot juice	Zumo de zanahoria	m
+Carrot	Zanahoria	f
+Cassava	Yuca	f
+Celtuce	Lechuga espárrago	f
+Chicory greens	Hojas de achicoria	fp
+Chicory roots	Raíz de achicoria	f
+Chicory	Endivia	f
+Chrysanthemum leaves	Hojas de crisantemo	fp
+Coriander (cilantro) leaves	Hojas de cilantro	fp
+Corn pudding	Pudin de maíz	m
+Corn with red and green peppers	Maíz con pimientos rojos y verdes	m
+Cornsalad	Canónigos	mp
+Endive	Escarola	f
+Epazote	Epazote	m
+Eppaw	Eppaw	m
+Escarole	Escarola	f
+Fennel	Hinojo	m
+Fireweed	Epilobio	m
+Fungi	Hongos	mp
+Garlic	Ajo	m
+Jerusalem-artichokes	Tupinambo (aguaturma)	m
+Jew's ear	Oreja de Judas	f
+Kanpyo	Kanpyo (tiras secas de calabaza)	m
+Lemon grass (citronella)	Hierba limón	f
+Malabar spinach	Espinaca de Malabar	f
+Mushroom	Champiñón	m
+New zealand spinach	Espinaca de Nueva Zelanda	f
+Pepeao	Pepeao (oreja de Judas)	f
+Pepper	Pimiento	m
+Pimento	Pimiento morrón	m
+Poi	Poi	m
+Potato flour	Harina de patata	f
+Potato pancakes	Tortitas de patata	fp
+Potato salad	Ensalada de patata	f
+Pumpkin pie mix	Preparado para tarta de calabaza	m
+Radicchio	Achicoria roja (radicchio)	f
+Radish seeds	Semillas de rábano	fp
+Sauerkraut	Chucrut	m
+Spinach souffle	Suflé de espinacas	m
+Sweet Potato puffs	Croquetas de boniato	fp
+Tomatillos	Tomatillos	mp
+Tomato and vegetable juice	Zumo de tomate y verduras	m
+Tomato powder	Tomate en polvo	m
+Tomato sauce	Salsa de tomate	f
+Vinespinach	Espinaca trepadora (basella)	f
+Watercress	Berros	mp
+Winged bean leaves	Hojas de judía alada	fp
+Winged bean tuber	Tubérculo de judía alada	m
+Winged bean	Judía alada	f
+Yautia (tannier)	Malanga (yautía)	f
+Yeast extract spread	Extracto de levadura para untar	m

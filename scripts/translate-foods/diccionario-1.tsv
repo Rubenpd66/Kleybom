@@ -1,0 +1,576 @@
+cooked	cocinad@
+raw	crud@
+separable lean and fat	magro y grasa
+separable lean only	solo magro
+boneless	sin hueso
+trimmed to 0" fat	sin grasa visible (0")
+canned	en conserva
+trimmed to 1/8" fat	con 3 mm de grasa (1/8")
+roasted	asad@
+boiled	hervid@
+choice	calidad Choice
+fresh	fresc@
+imported	importad@
+drained	escurrid@
+all grades	todas las calidades
+braised	estofad@
+select	calidad Select
+loin	lomo
+without salt	sin sal
+with salt	con sal
+frozen	congelad@
+New Zealand	de Nueva Zelanda
+broiled	a la parrilla
+round	redondo (round)
+bone-in	con hueso
+grilled	a la plancha
+mature seeds	semillas maduras
+meat only	solo carne
+white	blanc@
+chuck	aguja (chuck)
+broilers or fryers	para asar o freír
+Australian	australian@
+cured	curad@
+meat and skin	carne y piel
+solids and liquids	sólidos y líquido
+steak	filete
+variety meats and by-products	casquería y subproductos
+shoulder	paletilla
+rib	lomo alto (rib)
+whole	enter@
+ground	picad@
+dry mix	preparado en polvo
+dried	sec@
+dry heat	calor seco
+dry	sec@
+leg	pierna
+trimmed to 1/4" fat	con 6 mm de grasa (1/4")
+sweet	dulce#
+regular	normal
+unprepared	sin preparar
+with added solution	con solución añadida
+mixed species	varias especies
+green	verde#
+red	roj@
+enriched	enriquecid@
+yellow	amarill@
+unsweetened	sin azúcar
+powder	en polvo
+composite of trimmed retail cuts	mezcla de cortes recortados
+roast	para asar
+chocolate	de chocolate
+instant	instantáne@
+lip-on	con tapa (lip-on)
+unheated	sin calentar
+ready-to-serve	list@ para servir
+plain	natural
+pork	de cerdo
+condensed	condensad@
+baked	al horno
+fried	frit@
+stewed	guisad@
+tenderloin	solomillo
+heated	calentad@
+breast	pechuga
+drained solids	escurrid@
+short loin	lomo bajo (short loin)
+prepared with equal volume water	preparad@ con el mismo volumen de agua
+unenriched	sin enriquecer
+prepared with water	preparad@ con agua
+dark meat	carne oscura
+wine	vino
+brisket	pecho (brisket)
+bottom round	redondo inferior (bottom round)
+low sodium	baj@ en sodio
+fluid	líquid@
+sweetened	azucarad@
+vanilla	de vainilla
+reduced fat	baj@ en grasa
+tea	té
+ham	jamón
+table	de mesa
+immature seeds	semillas tiernas
+small end (ribs 10-12)	extremo pequeño (costillas 10-12)
+pan-fried	frit@ en sartén
+light	liger@
+industrial	industrial
+beef	de vacuno
+smoked	ahumad@
+top round	redondo superior (top round)
+frozen concentrate	concentrado congelado
+sprouted	germinad@
+drumstick	muslo
+salmon	salmón
+no salt added	sin sal añadida
+thigh	contramuslo
+low fat	baj@ en grasa
+prepared with whole milk	preparad@ con leche entera
+whole (arm and blade)	entera (brazo y paleta)
+top loin steak	filete de lomo (top loin)
+simmered	cocid@ a fuego lento
+blade	paleta
+wing	ala
+flat half	mitad plana
+lip off	sin tapa (lip off)
+kidney	riñón
+plate steak	filete de falda (plate)
+rib eye steak	filete de lomo alto (ribeye)
+with salt added	con sal añadida
+Atlantic	del Atlántico
+shoulder clod	paletilla (clod)
+liver	hígado
+turkey	de pavo
+arm	brazo
+shank	morcillo
+slice	loncha
+ham with natural juices	jamón con jugo natural
+snap	de vaina (judías verdes)
+winter	de invierno
+lowfat	baj@ en grasa
+top sirloin	cadera (top sirloin)
+prepared-from-recipe	receta casera
+low calorie	baj@ en calorías
+wild	salvaje
+reduced sodium	baj@ en sodio
+light meat	carne blanca
+all classes	todas las clases
+summer	de verano
+french fried	frit@ (tipo patatas fritas)
+pan-broiled	a la sartén sin aceite
+coffee	de café
+uncooked	sin cocinar
+nonfat	desnatad@
+grass-fed	alimentad@ con pasto
+chopped	picad@
+salted	con sal
+retail parts	piezas de venta
+regular pack	envase normal
+flank	falda (flank)
+tip round	redondo punta (tip round)
+carbonated	con gas
+sulfured	con sulfitos
+dry roasted	tostad@ en seco
+ham -- water added	jamón con agua añadida
+ham and water product	producto de jamón y agua
+back	espalda
+potato chips	patatas fritas de bolsa
+separable fat	solo grasa
+large end (ribs 6-9)	extremo grande (costillas 6-9)
+lemon	de limón
+mashed	en puré
+Wagyu	Wagyu
+arm pot roast	brazo para asado en cazuela
+mock tender steak	filete falso solomillo (mock tender)
+top loin	lomo (top loin)
+heart	corazón
+prime	calidad Prime
+porterhouse steak	chuletón porterhouse
+reduced calorie	baj@ en calorías
+fat free	sin grasa
+fat-free	sin grasa
+moist heat	calor húmedo
+domesticated	doméstic@
+without salt added	sin sal añadida
+oil roasted	tostad@ con aceite
+rump	cadera (rump)
+from whole bird	de ave entera
+unsalted	sin sal
+flour	de harina
+microwaved	al microondas
+patty	hamburguesa
+t-bone steak	chuletón T-bone
+with added calcium	con calcio añadido
+black	negr@
+hard	dur@
+commercial	comercial
+fruit	de fruta
+fast roasted	asad@ rápido
+decaffeinated	descafeinad@
+brewed	infusionad@
+with added ascorbic acid	con ácido ascórbico añadido
+sliced	en lonchas
+chicken	de pollo
+oyster	ostra
+canned or bottled	en conserva o embotellad@
+heavy syrup pack	en almíbar espeso
+water pack	en agua
+foreshank	morcillo delantero
+shank half	mitad del jarrete
+whole (shank and sirloin)	entera (jarrete y cadera)
+all types	todos los tipos
+soft	bland@
+chestnuts	castañas
+pan-broil	a la sartén sin aceite
+top loin (chops)	lomo (chuletas)
+granola bars	barritas de granola
+prepared with 2% milk	preparad@ con leche semidesnatada (2 %)
+knuckle	babilla (knuckle)
+fast fried	frit@ rápido
+top round steak	filete de redondo superior
+prepared	preparad@
+vegetable oil spread	untable de aceite vegetal
+tuna	atún
+heavy syrup	en almíbar espeso
+bison	bisonte
+home-prepared	caser@
+corn	de maíz
+tri-tip roast	cadera triangular (tri-tip) para asar
+chuck eye Country-Style ribs	costillas de aguja estilo campestre
+chuck eye roast	aguja para asar (chuck eye)
+America's Beef Roast	asado americano
+chuck eye steak	filete de aguja (chuck eye)
+short ribs	costilla corta (short ribs)
+top blade	paleta superior (top blade)
+under blade center steak	filete central bajo la paleta
+Denver Cut	corte Denver
+crumbles	desmenuzad@
+tenderloin roast	solomillo para asar
+tenderloin steak	filete de solomillo
+top sirloin cap steak	filete de tapa de cadera (picaña)
+inside skirt	entraña interior
+outside skirt	entraña exterior
+rib eye roast	lomo alto para asar (ribeye)
+rib eye steak/roast	lomo alto (ribeye) en filete o para asar
+back ribs	costillas traseras
+whole (ribs 6-12)	entero (costillas 6-12)
+eye of round roast	redondo (eye of round) para asar
+eye of round steak	filete de redondo (eye of round)
+eye of round	redondo (eye of round)
+top round roast	redondo superior para asar
+shoulder top blade steak	filete de paleta superior
+ready-to-drink	list@ para beber
+bottled	embotellad@
+pink	rosa
+long-grain	de grano largo
+steamed	al vapor
+white (industrial)	blanca (industrial)
+pasteurized process	procesad@ pasteurizad@
+with added vitamin A and vitamin D	con vitaminas A y D añadidas
+stick	en barra
+tub	en tarrina
+farmed	de piscifactoría
+juice pack	en su zumo
+pinto	pintas
+center loin (chops)	centro del lomo (chuletas)
+center rib (chops)	centro del costillar (chuletas)
+country-style ribs	costillas estilo campestre
+rotisserie	asad@ a l'ast
+batter	rebozad@
+stewing	para guisar
+pork and beef	de cerdo y vacuno
+popcorn	palomitas
+ready-to-eat	list@ para comer
+salt added in processing	con sal añadida en el procesado
+bottom sirloin	cadera inferior (bottom sirloin)
+brain	sesos
+fortified	enriquecid@
+bleached	blanquead@
+imitation	imitación
+with added vitamin D	con vitamina D añadida
+crab	cangrejo
+light syrup pack	en almíbar ligero
+dehydrated	deshidratad@
+leg (ham)	pierna (jamón)
+original seasoning	condimento original
+giblets	menudillos
+roasting	para asar
+tongue	lengua
+with aspartame	con aspartamo
+oats	avena
+chinese	chin@
+japanese	japones@
+American	american@
+liquid	líquid@
+sour	agri@
+european	europe@
+Pacific	del Pacífico
+mackerel	caballa
+ripe	madur@
+sirloin half	mitad de la cadera
+frenched	limpi@ (a la francesa)
+leg (top round)	pierna (redondo superior)
+chunky	con trozos
+extruded	extrusionad@
+tortilla chips	totopos
+flesh and skin	pulpa y piel
+flesh	pulpa
+prepared from recipe	receta casera
+egg	al huevo
+pan-browned	dorad@ en sartén
+distilled	destilad@
+ready to drink	list@ para beber
+no sugar added	sin azúcar añadido
+fortified with vitamin D	enriquecid@ con vitamina D
+cottage	cottage
+80% fat	80 % de grasa
+salad or cooking	para ensalada o cocina
+creamy	cremos@
+breaded	empanad@
+meatless	sin carne
+vitamins A and D	vitaminas A y D
+almonds	almendras
+skinless	sin piel
+meat and skin and giblets and neck	carne, piel, menudillos y cuello
+neck	cuello
+rice cakes	tortitas de arroz
+brown rice	arroz integral
+prepared with equal volume milk	preparad@ con el mismo volumen de leche
+banana	de plátano
+dinner	de mesa
+gluten-free	sin gluten
+buttermilk	de suero de mantequilla
+ready-to-heat	list@ para calentar
+toasted	tostad@
+microwave	para microondas
+Aust. marble score 4/5	veteado australiano 4/5
+Aust. marble score 9	veteado australiano 9
+blade roast	paleta para asar
+clod roast	paletilla para asar (clod)
+loaf	pastel de carne
+slow roasted	asad@ lento
+kidneys	riñones
+lungs	pulmones
+pancreas	páncreas
+spleen	bazo
+reduced sugar	baj@ en azúcar
+diet	light (dietétic@)
+water	agua
+whole-grain	integral
+swiss	suizo
+mozzarella	mozzarella
+60% fat	60 % de grasa
+composite	mezcla
+pickled	encurtid@
+with skin	con piel
+without skin	sin piel
+extra heavy syrup pack	en almíbar muy espeso
+deer	ciervo
+oil-roasted	tostad@ con aceite
+coconut cream	crema de coco
+mixed nuts	frutos secos variados
+arm picnic	paletilla (arm picnic)
+sirloin (chops)	cadera (chuletas)
+(Boston butt)	(aguja, Boston butt)
+blade (steaks)	paleta (filetes)
+skin only	solo piel
+corn-based	a base de maíz
+clam chowder	crema de almejas (clam chowder)
+cooked in skin	cocid@ con piel
+hash brown	rösti (hash brown)
+zucchini	calabacín
+(corn and limas)	(maíz y habas de Lima)
+orange	de naranja
+with added nutrients	con nutrientes añadidos
+breakfast type	tipo desayuno
+regular and quick	normal y rápid@
+cooked with water	cocinad@ con agua
+degermed	desgerminad@
+self-rising	con levadura
+as purchased	tal como se compra
+brown	integral
+blue	azul
+1% milkfat	1 % de grasa láctea
+Greek	grieg@
+herring	arenque
+mayonnaise	mayonesa
+shrimp	gamba
+cod	bacalao
+trout	trucha
+eastern	oriental
+scallop	vieira
+purple	morad@
+all varieties	todas las variedades
+elk	uapití (alce americano)
+navy	blancas (navy)
+coconut meat	pulpa de coco
+sunflower seed kernels	pipas de girasol peladas
+blade (chops)	paleta (chuletas)
+skin	piel
+uncoated	sin cobertura
+mix	preparado
+pea	de guisantes
+fudge	fudge (dulce de leche y chocolate)
+stir-fried	saltead@
+crookneck and straightneck	cuello torcido y recto
+sauce	salsa
+french	francés
+ready-to-bake or -fry	list@ para hornear o freír
+chocolate chip	con pepitas de chocolate
+tenderloin steak/roast	solomillo en filete o para asar
+top loin steak/roast	lomo (top loin) en filete o para asar
+chuck for stew	aguja para guisar
+shoulder tender	solomillo de paletilla
+medallion	medallón
+shoulder top and center steaks	filetes de paletilla superior y central
+under blade pot roast or steak	bajo la paleta, para cazuela o filete
+under blade pot roast	bajo la paleta, para asado en cazuela
+under blade steak	filete bajo la paleta
+ribeye cap steak	filete de tapa de lomo alto
+full cut	corte completo
+tip center	centro de la punta
+tip side	lateral de la punta
+outside round	redondo exterior
+shoulder pot roast or steak	paletilla para cazuela o filete
+shoulder pot roast	paletilla para asado en cazuela
+shoulder steak	filete de paletilla
+top loin filet	filete de lomo (top loin)
+top loin petite roast	lomo (top loin) pequeño para asar
+top loin petite roast/filet	lomo (top loin) pequeño, para asar o filete
+strawberry	de fresa
+homemade	caser@
+corn grits	sémola de maíz
+vegetable	de verduras
+spinach	de espinacas
+2% milkfat	2 % de grasa láctea
+goat	de cabra
+whole milk	leche entera
+powdered	en polvo
+cultured	fermentad@
+nonfat milk	leche desnatada
+french dressing	aliño francés
+italian dressing	aliño italiano
+breaded and fried	empanad@ y frit@
+canned in oil	en aceite
+pollock	abadejo de Alaska
+sockeye	rojo (sockeye)
+rainbow	arcoíris
+without added ascorbic acid	sin ácido ascórbico añadido
+undiluted	sin diluir
+dehydrated (low-moisture)	deshidratad@ (baja humedad)
+(peach and pineapple and pear and grape and cherry)	(melocotón, piña, pera, uva y cereza)
+1" steak	filete de 2,5 cm (1")
+center slice	loncha central
+sirloin	cadera (sirloin)
+dried (desiccated)	sec@ (deshidratad@)
+with peanuts	con cacahuetes
+bacon	beicon
+capons	capones
+skin (drumsticks and thighs)	piel (muslos y contramuslos)
+link/patty	en salchichas o hamburguesas
+Italian	italian@
+peanut butter	de crema de cacahuete
+pretzels	pretzels
+chicken noodle	de pollo con fideos
+tomato	de tomate
+ice type	tipo polo de hielo
+tapioca	de tapioca
+table blends	mezclas de mesa
+(globe or french)	(alcachofa común)
+leafy tips	puntas de hojas
+kernels on cob	mazorca entera
+edible-podded	de vaina comestible (tirabeques)
+cucumber	de pepino
+oven-heated	calentad@ en el horno
+includes skin	con piel
+butternut	violín (butternut)
+cheese	de queso
+without added salt	sin sal añadida
+external fat	grasa externa
+seam fat	grasa intermuscular
+point half	mitad de la punta
+70% lean meat / 30% fat	70 % magro / 30 % grasa
+75% lean meat / 25% fat	75 % magro / 25 % grasa
+80% lean meat / 20% fat	80 % magro / 20 % grasa
+90% lean meat / 10% fat	90 % magro / 10 % grasa
+95% lean meat / 5% fat	95 % magro / 5 % grasa
+patties	hamburguesas
+flat	plan@
+eye	ojo
+beer	cerveza
+milk based	a base de leche
+Malted drink mix	preparado para bebida malteada
+rice	de arroz
+Chinese restaurant	de restaurante chino
+dark	oscur@
+all-purpose	de uso general
+mexican	mexican@
+parmesan	parmesano
+pasteurized	pasteurizad@
+yolk	yema
+without added vitamin A and vitamin D	sin vitaminas A y D añadidas
+cottonseed	semilla de algodón
+sunflower	girasol
+soybean	soja
+catfish	bagre (pez gato)
+channel	de canal
+spanish	español@
+drained solids with bone	escurrid@, con espinas
+coho	coho
+clam	almeja
+diluted with 3 volume water	diluido con 3 volúmenes de agua
+with added sugar	con azúcar añadido
+without added sugar	sin azúcar añadido
+syrup pack	en almíbar
+composite of cuts	mezcla de cortes
+rabbit	conejo
+chili	chili
+common (blackeyes, crowder, southern)	común (de ojo negro, crowder, southern)
+prepared with calcium sulfate	elaborad@ con sulfato cálcico
+cashew nuts	anacardos
+pecans	pacanas
+sesame butter	crema de sésamo (tahini)
+extra lean and regular	extra magro y normal
+broiler or fryers	para asar o freír
+beef and pork	de vacuno y cerdo
+meat and poultry	de carne y ave
+fully cooked	totalmente cocinad@
+made from dried potatoes	de patata deshidratada
+barbecue-flavor	sabor barbacoa
+cheese-flavor	sabor queso
+trail mix	mezcla de frutos secos (trail mix)
+ready to serve	list@ para servir
+chicken broth	caldo de pollo
+new england	estilo Nueva Inglaterra
+cream of chicken	crema de pollo
+cream of mushroom	crema de champiñones
+pancake	para tortitas
+baby	mini
+freeze-dried	liofilizad@
+vacuum pack	envasad@ al vacío
+whole kernel	grano entero
+shiitake	shiitake
+par fried	prefrit@
+salt not added in processing	sin sal añadida en el procesado
+acorn	bellota (acorn)
+hubbard	hubbard
+mixed	variad@
+apple	de manzana
+cinnamon	de canela
+refrigerated	refrigerad@
+small end rib steak/roast	extremo pequeño del lomo alto, en filete o para asar
+85% lean meat / 15% fat	85 % magro / 15 % grasa
+93% lean meat / 7% fat	93 % magro / 7 % grasa
+97% lean meat / 3% fat	97 % magro / 3 % grasa
+bolar blade	paleta bolar
+brisket navel end	pecho, extremo del ombligo
+brisket point end	pecho, extremo de la punta
+chuck eye roll	rollo de aguja
+cube roll	lomo alto (cube roll)
+eye round	redondo (eye round)
+hind shin	morcillo trasero
+oyster blade	paleta (oyster blade)
+rump centre	centro de la cadera
+striploin	lomo bajo (striploin)
+subcutaneous fat	grasa subcutánea
+sweetbread	mollejas
+plate	falda (plate)
+shortribs	costilla corta
+thymus	timo (mollejas)
+whiskey sour	whisky sour
+cola	de cola
+without caffeine	sin cafeína
+contains caffeine	con cafeína
+Cocoa mix	preparado de cacao
+coconut milk	leche de coco
+restaurant-prepared	preparad@ en restaurante
+prepared with tap water	preparad@ con agua del grifo
+crude	sin refinar
+bolted	tamizad@
+with added salt	con sal añadida
+fresh-refrigerated	fresc@ refrigerad@
+parboiled	vaporizad@ (parboiled)
+medium-grain	de grano medio
+short-grain	de grano corto
+shredded	rallad@
+stabilized	estabilizad@
+glucose reduced	con glucosa reducida

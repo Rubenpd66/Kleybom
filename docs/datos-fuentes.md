@@ -17,4 +17,4 @@
 - **Nutrientes (por 100 g):** energía (kcal; si falta, kJ convertido), proteína, hidratos, grasa, fibra, azúcares y sodio. Un nutriente ausente se guarda como vacío, nunca como 0 (sin dato: fibra 372, azúcares 1.564, sodio 29).
 - **Por qué no Foundation Foods:** es más moderno pero solo tiene 363 alimentos y a muchos les falta la energía.
 - **Cómo se importa:** `node scripts/import-usda/run.ts <ruta al JSON> --dry-run` cuenta; sin `--dry-run` escribe. Repetible: no pisa los nombres ya traducidos.
-- **Pendiente:** nombres en español (Tarea 26).
+- **Nombres en español:** traducidos por nosotros (Tarea 26) con el glosario de `docs/glosario-alimentos.md`. Se quitaron además 23 productos de marca que el primer filtro no detectó (quedan 6.038 alimentos).
