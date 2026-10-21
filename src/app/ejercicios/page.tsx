@@ -11,6 +11,7 @@ import {
   type ExerciseFilters as Filtros,
   type Level,
 } from "@/lib/exercises/queries";
+import CargandoLista from "@/components/layout/CargandoLista";
 import { es } from "@/lib/i18n/es";
 
 const t = es.ejercicios;
@@ -140,7 +141,7 @@ export default function EjerciciosPage(props: PageProps<"/ejercicios">) {
         {t.titulo}
       </h1>
       <p className="mt-3 max-w-[62ch] text-acero">{t.descripcion}</p>
-      <Suspense fallback={<p className="mt-8 text-acero">{t.cargando}</p>}>
+      <Suspense fallback={<CargandoLista />}>
         <Contenido searchParams={props.searchParams} />
       </Suspense>
     </main>

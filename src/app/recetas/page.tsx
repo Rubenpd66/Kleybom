@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
+import CargandoLista from "@/components/layout/CargandoLista";
 import { es } from "@/lib/i18n/es";
 import { listRecipes } from "@/lib/recipes/queries";
 
@@ -35,7 +36,7 @@ export default function RecetasPage() {
     <main className="mx-auto w-full max-w-[1180px] flex-1 px-6 py-12">
       <h1 className="font-display text-[clamp(2.2rem,6vw,3.6rem)] font-extrabold leading-none">{t.titulo}</h1>
       <p className="mt-3 max-w-[62ch] text-acero">{t.descripcion}</p>
-      <Suspense fallback={<p className="mt-8 text-acero">{es.ejercicios.cargando}</p>}>
+      <Suspense fallback={<CargandoLista />}>
         <Lista />
       </Suspense>
     </main>

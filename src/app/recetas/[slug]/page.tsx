@@ -1,16 +1,23 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Suspense, cache } from "react";
 import CalorieBar from "@/components/foods/CalorieBar";
 import NutritionTable from "@/components/foods/NutritionTable";
 import { formatNutriente } from "@/lib/foods/format";
+import { recetaPublica, slugsPublicos } from "@/lib/cache/publico";
 import { es } from "@/lib/i18n/es";
 import { recipeNutrientsPerServing } from "@/lib/nutrition/recipe";
-import { getRecipeBySlug } from "@/lib/recipes/queries";
 
 const t = es.recetas;
-const obtener = cache((slug: string) => getRecipeBySlug(slug));
+const obtener = recetaPublica;
+
+// Fichas generadas al compilar (el resto, en la primera visita). Los params se leen sin <Suspense>
+// para que una ficha que no existe dé un 404 real.
+export const instant = false;
+
+export async function generateStaticParams() {
+  return (await slugsPublicos("recipes")).map((slug) => ({ slug }));
+}
 
 export async function generateMetadata(props: PageProps<"/recetas/[slug]">): Promise<Metadata> {
   const { slug } = await props.params;
@@ -83,9 +90,7 @@ async function Contenido({ params }: { params: Promise<{ slug: string }> }) {
 export default function RecetaPage(props: PageProps<"/recetas/[slug]">) {
   return (
     <main className="mx-auto w-full max-w-[1180px] flex-1 px-6 py-12">
-      <Suspense fallback={<p className="text-acero">{es.ejercicios.cargando}</p>}>
-        <Contenido params={props.params} />
-      </Suspense>
+      <Contenido params={props.params} />
     </main>
   );
 }

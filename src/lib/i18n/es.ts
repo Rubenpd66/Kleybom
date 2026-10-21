@@ -544,6 +544,7 @@ export const es = {
     exportar: "Descargar mis datos",
   },
   ficha: {
+    descripcionPorDefecto: (nombre: string) => `${nombre}: músculos que trabaja, material y cómo hacerlo paso a paso.`,
     volver: "Volver a ejercicios",
     musculosPrincipales: "Músculos principales",
     musculosSecundarios: "Músculos secundarios",

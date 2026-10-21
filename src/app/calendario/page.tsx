@@ -16,6 +16,7 @@ import {
   type Sesion,
 } from "@/lib/calendar/queries";
 import { esClaveDeDia, esClaveDeMes } from "@/lib/calendar/validate";
+import CargandoLista from "@/components/layout/CargandoLista";
 import { es } from "@/lib/i18n/es";
 import { borrarSesion, cambiarEstado } from "./actions";
 
@@ -166,7 +167,7 @@ export default function CalendarioPage(props: PageProps<"/calendario">) {
           {es.entreno.empezarEntreno}
         </Link>
       </p>
-      <Suspense fallback={<p className="mt-8 text-acero">{es.ejercicios.cargando}</p>}>
+      <Suspense fallback={<CargandoLista />}>
         <Contenido searchParams={props.searchParams} />
       </Suspense>
     </main>

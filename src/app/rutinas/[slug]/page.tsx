@@ -1,15 +1,22 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Suspense, cache } from "react";
 import PrintButton from "@/components/routines/PrintButton";
+import { rutinaPublica, slugsPublicos } from "@/lib/cache/publico";
 import { es } from "@/lib/i18n/es";
 import { formatearSeries } from "@/lib/routines/format";
-import { getRoutineBySlug } from "@/lib/routines/queries";
 import "./print.css";
 
 const t = es.rutinas;
-const obtener = cache((slug: string) => getRoutineBySlug(slug));
+const obtener = rutinaPublica;
+
+// Fichas generadas al compilar (el resto, en la primera visita). Los params se leen sin <Suspense>
+// para que una ficha que no existe dé un 404 real.
+export const instant = false;
+
+export async function generateStaticParams() {
+  return (await slugsPublicos("routines")).map((slug) => ({ slug }));
+}
 
 export async function generateMetadata(props: PageProps<"/rutinas/[slug]">): Promise<Metadata> {
   const { slug } = await props.params;
@@ -95,9 +102,7 @@ async function Contenido({ params }: { params: Promise<{ slug: string }> }) {
 export default function RutinaPage(props: PageProps<"/rutinas/[slug]">) {
   return (
     <main className="mx-auto w-full max-w-[1180px] flex-1 px-6 py-12">
-      <Suspense fallback={<p className="text-acero">{es.ejercicios.cargando}</p>}>
-        <Contenido params={props.params} />
-      </Suspense>
+      <Contenido params={props.params} />
     </main>
   );
 }

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Suspense } from "react";
 import RoutineCard from "@/components/routines/RoutineCard";
 import RoutineFilters from "@/components/routines/RoutineFilters";
+import CargandoLista from "@/components/layout/CargandoLista";
 import { es } from "@/lib/i18n/es";
 import { listRoutines, type RoutineFilters as Filtros } from "@/lib/routines/queries";
 import { GOALS, LEVELS } from "@/lib/routines/validate";
@@ -66,7 +67,7 @@ export default function RutinasPage(props: PageProps<"/rutinas">) {
           {es.constructor.crear}
         </Link>
       </p>
-      <Suspense fallback={<p className="mt-8 text-acero">{es.ejercicios.cargando}</p>}>
+      <Suspense fallback={<CargandoLista />}>
         <Contenido searchParams={props.searchParams} />
       </Suspense>
     </main>
