@@ -83,7 +83,13 @@ Fase 4 (Construcción), versión 0.1. Hechas: Tareas 1 a 8. Tareas 1 a 13 hechas
 - Fase 3: identidad "temple del acero" (gris acero → ámbar → azul templado) sobre fondo claro; Big Shoulders Display + Schibsted Grotesk; portada con selector de músculos en vivo; un solo movimiento automático. Descartado el diseño oscuro con naranja por ser el típico del sector.
 
 ## Siguiente tarea
-Que el usuario apruebe (o pida cambios en) la maqueta de la página de inicio. Luego Fase 4 (Construcción) siguiendo `docs/plan.md` desde la Tarea 1. Pendiente del usuario: revisar `docs/plan.md`, autenticar los conectores con `/mcp` (Vercel, Supabase) y crear el token de GitHub.
+**Punto de parada (21/10/2026):** proyecto terminado (Fases 1-6) y publicado. El usuario va a hacer los ajustes manuales y avisará. Se le dieron los pasos detallados en el chat; también están en `docs/ENTREGA.md`:
+1. Supabase → Authentication → URL Configuration: Site URL `https://forja-five-zeta.vercel.app` y Redirect URL `https://forja-five-zeta.vercel.app/auth/callback**`.
+2. Supabase → Authentication → protección de contraseñas filtradas (si pide plan de pago, se omite).
+3. Vercel → Settings → Environment Variables: `NEXT_PUBLIC_SITE_URL` = `https://forja-five-zeta.vercel.app`, y Redeploy.
+4. Prueba final: registrarse en `/registro` con su correo real y confirmar con el enlace del correo (lo único que no se ha podido probar sin correo real).
+
+**Al volver:** preguntar cómo fue la prueba de registro y ayudar si se atascó en algún paso. Después: donaciones (el usuario decidirá el modelo), revisión de contenido (223 ejercicios en inglés, niveles provisionales, traducciones de alimentos) y revisión profesional de los textos legales. Si renombra el proyecto de Vercel a `kleybom`, actualizar la dirección en Supabase, en `NEXT_PUBLIC_SITE_URL` y el valor por defecto de `src/lib/seo/site.ts`.
 
 ## Decisiones tomadas
 - Sin pagos; solo donaciones voluntarias. Porqué: evitar las obligaciones legales de cobrar.
