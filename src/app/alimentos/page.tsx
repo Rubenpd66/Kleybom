@@ -1,0 +1,103 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { Suspense } from "react";
+import { formatNutriente } from "@/lib/foods/format";
+import { FOODS_PAGE_SIZE, searchFoods } from "@/lib/foods/queries";
+import { es } from "@/lib/i18n/es";
+
+const t = es.alimentos;
+
+export const metadata: Metadata = { title: `${t.titulo} — ${es.marca}`, description: t.descripcion };
+
+type Params = Promise<Record<string, string | string[] | undefined>>;
+const uno = (v: string | string[] | undefined) => (Array.isArray(v) ? v[0] : v)?.trim() ?? "";
+
+function enlace(q: string, pagina: number) {
+  const p = new URLSearchParams();
+  if (q) p.set("q", q);
+  if (pagina > 1) p.set("page", String(pagina));
+  const qs = p.toString();
+  return qs ? `/alimentos?${qs}` : "/alimentos";
+}
+
+async function Contenido({ searchParams }: { searchParams: Params }) {
+  const sp = await searchParams;
+  const q = uno(sp.q).slice(0, 80);
+  const pagina = Math.max(1, Math.floor(Number(uno(sp.page))) || 1);
+  const { items, total } = await searchFoods(q, pagina);
+  const paginas = Math.max(1, Math.ceil(total / FOODS_PAGE_SIZE));
+
+  return (
+    <>
+      <form method="get" role="search" className="mt-8 flex max-w-2xl flex-col gap-3 sm:flex-row sm:items-end">
+        <label className="flex flex-1 flex-col gap-1 text-sm font-bold">
+          {t.buscarEtiqueta}
+          <input
+            type="search"
+            name="q"
+            defaultValue={q}
+            className="h-11 w-full rounded-md border-[1.5px] border-hierro bg-papel px-3 font-normal"
+          />
+        </label>
+        <button type="submit" className="h-11 rounded-md bg-hierro px-6 font-bold text-tiza">
+          {t.buscar}
+        </button>
+      </form>
+      <p className="mt-2 text-sm text-acero">{t.ayuda}</p>
+
+      <p className="mt-8 text-sm text-acero" aria-live="polite">
+        {t.resultados(total)}
+      </p>
+      {items.length === 0 ? (
+        <div className="mt-4 rounded-xl border border-linea bg-papel p-6">
+          <p>{t.vacio}</p>
+        </div>
+      ) : (
+        <ul aria-label={t.listaEtiqueta} className="mt-4 flex flex-col divide-y divide-linea rounded-xl border border-linea bg-papel">
+          {items.map((a) => (
+            <li key={a.id} className="flex flex-col gap-1 p-4 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
+              <Link href={`/alimentos/${a.slug}`} className="font-bold text-azul underline">
+                {a.name_es}
+              </Link>
+              <span className="shrink-0 text-sm text-acero">
+                {formatNutriente(a.kcal, "kcal")} {t.porCien}
+              </span>
+            </li>
+          ))}
+        </ul>
+      )}
+
+      {(pagina > 1 || pagina < paginas) && (
+        <nav aria-label="Paginación" className="mt-8 flex items-center justify-between gap-4">
+          {pagina > 1 ? (
+            <Link href={enlace(q, pagina - 1)} className="font-bold text-azul underline">
+              {t.anterior}
+            </Link>
+          ) : (
+            <span />
+          )}
+          <span className="text-sm text-acero">{t.pagina(pagina, paginas)}</span>
+          {pagina < paginas ? (
+            <Link href={enlace(q, pagina + 1)} className="font-bold text-azul underline">
+              {t.siguiente}
+            </Link>
+          ) : (
+            <span />
+          )}
+        </nav>
+      )}
+    </>
+  );
+}
+
+export default function AlimentosPage(props: PageProps<"/alimentos">) {
+  return (
+    <main className="mx-auto w-full max-w-[1180px] flex-1 px-6 py-12">
+      <h1 className="font-display text-[clamp(2.2rem,6vw,3.6rem)] font-extrabold leading-none">{t.titulo}</h1>
+      <p className="mt-3 max-w-[62ch] text-acero">{t.descripcion}</p>
+      <Suspense fallback={<p className="mt-8 text-acero">{es.ejercicios.cargando}</p>}>
+        <Contenido searchParams={props.searchParams} />
+      </Suspense>
+    </main>
+  );
+}
