@@ -159,6 +159,11 @@ export default function CalendarioPage(props: PageProps<"/calendario">) {
         {t.titulo}
       </h1>
       <p className="mt-3 max-w-[62ch] text-acero">{t.descripcion}</p>
+      <p className="mt-3">
+        <Link href="/entreno" className="font-bold text-azul underline">
+          {es.entreno.empezarEntreno}
+        </Link>
+      </p>
       <Suspense fallback={<p className="mt-8 text-acero">{es.ejercicios.cargando}</p>}>
         <Contenido searchParams={props.searchParams} />
       </Suspense>

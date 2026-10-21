@@ -1,7 +1,7 @@
 # PROGRESO
 
 ## Fase actual
-Fase 4 (Construcción), versión 0.1. Hechas: Tareas 1 a 8. Tareas 1 a 13 hechas y v0.1 desplegada. Tareas 14 y 15 hechas. Tareas 14-19 hechas. v0.2 terminada (Tareas 14-23). v0.3 terminada. v0.4: Tarea 35 hecha. Siguiente: Tarea 36 (progresión). El usuario pidió continuar sin parar hasta el final, avisando solo cuando haga falta su mano (claves o configuraciones en webs).
+Fase 4 (Construcción), versión 0.1. Hechas: Tareas 1 a 8. Tareas 1 a 13 hechas y v0.1 desplegada. Tareas 14 y 15 hechas. Tareas 14-19 hechas. v0.2 terminada (Tareas 14-23). v0.3 terminada. v0.4: Tareas 35-38 hechas. Siguiente: Tarea 39 (temporizador de descanso). El usuario pidió continuar sin parar hasta el final, avisando solo cuando haga falta su mano (claves o configuraciones en webs).
 
 ## Tareas del plan completadas
 - Tarea 1: proyecto Next.js 16 + Tailwind 4 + TypeScript creado y compilando (`npm run build` OK).
@@ -45,6 +45,9 @@ Fase 4 (Construcción), versión 0.1. Hechas: Tareas 1 a 8. Tareas 1 a 13 hechas
 - **Tests de navegador más robustos:** Supabase limita ~30 inicios de sesión cada 5 min por IP y los tests lo agotaban. Ahora cada grupo inicia sesión una vez (`e2e/ayudas.ts`) y el proyecto móvil solo pasa las pruebas de pantalla pequeña (`grep` en `playwright.config.ts`). El listado de rutinas ya no cuenta exacto (los tests de seguridad crean plantillas temporales en paralelo). Si se lanza la suite varias veces seguidas puede volver a aparecer "Demasiados intentos": esperar 5 minutos.
 - **Cierre v0.3:** se despliega sola en Vercel al subir a `main`.
 - Tarea 35: tablas `workout_logs` (con rutina, día y sesión planificada opcionales), `set_logs` (peso 0–1000 kg, reps 1–200, RPE 1–10; serie única por entreno+ejercicio+número) y `body_measurements` (una por día; peso 20–400 kg, perímetros 30–300 cm; al menos un dato). RLS de dueño; las series heredan del entreno; no se puede colgar un entreno de la sesión planificada de otro. Cascada con la cuenta. 5 tests de seguridad. **Aviso de Supabase nuevo (no de la migración):** "Leaked password protection" desactivada; es un ajuste del panel de Supabase (Authentication), pendiente del usuario.
+- Tarea 36: `estimate1RM` (Epley, 1–30 reps, peso 0 permitido) y `compareSessions` en `src/lib/training/progression.ts` (8 tests).
+- Tarea 37: `sessionReducer` en `src/lib/training/session.ts` (8 tests): registrar/editar/borrar series con validación (0–1000 kg, 1–200 reps, RPE 1–10) y terminar (sin series no termina).
+- Tarea 38: `/entreno` (privado). Sin `?id`: sesiones planificadas de hoy con rutina (botón Empezar) y formulario rutina + día. Con `?id`: `LiveSession` por ejercicio del día (objetivo, "La última vez" de la sesión anterior, registrar/quitar series). **Cada serie se guarda al momento** (`registrarSerie`), así que al recargar o cerrar no se pierde nada. Terminar marca la sesión planificada como "hecha" y muestra el resumen (series, volumen y comparación con la última sesión de la misma rutina y día). 3 tests de navegador. Enlace desde el calendario.
 
 ## Hecho
 - Comprobado: node v24.22.0, npm 11.19.1, git 2.51.0.
