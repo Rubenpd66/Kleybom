@@ -1,12 +1,13 @@
 # PROGRESO
 
 ## Fase actual
-Fase 4 (Construcción), versión 0.1. Hechas: Tareas 1, 2 y 3. Siguiente: Tarea 4 (conectar Supabase, necesita OK del usuario).
+Fase 4 (Construcción), versión 0.1. Hechas: Tareas 1 a 4. Siguiente: Tarea 5 (tablas del catálogo de ejercicios).
 
 ## Tareas del plan completadas
 - Tarea 1: proyecto Next.js 16 + Tailwind 4 + TypeScript creado y compilando (`npm run build` OK).
 - Tarea 2: Vitest 5 y Playwright instalados; `npm test` y `npm run test:e2e` pasan. Se subió `@types/node` a la 24 porque Vitest exigía ≥22 (solo afecta a tipos de desarrollo).
 - Tarea 3: textos en `src/lib/i18n/es.ts`, cabecera, pie con aviso de salud y menú móvil; colores y tipografías del diseño aplicados. Tests del menú en 375 px pasan. La fuente se llama `Big_Shoulders` en next/font (Google la renombró); el aviso de "fallback font" en el build es inofensivo. Los enlaces del menú dan 404 hasta que existan las páginas.
+- Tarea 4: proyecto Supabase `forja` (id `gftajanocydijwtzvjhe`, región eu-central-1) creado. Para liberar hueco en el plan gratuito (límite 2) se pausaron `sello` y `sello-dev` (reactivables desde Supabase). Clientes en `src/lib/supabase/`, `GET /api/health` con test. Claves en `.env.local` (no está en git). `.mcp.json` limitado a este proyecto. Instalados `@supabase/supabase-js` y `@supabase/ssr`.
 
 ## Hecho
 - Comprobado: node v24.22.0, npm 11.19.1, git 2.51.0.
