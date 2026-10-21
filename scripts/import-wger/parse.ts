@@ -1,4 +1,4 @@
-import { normalizeText } from "../../src/lib/text/normalize";
+import { normalizeText } from "../../src/lib/text/normalize.ts";
 
 const ES = 4;
 const EN = 2;

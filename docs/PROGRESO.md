@@ -1,7 +1,7 @@
 # PROGRESO
 
 ## Fase actual
-Fase 4 (Construcción), versión 0.1. Hechas: Tareas 1 a 8. Siguiente: Tarea 9 (ejecutar la importación; necesita OK del usuario y la clave de servicio).
+Fase 4 (Construcción), versión 0.1. Hechas: Tareas 1 a 8. Tarea 9 a medias: script y migración listos, simulación hecha; falta ejecutar la importación real (necesita que el usuario ponga la clave de servicio en `.env.local` y dé el OK).
 
 ## Tareas del plan completadas
 - Tarea 1: proyecto Next.js 16 + Tailwind 4 + TypeScript creado y compilando (`npm run build` OK).
@@ -12,6 +12,7 @@ Fase 4 (Construcción), versión 0.1. Hechas: Tareas 1 a 8. Siguiente: Tarea 9 (
 - Tarea 6: `normalizeText` en `src/lib/text/normalize.ts` con 3 tests (minúsculas, sin tildes, espacios colapsados).
 - Tarea 7: `listExercises` y `getExerciseBySlug` en `src/lib/exercises/queries.ts` (24 por página) con 8 tests sobre un cliente falso en memoria. Migración `20261021130000_exercises_search_text.sql` aplicada: columna `search_text` + índice trigram. **El importador (Tarea 8) debe rellenar `search_text` con `normalizeText(name_es)`.** Límite conocido: el filtro por músculo/material pasa una lista de ids en la URL; vale para cientos de ejercicios, revisar si el catálogo crece mucho.
 - Tarea 8: `parseWgerExercise` en `scripts/import-wger/parse.ts` + 5 tests y 3 fixtures. Fixtures con-licencia y sin-espanol son respuestas reales de la API de wger (ids 41 y 9); **sin-licencia es la de con-licencia con licencia y autor borrados a mano** (en 200 ejercicios de muestra todos traían licencia). Decisiones: (1) wger no da nivel, así que `level` se pone a "intermedio" con `needs_level_review: true`; hay que revisarlo. (2) La imagen solo se guarda si tiene licencia y autor propios (en la muestra la imagen no los traía, quedará `null`). (3) `needs_translation`, `needs_level_review`, `muscles` y `equipment` no son columnas de `exercises`: la Tarea 9 decide qué hacer con ellos (probablemente añadir `needs_translation` en una migración y enlazar músculos/material por nombre). (4) Licencias vistas: CC-BY-SA 3, CC-BY-SA 4 y CC0; las CC-BY-SA exigen atribución y compartir igual (anotar en `docs/datos-fuentes.md`).
+- Tarea 9 (preparación): migración `20261021140000` aplicada (columnas `needs_translation`, `needs_level_review` y clave única fuente+id). `scripts/import-wger/run.ts` con modo `--dry-run` (se ejecuta con `node`, sin instalar nada; se activó `allowImportingTsExtensions`). Simulación: 932 descargados, 810 a importar (223 sin español), 122 descartados. Catálogo de músculos/material en español en `catalogo-es.ts` (verificado contra la API de wger). `docs/datos-fuentes.md` creado.
 
 ## Hecho
 - Comprobado: node v24.22.0, npm 11.19.1, git 2.51.0.
