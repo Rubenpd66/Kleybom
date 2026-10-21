@@ -28,6 +28,17 @@ export function validarConsentimientos(privacidad: boolean, salud: boolean): str
   return null;
 }
 
+// Quien entra con Google no pasa por el formulario de registro: hasta que acepte los
+// consentimientos, solo puede ver la página que los pide (o las de privacidad).
+export function faltanConsentimientos(claims: { user_metadata?: unknown; app_metadata?: unknown } | undefined): boolean {
+  if (!claims) return false;
+  const meta = (claims.user_metadata ?? {}) as Record<string, unknown>;
+  const app = (claims.app_metadata ?? {}) as Record<string, unknown>;
+  // Las cuentas con correo ya aceptaron al registrarse (o las creó el administrador, como las de prueba).
+  const proveedores = Array.isArray(app.providers) ? app.providers : [];
+  return proveedores.length > 0 && !proveedores.includes("email") && !meta.privacidad_aceptada;
+}
+
 const ERRORES: Record<string, string> = {
   invalid_credentials: "El correo o la contraseña no son correctos. Revísalos e inténtalo de nuevo.",
   email_not_confirmed: "Aún no has confirmado tu correo. Abre el mensaje que te enviamos y pulsa el enlace.",

@@ -75,6 +75,13 @@ export const es = {
     privacidadDespues: "y tengo 14 años o más.",
     consentimientoSalud:
       "Doy mi consentimiento expreso para que KleyBom guarde los datos de salud que yo apunte (peso, medidas, comidas y entrenos) solo para mostrarme mi progreso. Puedo retirarlo cuando quiera borrando esos datos o mi cuenta.",
+    conGoogle: "Continuar con Google",
+    o: "o con tu correo",
+    errorGoogle: "No se ha podido entrar con Google. Inténtalo de nuevo o usa tu correo.",
+    consentimientoTitulo: "Un último paso",
+    consentimientoTexto: "Para usar KleyBom con tu cuenta de Google necesitamos tu permiso.",
+    aceptar: "Aceptar y continuar",
+    noAcepto: "No acepto: borrar mi cuenta",
     panel: "Mi panel",
     sesionComo: "Has entrado como",
     salir: "Cerrar sesión",

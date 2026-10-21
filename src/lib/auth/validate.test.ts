@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { mensajeDeError, rutaDeVuelta, validarConsentimientos, validarCredenciales } from "./validate";
+import { faltanConsentimientos, mensajeDeError, rutaDeVuelta, validarConsentimientos, validarCredenciales } from "./validate";
 
 describe("validarCredenciales", () => {
   it("acepta un correo y una contraseña de 8 o más caracteres", () => {
@@ -46,5 +46,17 @@ describe("rutaDeVuelta", () => {
     for (const malo of [null, "", "calendario", "https://malo.com", "//malo.com", String.raw`/\malo.com`, `/${"a".repeat(300)}`]) {
       expect(rutaDeVuelta(malo)).toBe("/panel");
     }
+  });
+});
+
+describe("faltanConsentimientos", () => {
+  it("pide los consentimientos a quien entró con Google y aún no los dio", () => {
+    expect(faltanConsentimientos({ app_metadata: { providers: ["google"] }, user_metadata: {} })).toBe(true);
+  });
+  it("no molesta a quien ya los dio, a las cuentas de correo ni a quien no ha entrado", () => {
+    expect(faltanConsentimientos({ app_metadata: { providers: ["google"] }, user_metadata: { privacidad_aceptada: "2026-10-22" } })).toBe(false);
+    expect(faltanConsentimientos({ app_metadata: { providers: ["email"] }, user_metadata: {} })).toBe(false);
+    expect(faltanConsentimientos({ app_metadata: { providers: ["email", "google"] }, user_metadata: {} })).toBe(false);
+    expect(faltanConsentimientos(undefined)).toBe(false);
   });
 });

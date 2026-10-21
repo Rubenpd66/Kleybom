@@ -52,6 +52,38 @@ export async function registrar(_: EstadoForm, datos: FormData): Promise<EstadoF
   };
 }
 
+// Entrar (o crear la cuenta) con Google. Supabase devuelve la dirección de Google y, al volver,
+// /auth/callback canjea el código. Si la cuenta es nueva, allí se piden los consentimientos.
+export async function conGoogle(datos: FormData) {
+  const origen = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+  const volver = rutaDeVuelta(datos.get("volver"));
+  const supabase = await createServerClient();
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider: "google",
+    options: { redirectTo: `${origen}/auth/callback?volver=${encodeURIComponent(volver)}` },
+  });
+  if (error || !data.url) redirect("/entrar?error=google");
+  redirect(data.url);
+}
+
+// Primera entrada con Google: se guardan los mismos consentimientos que en el registro con correo.
+export async function aceptarConsentimientos(_: EstadoForm, datos: FormData): Promise<EstadoForm> {
+  const privacidad = datos.get("privacidad") === "si";
+  const salud = datos.get("salud") === "si";
+  const fallo = validarConsentimientos(privacidad, salud);
+  if (fallo) return { error: fallo, valores: { correo: "", privacidad, salud } };
+
+  const supabase = await createServerClient();
+  const ahora = new Date().toISOString();
+  const { error } = await supabase.auth.updateUser({
+    data: { privacidad_aceptada: ahora, privacidad_version: VERSION_PRIVACIDAD, consentimiento_salud: ahora },
+  });
+  if (error) return { error: mensajeDeError(error.code), valores: { correo: "", privacidad, salud } };
+  // El proxy mira el token: se renueva para que ya lleve los consentimientos.
+  await supabase.auth.refreshSession();
+  redirect(rutaDeVuelta(datos.get("volver")));
+}
+
 export async function salir() {
   const supabase = await createServerClient();
   await supabase.auth.signOut();

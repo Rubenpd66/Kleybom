@@ -1,10 +1,13 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
+import { faltanConsentimientos } from "@/lib/auth/validate";
 
 // Solo la zona de cuenta exige sesión. El resto (calendario, diario, entreno, estadísticas, medidas,
 // crear rutina) se puede ver sin cuenta y pide entrar solo al guardar.
 const RUTAS_PRIVADAS = ["/panel"];
 const RUTAS_ABIERTAS = ["/panel/medidas"];
+// Lo único que puede ver quien entró con Google y aún no ha aceptado los consentimientos.
+const RUTAS_SIN_CONSENTIMIENTO = ["/consentimiento", "/privacidad", "/aviso-legal", "/cookies", "/api/cuenta/borrar", "/auth/"];
 
 export async function updateSession(request: NextRequest) {
   let respuesta = NextResponse.next({ request });
@@ -32,6 +35,12 @@ export async function updateSession(request: NextRequest) {
   if (!data?.claims && privada) {
     const url = request.nextUrl.clone();
     url.pathname = "/entrar";
+    url.search = `?volver=${encodeURIComponent(ruta)}`;
+    return NextResponse.redirect(url);
+  }
+  if (faltanConsentimientos(data?.claims) && !RUTAS_SIN_CONSENTIMIENTO.some((r) => ruta.startsWith(r))) {
+    const url = request.nextUrl.clone();
+    url.pathname = "/consentimiento";
     url.search = `?volver=${encodeURIComponent(ruta)}`;
     return NextResponse.redirect(url);
   }

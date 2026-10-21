@@ -2,7 +2,8 @@ import { NextResponse, type NextRequest } from "next/server";
 import { rutaDeVuelta } from "@/lib/auth/validate";
 import { createServerClient } from "@/lib/supabase/server";
 
-// Destino del enlace del correo de confirmación.
+// Destino del enlace del correo de confirmación y de la vuelta desde Google.
+// Si la cuenta de Google es nueva, el proxy la lleva a /consentimiento antes de nada.
 export async function GET(request: NextRequest) {
   const code = request.nextUrl.searchParams.get("code");
   if (code) {

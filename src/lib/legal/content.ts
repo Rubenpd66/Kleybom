@@ -76,6 +76,7 @@ export const PRIVACIDAD: TextoLegal = {
         lista(
           "Sin cuenta: ningún dato personal. KleyBom no usa analítica, publicidad ni cookies de seguimiento.",
           "Cuenta: correo electrónico y contraseña (guardada cifrada, nunca la vemos), y la fecha en que aceptaste esta política.",
+          "Si entras con Google: Google nos envía tu correo, tu nombre y tu foto de perfil. No recibimos tu contraseña de Google ni ningún otro dato de tu cuenta.",
           "Perfil (opcional): nombre, sexo, fecha de nacimiento, altura y zona horaria.",
           "Datos de salud que tú apuntes: peso y medidas corporales, comidas, objetivos de nutrición, entrenos y series. Son una categoría especial de datos (artículo 9 del RGPD).",
           "Datos técnicos: el proveedor de alojamiento registra la dirección IP y la hora de cada visita para seguridad y funcionamiento.",
@@ -101,6 +102,7 @@ export const PRIVACIDAD: TextoLegal = {
           "Vercel (alojamiento de la web). Puede tratar datos técnicos fuera del Espacio Económico Europeo con las garantías que exige el RGPD, como las cláusulas contractuales tipo de la Comisión Europea.",
         ),
         p("Ambos actúan como encargados del tratamiento y solo usan los datos para prestar su servicio a KleyBom."),
+        p("Si eliges entrar con Google, Google comprueba tu identidad según su propia política de privacidad. Es opcional: siempre puedes usar tu correo y una contraseña."),
       ],
     },
     {
