@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import AuthForm from "@/components/auth/AuthForm";
 import { es } from "@/lib/i18n/es";
 import { entrar } from "../actions";
@@ -11,7 +12,10 @@ export default function EntrarPage() {
       <h1 className="font-display text-[clamp(2.2rem,6vw,3.6rem)] font-extrabold leading-none">
         {es.auth.entrar}
       </h1>
-      <AuthForm modo="entrar" action={entrar} />
+      {/* El formulario lee ?volver= de la URL */}
+      <Suspense>
+        <AuthForm modo="entrar" action={entrar} />
+      </Suspense>
     </main>
   );
 }

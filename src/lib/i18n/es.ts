@@ -1,9 +1,9 @@
 export type EnlaceNav = { href: string; label: string };
 
 export const es = {
-  marca: "Forja",
+  marca: "KleyBom",
   meta: {
-    titulo: "Forja — ejercicios, rutinas y nutrición",
+    titulo: "KleyBom — ejercicios, rutinas y nutrición",
     descripcion:
       "Web gratuita de fitness y salud: selector de ejercicios, rutinas, calendario, nutrición y estadísticas.",
   },
@@ -24,7 +24,7 @@ export const es = {
   },
   footer: {
     aviso:
-      "Forja ofrece información general y no sustituye a un médico, nutricionista o entrenador. Si tienes una condición de salud, consulta antes con un profesional.",
+      "KleyBom ofrece información general y no sustituye a un médico, nutricionista o entrenador. Si tienes una condición de salud, consulta antes con un profesional.",
     enlaces: [
       { href: "/guias", label: "Guías" },
       { href: "/recetas", label: "Recetas" },
@@ -50,6 +50,13 @@ export const es = {
     anterior: "Anterior",
     siguiente: "Siguiente",
     resultados: (n: number) => (n === 1 ? "1 ejercicio" : `${n} ejercicios`),
+    mapaTitulo: "Elige en el cuerpo",
+    mapaAyuda: "Pulsa un músculo para ver sus ejercicios.",
+    mapaEtiqueta: "Mapa del cuerpo, de frente y de espaldas. Con teclado, usa los filtros del formulario.",
+    delante: "Delante",
+    detras: "Detrás",
+    mapaElegido: (m: string) => `Músculo elegido: ${m}.`,
+    mapaQuitar: "Quitar",
     pagina: (a: number, t: number) => `Página ${a} de ${t}`,
   },
   auth: {
@@ -65,7 +72,7 @@ export const es = {
     privacidadEnlace: "política de privacidad",
     privacidadDespues: "y tengo 14 años o más.",
     consentimientoSalud:
-      "Doy mi consentimiento expreso para que Forja guarde los datos de salud que yo apunte (peso, medidas, comidas y entrenos) solo para mostrarme mi progreso. Puedo retirarlo cuando quiera borrando esos datos o mi cuenta.",
+      "Doy mi consentimiento expreso para que KleyBom guarde los datos de salud que yo apunte (peso, medidas, comidas y entrenos) solo para mostrarme mi progreso. Puedo retirarlo cuando quiera borrando esos datos o mi cuenta.",
     panel: "Mi panel",
     sesionComo: "Has entrado como",
     salir: "Cerrar sesión",
@@ -149,7 +156,7 @@ export const es = {
     guardar: "Guardar rutina",
     guardando: "Guardando…",
     errorGeneral: "No se ha podido guardar la rutina. Inténtalo de nuevo en unos minutos.",
-    errorSesion: "Tu sesión ha caducado. Entra de nuevo para guardar la rutina.",
+    errorSesion: "Para guardar necesitas entrar en tu cuenta. Crear una es gratis.",
     errorLimite: "Has llegado al máximo de 50 rutinas propias. Borra alguna para crear otra.",
     crear: "Crear mi rutina",
   },
@@ -226,7 +233,7 @@ export const es = {
     nombreOriginal: "Nombre original",
     categoria: "Categoría",
     fuenteUsda:
-      "Fuente: U.S. Department of Agriculture, Agricultural Research Service. FoodData Central (dominio público). Nombre traducido por Forja.",
+      "Fuente: U.S. Department of Agriculture, Agricultural Research Service. FoodData Central (dominio público). Nombre traducido por KleyBom.",
     aviso:
       "Valores orientativos de referencia. La composición real varía según la variedad, el origen y la preparación.",
     noEncontradoTitulo: "Alimento no encontrado",
@@ -355,11 +362,18 @@ export const es = {
     incompleto: "Algún ingrediente no tiene todos los datos: los valores pueden quedarse cortos.",
     aviso:
       "Valores aproximados, calculados a partir de los ingredientes en crudo. Esta información es general y no sustituye a un profesional sanitario.",
-    fuente: "Receta de Forja. Datos nutricionales de USDA FoodData Central.",
+    fuente: "Receta de KleyBom. Datos nutricionales de USDA FoodData Central.",
     noEncontradaTitulo: "Receta no encontrada",
     noEncontrada: "No existe ninguna receta con esa dirección. Puede que se haya movido o que esté mal escrita.",
     verTodas: "Ver todas las recetas",
     enlace: "Ideas de recetas",
+  },
+  invitado: {
+    etiqueta: "Sin cuenta",
+    texto: (que: string) => `Estás viendo ${que} sin cuenta: puedes explorarlo y probarlo, pero no se guardará nada. Para guardar tus datos,`,
+    entrar: "entra",
+    o: "o",
+    registro: "crea tu cuenta gratis",
   },
   inicio: {
     titular: "Entrena, come y progresa. Sin pagar ni buscar vídeos.",
@@ -397,7 +411,7 @@ export const es = {
     progresoNota: "Gráfico de ejemplo con datos inventados.",
     gratisTitulo: "Gratis de verdad.",
     gratisTexto:
-      "Forja no cobra ni tiene planes de pago. No hay anuncios ni vendemos tus datos. Si te sirve, compártela con quien la pueda necesitar.",
+      "KleyBom no cobra ni tiene planes de pago. No hay anuncios ni vendemos tus datos. Si te sirve, compártela con quien la pueda necesitar.",
   },
   guias: {
     titulo: "Guías",
@@ -408,7 +422,7 @@ export const es = {
     volver: "Volver a guías",
     aviso:
       "Esta guía es información general y no sustituye a un médico, dietista-nutricionista o entrenador. Si tienes una enfermedad, estás embarazada o tomas medicación, consulta antes con un profesional.",
-    enForja: "Ponlo en práctica en Forja",
+    enForja: "Ponlo en práctica en KleyBom",
     fuentes: "Fuentes",
     noEncontradaTitulo: "Guía no encontrada",
     noEncontrada: "No existe ninguna guía con esa dirección. Puede que se haya movido o que esté mal escrita.",

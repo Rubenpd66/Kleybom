@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { redirect } from "next/navigation";
 import { connection } from "next/server";
 import { Suspense } from "react";
+import AvisoInvitado from "@/components/auth/AvisoInvitado";
 import MonthView from "@/components/calendar/MonthView";
 import PlanSessionDialog from "@/components/calendar/PlanSessionDialog";
 import { getCurrentUser } from "@/lib/auth/session";
@@ -12,6 +12,7 @@ import {
   getUserTimezone,
   listRoutineOptions,
   listSessions,
+  ZONA_POR_DEFECTO,
   type Sesion,
 } from "@/lib/calendar/queries";
 import { esClaveDeDia, esClaveDeMes } from "@/lib/calendar/validate";
@@ -82,11 +83,11 @@ function SesionDelDia({ s }: { s: Sesion }) {
 
 async function Contenido({ searchParams }: { searchParams: Params }) {
   await connection();
+  // Sin cuenta se ve el mes vacío y el formulario; al guardar se pide entrar.
   const usuario = await getCurrentUser();
-  if (!usuario) redirect("/entrar");
 
   const sp = await searchParams;
-  const zona = await getUserTimezone(usuario.id);
+  const zona = usuario ? await getUserTimezone(usuario.id) : ZONA_POR_DEFECTO;
   const hoy = toLocalDateKey(new Date(), zona);
   const textoMes = uno(sp.mes);
   const mes = esClaveDeMes(textoMes) ? textoMes : hoy.slice(0, 7);
@@ -97,8 +98,8 @@ async function Contenido({ searchParams }: { searchParams: Params }) {
 
   const semanas = monthGrid(year, month);
   const [sesiones, total, rutinas] = await Promise.all([
-    listSessions(usuario.id, semanas[0][0], semanas.at(-1)!.at(-1)!),
-    countSessions(usuario.id),
+    usuario ? listSessions(usuario.id, semanas[0][0], semanas.at(-1)!.at(-1)!) : [],
+    usuario ? countSessions(usuario.id) : 0,
     listRoutineOptions(),
   ]);
   const anterior = addMonths(year, month, -1);
@@ -107,7 +108,8 @@ async function Contenido({ searchParams }: { searchParams: Params }) {
 
   return (
     <>
-      {total === 0 && (
+      {!usuario && <AvisoInvitado ruta="/calendario" que="el calendario" />}
+      {usuario && total === 0 && (
         <p className="mt-6 max-w-[62ch] rounded-xl border border-linea bg-papel p-4">{t.vacio}</p>
       )}
       <div className="mt-8 grid gap-10 lg:grid-cols-[2fr_1fr]">

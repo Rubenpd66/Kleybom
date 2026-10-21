@@ -1,7 +1,7 @@
 "use server";
 
 import { redirect } from "next/navigation";
-import { VERSION_PRIVACIDAD, mensajeDeError, validarConsentimientos, validarCredenciales } from "@/lib/auth/validate";
+import { VERSION_PRIVACIDAD, mensajeDeError, rutaDeVuelta, validarConsentimientos, validarCredenciales } from "@/lib/auth/validate";
 import { createServerClient } from "@/lib/supabase/server";
 
 // `valores` devuelve lo escrito para volver a rellenar el formulario tras un error (React lo vacía al enviar).
@@ -22,7 +22,7 @@ export async function entrar(_: EstadoForm, datos: FormData): Promise<EstadoForm
   const supabase = await createServerClient();
   const { error } = await supabase.auth.signInWithPassword({ email: correo, password: contrasena });
   if (error) return { error: mensajeDeError(error.code), valores: { correo } };
-  redirect("/panel");
+  redirect(rutaDeVuelta(datos.get("volver")));
 }
 
 export async function registrar(_: EstadoForm, datos: FormData): Promise<EstadoForm> {
@@ -41,12 +41,12 @@ export async function registrar(_: EstadoForm, datos: FormData): Promise<EstadoF
     email: correo,
     password: contrasena,
     options: {
-      emailRedirectTo: `${origen}/auth/callback`,
+      emailRedirectTo: `${origen}/auth/callback?volver=${encodeURIComponent(rutaDeVuelta(datos.get("volver")))}`,
       data: { privacidad_aceptada: ahora, privacidad_version: VERSION_PRIVACIDAD, consentimiento_salud: ahora },
     },
   });
   if (error) return { error: mensajeDeError(error.code), valores };
-  if (data.session) redirect("/panel");
+  if (data.session) redirect(rutaDeVuelta(datos.get("volver")));
   return {
     aviso: "Cuenta creada. Te hemos enviado un correo: pulsa el enlace para confirmarla y después entra.",
   };

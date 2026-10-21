@@ -21,11 +21,6 @@ const menos = (fecha: string, dias: number) => {
   return d.toISOString().slice(0, 10);
 };
 
-test("las estadísticas exigen sesión", async ({ page }) => {
-  await page.goto("/estadisticas");
-  await expect(page).toHaveURL(/\/entrar$/);
-});
-
 test.describe("usuario nuevo", () => {
   test.skip(!servicio, "falta SUPABASE_SERVICE_ROLE_KEY en .env.local");
   const correo = `test-nuevo-${marca()}@example.com`;

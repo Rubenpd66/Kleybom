@@ -34,7 +34,7 @@ async function entrar(page: Page, correo: string) {
 
 test("el perfil exige sesión", async ({ page }) => {
   await page.goto("/panel/perfil");
-  await expect(page).toHaveURL(/\/entrar$/);
+  await expect(page).toHaveURL(/\/entrar(\?volver=.*)?$/);
 });
 
 test.describe("con cuentas de prueba", () => {
@@ -122,7 +122,7 @@ test.describe("con cuentas de prueba", () => {
 
     await expect(page).toHaveURL(/\/\?cuenta=borrada$/);
     await page.goto("/panel");
-    await expect(page).toHaveURL(/\/entrar$/);
+    await expect(page).toHaveURL(/\/entrar(\?volver=.*)?$/);
 
     const perfil = await admin().from("profiles").select("id").eq("id", idB);
     expect(perfil.data).toEqual([]);

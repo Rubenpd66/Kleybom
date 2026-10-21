@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
+import BodyMap from "@/components/exercises/BodyMap";
 import ExerciseCard from "@/components/exercises/ExerciseCard";
 import ExerciseFilters from "@/components/exercises/ExerciseFilters";
 import {
@@ -59,11 +60,17 @@ async function Contenido({ searchParams }: { searchParams: Params }) {
 
   return (
     <>
-      <div className="mt-8">
+      <div className="mt-8 grid items-start gap-6 lg:grid-cols-[1fr_22rem]">
         <ExerciseFilters
+          // Al elegir en el mapa cambia la URL sin recargar: la key rehace el formulario con los filtros nuevos.
+          key={JSON.stringify(filtros)}
           filtros={filtros}
           musculos={musculos}
           material={material}
+        />
+        <BodyMap
+          seleccionado={filtros.muscle}
+          nombre={musculos.find((m) => m.slug === filtros.muscle)?.name_es}
         />
       </div>
 

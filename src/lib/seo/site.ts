@@ -17,7 +17,7 @@ export const IMAGEN_COMPARTIR = {
   url: "/img/compartir.jpg",
   width: 1200,
   height: 630,
-  alt: "Forja: un gimnasio luminoso con una tableta que muestra estadísticas de entrenamiento",
+  alt: "KleyBom: un gimnasio luminoso con una tableta que muestra estadísticas de entrenamiento",
 };
 
 // JSON para <script type="application/ld+json">: se escapa "<" para que ningún texto cierre la etiqueta.

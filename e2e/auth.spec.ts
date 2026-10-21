@@ -12,7 +12,7 @@ const clave = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
 test("una ruta privada redirige a /entrar si no hay sesión", async ({ page }) => {
   await page.goto("/panel");
-  await expect(page).toHaveURL(/\/entrar$/);
+  await expect(page).toHaveURL(/\/entrar(\?volver=.*)?$/);
   await expect(page.getByRole("heading", { name: "Entrar" })).toBeVisible();
 });
 
@@ -63,9 +63,9 @@ test.describe("con una cuenta confirmada", () => {
     await expect(page.getByText(correo)).toBeVisible();
 
     await page.getByRole("button", { name: "Cerrar sesión" }).click();
-    await expect(page).toHaveURL(/\/entrar$/);
+    await expect(page).toHaveURL(/\/entrar(\?volver=.*)?$/);
 
     await page.goto("/panel");
-    await expect(page).toHaveURL(/\/entrar$/);
+    await expect(page).toHaveURL(/\/entrar(\?volver=.*)?$/);
   });
 });

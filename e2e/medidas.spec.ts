@@ -13,11 +13,6 @@ const servicio = process.env.SUPABASE_SERVICE_ROLE_KEY;
 const admin = () => createClient(url, servicio!, { auth: { persistSession: false } });
 const contrasena = "contrasena-de-prueba-123";
 
-test("las medidas exigen sesión", async ({ page }) => {
-  await page.goto("/panel/medidas");
-  await expect(page).toHaveURL(/\/entrar$/);
-});
-
 test.describe("con una cuenta de prueba", () => {
   test.skip(!servicio, "falta SUPABASE_SERVICE_ROLE_KEY en .env.local");
   test.describe.configure({ mode: "serial" });

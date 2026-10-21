@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { redirect } from "next/navigation";
 import { connection } from "next/server";
 import { Suspense } from "react";
+import AvisoInvitado from "@/components/auth/AvisoInvitado";
 import MeasurementForm, { type ValoresMedida } from "@/components/body/MeasurementForm";
 import { getCurrentUser } from "@/lib/auth/session";
 import { toLocalDateKey } from "@/lib/calendar/dates";
-import { getUserTimezone } from "@/lib/calendar/queries";
+import { getUserTimezone, ZONA_POR_DEFECTO } from "@/lib/calendar/queries";
 import { esClaveDeDia } from "@/lib/calendar/validate";
 import { formatNutriente } from "@/lib/foods/format";
 import { es } from "@/lib/i18n/es";
@@ -26,21 +26,24 @@ const aTexto = (v: string | null) => (v === null ? "" : String(Number(v)).replac
 
 async function Contenido({ searchParams }: { searchParams: Params }) {
   await connection();
+  // Sin cuenta: formulario visible e historial vacío; al guardar se pide entrar.
   const usuario = await getCurrentUser();
-  if (!usuario) redirect("/entrar");
 
   const sp = await searchParams;
   const pedida = String(Array.isArray(sp.fecha) ? sp.fecha[0] : (sp.fecha ?? ""));
-  const hoy = toLocalDateKey(new Date(), await getUserTimezone(usuario.id));
+  const hoy = toLocalDateKey(new Date(), usuario ? await getUserTimezone(usuario.id) : ZONA_POR_DEFECTO);
 
-  const supabase = await createServerClient();
-  const { data } = await supabase
-    .from("body_measurements")
-    .select("id, date, weight_kg, waist_cm, hip_cm, chest_cm")
-    .eq("user_id", usuario.id)
-    .order("date", { ascending: false })
-    .limit(90);
-  const filas = (data ?? []) as Fila[];
+  let filas: Fila[] = [];
+  if (usuario) {
+    const supabase = await createServerClient();
+    const { data } = await supabase
+      .from("body_measurements")
+      .select("id, date, weight_kg, waist_cm, hip_cm, chest_cm")
+      .eq("user_id", usuario.id)
+      .order("date", { ascending: false })
+      .limit(90);
+    filas = (data ?? []) as Fila[];
+  }
 
   const editando = esClaveDeDia(pedida) ? filas.find((f) => f.date === pedida) : undefined;
   const valores: ValoresMedida = editando
@@ -55,6 +58,8 @@ async function Contenido({ searchParams }: { searchParams: Params }) {
   const titulo = editando ? t.editarTitulo(fechaCorta.format(new Date(`${editando.date}T00:00:00Z`))) : t.formTitulo;
 
   return (
+    <>
+    {!usuario && <AvisoInvitado ruta="/panel/medidas" que="el registro de medidas" />}
     <div className="mt-8 grid gap-10 lg:grid-cols-2">
       <MeasurementForm valores={valores} titulo={titulo} />
       <section>
@@ -105,6 +110,7 @@ async function Contenido({ searchParams }: { searchParams: Params }) {
         )}
       </section>
     </div>
+    </>
   );
 }
 

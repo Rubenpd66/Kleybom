@@ -34,3 +34,7 @@ Textos redactados por Forja; las cifras salen de estas fuentes, comprobadas el 2
 - **Sueño:** Watson NF et al., Sleep 2015;38(6):843-844 (https://pmc.ncbi.nlm.nih.gov/articles/PMC4434546/).
 - **Fuerza:** ACSM, Med Sci Sports Exerc 2009;41(3):687-708 (resumen en PubMed 19204579). Existe una actualización de 2026 sin revisar todavía: revisarla al actualizar la guía de progresión.
 - **Hábitos:** Lally P et al., Eur J Soc Psychol 2010;40(6):998-1009 (resumen leído vía OpenAlex). La cifra popular de "66 días" no aparece en el resumen, así que no se usa.
+
+## Mapa del cuerpo (selector de músculos en /ejercicios)
+- **Paquete:** `react-body-highlighter` 2.0.5 (https://github.com/GV79/react-body-highlighter), licencia MIT (uso libre, conservando el aviso de copyright, que va dentro del paquete instalado).
+- **Uso:** dibujo de frente y de espaldas; cada zona se traduce a un músculo del catálogo en `src/lib/exercises/bodymap.ts`. Las zonas sin músculo en el catálogo (antebrazo, lumbar, aductores…) no hacen nada.

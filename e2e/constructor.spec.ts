@@ -14,11 +14,6 @@ const servicio = process.env.SUPABASE_SERVICE_ROLE_KEY;
 const admin = () => createClient(url, servicio!, { auth: { persistSession: false } });
 const contrasena = "contrasena-de-prueba-123";
 
-test("el constructor exige sesión", async ({ page }) => {
-  await page.goto("/rutinas/nueva");
-  await expect(page).toHaveURL(/\/entrar$/);
-});
-
 async function buscarYAnadir(page: Page, texto: string, nombre: string) {
   await page.getByLabel("Buscar ejercicio").fill(texto);
   await page.getByRole("button", { name: "Buscar", exact: true }).click();

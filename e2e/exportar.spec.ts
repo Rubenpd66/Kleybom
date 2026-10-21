@@ -48,7 +48,7 @@ test.describe("exportar mis datos", () => {
     const r = await page.request.get("/api/cuenta/exportar");
     expect(r.status()).toBe(200);
     expect(r.headers()["content-type"]).toContain("application/json");
-    expect(r.headers()["content-disposition"]).toMatch(/attachment; filename="forja-mis-datos-\d{4}-\d{2}-\d{2}\.json"/);
+    expect(r.headers()["content-disposition"]).toMatch(/attachment; filename="kleybom-mis-datos-\d{4}-\d{2}-\d{2}\.json"/);
     expect(r.headers()["cache-control"]).toContain("no-store");
 
     const datos = await r.json();

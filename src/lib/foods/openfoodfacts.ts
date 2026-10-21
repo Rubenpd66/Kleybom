@@ -68,7 +68,7 @@ export async function fetchOffProduct(codigo: string): Promise<ResultadoOff> {
   if (!esCodigoDeBarras(codigo)) return { ok: false, motivo: "no-encontrado" };
   try {
     const r = await fetch(`https://world.openfoodfacts.org/api/v2/product/${codigo}?fields=${CAMPOS}`, {
-      headers: { "User-Agent": "Forja/0.3 (https://forja-five-zeta.vercel.app)" },
+      headers: { "User-Agent": "KleyBom/0.5 (https://forja-five-zeta.vercel.app)" },
       next: { revalidate: 86400 },
     });
     if (r.status === 404) return { ok: false, motivo: "no-encontrado" };

@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { redirect } from "next/navigation";
 import { connection } from "next/server";
 import { Suspense } from "react";
+import AvisoInvitado from "@/components/auth/AvisoInvitado";
 import TargetsForm, { type ValoresIniciales } from "@/components/nutrition/TargetsForm";
 import { getCurrentUser } from "@/lib/auth/session";
 import { es } from "@/lib/i18n/es";
@@ -24,8 +24,17 @@ function edadDesde(nacimiento: string | null): string {
 
 async function Contenido() {
   await connection();
+  // Sin cuenta la calculadora funciona igual; solo guardar pide entrar.
   const usuario = await getCurrentUser();
-  if (!usuario) redirect("/entrar");
+  if (!usuario) {
+    const vacios: ValoresIniciales = { sex: "", age: "", height_cm: "", weight_kg: "" };
+    return (
+      <>
+        <AvisoInvitado ruta="/nutricion/objetivos" que="la calculadora de objetivos" />
+        <TargetsForm iniciales={vacios} />
+      </>
+    );
+  }
 
   const supabase = await createServerClient();
   const [{ data: perfil }, { data: guardados }] = await Promise.all([

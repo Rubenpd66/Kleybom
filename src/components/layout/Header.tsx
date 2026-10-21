@@ -29,12 +29,13 @@ export default function Header() {
   return (
     <header className="relative border-b border-linea bg-tiza">
       <div className="mx-auto flex h-16 max-w-[1180px] items-center justify-between gap-6 px-6">
-        <Link
-          href="/"
-          className="font-display text-[2rem] font-extrabold leading-none tracking-[.02em]"
-        >
-          {es.marca}
-          <span className="text-temple-osc">.</span>
+        <Link href="/" className="flex items-center gap-2.5 font-display text-[1.9rem] font-extrabold leading-none tracking-[.02em]">
+          {/* Logo decorativo: el nombre ya va escrito al lado */}
+          <img src="/logo.svg" alt="" width={43} height={32} className="h-8 w-auto" />
+          <span>
+            {es.marca}
+            <span className="text-temple-osc">.</span>
+          </span>
         </Link>
         <nav aria-label={es.nav.etiqueta} className="hidden md:block">
           <ul className="flex gap-6">

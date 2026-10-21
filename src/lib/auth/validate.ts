@@ -9,6 +9,14 @@ export function validarCredenciales(correo: string, contrasena: string): string 
   return null;
 }
 
+// Página a la que volver tras entrar. Solo rutas internas ("/algo"): nunca otra web
+// ("//otra.com", "/\otra.com") para que el enlace no sirva para redirigir a un sitio falso.
+export function rutaDeVuelta(valor: unknown): string {
+  const v = typeof valor === "string" ? valor.trim() : "";
+  if (!v.startsWith("/") || v.startsWith("//") || v.includes("\\") || v.length > 200) return "/panel";
+  return v;
+}
+
 // Versión de la política de privacidad que acepta quien se registra (fecha de la última revisión).
 export const VERSION_PRIVACIDAD = "2026-10-21";
 
@@ -16,7 +24,7 @@ export const VERSION_PRIVACIDAD = "2026-10-21";
 // consentimiento explícito para los datos de salud (art. 9.2.a RGPD).
 export function validarConsentimientos(privacidad: boolean, salud: boolean): string | null {
   if (!privacidad) return "Para crear la cuenta tienes que aceptar la política de privacidad y tener 14 años o más.";
-  if (!salud) return "Para crear la cuenta tienes que aceptar que Forja guarde los datos de salud que apuntes.";
+  if (!salud) return "Para crear la cuenta tienes que aceptar que KleyBom guarde los datos de salud que apuntes.";
   return null;
 }
 

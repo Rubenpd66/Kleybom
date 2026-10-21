@@ -34,7 +34,7 @@ export async function GET() {
   const hoy = new Date().toISOString().slice(0, 10);
   const contenido = {
     aviso:
-      "Copia de tus datos en Forja. Contiene datos personales y de salud: guárdala en un lugar seguro.",
+      "Copia de tus datos en KleyBom. Contiene datos personales y de salud: guárdala en un lugar seguro.",
     generado: new Date().toISOString(),
     cuenta: { email: usuario.email, creada: usuario.created_at },
     perfil: perfil.data,
@@ -49,7 +49,7 @@ export async function GET() {
   return new Response(JSON.stringify(contenido, null, 2), {
     headers: {
       "Content-Type": "application/json; charset=utf-8",
-      "Content-Disposition": `attachment; filename="forja-mis-datos-${hoy}.json"`,
+      "Content-Disposition": `attachment; filename="kleybom-mis-datos-${hoy}.json"`,
       "Cache-Control": "no-store",
     },
   });

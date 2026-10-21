@@ -1,4 +1,4 @@
-// Guías redactadas por Forja. Cada cifra sale de una fuente de `fuentes` (verificada el 2026-10-21).
+// Guías redactadas por KleyBom. Cada cifra sale de una fuente de `fuentes` (verificada el 2026-10-21).
 // Si se cambia una cifra, revisar antes la fuente original.
 
 export type Bloque = { tipo: "p"; texto: string } | { tipo: "lista"; items: string[] };

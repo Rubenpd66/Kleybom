@@ -19,7 +19,7 @@ for (const g of guias) {
   test(`la guía «${g.titulo}» muestra título, metadatos, aviso y fuentes`, async ({ page }) => {
     const r = await page.goto(`/guias/${g.slug}`);
     expect(r?.status()).toBe(200);
-    await expect(page).toHaveTitle(`${g.titulo} — Forja`);
+    await expect(page).toHaveTitle(`${g.titulo} — KleyBom`);
     await expect(page.locator('meta[name="description"]')).toHaveAttribute("content", g.resumen);
     await expect(page.locator('meta[property="og:type"]')).toHaveAttribute("content", "article");
     await expect(page.getByRole("heading", { level: 1, name: g.titulo })).toBeVisible();

@@ -1,4 +1,4 @@
-// Textos legales de Forja. Redactados como base; conviene que los revise un profesional antes de darlos por definitivos.
+// Textos legales de KleyBom. Redactados como base; conviene que los revise un profesional antes de darlos por definitivos.
 import type { Bloque, Seccion } from "@/lib/guides/content";
 import { TITULAR as T } from "./titular";
 
@@ -10,7 +10,7 @@ const lista = (...items: string[]): Bloque => ({ tipo: "lista", items });
 export const AVISO_LEGAL: TextoLegal = {
   slug: "aviso-legal",
   titulo: "Aviso legal",
-  resumen: "Quién está detrás de Forja, condiciones de uso y origen de los datos de ejercicios y alimentos.",
+  resumen: "Quién está detrás de KleyBom, condiciones de uso y origen de los datos de ejercicios y alimentos.",
   secciones: [
     {
       titulo: "Titular de la web",
@@ -20,22 +20,22 @@ export const AVISO_LEGAL: TextoLegal = {
       ],
     },
     {
-      titulo: "Qué es Forja",
+      titulo: "Qué es KleyBom",
       bloques: [
-        p("Forja es una web gratuita de fitness y salud: catálogo de ejercicios, rutinas, calendario, base de alimentos, diario de comidas, registro de entrenos y estadísticas. No vende productos ni servicios, no tiene planes de pago y no muestra publicidad."),
+        p("KleyBom es una web gratuita de fitness y salud: catálogo de ejercicios, rutinas, calendario, base de alimentos, diario de comidas, registro de entrenos y estadísticas. No vende productos ni servicios, no tiene planes de pago y no muestra publicidad."),
       ],
     },
     {
       titulo: "Aviso de salud",
       bloques: [
-        p("La información de Forja es general y no sustituye a un médico, dietista-nutricionista o entrenador. Los cálculos (calorías, macronutrientes, fuerza estimada) son aproximaciones. Si tienes una enfermedad, estás embarazada, tomas medicación o hace tiempo que no haces ejercicio, consulta antes con un profesional sanitario."),
+        p("La información de KleyBom es general y no sustituye a un médico, dietista-nutricionista o entrenador. Los cálculos (calorías, macronutrientes, fuerza estimada) son aproximaciones. Si tienes una enfermedad, estás embarazada, tomas medicación o hace tiempo que no haces ejercicio, consulta antes con un profesional sanitario."),
       ],
     },
     {
       titulo: "Condiciones de uso",
       bloques: [
         lista(
-          "Puedes usar Forja gratis para fines personales.",
+          "Puedes usar KleyBom gratis para fines personales.",
           "No está permitido intentar acceder a datos de otras personas, sobrecargar el servicio de forma automatizada ni usarlo para fines ilegales.",
           "El titular puede cambiar, ampliar o dejar de ofrecer funciones, y procurará avisar con antelación de los cambios importantes.",
           "El titular no se hace responsable de los daños derivados de un uso de la información distinto al indicado en el aviso de salud.",
@@ -47,11 +47,11 @@ export const AVISO_LEGAL: TextoLegal = {
       bloques: [
         lista(
           "Ejercicios: wger (wger.de), con licencias Creative Commons BY-SA y CC0. Cada ficha indica su autor y licencia; los textos derivados se comparten con la misma licencia.",
-          "Alimentos: USDA FoodData Central, SR Legacy (dominio público, CC0). Nombres traducidos por Forja.",
+          "Alimentos: USDA FoodData Central, SR Legacy (dominio público, CC0). Nombres traducidos por KleyBom.",
           "Productos envasados: Open Food Facts (licencia ODbL), consultados en directo y con enlace a su ficha.",
-          "Guías, rutinas plantilla y recetas: redactadas por Forja, con sus fuentes citadas.",
+          "Guías, rutinas plantilla y recetas: redactadas por KleyBom, con sus fuentes citadas.",
         ),
-        p("El diseño, el código y los textos propios de Forja pertenecen a su titular, salvo lo indicado arriba."),
+        p("El diseño, el código y los textos propios de KleyBom pertenecen a su titular, salvo lo indicado arriba."),
       ],
     },
     {
@@ -64,7 +64,7 @@ export const AVISO_LEGAL: TextoLegal = {
 export const PRIVACIDAD: TextoLegal = {
   slug: "privacidad",
   titulo: "Política de privacidad",
-  resumen: "Qué datos guarda Forja, para qué, durante cuánto tiempo y cómo ejercer tus derechos.",
+  resumen: "Qué datos guarda KleyBom, para qué, durante cuánto tiempo y cómo ejercer tus derechos.",
   secciones: [
     {
       titulo: "Responsable del tratamiento",
@@ -74,7 +74,7 @@ export const PRIVACIDAD: TextoLegal = {
       titulo: "Qué datos tratamos",
       bloques: [
         lista(
-          "Sin cuenta: ningún dato personal. Forja no usa analítica, publicidad ni cookies de seguimiento.",
+          "Sin cuenta: ningún dato personal. KleyBom no usa analítica, publicidad ni cookies de seguimiento.",
           "Cuenta: correo electrónico y contraseña (guardada cifrada, nunca la vemos), y la fecha en que aceptaste esta política.",
           "Perfil (opcional): nombre, sexo, fecha de nacimiento, altura y zona horaria.",
           "Datos de salud que tú apuntes: peso y medidas corporales, comidas, objetivos de nutrición, entrenos y series. Son una categoría especial de datos (artículo 9 del RGPD).",
@@ -100,7 +100,7 @@ export const PRIVACIDAD: TextoLegal = {
           "Supabase (base de datos, cuentas y correos de confirmación). Los datos se guardan en servidores de la Unión Europea (Fráncfort, Alemania).",
           "Vercel (alojamiento de la web). Puede tratar datos técnicos fuera del Espacio Económico Europeo con las garantías que exige el RGPD, como las cláusulas contractuales tipo de la Comisión Europea.",
         ),
-        p("Ambos actúan como encargados del tratamiento y solo usan los datos para prestar su servicio a Forja."),
+        p("Ambos actúan como encargados del tratamiento y solo usan los datos para prestar su servicio a KleyBom."),
       ],
     },
     {
@@ -138,12 +138,12 @@ export const PRIVACIDAD: TextoLegal = {
 export const COOKIES: TextoLegal = {
   slug: "cookies",
   titulo: "Política de cookies",
-  resumen: "Forja solo usa las cookies técnicas imprescindibles para mantener la sesión abierta.",
+  resumen: "KleyBom solo usa las cookies técnicas imprescindibles para mantener la sesión abierta.",
   secciones: [
     {
       titulo: "Qué cookies usamos",
       bloques: [
-        p("Forja solo usa cookies técnicas, necesarias para que puedas entrar en tu cuenta. No usa cookies de analítica, de publicidad ni de redes sociales, y no hay contenido de terceros que las instale."),
+        p("KleyBom solo usa cookies técnicas, necesarias para que puedas entrar en tu cuenta. No usa cookies de analítica, de publicidad ni de redes sociales, y no hay contenido de terceros que las instale."),
         lista(
           "sb-…-auth-token (propia, de Supabase): guarda tu sesión cuando entras. Se borra al cerrar sesión o cuando caduca la sesión.",
         ),

@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { redirect } from "next/navigation";
 import { connection } from "next/server";
 import { Suspense } from "react";
+import AvisoInvitado from "@/components/auth/AvisoInvitado";
 import { BarChart, COLOR_SERIE, LineChart, StatTile } from "@/components/stats/Charts";
 import { getCurrentUser } from "@/lib/auth/session";
 import { toLocalDateKey } from "@/lib/calendar/dates";
-import { getUserTimezone } from "@/lib/calendar/queries";
+import { getUserTimezone, ZONA_POR_DEFECTO } from "@/lib/calendar/queries";
 import { formatNutriente } from "@/lib/foods/format";
 import { es } from "@/lib/i18n/es";
 import { addDays, currentStreak, movingAverage, weekStartOf, weeklyVolumeSeries, type Punto } from "@/lib/stats/aggregate";
@@ -37,19 +37,18 @@ function Seccion({ id, titulo, ayuda, children }: { id: string; titulo: string; 
 async function Contenido({ searchParams }: { searchParams: Params }) {
   await connection();
   const usuario = await getCurrentUser();
-  if (!usuario) redirect("/entrar");
 
-  const hoy = toLocalDateKey(new Date(), await getUserTimezone(usuario.id));
+  const hoy = toLocalDateKey(new Date(), usuario ? await getUserTimezone(usuario.id) : ZONA_POR_DEFECTO);
   const desde = addDays(hoy, -182);
-  const [fechas, series, pesos] = await Promise.all([
-    getTrainedDates(usuario.id, desde),
-    getSetsSince(usuario.id, desde),
-    getWeightSeries(usuario.id, desde),
-  ]);
+  // Sin cuenta no hay datos: se ve el estado vacío con el aviso para entrar.
+  const [fechas, series, pesos] = usuario
+    ? await Promise.all([getTrainedDates(usuario.id, desde), getSetsSince(usuario.id, desde), getWeightSeries(usuario.id, desde)])
+    : [[], [], []];
 
   if (fechas.length === 0 && pesos.length === 0) {
     return (
       <div className="mt-8 max-w-[62ch] rounded-xl border border-linea bg-papel p-6">
+        {!usuario && <AvisoInvitado ruta="/estadisticas" que="las estadísticas" />}
         <p>{t.vacio}</p>
         <p className="mt-4 flex flex-wrap gap-4">
           <Link href="/entreno" className="font-bold text-azul underline">

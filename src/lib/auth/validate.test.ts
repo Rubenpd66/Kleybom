@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { mensajeDeError, validarConsentimientos, validarCredenciales } from "./validate";
+import { mensajeDeError, rutaDeVuelta, validarConsentimientos, validarCredenciales } from "./validate";
 
 describe("validarCredenciales", () => {
   it("acepta un correo y una contraseña de 8 o más caracteres", () => {
@@ -34,5 +34,17 @@ describe("validarConsentimientos", () => {
     expect(validarConsentimientos(true, false)).toMatch(/datos de salud/);
     expect(validarConsentimientos(false, false)).toMatch(/política de privacidad/);
     expect(validarConsentimientos(true, true)).toBeNull();
+  });
+});
+
+describe("rutaDeVuelta", () => {
+  it("acepta rutas internas con parámetros", () => {
+    expect(rutaDeVuelta("/calendario")).toBe("/calendario");
+    expect(rutaDeVuelta("/nutricion?dia=2026-10-21")).toBe("/nutricion?dia=2026-10-21");
+  });
+  it("manda al panel si no hay ruta o apunta a otra web", () => {
+    for (const malo of [null, "", "calendario", "https://malo.com", "//malo.com", String.raw`/\malo.com`, `/${"a".repeat(300)}`]) {
+      expect(rutaDeVuelta(malo)).toBe("/panel");
+    }
   });
 });

@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { redirect } from "next/navigation";
 import { connection } from "next/server";
 import { Suspense } from "react";
+import AvisoInvitado from "@/components/auth/AvisoInvitado";
 import ProgressBar from "@/components/motion/ProgressBar";
 import FoodPicker from "@/components/nutrition/FoodPicker";
 import MealSection from "@/components/nutrition/MealSection";
 import { getCurrentUser } from "@/lib/auth/session";
 import { toLocalDateKey } from "@/lib/calendar/dates";
-import { getUserTimezone } from "@/lib/calendar/queries";
+import { getUserTimezone, ZONA_POR_DEFECTO } from "@/lib/calendar/queries";
 import { esClaveDeDia } from "@/lib/calendar/validate";
 import { formatNutriente } from "@/lib/foods/format";
 import { es } from "@/lib/i18n/es";
@@ -31,19 +31,20 @@ function moverDia(dia: string, delta: number) {
 
 async function Contenido({ searchParams }: { searchParams: Params }) {
   await connection();
+  // Sin cuenta: día vacío, se puede buscar alimentos; al apuntar se pide entrar.
   const usuario = await getCurrentUser();
-  if (!usuario) redirect("/entrar");
 
   const sp = await searchParams;
-  const hoy = toLocalDateKey(new Date(), await getUserTimezone(usuario.id));
+  const hoy = toLocalDateKey(new Date(), usuario ? await getUserTimezone(usuario.id) : ZONA_POR_DEFECTO);
   const pedido = uno(sp.dia);
   const dia = esClaveDeDia(pedido) ? pedido : hoy;
 
-  const [entradas, objetivos] = await Promise.all([listEntries(usuario.id, dia), getGoals(usuario.id)]);
+  const [entradas, objetivos] = usuario ? await Promise.all([listEntries(usuario.id, dia), getGoals(usuario.id)]) : [[], null];
   const resumen = summarizeDay(entradas);
 
   return (
     <>
+      {!usuario && <AvisoInvitado ruta="/nutricion" que="el diario de comidas" />}
       <nav aria-label="Días" className="mt-6 flex flex-wrap items-center justify-between gap-3">
         <Link href={`/nutricion?dia=${moverDia(dia, -1)}`} className="text-sm font-bold text-azul underline">
           {t.diaAnterior}
@@ -93,7 +94,7 @@ async function Contenido({ searchParams }: { searchParams: Params }) {
         </p>
       </section>
 
-      {entradas.length === 0 && <p className="mt-6 max-w-[62ch] rounded-xl border border-linea bg-papel p-4">{t.vacio}</p>}
+      {usuario && entradas.length === 0 && <p className="mt-6 max-w-[62ch] rounded-xl border border-linea bg-papel p-4">{t.vacio}</p>}
 
       <div className="mt-6 grid gap-6 lg:grid-cols-[3fr_2fr]">
         <div className="flex flex-col gap-4">

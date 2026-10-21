@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { redirect } from "next/navigation";
 import { connection } from "next/server";
 import { Suspense } from "react";
+import AvisoInvitado from "@/components/auth/AvisoInvitado";
 import LiveSession from "@/components/training/LiveSession";
 import StartForm from "@/components/training/StartForm";
 import { getCurrentUser } from "@/lib/auth/session";
@@ -99,7 +99,18 @@ async function Resumen({ w, userId }: { w: Workout; userId: string }) {
 async function Contenido({ searchParams }: { searchParams: Params }) {
   await connection();
   const usuario = await getCurrentUser();
-  if (!usuario) redirect("/entrar");
+  if (!usuario) {
+    // Sin cuenta: se ve cómo empezar un entreno; al empezarlo se pide entrar.
+    return (
+      <>
+        <AvisoInvitado ruta="/entreno" que="el registro de entrenos" />
+        <section className="mt-10">
+          <h2 className="font-display text-[1.7rem] font-bold">{t.otraTitulo}</h2>
+          <StartForm rutinas={await listRoutineOptions()} />
+        </section>
+      </>
+    );
+  }
 
   const id = Number(uno((await searchParams).id));
   if (Number.isInteger(id) && id > 0) {

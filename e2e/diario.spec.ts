@@ -15,11 +15,6 @@ const admin = () => createClient(url, servicio!, { auth: { persistSession: false
 const contrasena = "contrasena-de-prueba-123";
 const DIA = "2026-11-02";
 
-test("el diario exige sesión", async ({ page }) => {
-  await page.goto("/nutricion");
-  await expect(page).toHaveURL(/\/entrar$/);
-});
-
 test.describe("con una cuenta de prueba", () => {
   test.skip(!servicio, "falta SUPABASE_SERVICE_ROLE_KEY en .env.local");
   test.describe.configure({ mode: "serial" });
