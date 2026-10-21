@@ -1,7 +1,7 @@
 # PROGRESO
 
 ## Fase actual
-Fase 4 (Construcción), versión 0.1. Hechas: Tareas 1 a 8. Tareas 1 a 13 hechas y v0.1 desplegada. Tareas 14 y 15 hechas. Tareas 14-19 hechas. Tarea 20 hecha. Siguiente: Tarea 21 (tablas del calendario). El usuario pidió continuar sin parar hasta el final, avisando solo cuando haga falta su mano (claves o configuraciones en webs).
+Fase 4 (Construcción), versión 0.1. Hechas: Tareas 1 a 8. Tareas 1 a 13 hechas y v0.1 desplegada. Tareas 14 y 15 hechas. Tareas 14-19 hechas. Tareas 20 y 21 hechas. Siguiente: Tarea 22 (lógica de fechas del calendario). El usuario pidió continuar sin parar hasta el final, avisando solo cuando haga falta su mano (claves o configuraciones en webs).
 
 ## Tareas del plan completadas
 - Tarea 1: proyecto Next.js 16 + Tailwind 4 + TypeScript creado y compilando (`npm run build` OK).
@@ -27,6 +27,7 @@ Fase 4 (Construcción), versión 0.1. Hechas: Tareas 1 a 8. Tareas 1 a 13 hechas
 - Tarea 18: `builderReducer` y `emptyDraft` en `src/lib/routines/builder.ts` con 19 tests. Acciones del plan (`addExercise`, `removeExercise`, `moveExercise`, `setSets`, `setReps`, `addDay`, `removeDay`) más `setMeta` (nombre/objetivo/nivel) y `setRest`. Los ejercicios se identifican por (día, posición). Tras cada acción `position` queda consecutivo (1, 2, 3…) por día; las acciones imposibles (día o posición inexistente, mover fuera de rango) devuelven el mismo estado. Series/repeticiones/descanso se acotan a los límites de la base (1–20, 1–100, 0–600) y el mínimo de repeticiones nunca supera al máximo; máximo 7 días y mínimo 1. `RoutineExerciseDraft` ganó un campo opcional `position`.
 - Tarea 19: constructor en `/rutinas/nueva` (privado) con `RoutineBuilder` (reductor + buscador de ejercicios por acción de servidor + nombres/series/reps/descanso, subir/bajar/quitar, días) y acción `guardarRutina` que valida otra vez en el servidor, recalcula `position`, limita a 50 rutinas propias y 150 ejercicios, y borra la rutina si fallan sus ejercicios. `/panel/rutinas` ("Mis rutinas") lista y borra las propias. `getMyRoutines` en `queries.ts`. 4 tests de navegador. **Nota de pruebas:** `playwright.config.ts` reutiliza un servidor en el puerto 3000 si ya hay uno; un `npm run dev` abierto de antes puede servir código viejo y dar fallos falsos (pasó aquí: se paró ese servidor). Si un test falla raro, parar el `npm run dev` y repetir. Aún no hay edición de rutinas propias (solo crear y borrar).
 - Tarea 20: botón "Imprimir / guardar PDF" (`window.print()`) en el detalle de rutina; estilos `@media print` en `src/app/rutinas/[slug]/print.css` (sin cabecera, pie ni botón; tabla con bordes). El detalle ahora muestra cada día como tabla (ejercicio, series y repeticiones, descanso). 2 tests nuevos (emulación de impresión y clic en el botón).
+- Tarea 21: tabla `planned_sessions` (migración `20261021170000`; fecha, rutina y día de rutina opcionales, nota ≤ 300, estado planificada/hecha/saltada). RLS de dueño; `on delete cascade` con la cuenta; si se borra la rutina la sesión se conserva (`set null`). Al crear o editar, la rutina elegida debe ser visible para el usuario (plantilla o suya): nadie puede apuntar a la rutina privada de otro. 7 tests de seguridad con cuentas reales A/B. Avisos de seguridad: ninguno.
 
 ## Hecho
 - Comprobado: node v24.22.0, npm 11.19.1, git 2.51.0.
