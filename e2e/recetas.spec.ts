@@ -1,9 +1,9 @@
 import { expect, test } from "@playwright/test";
 
-test("el listado muestra las 10 recetas", async ({ page }) => {
+test("el listado muestra las 30 recetas", async ({ page }) => {
   await page.goto("/recetas");
   await expect(page.getByRole("heading", { level: 1, name: "Recetas" })).toBeVisible();
-  await expect(page.getByRole("list", { name: "Recetas" }).getByRole("listitem")).toHaveCount(10);
+  await expect(page.getByRole("list", { name: "Recetas" }).getByRole("listitem")).toHaveCount(30);
 });
 
 test("la ficha muestra ingredientes, pasos y nutrientes por ración", async ({ page }) => {

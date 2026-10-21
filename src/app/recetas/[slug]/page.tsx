@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import CreditoFoto from "@/components/content/CreditoFoto";
 import CalorieBar from "@/components/foods/CalorieBar";
 import NutritionTable from "@/components/foods/NutritionTable";
 import { formatNutriente } from "@/lib/foods/format";
 import { recetaPublica, slugsPublicos } from "@/lib/cache/publico";
 import { es } from "@/lib/i18n/es";
 import { recipeNutrientsPerServing } from "@/lib/nutrition/recipe";
+import { imagenDeReceta } from "@/lib/recipes/imagen";
 
 const t = es.recetas;
 const obtener = recetaPublica;
@@ -34,6 +37,7 @@ async function Contenido({ params }: { params: Promise<{ slug: string }> }) {
     r.ingredientes.map((i) => ({ food: i.food, grams: i.grams })),
     r.servings,
   );
+  const img = imagenDeReceta(r.slug);
 
   return (
     <article className="max-w-3xl">
@@ -45,6 +49,11 @@ async function Contenido({ params }: { params: Promise<{ slug: string }> }) {
         <span className="rounded-full border border-hierro px-3 py-0.5">{t.raciones(r.servings)}</span>
         {r.prep_minutes && <span className="rounded-full border border-hierro px-3 py-0.5">{t.minutos(r.prep_minutes)}</span>}
       </p>
+      {img && (
+        <div className="relative mt-6 aspect-[4/3] max-w-xl overflow-hidden rounded-xl">
+          <Image src={img.src} alt={r.name_es} fill priority sizes="(min-width: 640px) 576px, 90vw" className="object-cover" />
+        </div>
+      )}
       {r.description_es && <p className="mt-6 max-w-[62ch]">{r.description_es}</p>}
 
       <section className="mt-10">
@@ -82,6 +91,7 @@ async function Contenido({ params }: { params: Promise<{ slug: string }> }) {
       <footer className="mt-12 flex flex-col gap-2 border-t border-linea pt-4 text-sm text-acero">
         <p>{t.aviso}</p>
         <p>{t.fuente}</p>
+        {img && <CreditoFoto {...img.foto} />}
       </footer>
     </article>
   );

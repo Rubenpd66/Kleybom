@@ -2,6 +2,7 @@
 // node scripts/seed-recetas/run.ts             carga las recetas (repetible: actualiza por slug)
 import { createClient } from "@supabase/supabase-js";
 import { RECETAS } from "./recetas.ts";
+import { NOTAS_EN, RECETAS_EN } from "./recetas-en.ts";
 
 // Solo para el informe del --dry-run (la web usa recipeNutrientsPerServing de src/lib/nutrition).
 const CLAVES = ["kcal", "protein_g", "carbs_g", "fat_g", "fiber_g", "sugar_g", "sodium_mg"] as const;
@@ -49,6 +50,9 @@ async function main() {
           name_es: r.name_es,
           description_es: r.description_es,
           steps_es: r.pasos,
+          name_en: RECETAS_EN[r.slug]?.name ?? null,
+          description_en: RECETAS_EN[r.slug]?.description ?? null,
+          steps_en: RECETAS_EN[r.slug]?.pasos ?? [],
           servings: r.servings,
           prep_minutes: r.prep_minutes,
         },
@@ -66,6 +70,7 @@ async function main() {
         grams: i.gramos,
         position: j + 1,
         note: i.nota ?? null,
+        note_en: i.nota ? (NOTAS_EN[i.nota] ?? null) : null,
       })),
     );
     if (e3) throw new Error(`${r.slug}: ${e3.message}`);
