@@ -1,5 +1,7 @@
 import { createClient } from "@supabase/supabase-js";
 import { expect, test, type Page } from "@playwright/test";
+import { entrarCon, iniciarSesionUnaVez } from "./ayudas";
+
 
 try {
   process.loadEnvFile(".env.local");
@@ -27,11 +29,7 @@ async function crearUsuario(correo: string): Promise<string> {
 }
 
 async function entrar(page: Page, correo: string) {
-  await page.goto("/entrar");
-  await page.getByLabel("Correo electrónico").fill(correo);
-  await page.getByLabel("Contraseña").fill(contrasena);
-  await page.getByRole("button", { name: "Entrar" }).click();
-  await expect(page).toHaveURL(/\/panel$/);
+  await entrarCon(page, correo);
 }
 
 test("el perfil exige sesión", async ({ page }) => {
@@ -48,9 +46,11 @@ test.describe("con cuentas de prueba", () => {
   let idA = "";
   let idB = "";
 
-  test.beforeAll(async () => {
+  test.beforeAll(async ({ browser }, info) => {
     idA = await crearUsuario(correoA);
     idB = await crearUsuario(correoB);
+    await iniciarSesionUnaVez(browser, info, correoA, contrasena);
+    await iniciarSesionUnaVez(browser, info, correoB, contrasena);
   });
 
   test.afterAll(async () => {

@@ -6,7 +6,17 @@ const lista = (page: import("@playwright/test").Page) =>
 test("el listado muestra las 6 plantillas", async ({ page }) => {
   await page.goto("/rutinas");
   await expect(page.getByRole("heading", { level: 1, name: "Rutinas" })).toBeVisible();
-  await expect(lista(page)).toHaveCount(6);
+  // No se cuenta exacto: los tests de seguridad crean plantillas temporales en paralelo.
+  for (const nombre of [
+    "Cuerpo completo para principiantes (3 días)",
+    "Torso / pierna (4 días)",
+    "Empuje / tirón / pierna (6 días)",
+    "Fuerza básica (3 días)",
+    "Movilidad en casa",
+    "Iniciación sin material (3 días)",
+  ]) {
+    await expect(page.getByRole("link", { name: nombre })).toBeVisible();
+  }
 });
 
 test("filtrar por objetivo cambia la URL y el resultado", async ({ page }) => {

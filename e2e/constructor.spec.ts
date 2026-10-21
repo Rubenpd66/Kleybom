@@ -1,5 +1,7 @@
 import { createClient } from "@supabase/supabase-js";
 import { expect, test, type Page } from "@playwright/test";
+import { entrarCon, iniciarSesionUnaVez } from "./ayudas";
+
 
 try {
   process.loadEnvFile(".env.local");
@@ -30,7 +32,7 @@ test.describe("con una cuenta de prueba", () => {
   const correo = `test-${Date.now()}-${Math.floor(Math.random() * 1e6)}@example.com`;
   let id = "";
 
-  test.beforeAll(async () => {
+  test.beforeAll(async ({ browser }, info) => {
     const { data, error } = await admin().auth.admin.createUser({
       email: correo,
       password: contrasena,
@@ -38,6 +40,7 @@ test.describe("con una cuenta de prueba", () => {
     });
     if (error) throw error;
     id = data.user.id;
+    await iniciarSesionUnaVez(browser, info, correo, contrasena);
   });
 
   test.afterAll(async () => {
@@ -45,11 +48,7 @@ test.describe("con una cuenta de prueba", () => {
   });
 
   test.beforeEach(async ({ page }) => {
-    await page.goto("/entrar");
-    await page.getByLabel("Correo electrónico").fill(correo);
-    await page.getByLabel("Contraseña").fill(contrasena);
-    await page.getByRole("button", { name: "Entrar" }).click();
-    await expect(page).toHaveURL(/\/panel$/);
+    await entrarCon(page, correo);
   });
 
   test("guardar sin ejercicios muestra los mensajes de validación", async ({ page }) => {

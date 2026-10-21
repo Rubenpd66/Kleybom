@@ -15,10 +15,10 @@ const FILAS: { clave: keyof Nutrientes; unidad: string; sangria?: boolean }[] = 
 ];
 
 // Tabla por 100 g. Un dato que falta se muestra como "— sin dato", nunca como 0.
-export default function NutritionTable({ nutrientes }: { nutrientes: Nutrientes }) {
+export default function NutritionTable({ nutrientes, titulo = t.tablaTitulo }: { nutrientes: Nutrientes; titulo?: string }) {
   return (
     <table className="mt-8 w-full border-collapse overflow-hidden rounded-xl bg-papel text-left">
-      <caption className="mb-3 text-left font-display text-[1.7rem] font-bold">{t.tablaTitulo}</caption>
+      <caption className="mb-3 text-left font-display text-[1.7rem] font-bold">{titulo}</caption>
       <thead>
         <tr className="border-b-[1.5px] border-hierro">
           <th scope="col" className="p-3">

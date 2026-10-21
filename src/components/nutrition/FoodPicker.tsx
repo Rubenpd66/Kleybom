@@ -103,6 +103,10 @@ export default function FoodPicker({ fecha }: { fecha: string }) {
         <Link href="/alimentos" className="text-azul underline">
           {t.explorar}
         </Link>
+        {" · "}
+        <Link href="/recetas" className="text-azul underline">
+          {es.recetas.enlace}
+        </Link>
       </p>
     </section>
   );
