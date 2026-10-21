@@ -97,7 +97,7 @@ export async function listExercises(
   type Fila = Omit<ExerciseSummary, "muscles"> & { exercise_muscles: { role: "principal" | "secundario"; muscles: { slug: string } | null }[] };
   const items = ((data ?? []) as unknown as Fila[]).map(({ exercise_muscles, ...resto }) => ({
     ...resto,
-    muscles: exercise_muscles.flatMap((m) => (m.muscles ? [{ slug: m.muscles.slug, role: m.role }] : [])),
+    muscles: (exercise_muscles ?? []).flatMap((m) => (m.muscles ? [{ slug: m.muscles.slug, role: m.role }] : [])),
   }));
   return { items, total: count ?? 0 };
 }
