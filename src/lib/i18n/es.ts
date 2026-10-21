@@ -541,6 +541,8 @@ export const es = {
     atribucion: "Autor",
     licencia: "Licencia",
     fuente: "Fuente",
+    foto: "Foto",
+    dibujoMusculos: (nombre: string) => `${nombre}: músculos que trabaja, de frente y de espaldas`,
     noEncontradoTitulo: "Ejercicio no encontrado",
     noEncontrado: "No existe ningún ejercicio con esa dirección. Puede que se haya movido o que esté mal escrita.",
     verTodos: "Ver todos los ejercicios",

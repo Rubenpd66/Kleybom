@@ -19,6 +19,7 @@
   --serie-1: #94650a;
   --serie-2: #3f5f7c;
   --cuerpo: #b4bdc3;
+  --temple-suave: #f6d991;
 }
 
 /* Tema oscuro: el del sistema, salvo que la persona haya elegido "claro"; o el elegido a mano. */
@@ -36,6 +37,7 @@
     --serie-1: #bf8a17;
     --serie-2: #7896b2;
     --cuerpo: #4a545c;
+    --temple-suave: #8a6a24;
   }
 }
 :root[data-tema="oscuro"] {
@@ -51,6 +53,7 @@
   --serie-1: #bf8a17;
   --serie-2: #7896b2;
   --cuerpo: #4a545c;
+  --temple-suave: #8a6a24;
 }
 
 @theme inline {

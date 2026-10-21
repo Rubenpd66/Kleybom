@@ -18,15 +18,19 @@ export type ExerciseSummary = {
   name_es: string;
   level: Level;
   image_url: string | null;
+  muscles: { slug: string; role: "principal" | "secundario" }[];
 };
 
-export type ExerciseDetail = ExerciseSummary & {
+export type ExerciseDetail = Omit<ExerciseSummary, "muscles"> & {
   description_es: string | null;
   instructions_es: string[];
   tips_es: string[];
   common_mistakes_es: string[];
   license: string | null;
   author: string | null;
+  image_author: string | null;
+  image_license: string | null;
+  image_source: string | null;
   source: string | null;
   source_id: string | null;
   needs_translation: boolean;
@@ -80,7 +84,7 @@ export async function listExercises(
 
   let consulta = db
     .from("exercises")
-    .select("id, slug, name_es, level, image_url", { count: "exact" });
+    .select("id, slug, name_es, level, image_url, exercise_muscles(role, muscles(slug))", { count: "exact" });
   if (ids) consulta = consulta.in("id", ids);
   if (f.level) consulta = consulta.eq("level", f.level);
   const q = normalizeText(f.q ?? "");
@@ -90,7 +94,12 @@ export async function listExercises(
     .order("name_es")
     .range(desde, desde + PAGE_SIZE - 1);
   if (error) throw error;
-  return { items: (data ?? []) as ExerciseSummary[], total: count ?? 0 };
+  type Fila = Omit<ExerciseSummary, "muscles"> & { exercise_muscles: { role: "principal" | "secundario"; muscles: { slug: string } | null }[] };
+  const items = ((data ?? []) as unknown as Fila[]).map(({ exercise_muscles, ...resto }) => ({
+    ...resto,
+    muscles: exercise_muscles.flatMap((m) => (m.muscles ? [{ slug: m.muscles.slug, role: m.role }] : [])),
+  }));
+  return { items, total: count ?? 0 };
 }
 
 export async function getExerciseBySlug(

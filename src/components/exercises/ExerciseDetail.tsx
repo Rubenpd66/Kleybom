@@ -1,12 +1,14 @@
 import Link from "next/link";
 import type { ExerciseDetail as Ficha } from "@/lib/exercises/queries";
 import { es } from "@/lib/i18n/es";
+import ExerciseImage from "./ExerciseImage";
 
 const t = es.ficha;
 
 const URL_LICENCIA: Record<string, string> = {
   "CC-BY-SA 3": "https://creativecommons.org/licenses/by-sa/3.0/deed.es",
   "CC-BY-SA 4": "https://creativecommons.org/licenses/by-sa/4.0/deed.es",
+  "CC-BY 4": "https://creativecommons.org/licenses/by/4.0/deed.es",
   CC0: "https://creativecommons.org/publicdomain/zero/1.0/deed.es",
 };
 
@@ -49,6 +51,16 @@ export default function ExerciseDetail({ ejercicio: e }: { ejercicio: Ficha }) {
           {t.enIngles}
         </p>
       )}
+
+      <div className="mt-8 max-w-md">
+        <ExerciseImage
+          src={e.image_url}
+          alt={e.image_url ? e.name_es : t.dibujoMusculos(e.name_es)}
+          musculos={e.muscles}
+          sizes="(min-width: 640px) 448px, 90vw"
+          prioridad
+        />
+      </div>
 
       <div className="mt-8 grid gap-8 sm:grid-cols-2">
         {principales.length > 0 && (
@@ -123,6 +135,19 @@ export default function ExerciseDetail({ ejercicio: e }: { ejercicio: Ficha }) {
         {e.source && (
           <p>
             {t.fuente}: {e.source}
+          </p>
+        )}
+        {e.image_url && e.image_author && (
+          <p>
+            {t.foto}: {e.image_author} ·{" "}
+            {e.image_license && URL_LICENCIA[e.image_license] ? (
+              <a href={URL_LICENCIA[e.image_license]} className="text-azul underline" rel="noopener noreferrer">
+                {e.image_license}
+              </a>
+            ) : (
+              e.image_license
+            )}{" "}
+            · wger.de
           </p>
         )}
       </footer>

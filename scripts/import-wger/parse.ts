@@ -51,7 +51,7 @@ const ENTIDADES: Record<string, string> = {
   "&nbsp;": " ",
 };
 
-function limpiar(html: string): string {
+export function limpiar(html: string): string {
   return html
     .replace(/<[^>]+>/g, " ")
     .replace(/&(amp|lt|gt|quot|nbsp|#39);/g, (m) => ENTIDADES[m])
@@ -59,7 +59,7 @@ function limpiar(html: string): string {
     .trim();
 }
 
-function pasos(html: string): string[] {
+export function pasos(html: string): string[] {
   const items = [...html.matchAll(/<li[^>]*>([\s\S]*?)<\/li>/gi)].map((m) => limpiar(m[1]));
   const lista = items.length
     ? items

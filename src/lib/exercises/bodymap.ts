@@ -28,6 +28,15 @@ export function zonasDeMusculo(slug: string): string[] {
     .map(([z]) => z);
 }
 
+// Zonas para dibujar un músculo en la imagen de un ejercicio. Los que no tienen zona propia en el
+// dibujo se pintan en la más cercana (braquial → bíceps, serrato → oblicuos).
+const ZONA_APROXIMADA: Record<string, string> = { braquial: "biceps", "serrato-anterior": "obliques" };
+
+export function zonasDeDibujo(slug: string): string[] {
+  const zonas = zonasDeMusculo(slug);
+  return zonas.length ? zonas : ZONA_APROXIMADA[slug] ? [ZONA_APROXIMADA[slug]] : [];
+}
+
 // Dirección del listado con el músculo elegido, conservando búsqueda, material y nivel (y volviendo a la página 1).
 export function enlaceConMusculo(actuales: URLSearchParams, slug: string | null): string {
   const p = new URLSearchParams(actuales);
