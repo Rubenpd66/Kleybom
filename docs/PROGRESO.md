@@ -1,7 +1,7 @@
 # PROGRESO
 
 ## Fase actual
-Fase 4 (Construcción), versión 0.1. Hechas: Tareas 1 a 8. Tareas 1 a 13 hechas y v0.1 desplegada. Tareas 14 y 15 hechas. Tareas 14-19 hechas. v0.2 terminada (Tareas 14-23). v0.3: Tareas 24-30 hechas. Siguiente: Tarea 31 (lógica del diario). El usuario pidió continuar sin parar hasta el final, avisando solo cuando haga falta su mano (claves o configuraciones en webs).
+Fase 4 (Construcción), versión 0.1. Hechas: Tareas 1 a 8. Tareas 1 a 13 hechas y v0.1 desplegada. Tareas 14 y 15 hechas. Tareas 14-19 hechas. v0.2 terminada (Tareas 14-23). v0.3: Tareas 24-31 hechas. Siguiente: Tarea 32 (pantalla del diario). El usuario pidió continuar sin parar hasta el final, avisando solo cuando haga falta su mano (claves o configuraciones en webs).
 
 ## Tareas del plan completadas
 - Tarea 1: proyecto Next.js 16 + Tailwind 4 + TypeScript creado y compilando (`npm run build` OK).
@@ -38,6 +38,7 @@ Fase 4 (Construcción), versión 0.1. Hechas: Tareas 1 a 8. Tareas 1 a 13 hechas
 - Tarea 28: `scaleNutrients` y `sumNutrients` en `src/lib/nutrition/portion.ts` (8 tests): ración de 1 a 5000 g (si no, `RangeError`), los nulos siguen nulos, la suma marca `incomplete` si faltaba algún dato y da null cuando ninguno lo tiene; lista vacía = ceros.
 - Tarea 29: `computeTargets` en `src/lib/nutrition/targets.ts` (6 tests con 3 ejemplos calculados a mano). Fórmulas y fuentes en `docs/formulas.md`: Mifflin-St Jeor (verificada en la fuente original), multiplicadores de actividad de FAO/OMS/UNU 2004 (1,40/1,55/1,85/2,20; **cambio** respecto al plan, que proponía 1,2/1,375/1,55/1,725 sin fuente oficial), objetivo −15 %/0/+10 % (decisión del proyecto), proteína 1,0–1,6 g/kg (dentro de EFSA y la ISSN), grasa 30 % (EFSA 20–35 %), hidratos el resto. Mínimo 1200/1500 kcal: regla prudente **sin guía oficial encontrada**, se dice así. Solo adultos de 18 a 100 años (**cambio**: el plan decía desde 14; la fórmula se validó en 19–78).
 - Tarea 30: `/nutricion/objetivos` (privado; `/nutricion` añadido a las rutas privadas). Formulario con cálculo en directo (`TargetsForm`), mensajes concretos para datos fuera de rango, aviso de salud visible y del mínimo de seguridad cuando se aplica. Se rellena con los datos del perfil (sexo, edad desde la fecha de nacimiento, altura). La acción `guardarObjetivos` recalcula en el servidor y guarda en `nutrition_goals`. 3 tests de navegador.
+- Tarea 31: `summarizeDay` en `src/lib/nutrition/diary.ts` (4 tests): nutrientes por comida (desayuno, comida, cena, snack) y del día con `scaleNutrients`/`sumNutrients`; día vacío = ceros; un nulo marca `incomplete`; ignora gramos imposibles.
 
 ## Hecho
 - Comprobado: node v24.22.0, npm 11.19.1, git 2.51.0.
