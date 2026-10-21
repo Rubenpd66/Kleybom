@@ -38,3 +38,6 @@ Textos redactados por Forja; las cifras salen de estas fuentes, comprobadas el 2
 ## Mapa del cuerpo (selector de músculos en /ejercicios)
 - **Paquete:** `react-body-highlighter` 2.0.5 (https://github.com/GV79/react-body-highlighter), licencia MIT (uso libre, conservando el aviso de copyright, que va dentro del paquete instalado).
 - **Uso:** dibujo de frente y de espaldas; cada zona se traduce a un músculo del catálogo en `src/lib/exercises/bodymap.ts`. Las zonas sin músculo en el catálogo (antebrazo, lumbar, aductores…) no hacen nada.
+
+## Fondos 3D (three.js)
+- **Paquete:** `three` 0.180.0 (https://threejs.org), licencia MIT. Las 12 escenas son código propio (`src/components/fondo/escenas.ts`), sin modelos ni texturas de terceros.

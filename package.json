@@ -16,7 +16,8 @@
     "next": "16.4.2",
     "react": "19.3.0",
     "react-body-highlighter": "2.0.5",
-    "react-dom": "19.3.0"
+    "react-dom": "19.3.0",
+    "three": "0.180.0"
   },
   "devDependencies": {
     "@playwright/test": "^1.64.1",
@@ -24,6 +25,7 @@
     "@types/node": "^24.19.2",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/three": "0.180.0",
     "eslint": "^9",
     "eslint-config-next": "16.4.2",
     "tailwindcss": "^4",

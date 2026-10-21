@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Big_Shoulders, Schibsted_Grotesk } from "next/font/google";
+import { Suspense } from "react";
+import Fondo3D from "@/components/fondo/Fondo3D";
 import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
 import { es } from "@/lib/i18n/es";
@@ -41,6 +43,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         >
           {es.nav.saltarAlContenido}
         </a>
+        <Suspense fallback={null}>
+          <Fondo3D />
+        </Suspense>
         <Header />
         {/* Como mínimo una pantalla: el pie empieza fuera de la vista y no salta al llegar el contenido (CLS). */}
         <div id="contenido" className="flex min-h-screen flex-1 flex-col">

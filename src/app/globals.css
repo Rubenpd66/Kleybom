@@ -82,6 +82,22 @@ body {
   }
 }
 
+/* Fondo 3D de cada sección: detrás de todo, sin recibir clics y tenue para no restar legibilidad.
+   Aparece con un fundido cuando la escena está lista (en móvil no se dibuja: ver debeMostrarFondo). */
+.fondo-3d {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 600ms ease;
+}
+.fondo-3d.fondo-visible {
+  opacity: 0.5;
+}
+
 /* Tarjetas de listados: solo cambia el fondo, sin moverse. */
 .tarjeta-hover {
   transition: background-color 150ms ease;
