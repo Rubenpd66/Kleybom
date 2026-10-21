@@ -26,6 +26,8 @@ export const es = {
     aviso:
       "Forja ofrece información general y no sustituye a un médico, nutricionista o entrenador. Si tienes una condición de salud, consulta antes con un profesional.",
     enlaces: [
+      { href: "/guias", label: "Guías" },
+      { href: "/recetas", label: "Recetas" },
       { href: "/aviso-legal", label: "Aviso legal" },
       { href: "/privacidad", label: "Privacidad" },
       { href: "/cookies", label: "Cookies" },
@@ -354,6 +356,21 @@ export const es = {
     noEncontrada: "No existe ninguna receta con esa dirección. Puede que se haya movido o que esté mal escrita.",
     verTodas: "Ver todas las recetas",
     enlace: "Ideas de recetas",
+  },
+  guias: {
+    titulo: "Guías",
+    descripcion: "Guías cortas para empezar a entrenar, comer mejor, descansar, crear el hábito y progresar, con sus fuentes.",
+    listaEtiqueta: "Guías",
+    minutos: (n: number) => `${n} min de lectura`,
+    actualizada: "Actualizada el",
+    volver: "Volver a guías",
+    aviso:
+      "Esta guía es información general y no sustituye a un médico, dietista-nutricionista o entrenador. Si tienes una enfermedad, estás embarazada o tomas medicación, consulta antes con un profesional.",
+    enForja: "Ponlo en práctica en Forja",
+    fuentes: "Fuentes",
+    noEncontradaTitulo: "Guía no encontrada",
+    noEncontrada: "No existe ninguna guía con esa dirección. Puede que se haya movido o que esté mal escrita.",
+    verTodas: "Ver todas las guías",
   },
   entreno: {
     titulo: "Entreno",

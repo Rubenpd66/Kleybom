@@ -1,7 +1,7 @@
 # PROGRESO
 
 ## Fase actual
-Fase 4 (Construcción), versión 0.1. Hechas: Tareas 1 a 8. Tareas 1 a 13 hechas y v0.1 desplegada. Tareas 14 y 15 hechas. Tareas 14-19 hechas. v0.2 terminada (Tareas 14-23). v0.3 terminada. v0.4 terminada (Tareas 35-44). Siguiente: v0.5 (Tarea 45, guías). El usuario pidió continuar sin parar hasta el final, avisando solo cuando haga falta su mano (claves o configuraciones en webs).
+Fase 4 (Construcción), versión 0.1. Hechas: Tareas 1 a 8. Tareas 1 a 13 hechas y v0.1 desplegada. Tareas 14 y 15 hechas. Tareas 14-19 hechas. v0.2 terminada (Tareas 14-23). v0.3 terminada. v0.4 terminada (Tareas 35-44). v0.5 en curso: Tarea 45 hecha. Siguiente: Tarea 46 (imágenes). El usuario pidió continuar sin parar hasta el final, avisando solo cuando haga falta su mano (claves o configuraciones en webs).
 
 ## Tareas del plan completadas
 - Tarea 1: proyecto Next.js 16 + Tailwind 4 + TypeScript creado y compilando (`npm run build` OK).
@@ -55,6 +55,7 @@ Fase 4 (Construcción), versión 0.1. Hechas: Tareas 1 a 8. Tareas 1 a 13 hechas
 - Tarea 43: `/panel` rehecho: usuario nuevo ve "Tres pasos para empezar" (objetivos, rutina en el calendario, primer entreno); con actividad, tarjetas Hoy (sesiones planificadas), Calorías de hoy frente al objetivo, Racha y Esta semana (entrenos y volumen), más atajos (mis rutinas, medidas, objetivos, perfil, descargar mis datos). **Cabecera:** ahora muestra "Mi panel" si hay cookie de sesión (sin llamar a Supabase; dentro de `<Suspense>`), también en el menú móvil. 2 tests de navegador.
 - Tarea 44: `GET /api/cuenta/exportar` descarga en JSON todos los datos del usuario (cuenta, perfil, objetivos, rutinas propias con ejercicios, calendario, diario, entrenos con series, medidas), con `no-store` y nombre `forja-mis-datos-AAAA-MM-DD.json`. Usa la sesión del usuario (RLS) y filtra por su id. Enlace "Descargar mis datos" en el panel. Test con dos usuarios: el archivo de A no contiene nada de B.
 - **Cierre v0.4:** 222 tests unitarios y 113 de navegador en verde; se despliega sola al subir a `main`.
+- Tarea 45 (v0.5): 5 guías en `/guias` (empezar a entrenar, comer mejor, descanso, hábitos, progresión) con aviso de salud, minutos de lectura, fecha y fuentes enlazadas (detalle en `docs/datos-fuentes.md`). Contenido tipado en `src/lib/guides/content.ts`, sin paquetes nuevos. Se generan al compilar y una guía inexistente da 404 real (`instant = false` en la página para leer `params` sin Suspense). Enlaces a Guías y Recetas en el pie. 8 tests unitarios y 9 de navegador. **Producción:** tras el push de la Tarea 44, `/api/cuenta/exportar` seguía dando 404 aunque el build local va bien; el conector de Vercel no tiene permiso para ver despliegues, revisar en el panel de Vercel. **Pendiente del usuario (opcional):** revisar el texto de las guías.
 
 ## Hecho
 - Comprobado: node v24.22.0, npm 11.19.1, git 2.51.0.

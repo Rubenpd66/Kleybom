@@ -349,8 +349,8 @@
 
 ### Tarea 45: Guías `[Sonnet · medium]`
 **Archivos:** crear `src/content/guias/*.mdx` o `.md`, `src/app/guias/`.
-- [ ] 5 guías iniciales (empezar a entrenar, comer mejor, descanso, hábitos, progresión), redactadas por nosotros, con aviso de salud y revisión del usuario. Citar fuentes fiables en cada una.
-- [ ] Test: cada guía se renderiza con título y metadatos. Commit.
+- [x] 5 guías iniciales (empezar a entrenar, comer mejor, descanso, hábitos, progresión), redactadas por nosotros, con aviso de salud y revisión del usuario. Citar fuentes fiables en cada una.
+- [x] Test: cada guía se renderiza con título y metadatos. Commit.
 
 ### Tarea 46: Imágenes con Nano Banana `[Gemini · —]`
 **Archivos:** `docs/estilo-imagenes.md`, imágenes en `public/img/`.

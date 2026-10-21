@@ -26,3 +26,11 @@
 - **Identificación:** se envía el User-Agent `Forja/0.3 (https://forja-five-zeta.vercel.app)`, como pide Open Food Facts.
 - **Limitación:** como no se guardan en nuestra base, los productos envasados todavía no se pueden apuntar en el diario de comidas.
 - **Pendiente de confirmar por el usuario:** que esta estrategia de licencia le parece bien (el plan lo dejaba a su decisión).
+
+## Fuentes de las guías (Tarea 45)
+Textos redactados por Forja; las cifras salen de estas fuentes, comprobadas el 21/10/2026 en el original o en su resumen oficial. Solo se citan, no se copia su texto.
+- **OMS 2020, actividad física:** Bull FC et al., Br J Sports Med 2020;54(24):1451-1462 (https://pmc.ncbi.nlm.nih.gov/articles/PMC7719906/). Acceso abierto CC BY-NC.
+- **OMS, alimentación sana:** nota descriptiva de 26/01/2026 (https://www.who.int/es/news-room/fact-sheets/detail/healthy-diet).
+- **Sueño:** Watson NF et al., Sleep 2015;38(6):843-844 (https://pmc.ncbi.nlm.nih.gov/articles/PMC4434546/).
+- **Fuerza:** ACSM, Med Sci Sports Exerc 2009;41(3):687-708 (resumen en PubMed 19204579). Existe una actualización de 2026 sin revisar todavía: revisarla al actualizar la guía de progresión.
+- **Hábitos:** Lally P et al., Eur J Soc Psychol 2010;40(6):998-1009 (resumen leído vía OpenAlex). La cifra popular de "66 días" no aparece en el resumen, así que no se usa.
