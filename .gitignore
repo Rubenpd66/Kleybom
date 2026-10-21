@@ -1,0 +1,31 @@
+# Secretos (NUNCA subir a git)
+.env
+.env.*
+!.env.example
+
+# Dependencias
+node_modules/
+
+# Resultados de build y caché
+dist/
+build/
+.astro/
+.next/
+.vercel/
+.turbo/
+coverage/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Sistema operativo / editor
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
+.idea/
+
+# Herramientas de IA (salidas locales)
+graphify-out/
+.claude/settings.local.json
