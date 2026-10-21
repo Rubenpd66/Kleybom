@@ -63,6 +63,28 @@ export const es = {
     sesionComo: "Has entrado como",
     salir: "Cerrar sesión",
   },
+  perfil: {
+    titulo: "Mi perfil",
+    volver: "Volver al panel",
+    enlace: "Editar mi perfil",
+    explicacion:
+      "Estos datos son opcionales. Son datos personales y de salud: solo tú puedes verlos y puedes borrarlos cuando quieras.",
+    nombre: "Nombre",
+    sexo: "Sexo",
+    sinIndicar: "Sin indicar",
+    mujer: "Mujer",
+    hombre: "Hombre",
+    otro: "Otro",
+    nacimiento: "Fecha de nacimiento",
+    altura: "Altura (cm)",
+    guardar: "Guardar cambios",
+    borrarTitulo: "Borrar mi cuenta",
+    borrarAviso:
+      "Se borrarán tu cuenta y todos tus datos de forma definitiva. No se puede deshacer.",
+    palabraBorrar: "BORRAR",
+    borrarEtiqueta: "Para confirmar, escribe BORRAR",
+    borrarBoton: "Borrar mi cuenta para siempre",
+  },
   ficha: {
     volver: "Volver a ejercicios",
     musculosPrincipales: "Músculos principales",

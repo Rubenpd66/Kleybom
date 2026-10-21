@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import { connection } from "next/server";
 import { Suspense } from "react";
@@ -16,6 +17,11 @@ async function Contenido() {
     <>
       <p className="mt-3 text-acero">
         {es.auth.sesionComo} <strong>{usuario.email}</strong>
+      </p>
+      <p className="mt-6">
+        <Link href="/panel/perfil" className="font-bold text-azul underline">
+          {es.perfil.enlace}
+        </Link>
       </p>
       <form action={salir} className="mt-6">
         <button type="submit" className="h-11 rounded-md border-[1.5px] border-hierro px-6 font-bold">
