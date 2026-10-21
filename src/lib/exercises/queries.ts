@@ -29,6 +29,7 @@ export type ExerciseDetail = ExerciseSummary & {
   author: string | null;
   source: string | null;
   source_id: string | null;
+  needs_translation: boolean;
   muscles: { slug: string; name_es: string; role: "principal" | "secundario" }[];
   equipment: { slug: string; name_es: string }[];
 };

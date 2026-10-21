@@ -1,7 +1,7 @@
 # PROGRESO
 
 ## Fase actual
-Fase 4 (Construcción), versión 0.1. Hechas: Tareas 1 a 8. Tareas 1 a 10 hechas. Siguiente: Tarea 11 (ficha de ejercicio).
+Fase 4 (Construcción), versión 0.1. Hechas: Tareas 1 a 8. Tareas 1 a 11 hechas. Siguiente: Tarea 12 (cuentas de usuario).
 
 ## Tareas del plan completadas
 - Tarea 1: proyecto Next.js 16 + Tailwind 4 + TypeScript creado y compilando (`npm run build` OK).
@@ -15,6 +15,7 @@ Fase 4 (Construcción), versión 0.1. Hechas: Tareas 1 a 8. Tareas 1 a 10 hechas
 - Tarea 9 (preparación): migración `20261021140000` aplicada (columnas `needs_translation`, `needs_level_review` y clave única fuente+id). `scripts/import-wger/run.ts` con modo `--dry-run` (se ejecuta con `node`, sin instalar nada; se activó `allowImportingTsExtensions`). Simulación: 932 descargados, 810 a importar (223 sin español), 122 descartados. Catálogo de músculos/material en español en `catalogo-es.ts` (verificado contra la API de wger). `docs/datos-fuentes.md` creado.
 - Tarea 9 (resultado, 21/10/2026): importados 810 ejercicios de wger (122 descartados por licencia/autor). En la base: 223 en inglés (`needs_translation`), 185 con imagen, 18 sin pasos, 102 sin músculo asignado, 15 músculos y 12 materiales. Revisión de 10 al azar: licencia y autor correctos; textos en español bien; **fallos de la fuente a vigilar**: algunos ejercicios tienen músculos incoherentes (p. ej. "Rowing Machine" con 13 músculos principales) y todos tienen nivel provisional "intermedio". Pendiente de decidir con el usuario: traducir los 223, asignar niveles y limpiar los músculos.
 - Tarea 10: `/ejercicios` con buscador, filtros (músculo, material, nivel) en formulario GET (los filtros quedan en la URL y funciona sin JavaScript), tarjetas, mensaje de "sin resultados" y paginación. 5 tests de navegador contra la base real (escritorio y móvil). Nota técnica: el proyecto tiene `cacheComponents: true` en `next.config.ts`; con eso, todo acceso a datos o a `searchParams` debe ir dentro de `<Suspense>` (si no, error "uncached data during prerendering"). Aplicarlo en las páginas siguientes. El slug del músculo del pecho es `pectoral` (no `pecho`). Las tarjetas aún no tienen imagen.
+- Tarea 11: ficha `/ejercicios/[slug]` con músculos (principales en ámbar, secundarios con borde), material, pasos, atribución (autor, licencia con enlace, fuente), aviso si está en inglés, título y descripción de página. 3 tests de navegador. **Desviación del plan:** un slug inexistente devuelve estado HTTP 200 con la página "Ejercicio no encontrado" y la etiqueta `noindex` (con `cacheComponents` el 404 real no es posible una vez empieza el streaming; `noindex` evita que Google lo indexe). "Errores comunes" y "Consejos" no se muestran porque los datos de wger no los traen (se ocultan cuando están vacíos).
 
 ## Hecho
 - Comprobado: node v24.22.0, npm 11.19.1, git 2.51.0.
