@@ -3,6 +3,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { connection } from "next/server";
 import { Suspense } from "react";
+import ProgressBar from "@/components/motion/ProgressBar";
 import FoodPicker from "@/components/nutrition/FoodPicker";
 import MealSection from "@/components/nutrition/MealSection";
 import { getCurrentUser } from "@/lib/auth/session";
@@ -65,14 +66,10 @@ async function Contenido({ searchParams }: { searchParams: Params }) {
           {objetivos && <span className="ml-2 text-base font-normal text-acero">{t.deObjetivo(objetivos.kcal)}</span>}
         </p>
         {objetivos && (
-          <div
-            className="mt-3 h-3 w-full overflow-hidden rounded-full border border-hierro"
-            role="img"
-            aria-label={`${Math.round(((resumen.total.kcal ?? 0) / objetivos.kcal) * 100)} % del objetivo de calorías`}
-          >
-            <div
-              className="h-full bg-temple"
-              style={{ width: `${Math.min(100, ((resumen.total.kcal ?? 0) / objetivos.kcal) * 100)}%` }}
+          <div className="mt-3">
+            <ProgressBar
+              porcentaje={((resumen.total.kcal ?? 0) / objetivos.kcal) * 100}
+              etiqueta={`${Math.round(((resumen.total.kcal ?? 0) / objetivos.kcal) * 100)} % del objetivo de calorías`}
             />
           </div>
         )}

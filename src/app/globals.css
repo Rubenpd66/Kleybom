@@ -36,6 +36,50 @@ body {
   outline-offset: 2px;
 }
 
+/* Movimiento (Tarea 47). Solo transform y opacity; cada clase se puede quitar sin romper nada. */
+/* Curva de salida más marcada que la de Tailwind (también la usa la utilidad `ease-out`). */
+@theme {
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Barra de progreso: crece desde la izquierda al cargar (indica el estado). */
+.barra-crece {
+  transform-origin: left;
+  animation: barra-crece 300ms var(--ease-out) both;
+}
+@keyframes barra-crece {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+/* Menú móvil: aparece bajando un poco desde la cabecera. */
+.menu-entra {
+  transition:
+    opacity 200ms var(--ease-out),
+    transform 200ms var(--ease-out);
+  @starting-style {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
+/* Aviso de fin de descanso: confirma que el tiempo ha terminado. */
+.aviso-entra {
+  animation: aviso-entra 200ms var(--ease-out) both;
+}
+@keyframes aviso-entra {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+}
+
+/* Tarjetas de listados: solo cambia el fondo, sin moverse. */
+.tarjeta-hover {
+  transition: background-color 150ms ease;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

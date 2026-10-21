@@ -359,8 +359,8 @@
 
 ### Tarea 47: Animaciones 2D `[Sonnet · medium]`
 **Archivos:** `src/components/motion/`, ajustes puntuales en componentes existentes.
-- [ ] Decisión pendiente: CSS puro o librería. Preferir CSS; si hace falta librería, pedir OK.
-- [ ] Test de navegador con `prefers-reduced-motion: reduce`: no hay animaciones. Cada animación se puede quitar sin romper la pantalla. Commit.
+- [x] Decisión pendiente: CSS puro o librería. Preferir CSS; si hace falta librería, pedir OK.
+- [x] Test de navegador con `prefers-reduced-motion: reduce`: no hay animaciones. Cada animación se puede quitar sin romper la pantalla. Commit.
 
 ### Tarea 48: Visor 3D de ejercicio/músculos 🔔 `[Sonnet · high]`
 **Archivos:** crear `src/components/exercises/Viewer3D.tsx` (carga dinámica), `src/lib/feature-flags.ts`.

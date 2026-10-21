@@ -15,7 +15,7 @@ export default function GuiasPage() {
       <ul aria-label={t.listaEtiqueta} className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {listGuides().map((g) => (
           <li key={g.slug} className="rounded-xl border border-linea bg-papel">
-            <Link href={`/guias/${g.slug}`} className="flex h-full flex-col gap-2 p-4 hover:bg-white">
+            <Link href={`/guias/${g.slug}`} className="flex h-full flex-col gap-2 p-4 tarjeta-hover hover:bg-white">
               <span className="font-display text-2xl font-bold leading-tight">{g.titulo}</span>
               <span className="text-sm text-acero">{g.resumen}</span>
               <span className="mt-auto pt-2 text-sm">

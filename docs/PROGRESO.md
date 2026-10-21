@@ -1,7 +1,7 @@
 # PROGRESO
 
 ## Fase actual
-Fase 4 (Construcción), versión 0.1. Hechas: Tareas 1 a 8. Tareas 1 a 13 hechas y v0.1 desplegada. Tareas 14 y 15 hechas. Tareas 14-19 hechas. v0.2 terminada (Tareas 14-23). v0.3 terminada. v0.4 terminada (Tareas 35-44). v0.5 en curso: Tarea 45 hecha. Siguiente: Tarea 46 (imágenes). El usuario pidió continuar sin parar hasta el final, avisando solo cuando haga falta su mano (claves o configuraciones en webs).
+Fase 4 (Construcción), versión 0.1. Hechas: Tareas 1 a 8. Tareas 1 a 13 hechas y v0.1 desplegada. Tareas 14 y 15 hechas. Tareas 14-19 hechas. v0.2 terminada (Tareas 14-23). v0.3 terminada. v0.4 terminada (Tareas 35-44). v0.5 en curso: Tareas 45 y 47 hechas. Siguiente: Tarea 50 (SEO); 46, 48, 49 y 51 esperan al usuario. El usuario pidió continuar sin parar hasta el final, avisando solo cuando haga falta su mano (claves o configuraciones en webs).
 
 ## Tareas del plan completadas
 - Tarea 1: proyecto Next.js 16 + Tailwind 4 + TypeScript creado y compilando (`npm run build` OK).
@@ -56,6 +56,7 @@ Fase 4 (Construcción), versión 0.1. Hechas: Tareas 1 a 8. Tareas 1 a 13 hechas
 - Tarea 44: `GET /api/cuenta/exportar` descarga en JSON todos los datos del usuario (cuenta, perfil, objetivos, rutinas propias con ejercicios, calendario, diario, entrenos con series, medidas), con `no-store` y nombre `forja-mis-datos-AAAA-MM-DD.json`. Usa la sesión del usuario (RLS) y filtra por su id. Enlace "Descargar mis datos" en el panel. Test con dos usuarios: el archivo de A no contiene nada de B.
 - **Cierre v0.4:** 222 tests unitarios y 113 de navegador en verde; se despliega sola al subir a `main`.
 - Tarea 45 (v0.5): 5 guías en `/guias` (empezar a entrenar, comer mejor, descanso, hábitos, progresión) con aviso de salud, minutos de lectura, fecha y fuentes enlazadas (detalle en `docs/datos-fuentes.md`). Contenido tipado en `src/lib/guides/content.ts`, sin paquetes nuevos. Se generan al compilar y una guía inexistente da 404 real (`instant = false` en la página para leer `params` sin Suspense). Enlaces a Guías y Recetas en el pie. 8 tests unitarios y 9 de navegador. **Producción:** tras el push de la Tarea 44, `/api/cuenta/exportar` seguía dando 404 aunque el build local va bien; el conector de Vercel no tiene permiso para ver despliegues, revisar en el panel de Vercel. **Pendiente del usuario (opcional):** revisar el texto de las guías.
+- Tarea 47: animaciones 2D solo con CSS (sin librerías) en `src/app/globals.css`: barra de calorías que crece al cargar (`ProgressBar` en `src/components/motion/`, usada en el panel y el diario), menú móvil que entra con `@starting-style`, aviso de fin de descanso y cambio de fondo suave en las tarjetas de listados. Solo `transform`/`opacity` (y color en tarjetas), 150-300 ms, curva `--ease-out` ampliada en el `@theme` de Tailwind. Con `prefers-reduced-motion: reduce` no hay ninguna animación (test `e2e/movimiento.spec.ts`). Quitar cualquier clase no rompe la pantalla. **Ojo:** un `npm run dev` que lleve mucho rato abierto puede servir CSS viejo (probable causa del problema de colores de la Tarea 42); reiniciarlo si una clase nueva no aparece. 230 unitarios y 126 de navegador en verde.
 
 ## Hecho
 - Comprobado: node v24.22.0, npm 11.19.1, git 2.51.0.

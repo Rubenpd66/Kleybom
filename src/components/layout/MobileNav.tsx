@@ -22,7 +22,7 @@ export default function MobileNav({ conSesion = false }: { conSesion?: boolean }
         <nav
           id="menu-movil"
           aria-label={es.nav.etiqueta}
-          className="absolute inset-x-0 top-full border-b border-linea bg-tiza"
+          className="menu-entra absolute inset-x-0 top-full border-b border-linea bg-tiza"
         >
           <ul className="mx-auto flex max-w-[1180px] flex-col px-6 py-2">
             {es.nav.enlaces.map((e) => (

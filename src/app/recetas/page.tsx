@@ -14,7 +14,7 @@ async function Lista() {
     <ul aria-label={t.listaEtiqueta} className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {recetas.map((r) => (
         <li key={r.id} className="rounded-xl border border-linea bg-papel">
-          <Link href={`/recetas/${r.slug}`} className="flex h-full flex-col gap-2 p-4 hover:bg-white">
+          <Link href={`/recetas/${r.slug}`} className="flex h-full flex-col gap-2 p-4 tarjeta-hover hover:bg-white">
             <span className="font-display text-2xl font-bold leading-tight">{r.name_es}</span>
             {r.description_es && <span className="text-sm text-acero">{r.description_es}</span>}
             <span className="mt-auto flex flex-wrap gap-2 pt-2 text-sm">

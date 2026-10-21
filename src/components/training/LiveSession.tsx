@@ -195,7 +195,7 @@ export default function LiveSession({
               {t.descansoQueda(descanso.remaining)}
             </p>
           ) : (
-            <p aria-live="polite" className="font-bold">
+            <p aria-live="polite" className="aviso-entra font-bold">
               {t.descansoFin}
             </p>
           )}

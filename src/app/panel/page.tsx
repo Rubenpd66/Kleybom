@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { connection } from "next/server";
 import { Suspense, type ReactNode } from "react";
 import { salir } from "@/app/(auth)/actions";
+import ProgressBar from "@/components/motion/ProgressBar";
 import { getCurrentUser } from "@/lib/auth/session";
 import { toLocalDateKey } from "@/lib/calendar/dates";
 import { getUserTimezone, listSessions } from "@/lib/calendar/queries";
@@ -108,11 +109,7 @@ async function Contenido() {
 
         <Tarjeta id="calorias" titulo={t.caloriasHoy}>
           <p className="text-lg font-bold">{objetivos ? t.deObjetivo(consumidas, objetivos.kcal) : t.sinObjetivo(consumidas)}</p>
-          {objetivos && (
-            <div className="h-3 w-full overflow-hidden rounded-full border border-hierro" aria-hidden="true">
-              <div className="h-full bg-temple" style={{ width: `${Math.min(100, ((kcal ?? 0) / objetivos.kcal) * 100)}%` }} />
-            </div>
-          )}
+          {objetivos && <ProgressBar porcentaje={((kcal ?? 0) / objetivos.kcal) * 100} />}
           <Link href="/nutricion" className="mt-auto text-sm font-bold text-azul underline">
             {t.abrirDiario}
           </Link>
