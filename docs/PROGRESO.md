@@ -1,7 +1,7 @@
 # PROGRESO
 
 ## Fase actual
-Fase 1 (Descubrimiento) terminada: `docs/brief.md` escrito. A la espera del OK del usuario para pasar a la Fase 2 (Plan).
+Fase 2 (Plan) terminada: `docs/plan.md` escrito (51 tareas en 5 versiones). A la espera de que el usuario lo revise y dé el OK para la Fase 3 (Diseño).
 
 ## Hecho
 - Comprobado: node v24.22.0, npm 11.19.1, git 2.51.0.
@@ -14,8 +14,11 @@ Fase 1 (Descubrimiento) terminada: `docs/brief.md` escrito. A la espera del OK d
 
 - Fase 1: el usuario prefirió saltarse las preguntas del brainstorming; brief escrito con decisiones marcadas como "[mi decisión]" para que pueda cambiarlas. Investigación web de licencias de datos y de qué piden los usuarios (evidencia débil en lo segundo).
 
+- Fase 2: plan en `docs/plan.md` con modelo/esfuerzo recomendado por tarea (para cuidar la cuota del plan Pro). Esquema `LocalBusiness` sustituido por `WebSite`/`Organization`/`Article` (la web no tiene local físico). Fórmulas de nutrición (Tarea 29) marcadas como "a verificar con fuente fiable antes de implementar".
+- Modelo/esfuerzo por fase acordado: Fase 2 `opusplan` + medium; Fases 3-6 Sonnet, low/medium; no usar xhigh/max; `/clear` entre tareas; imágenes Nano Banana en Gemini.
+
 ## Siguiente tarea
-Fase 2 (Plan): dividir el trabajo en tareas de 15-30 min con la skill writing-plans, resultado en `docs/plan.md`. Antes, el usuario debe revisar `docs/brief.md`. El usuario debe autenticar los conectores con `/mcp` (Vercel, Supabase) y crear el token de GitHub.
+Fase 3 (Diseño): skill frontend-design, resultado en `docs/diseno.md` y propuesta de la página de inicio para que el usuario la apruebe antes de construir el resto. Pendiente del usuario: revisar `docs/plan.md`, autenticar los conectores con `/mcp` (Vercel, Supabase) y crear el token de GitHub.
 
 ## Decisiones tomadas
 - Sin pagos; solo donaciones voluntarias. Porqué: evitar las obligaciones legales de cobrar.
