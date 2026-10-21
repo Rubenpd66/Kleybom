@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getGuideBySlug, listGuides, readingMinutes } from "@/lib/guides";
 import { es } from "@/lib/i18n/es";
+import { articleLd, jsonLd } from "@/lib/seo/site";
 
 const t = es.guias;
 const fecha = (iso: string) =>
@@ -23,6 +24,7 @@ export async function generateMetadata(props: PageProps<"/guias/[slug]">): Promi
   return {
     title: `${g.titulo} — ${es.marca}`,
     description: g.resumen,
+    alternates: { canonical: `/guias/${g.slug}` },
     openGraph: { type: "article", title: g.titulo, description: g.resumen, publishedTime: g.publicada, modifiedTime: g.actualizada },
   };
 }
@@ -33,6 +35,7 @@ export default async function GuiaPage(props: PageProps<"/guias/[slug]">) {
 
   return (
     <main className="mx-auto w-full max-w-[1180px] flex-1 px-6 py-12">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(articleLd(g)) }} />
       <article className="max-w-3xl">
         <Link href="/guias" className="text-sm font-bold text-azul underline">
           {t.volver}

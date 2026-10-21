@@ -375,8 +375,8 @@
 
 ### Tarea 50: SEO `[Sonnet · low]`
 **Archivos:** `src/app/sitemap.ts`, `src/app/robots.ts`, metadatos por página, datos estructurados.
-- [ ] Sitemap con ejercicios, rutinas, alimentos, recetas y guías. Metadatos únicos por página.
-- [ ] Desviación del prompt inicial: el esquema `LocalBusiness` no aplica a una web sin local físico. Usar `WebSite`, `Organization` y `Article` en las guías. Commit.
+- [x] Sitemap con ejercicios, rutinas, alimentos, recetas y guías. Metadatos únicos por página.
+- [x] Desviación del prompt inicial: el esquema `LocalBusiness` no aplica a una web sin local físico. Usar `WebSite`, `Organization` y `Article` en las guías. Commit.
 
 ### Tarea 51: Legal y cookies `[Sonnet · medium]`
 **Archivos:** crear `src/app/legal/aviso-legal/`, `privacidad/`, `cookies/`, `src/components/CookieBanner.tsx`.

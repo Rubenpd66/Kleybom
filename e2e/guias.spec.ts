@@ -1,6 +1,12 @@
 import { expect, test } from "@playwright/test";
 import { GUIAS as guias } from "../src/lib/guides/content";
 
+// En `npm run dev` recién arrancado, compilar la ficha a la vez desde varias pruebas a veces da un 500.
+// Una visita previa la deja compilada (en producción las guías ya vienen generadas).
+test.beforeAll(async ({ request }) => {
+  await request.get(`/guias/${guias[0].slug}`);
+});
+
 test("el listado muestra las 5 guías y se llega desde el pie", async ({ page }) => {
   await page.goto("/");
   await page.getByRole("contentinfo").getByRole("link", { name: "Guías" }).click();
