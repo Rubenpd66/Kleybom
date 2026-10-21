@@ -1,0 +1,74 @@
+{
+ "fdcId": 173944,
+ "description": "Bananas, raw",
+ "dataType": "SR Legacy",
+ "foodCategory": {
+  "description": "Fruits and Fruit Juices"
+ },
+ "foodNutrients": [
+  {
+   "nutrient": {
+    "number": "268",
+    "name": "Energy",
+    "unitName": "kJ"
+   },
+   "amount": 371
+  },
+  {
+   "nutrient": {
+    "number": "205",
+    "name": "Carbohydrate, by difference",
+    "unitName": "g"
+   },
+   "amount": 22.8
+  },
+  {
+   "nutrient": {
+    "number": "208",
+    "name": "Energy",
+    "unitName": "kcal"
+   },
+   "amount": 89.0
+  },
+  {
+   "nutrient": {
+    "number": "291",
+    "name": "Fiber, total dietary",
+    "unitName": "g"
+   },
+   "amount": 2.6
+  },
+  {
+   "nutrient": {
+    "number": "307",
+    "name": "Sodium, Na",
+    "unitName": "mg"
+   },
+   "amount": 1.0
+  },
+  {
+   "nutrient": {
+    "number": "203",
+    "name": "Protein",
+    "unitName": "g"
+   },
+   "amount": 1.09
+  },
+  {
+   "nutrient": {
+    "number": "269",
+    "name": "Total Sugars",
+    "unitName": "g"
+   },
+   "amount": 12.2
+  },
+  {
+   "nutrient": {
+    "number": "204",
+    "name": "Total lipid (fat)",
+    "unitName": "g"
+   },
+   "amount": 0.33
+  }
+ ]
+}

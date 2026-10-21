@@ -1,0 +1,74 @@
+{
+ "fdcId": 167512,
+ "description": "Pillsbury Golden Layer Buttermilk Biscuits, Artificial Flavor, refrigerated dough",
+ "dataType": "SR Legacy",
+ "foodCategory": {
+  "description": "Baked Products"
+ },
+ "foodNutrients": [
+  {
+   "nutrient": {
+    "number": "203",
+    "name": "Protein",
+    "unitName": "g"
+   },
+   "amount": 5.88
+  },
+  {
+   "nutrient": {
+    "number": "268",
+    "name": "Energy",
+    "unitName": "kJ"
+   },
+   "amount": 1290.0
+  },
+  {
+   "nutrient": {
+    "number": "291",
+    "name": "Fiber, total dietary",
+    "unitName": "g"
+   },
+   "amount": 1.2
+  },
+  {
+   "nutrient": {
+    "number": "307",
+    "name": "Sodium, Na",
+    "unitName": "mg"
+   },
+   "amount": 1060.0
+  },
+  {
+   "nutrient": {
+    "number": "204",
+    "name": "Total lipid (fat)",
+    "unitName": "g"
+   },
+   "amount": 13.2
+  },
+  {
+   "nutrient": {
+    "number": "205",
+    "name": "Carbohydrate, by difference",
+    "unitName": "g"
+   },
+   "amount": 41.2
+  },
+  {
+   "nutrient": {
+    "number": "208",
+    "name": "Energy",
+    "unitName": "kcal"
+   },
+   "amount": 307
+  },
+  {
+   "nutrient": {
+    "number": "269",
+    "name": "Total Sugars",
+    "unitName": "g"
+   },
+   "amount": 5.88
+  }
+ ]
+}

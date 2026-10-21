@@ -1,0 +1,58 @@
+{
+ "fdcId": 171974,
+ "description": "Mollusks, clam, mixed species, cooked, breaded and fried",
+ "dataType": "SR Legacy",
+ "foodCategory": {
+  "description": "Finfish and Shellfish Products"
+ },
+ "foodNutrients": [
+  {
+   "nutrient": {
+    "number": "268",
+    "name": "Energy",
+    "unitName": "kJ"
+   },
+   "amount": 845
+  },
+  {
+   "nutrient": {
+    "number": "307",
+    "name": "Sodium, Na",
+    "unitName": "mg"
+   },
+   "amount": 364
+  },
+  {
+   "nutrient": {
+    "number": "203",
+    "name": "Protein",
+    "unitName": "g"
+   },
+   "amount": 14.2
+  },
+  {
+   "nutrient": {
+    "number": "204",
+    "name": "Total lipid (fat)",
+    "unitName": "g"
+   },
+   "amount": 11.2
+  },
+  {
+   "nutrient": {
+    "number": "205",
+    "name": "Carbohydrate, by difference",
+    "unitName": "g"
+   },
+   "amount": 10.3
+  },
+  {
+   "nutrient": {
+    "number": "208",
+    "name": "Energy",
+    "unitName": "kcal"
+   },
+   "amount": 202
+  }
+ ]
+}
