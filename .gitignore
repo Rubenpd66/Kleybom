@@ -36,3 +36,7 @@ graphify-out/
 *.tsbuildinfo
 next-env.d.ts
 *.pem
+
+# Resultados de tests
+/test-results/
+/playwright-report/

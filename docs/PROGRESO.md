@@ -1,10 +1,11 @@
 # PROGRESO
 
 ## Fase actual
-Fase 4 (Construcción), versión 0.1. Hecha: Tarea 1 (proyecto Next.js). Siguiente: Tarea 2 (tests).
+Fase 4 (Construcción), versión 0.1. Hechas: Tareas 1 y 2. Siguiente: Tarea 3 (textos y diseño base).
 
 ## Tareas del plan completadas
 - Tarea 1: proyecto Next.js 16 + Tailwind 4 + TypeScript creado y compilando (`npm run build` OK).
+- Tarea 2: Vitest 5 y Playwright instalados; `npm test` y `npm run test:e2e` pasan. Se subió `@types/node` a la 24 porque Vitest exigía ≥22 (solo afecta a tipos de desarrollo).
 
 ## Hecho
 - Comprobado: node v24.22.0, npm 11.19.1, git 2.51.0.

@@ -20,7 +20,9 @@ Leída por Claude Code, Codex y Gemini. Estado actual en `docs/PROGRESO.md`.
 - Arrancar en local: `npm run dev` (http://localhost:3000)
 - Build de producción: `npm run build`
 - Revisar el código: `npm run lint`
-- Tests: pendientes (Tarea 2 del plan: Vitest y Playwright)
+- Tests unitarios (Vitest): `npm test`. Archivos `*.test.ts` junto al código en `src/` o `scripts/`.
+- Tests de navegador (Playwright): `npm run test:e2e`. Archivos en `e2e/`; arranca solo el servidor de desarrollo y prueba en escritorio y móvil (Pixel 7).
+- La primera vez en un ordenador nuevo: `npx playwright install chromium`.
 
 Versiones instaladas: Next.js 16, React 19, Tailwind CSS 4, TypeScript 5.
 
@@ -44,3 +46,13 @@ Versiones instaladas: Next.js 16, React 19, Tailwind CSS 4, TypeScript 5.
 - El usuario es principiante: explicar en español sencillo, respuestas cortas, y acabar siempre con el siguiente paso.
 - Datos de ejercicios y alimentos: usar solo fuentes con licencia que permita su uso; anotar fuente y licencia de cada una en `docs/`.
 - Salud: aviso de que la web no sustituye a un profesional sanitario. Los datos de usuario (peso, medidas…) son datos de salud: tratamiento RGPD estricto.
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+## This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->
