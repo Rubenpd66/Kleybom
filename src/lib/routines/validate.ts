@@ -7,6 +7,8 @@ export type RoutineLevel = (typeof LEVELS)[number];
 export type RoutineExerciseDraft = {
   exercise_id: number;
   day_index: number;
+  // La rellena el constructor (1, 2, 3… dentro de cada día); es opcional para el resto del código.
+  position?: number;
   sets: number;
   reps_min: number;
   reps_max: number;
