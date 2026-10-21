@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { getCurrentUser } from "@/lib/auth/session";
 import { esClaveDeDia } from "@/lib/calendar/validate";
+import { imagenDeAlimento } from "@/lib/foods/imagen";
 import { searchFoods } from "@/lib/foods/queries";
 import { es } from "@/lib/i18n/es";
 import { MEALS, type Meal } from "@/lib/nutrition/diary";
@@ -11,12 +12,12 @@ import { createServerClient } from "@/lib/supabase/server";
 
 const t = es.diario;
 
-export type AlimentoEncontrado = { id: number; name_es: string; kcal: number | null };
+export type AlimentoEncontrado = { id: number; name_es: string; kcal: number | null; imagen: string | null };
 export type EstadoDiario = { error?: string };
 
 export async function buscarAlimentos(texto: string): Promise<AlimentoEncontrado[]> {
   const { items } = await searchFoods(String(texto ?? "").slice(0, 80), 1);
-  return items.slice(0, 8).map((a) => ({ id: a.id, name_es: a.name_es, kcal: a.kcal }));
+  return items.slice(0, 8).map((a) => ({ id: a.id, name_es: a.name_es, kcal: a.kcal, imagen: imagenDeAlimento(a.name_en, a.category)?.src ?? null }));
 }
 
 export async function anadirEntrada(datos: {

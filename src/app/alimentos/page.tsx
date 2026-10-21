@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import FiltrosEnVivo from "@/components/search/FiltrosEnVivo";
 import { Suspense } from "react";
+import { imagenDeAlimento } from "@/lib/foods/imagen";
 import { formatNutriente } from "@/lib/foods/format";
 import { FOODS_PAGE_SIZE, searchFoods } from "@/lib/foods/queries";
 import CargandoLista from "@/components/layout/CargandoLista";
@@ -62,16 +64,22 @@ async function Contenido({ searchParams }: { searchParams: Params }) {
         </div>
       ) : (
         <ul aria-label={t.listaEtiqueta} className="mt-4 flex flex-col divide-y divide-linea rounded-xl border border-linea bg-papel">
-          {items.map((a) => (
-            <li key={a.id} className="flex flex-col gap-1 p-4 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
-              <Link href={`/alimentos/${a.slug}`} className="font-bold text-azul underline">
-                {a.name_es}
-              </Link>
-              <span className="shrink-0 text-sm text-acero">
-                {formatNutriente(a.kcal, "kcal")} {t.porCien}
-              </span>
-            </li>
-          ))}
+          {items.map((a) => {
+            const img = imagenDeAlimento(a.name_en, a.category);
+            return (
+              <li key={a.id} className="flex items-center gap-4 p-3 sm:p-4">
+                {img && <Image src={img.src} alt="" width={64} height={48} className="h-12 w-16 shrink-0 rounded-md object-cover" />}
+                <div className="flex min-w-0 flex-1 flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
+                  <Link href={`/alimentos/${a.slug}`} className="font-bold text-azul underline">
+                    {a.name_es}
+                  </Link>
+                  <span className="shrink-0 text-sm text-acero">
+                    {formatNutriente(a.kcal, "kcal")} {t.porCien}
+                  </span>
+                </div>
+              </li>
+            );
+          })}
         </ul>
       )}
 
@@ -101,7 +109,8 @@ async function Contenido({ searchParams }: { searchParams: Params }) {
 export default function AlimentosPage(props: PageProps<"/alimentos">) {
   return (
     <main className="mx-auto w-full max-w-[1180px] flex-1 px-6 py-12">
-      <h1 className="font-display text-[clamp(2.2rem,6vw,3.6rem)] font-extrabold leading-none">{t.titulo}</h1>      <Suspense fallback={<CargandoLista />}>
+      <h1 className="font-display text-[clamp(2.2rem,6vw,3.6rem)] font-extrabold leading-none">{t.titulo}</h1>
+      <Suspense fallback={<CargandoLista />}>
         <Contenido searchParams={props.searchParams} />
       </Suspense>
     </main>

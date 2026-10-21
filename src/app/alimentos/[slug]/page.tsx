@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
+import CreditoFoto from "@/components/content/CreditoFoto";
 import { notFound } from "next/navigation";
 import CalorieBar from "@/components/foods/CalorieBar";
 import NutritionTable from "@/components/foods/NutritionTable";
+import { imagenDeAlimento } from "@/lib/foods/imagen";
 import { formatNutriente } from "@/lib/foods/format";
 import { alimentoPublico, slugsPublicos } from "@/lib/cache/publico";
 import { es } from "@/lib/i18n/es";
@@ -33,6 +36,7 @@ async function Contenido({ params }: { params: Promise<{ slug: string }> }) {
   const a = await obtener(slug);
   if (!a) notFound();
   const categoria = a.category ? (t.categorias[a.category] ?? a.category) : null;
+  const img = imagenDeAlimento(a.name_en, a.category);
 
   return (
     <article className="max-w-3xl">
@@ -42,6 +46,13 @@ async function Contenido({ params }: { params: Promise<{ slug: string }> }) {
       <h1 className="mt-4 font-display text-[clamp(2.2rem,6vw,3.6rem)] font-extrabold leading-none">{a.name_es}</h1>
       {categoria && (
         <p className="mt-4 w-fit rounded-full border border-hierro px-3 py-0.5 text-sm">{categoria}</p>
+      )}
+
+      {img && (
+        <div className="relative mt-6 aspect-[4/3] max-w-md overflow-hidden rounded-xl">
+          {/* Foto del tipo de alimento (no de este alimento exacto): decorativa. */}
+          <Image src={img.src} alt="" fill priority sizes="(min-width: 640px) 448px, 90vw" className="object-cover" />
+        </div>
       )}
 
       <NutritionTable nutrientes={a} />
@@ -60,6 +71,7 @@ async function Contenido({ params }: { params: Promise<{ slug: string }> }) {
             {t.nombreOriginal}: <span lang="en">{a.name_en}</span>
           </p>
         )}
+        {img && <CreditoFoto {...img.foto} />}
         {a.source === "usda" && (
           <p>
             <a href="https://fdc.nal.usda.gov/" className="text-azul underline" rel="noopener noreferrer">

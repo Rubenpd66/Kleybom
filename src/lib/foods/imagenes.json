@@ -1,0 +1,590 @@
+{
+  "sopa": {
+    "autor": "Horacio Cambeiro",
+    "licencia": "CC BY-SA 3.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Traditional_Vegetable_Soup_from_Argentina.jpg"
+  },
+  "salsa": {
+    "autor": "Dennis Klein klein2",
+    "licencia": "CC0",
+    "licenciaUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Fresh_Tomato_Sauce_(Unsplash).jpg"
+  },
+  "zumo": {
+    "autor": "Shixart1985",
+    "licencia": "CC BY 2.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by/2.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Freshly_squeezed_orange_juice_served_in_a_glass_and_pitcher_next_to_a_notebook_and_a_bowl_of_fruits.jpg"
+  },
+  "helado": {
+    "autor": "Missvain",
+    "licencia": "CC BY 4.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by/4.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Sweet_Scoops_Ice_Cream_-_July_2023_-_Sarah_Stierch.jpg"
+  },
+  "pudin": {
+    "autor": "E4024",
+    "licencia": "CC BY-SA 4.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Chocolate_pudding_with_a_butterfly.jpg"
+  },
+  "margarina": {
+    "autor": "Autor desconocido (Wikimedia Commons)",
+    "licencia": "CC BY-SA 2.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Margarine.jpg"
+  },
+  "huevo": {
+    "autor": "Evan-Amos",
+    "licencia": "Public domain",
+    "licenciaUrl": null,
+    "fuente": "https://commons.wikimedia.org/wiki/File:6-Pack-Chicken-Eggs.jpg"
+  },
+  "yogur": {
+    "autor": "T.Tseng",
+    "licencia": "CC BY 2.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by/2.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Yogurt,_fruit,_granola_bowl_(34999358091).jpg"
+  },
+  "queso": {
+    "autor": "Autor desconocido (Wikimedia Commons)",
+    "licencia": "CC BY-SA 3.0",
+    "licenciaUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Cheese_platter.jpg"
+  },
+  "leche": {
+    "autor": "Pkgx",
+    "licencia": "CC BY-SA 4.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Glass_Milk_Bottles.tif"
+  },
+  "mantequilla": {
+    "autor": "Meanos",
+    "licencia": "Public domain",
+    "licenciaUrl": null,
+    "fuente": "https://commons.wikimedia.org/wiki/File:Butter_block.JPG"
+  },
+  "nata": {
+    "autor": "Mx. Granger",
+    "licencia": "CC0",
+    "licenciaUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Vegan_whipped_cream.jpg"
+  },
+  "pavo": {
+    "autor": "Acabashi",
+    "licencia": "CC BY-SA 4.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Sunday_Roast_Turkey_Dinner_Great_Easton_Essex_darker.jpg"
+  },
+  "pato": {
+    "autor": "CharmaineZoe's Marvelous Melange from England",
+    "licencia": "CC BY 2.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by/2.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Roast_Duck_Breast_%26_Leg_with_cherry_sauce,_roast_parsnips,_potatoes,_sprouts_and_gravy._(45566092424).jpg"
+  },
+  "pollo": {
+    "autor": "kakyusei",
+    "licencia": "CC0",
+    "licenciaUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Raw_chicken_slices.jpg"
+  },
+  "jamon": {
+    "autor": "Michael Coté from Austin, Texas, Texas",
+    "licencia": "CC BY 2.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by/2.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Glazed_and_sliced_ham.jpg"
+  },
+  "bacon": {
+    "autor": "Didriks from Cambridge, MA, USA",
+    "licencia": "CC BY 2.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by/2.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Bacon_strips.jpg"
+  },
+  "salchicha": {
+    "autor": "Silar",
+    "licencia": "CC BY-SA 4.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:02021_0719_Vilnius_sausages,_Silesia.jpg"
+  },
+  "ternera-lechal": {
+    "autor": "Jeff Kubina",
+    "licencia": "CC BY-SA 2.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Veal_meat,_2010.jpg"
+  },
+  "cordero": {
+    "autor": "Daderot",
+    "licencia": "CC0",
+    "licenciaUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Lamb_chops_on_hummus_-_San_Francisco,_CA.jpg"
+  },
+  "caza": {
+    "autor": "Gloria Cabada-Leman",
+    "licencia": "CC BY 2.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by/2.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Raw_venison_shoulder_meat,_2012.jpg"
+  },
+  "cerdo": {
+    "autor": "Shixart1985",
+    "licencia": "CC BY 2.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by/2.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Chef_holding_a_wooden_board_with_two_raw_seasoned_pork_chops.jpg"
+  },
+  "ternera": {
+    "autor": "Jellaluna",
+    "licencia": "CC BY 2.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by/2.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Raw_beef_steak,_2011.jpg"
+  },
+  "salmon": {
+    "autor": "DanaTentis",
+    "licencia": "CC0",
+    "licenciaUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Grilled_plated_salmon_fillet.jpg"
+  },
+  "atun": {
+    "autor": "Daderot",
+    "licencia": "CC0",
+    "licenciaUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Tuna_steak_and_peas_-_Massachusetts.jpg"
+  },
+  "marisco": {
+    "autor": "Jon Sullivan",
+    "licencia": "Public domain",
+    "licenciaUrl": null,
+    "fuente": "https://commons.wikimedia.org/wiki/File:Shrimp_prawns_grilling_grills_cooking_food.jpg"
+  },
+  "moluscos": {
+    "autor": "Kgbo",
+    "licencia": "CC BY-SA 4.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Mussels_cooked_on_white_wine_and_cream_01.jpg"
+  },
+  "pescado": {
+    "autor": "Acabashi",
+    "licencia": "CC BY-SA 4.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Sea_bass_fillet_at_the_White_Hart_Inn,_Moreton,_Essex,_England.jpg"
+  },
+  "aceite": {
+    "autor": "margenauer from Pixabay",
+    "licencia": "CC0",
+    "licenciaUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Bottle_of_olive_oil.jpg"
+  },
+  "tortitas": {
+    "autor": "Maffeth.opiana",
+    "licencia": "CC BY-SA 4.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Pancake_with_maple_syrup_1.jpg"
+  },
+  "galletas": {
+    "autor": "WhatamIdoing",
+    "licencia": "CC BY-SA 4.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Seven_sorts_of_cookies_green.png"
+  },
+  "bolleria": {
+    "autor": "Ezarate",
+    "licencia": "CC BY-SA 4.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:MediasLunasenMardelPlata.jpg"
+  },
+  "tarta": {
+    "autor": "Daria Yakovleva Minor edits made by Subsidiary account",
+    "licencia": "CC0",
+    "licenciaUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Piece_of_chocolate_cake_on_a_white_plate_decorated_with_chocolate_sauce.jpg"
+  },
+  "tortilla": {
+    "autor": "Vigilantcosmicpenguin",
+    "licencia": "CC BY 4.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by/4.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Stacks_of_corn_tortillas_and_flour_tortillas,_top_view.jpg"
+  },
+  "pan": {
+    "autor": "Ahmet Düz",
+    "licencia": "CC0",
+    "licenciaUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Big_loaves_of_bread_for_sale.jpg"
+  },
+  "cereales-desayuno": {
+    "autor": "Yvens Banatte yvensb",
+    "licencia": "CC0",
+    "licenciaUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Bowl_of_Cereal_(Unsplash).jpg"
+  },
+  "avena": {
+    "autor": "Yonygg",
+    "licencia": "CC BY-SA 4.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Rolled_oats_2.jpg"
+  },
+  "arroz": {
+    "autor": "epSos.de",
+    "licencia": "CC BY 2.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by/2.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Ceramic_bowl_full_of_white_rice.jpg"
+  },
+  "pasta": {
+    "autor": "David Adam Kess",
+    "licencia": "CC BY-SA 4.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:(Pasta)_by_David_Adam_Kess_(pic.2).jpg"
+  },
+  "harina": {
+    "autor": "Veganbaking.net from USA",
+    "licencia": "CC BY-SA 2.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:All-Purpose_Flour_(4107895947).jpg"
+  },
+  "grano": {
+    "autor": "Fumikas Sagisavas",
+    "licencia": "CC0",
+    "licenciaUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Bolivian_tricolor_quinoa_(2).jpg"
+  },
+  "palomitas": {
+    "autor": "Evan-Amos",
+    "licencia": "Public domain",
+    "licenciaUrl": null,
+    "fuente": "https://commons.wikimedia.org/wiki/File:Potato-Chips.jpg"
+  },
+  "chocolate": {
+    "autor": "Mx. Granger",
+    "licencia": "CC0",
+    "licenciaUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Righteously_Raw_chocolate.jpg"
+  },
+  "mermelada": {
+    "autor": "Chris Bohn from Gainesville, FL, USA",
+    "licencia": "CC BY-SA 2.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Jam_created_from_gelling_sugar.jpg"
+  },
+  "azucar": {
+    "autor": "Dietmar Rabich",
+    "licencia": "CC BY-SA 4.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:W%C3%BCrfelzucker_--_2018_--_3582.jpg"
+  },
+  "cacahuete": {
+    "autor": "Undeka 11",
+    "licencia": "CC BY-SA 4.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Raw_peanuts_with_skin_on_white_plate.jpg"
+  },
+  "semillas": {
+    "autor": "Dmitry Makeev",
+    "licencia": "CC BY-SA 4.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Sunflower_seeds._img_004.jpg"
+  },
+  "frutos-secos": {
+    "autor": "Alabama Extension",
+    "licencia": "CC0",
+    "licenciaUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Mixed_Nuts_(Alabama_Extension).jpg"
+  },
+  "garbanzos": {
+    "autor": "AlixSaz",
+    "licencia": "CC BY-SA 4.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Ordinary_chickpeas_in_a_ceramic_bowl.jpg"
+  },
+  "lentejas": {
+    "autor": "User:Justinc",
+    "licencia": "CC BY-SA 2.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:3_types_of_lentil.jpg"
+  },
+  "soja": {
+    "autor": "DryPot",
+    "licencia": "CC BY-SA 3.0",
+    "licenciaUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Japanese_SilkyTofu_(Kinugoshi_Tofu).JPG"
+  },
+  "judia-verde": {
+    "autor": "Undeka 11",
+    "licencia": "CC BY-SA 4.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Macro_of_Fresh_Green_Beans_Buncis.jpg"
+  },
+  "guisantes": {
+    "autor": "Jorge Royan",
+    "licencia": "CC BY-SA 3.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:India_-_Varanasi_green_peas_-_2714.jpg"
+  },
+  "alubias": {
+    "autor": "Miansari66",
+    "licencia": "CC0",
+    "licenciaUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Fava_Beans_Dried.JPG"
+  },
+  "boniato": {
+    "autor": "Llez",
+    "licencia": "CC BY-SA 3.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Ipomoea_batatas_006.JPG"
+  },
+  "patata": {
+    "autor": "Bff",
+    "licencia": "CC BY-SA 4.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Solanum_tuberosum_Red_Scarlett20170523_7825.jpg"
+  },
+  "tomate": {
+    "autor": "Softeis",
+    "licencia": "CC BY-SA 3.0",
+    "licenciaUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Tomato_je.jpg"
+  },
+  "zanahoria": {
+    "autor": "domdomegg",
+    "licencia": "CC BY 4.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by/4.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Carrots_at_Ljubljana_Central_Market.JPG"
+  },
+  "cebolla": {
+    "autor": "Colin",
+    "licencia": "CC BY-SA 3.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Mixed_onions.jpg"
+  },
+  "brocoli": {
+    "autor": "Forest and Kim Starr",
+    "licencia": "CC BY 3.0 us",
+    "licenciaUrl": "https://creativecommons.org/licenses/by/3.0/us/deed.en",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Starr-091108-9387-Brassica_oleracea_var_botrytis-broccoli_florets-Olinda-Maui_(24962924176).jpg"
+  },
+  "espinaca": {
+    "autor": "Nillerdk",
+    "licencia": "CC BY 3.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by/3.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Spinach_leaves.jpg"
+  },
+  "pimiento": {
+    "autor": "AntanO",
+    "licencia": "CC BY-SA 4.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Red_bell_pepper.jpg"
+  },
+  "calabaza": {
+    "autor": "George Chernilevsky",
+    "licencia": "Public domain",
+    "licenciaUrl": null,
+    "fuente": "https://commons.wikimedia.org/wiki/File:Cucurbita_2011_G1.jpg"
+  },
+  "setas": {
+    "autor": "0x010C",
+    "licencia": "CC BY-SA 4.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:2016-01_Agaricus_bisporus_03.jpg"
+  },
+  "pepino": {
+    "autor": "Nikodem Nijaki",
+    "licencia": "CC BY-SA 3.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Greek_yoghurt_cucumbers_garlic.jpg"
+  },
+  "maiz": {
+    "autor": "NeoBatfreak",
+    "licencia": "CC BY-SA 4.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Air_fried_corn-on-the-cob_(United_States).jpg"
+  },
+  "berenjena": {
+    "autor": "Grey Geezer",
+    "licencia": "CC BY-SA 3.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Aubergine-Varianten.JPG"
+  },
+  "esparragos": {
+    "autor": "Petar Milošević",
+    "licencia": "CC BY-SA 4.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Asparagus_soup_(spargelsuppe).jpg"
+  },
+  "raices": {
+    "autor": "Alex Lomas",
+    "licencia": "CC BY 2.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by/2.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Root_vegetables_(2944502774).jpg"
+  },
+  "cafe": {
+    "autor": "Julius Schorzman",
+    "licencia": "CC BY-SA 2.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by-sa/2.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:A_small_cup_of_coffee.JPG"
+  },
+  "te": {
+    "autor": "AntanO",
+    "licencia": "CC BY-SA 4.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Cup_of_black_tea.JPG"
+  },
+  "cerveza": {
+    "autor": "Nemracc",
+    "licencia": "CC BY-SA 4.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Beer_glass_microbrewery_Heimatliebe_in_Duderstadt,_Lower_Saxony,_Germany.jpg"
+  },
+  "vino": {
+    "autor": "A.Savin",
+    "licencia": "CC BY-SA 3.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by-sa/3.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Red_and_white_wine_12-2015.jpg"
+  },
+  "licores": {
+    "autor": "Benjamin Thompson",
+    "licencia": "CC BY 3.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by/3.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:A_Glass_of_Whiskey_on_the_Rocks.jpg"
+  },
+  "refresco": {
+    "autor": "pic_p_ter",
+    "licencia": "Public domain",
+    "licenciaUrl": null,
+    "fuente": "https://commons.wikimedia.org/wiki/File:Glass_cola.jpg"
+  },
+  "agua": {
+    "autor": "Kurt Kaiser",
+    "licencia": "CC0",
+    "licenciaUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Glass_of_water_ouside.jpg"
+  },
+  "aguacate": {
+    "autor": "Denis kasozi",
+    "licencia": "CC BY-SA 4.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Ugandan_avocado_cut_in_halfs_4.jpg"
+  },
+  "aceitunas": {
+    "autor": "Gphoto",
+    "licencia": "CC BY-SA 3.0",
+    "licenciaUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Olives_in_bowl.jpg"
+  },
+  "manzana": {
+    "autor": "Abhijit Tembhekar from Mumbai, India",
+    "licencia": "CC BY 2.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by/2.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Red_Apple.jpg"
+  },
+  "platano": {
+    "autor": "Krzysztof Golik",
+    "licencia": "CC BY-SA 4.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Bananas_on_black_background_02.jpg"
+  },
+  "naranja": {
+    "autor": "Ivar Leidus",
+    "licencia": "CC BY-SA 4.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Oranges_-_whole-halved-segment.jpg"
+  },
+  "limon": {
+    "autor": "Ivar Leidus",
+    "licencia": "CC BY-SA 4.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Lemon_-_whole_and_split.jpg"
+  },
+  "frutos-rojos": {
+    "autor": "Personal Creations",
+    "licencia": "CC BY 2.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by/2.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Yogurt_layers_with_fruit_in_tall_personalized_glasses_raspberries_blueberries_strawberries_in_bowls_on_table_(16380437271).jpg"
+  },
+  "uvas": {
+    "autor": "Martin Kozák",
+    "licencia": "Public domain",
+    "licenciaUrl": null,
+    "fuente": "https://commons.wikimedia.org/wiki/File:Green_Grape_3.jpg"
+  },
+  "melocoton": {
+    "autor": "Jack Dykinga, USDA",
+    "licencia": "Public domain",
+    "licenciaUrl": null,
+    "fuente": "https://commons.wikimedia.org/wiki/File:Autumn_Red_peaches.jpg"
+  },
+  "pera": {
+    "autor": "Rhododendrites",
+    "licencia": "CC BY-SA 4.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Four_pears.jpg"
+  },
+  "pina": {
+    "autor": "Suniltg at Malayalam Wikipedia",
+    "licencia": "CC BY 3.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by/3.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:%E0%B4%95%E0%B5%88%E0%B4%A4%E0%B4%9A%E0%B5%8D%E0%B4%9A%E0%B4%95%E0%B5%8D%E0%B4%95.jpg"
+  },
+  "melon": {
+    "autor": "USDA photo by Scott Bauer. Image Number K7355-11.",
+    "licencia": "Public domain",
+    "licenciaUrl": null,
+    "fuente": "https://commons.wikimedia.org/wiki/File:Cucumis_melo_var._reticulatus_(photo_by_Scott_Bauer).jpg"
+  },
+  "cerezas": {
+    "autor": "Benjamint444 , edited by Fir0002",
+    "licencia": "CC BY-SA 3.0",
+    "licenciaUrl": "http://creativecommons.org/licenses/by-sa/3.0/",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Cherry_Stella444.jpg"
+  },
+  "higos-datiles": {
+    "autor": "Garitzko",
+    "licencia": "Public domain",
+    "licenciaUrl": null,
+    "fuente": "https://commons.wikimedia.org/wiki/File:Ficus_carica_whole_fruits_and_fruit_cut_open.jpg"
+  },
+  "frutas-tropicales": {
+    "autor": "PattayaPatrol",
+    "licencia": "CC BY-SA 4.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:DSCF0829_Assorted_fresh_tropical_fruits_neatly_prepped_and_displayed_on_plates_at_a_bustling_market_stall_-_passion_fruit_papaya_mango_and_more_ready_to_enjoy.jpg"
+  },
+  "hierbas": {
+    "autor": "Thomas Rehehäuser trehehaeuser",
+    "licencia": "CC0",
+    "licenciaUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Fresh_Herbs_(Unsplash).jpg"
+  },
+  "especias": {
+    "autor": "Galeri ega",
+    "licencia": "CC BY-SA 4.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Bumbu_dan_Rempah_-_rempah.jpg"
+  },
+  "verduras": {
+    "autor": "Gaurav Dhwaj Khadka",
+    "licencia": "CC BY-SA 4.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Fresh_Vegetables_2.jpg"
+  },
+  "fruta": {
+    "autor": "Anagoria",
+    "licencia": "CC BY-SA 4.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:20250315_Fruit_Platter_anagoria.jpg"
+  },
+  "bebidas": {
+    "autor": "Didriks from Cambridge, MA, USA",
+    "licencia": "CC BY 2.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by/2.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Five_Drinking_Glasses_(14741495747).jpg"
+  },
+  "lacteos": {
+    "autor": "Alexschneider250",
+    "licencia": "CC0",
+    "licenciaUrl": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+    "fuente": "https://commons.wikimedia.org/wiki/File:DairyProductsGermany.jpg"
+  },
+  "dulces": {
+    "autor": "Tuxyso",
+    "licencia": "CC BY-SA 4.0",
+    "licenciaUrl": "https://creativecommons.org/licenses/by-sa/4.0",
+    "fuente": "https://commons.wikimedia.org/wiki/File:Sweets-Jamin-Store-2024.jpg"
+  }
+}

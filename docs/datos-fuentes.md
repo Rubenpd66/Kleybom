@@ -43,3 +43,10 @@ Textos redactados por Forja; las cifras salen de estas fuentes, comprobadas el 2
 
 ## Fondos 3D (three.js)
 - **Paquete:** `three` 0.180.0 (https://threejs.org), licencia MIT. Las 12 escenas son código propio (`src/components/fondo/escenas.ts`), sin modelos ni texturas de terceros.
+
+## Wikimedia Commons (fotos de alimentos y recetas)
+- **Qué es:** el banco de imágenes libres de la Fundación Wikimedia. API pública: https://commons.wikimedia.org/w/api.php
+- **Licencias admitidas:** CC0, dominio público, CC BY y CC BY-SA (todas permiten el uso con atribución). Se comprueba en cada foto.
+- **Qué exigen:** citar autor y licencia, con enlace. Cada ficha muestra "Foto: autor · licencia · Wikimedia Commons".
+- **Alimentos (22/10/2026):** 98 fotos, una por tipo de alimento (pollo, arroz, manzana…), no por alimento. El tipo se deduce del nombre original en inglés con las reglas de `src/lib/foods/imagen.ts`; si no encaja, el de su categoría USDA. Fotos en `public/img/alimentos/`, autoría en `src/lib/foods/imagenes.json`.
+- **Cómo se eligieron:** el script baja 4 candidatas por tipo, se revisaron a mano y la elegida queda fijada en `scripts/imagenes-commons/busquedas.ts`. Repetir: `node scripts/imagenes-commons/run.ts alimentos`.

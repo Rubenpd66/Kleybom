@@ -14,17 +14,15 @@ export type Nutrientes = {
   sodium_mg: number | null;
 };
 
-export type FoodSummary = Nutrientes & { id: number; slug: string; name_es: string };
+export type FoodSummary = Nutrientes & { id: number; slug: string; name_es: string; name_en: string | null; category: string | null };
 
 export type FoodDetail = FoodSummary & {
-  name_en: string | null;
-  category: string | null;
   source: "usda" | "openfoodfacts" | "manual";
   source_id: string | null;
 };
 
 const NUTRIENTES = ["kcal", "protein_g", "carbs_g", "fat_g", "fiber_g", "sugar_g", "sodium_mg"] as const;
-const COLUMNAS: string = `id, slug, name_es, ${NUTRIENTES.join(", ")}`;
+const COLUMNAS: string = `id, slug, name_es, name_en, category, ${NUTRIENTES.join(", ")}`;
 
 // La base devuelve las columnas numeric como texto: se pasan a número y el vacío sigue siendo null.
 function conNumeros<T extends Record<string, unknown>>(fila: T): T & Nutrientes {
@@ -62,7 +60,7 @@ export async function getFoodBySlug(slug: string, client?: SupabaseClient): Prom
   const db = client ?? (await createServerClient());
   const { data, error } = await db
     .from("foods")
-    .select(`${COLUMNAS}, name_en, category, source, source_id`)
+    .select(`${COLUMNAS}, source, source_id`)
     .eq("slug", slug)
     .maybeSingle();
   if (error) throw error;

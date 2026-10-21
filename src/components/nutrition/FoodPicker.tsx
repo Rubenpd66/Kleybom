@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useId, useRef, useState, useTransition } from "react";
 import { anadirEntrada, buscarAlimentos, type AlimentoEncontrado } from "@/app/nutricion/actions";
 import { formatNutriente } from "@/lib/foods/format";
@@ -98,9 +99,10 @@ export default function FoodPicker({ fecha }: { fecha: string }) {
                 aria-label={t.anadir(a.name_es)}
                 onClick={() => anadir(a)}
                 disabled={pendiente}
-                className="flex w-full flex-wrap justify-between gap-2 rounded-md border border-linea bg-tiza px-3 py-2 text-left hover:bg-realce"
+                className="flex w-full items-center gap-3 rounded-md border border-linea bg-tiza px-3 py-2 text-left hover:bg-realce"
               >
-                <span>+ {a.name_es}</span>
+                {a.imagen && <Image src={a.imagen} alt="" width={40} height={30} className="h-8 w-10 shrink-0 rounded object-cover" />}
+                <span className="flex-1">+ {a.name_es}</span>
                 <span className="text-sm text-acero">{t.porCien(formatNutriente(a.kcal, "kcal"))}</span>
               </button>
             </li>
