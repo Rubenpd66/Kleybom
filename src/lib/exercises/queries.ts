@@ -133,3 +133,15 @@ export async function getExerciseBySlug(
 
   return { ...ej, muscles, equipment } as ExerciseDetail;
 }
+
+export type CatalogItem = { slug: string; name_es: string };
+
+export async function listCatalog(
+  tabla: "muscles" | "equipment",
+  client?: SupabaseClient,
+): Promise<CatalogItem[]> {
+  const db = client ?? (await createServerClient());
+  const { data, error } = await db.from(tabla).select("slug, name_es").order("name_es");
+  if (error) throw error;
+  return (data ?? []) as CatalogItem[];
+}

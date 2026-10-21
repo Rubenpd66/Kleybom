@@ -1,7 +1,7 @@
 # PROGRESO
 
 ## Fase actual
-Fase 4 (Construcción), versión 0.1. Hechas: Tareas 1 a 8. Tarea 9 hecha (importación ejecutada). Siguiente: Tarea 10 del plan.
+Fase 4 (Construcción), versión 0.1. Hechas: Tareas 1 a 8. Tareas 1 a 10 hechas. Siguiente: Tarea 11 (ficha de ejercicio).
 
 ## Tareas del plan completadas
 - Tarea 1: proyecto Next.js 16 + Tailwind 4 + TypeScript creado y compilando (`npm run build` OK).
@@ -14,6 +14,7 @@ Fase 4 (Construcción), versión 0.1. Hechas: Tareas 1 a 8. Tarea 9 hecha (impor
 - Tarea 8: `parseWgerExercise` en `scripts/import-wger/parse.ts` + 5 tests y 3 fixtures. Fixtures con-licencia y sin-espanol son respuestas reales de la API de wger (ids 41 y 9); **sin-licencia es la de con-licencia con licencia y autor borrados a mano** (en 200 ejercicios de muestra todos traían licencia). Decisiones: (1) wger no da nivel, así que `level` se pone a "intermedio" con `needs_level_review: true`; hay que revisarlo. (2) La imagen solo se guarda si tiene licencia y autor propios (en la muestra la imagen no los traía, quedará `null`). (3) `needs_translation`, `needs_level_review`, `muscles` y `equipment` no son columnas de `exercises`: la Tarea 9 decide qué hacer con ellos (probablemente añadir `needs_translation` en una migración y enlazar músculos/material por nombre). (4) Licencias vistas: CC-BY-SA 3, CC-BY-SA 4 y CC0; las CC-BY-SA exigen atribución y compartir igual (anotar en `docs/datos-fuentes.md`).
 - Tarea 9 (preparación): migración `20261021140000` aplicada (columnas `needs_translation`, `needs_level_review` y clave única fuente+id). `scripts/import-wger/run.ts` con modo `--dry-run` (se ejecuta con `node`, sin instalar nada; se activó `allowImportingTsExtensions`). Simulación: 932 descargados, 810 a importar (223 sin español), 122 descartados. Catálogo de músculos/material en español en `catalogo-es.ts` (verificado contra la API de wger). `docs/datos-fuentes.md` creado.
 - Tarea 9 (resultado, 21/10/2026): importados 810 ejercicios de wger (122 descartados por licencia/autor). En la base: 223 en inglés (`needs_translation`), 185 con imagen, 18 sin pasos, 102 sin músculo asignado, 15 músculos y 12 materiales. Revisión de 10 al azar: licencia y autor correctos; textos en español bien; **fallos de la fuente a vigilar**: algunos ejercicios tienen músculos incoherentes (p. ej. "Rowing Machine" con 13 músculos principales) y todos tienen nivel provisional "intermedio". Pendiente de decidir con el usuario: traducir los 223, asignar niveles y limpiar los músculos.
+- Tarea 10: `/ejercicios` con buscador, filtros (músculo, material, nivel) en formulario GET (los filtros quedan en la URL y funciona sin JavaScript), tarjetas, mensaje de "sin resultados" y paginación. 5 tests de navegador contra la base real (escritorio y móvil). Nota técnica: el proyecto tiene `cacheComponents: true` en `next.config.ts`; con eso, todo acceso a datos o a `searchParams` debe ir dentro de `<Suspense>` (si no, error "uncached data during prerendering"). Aplicarlo en las páginas siguientes. El slug del músculo del pecho es `pectoral` (no `pecho`). Las tarjetas aún no tienen imagen.
 
 ## Hecho
 - Comprobado: node v24.22.0, npm 11.19.1, git 2.51.0.
