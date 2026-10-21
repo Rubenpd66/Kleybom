@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Big_Shoulders, Schibsted_Grotesk } from "next/font/google";
 import { Suspense } from "react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import Fondo3D from "@/components/fondo/Fondo3D";
 import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
@@ -57,6 +58,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           {children}
         </div>
         <Footer />
+        <SpeedInsights />
       </body>
     </html>
   );
