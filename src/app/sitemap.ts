@@ -1,17 +1,14 @@
-import { createClient } from "@supabase/supabase-js";
 import type { MetadataRoute } from "next";
 import { cacheLife } from "next/cache";
 import { listGuides } from "@/lib/guides";
 import { PAGINAS_ESTATICAS, url } from "@/lib/seo/site";
+import { createPublicClient } from "@/lib/supabase/public";
 
 const POR_PAGINA = 1000; // máximo de filas que devuelve Supabase por consulta
 
 // Todos los slugs públicos de una tabla, en tandas de 1000.
 async function slugs(tabla: "exercises" | "routines" | "foods" | "recipes"): Promise<string[]> {
-  // Cliente público sin cookies: solo ve lo que ve un visitante anónimo.
-  const db = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!, {
-    auth: { persistSession: false },
-  });
+  const db = createPublicClient();
   const todos: string[] = [];
   for (let desde = 0; ; desde += POR_PAGINA) {
     let consulta = db.from(tabla).select("slug").order("id").range(desde, desde + POR_PAGINA - 1);

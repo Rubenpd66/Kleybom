@@ -357,6 +357,44 @@ export const es = {
     verTodas: "Ver todas las recetas",
     enlace: "Ideas de recetas",
   },
+  inicio: {
+    titular: "Entrena, come y progresa. Sin pagar ni buscar vídeos.",
+    entradilla:
+      "Ejercicios con ficha completa, rutinas, calendario, alimentos y estadísticas. Todo en un solo sitio, gratis y sin letra pequeña.",
+    explorar: "Explorar ejercicios",
+    crearCuenta: "Crear mi cuenta",
+    irAlPanel: "Ir a mi panel",
+    nota: "Puedes consultar ejercicios, rutinas, alimentos, recetas y guías sin registrarte.",
+    selectorTitulo: "¿Qué quieres trabajar hoy?",
+    selectorAyuda: "Elige un músculo y mira qué puedes hacer.",
+    selectorGrupos: "Grupos musculares",
+    verTodos: (grupo: string) => `Ver todos los ejercicios de ${grupo.toLowerCase()}`,
+    fichaTitulo: "Cada ejercicio, explicado de verdad.",
+    fichaTexto:
+      "Músculos que trabaja, cómo hacerlo paso a paso y quién ha escrito la información. Sin saltar entre vídeos de cinco minutos para una sola respuesta.",
+    fichaVer: "Ver la ficha completa",
+    fichaFuente: (autor: string, licencia: string) => `Autor: ${autor}. Fuente: wger.de, licencia ${licencia}.`,
+    funciones: [
+      { titulo: "Rutinas", texto: "Plantillas por objetivo y nivel, o crea la tuya eligiendo ejercicios.", href: "/rutinas" },
+      { titulo: "Calendario", texto: "Planifica la semana y marca lo que has hecho.", href: "/calendario" },
+      { titulo: "Registro", texto: "Anota series y pesos, y compara con tu última sesión.", href: "/entreno" },
+      { titulo: "Guías", texto: "Empezar, comer mejor, descansar y progresar, con fuentes.", href: "/guias" },
+    ],
+    alimentosTitulo: "Alimentos con los datos a la vista.",
+    alimentosTexto:
+      "Busca un alimento, indica cuántos gramos has comido y mira el total del día frente a tu objetivo. Si falta un dato, lo verás marcado: nunca lo rellenamos con un cero.",
+    alimentosVer: "Buscar alimentos",
+    alimentoTabla: (nombre: string) => `${nombre} · por 100 g`,
+    progresoTitulo: "Tu progreso, a la vista.",
+    progresoTexto:
+      "Volumen semanal, fuerza estimada, peso y constancia. Tus datos son tuyos: puedes descargarlos o borrar tu cuenta cuando quieras.",
+    progresoGrafico: "Fuerza estimada en press de banca (ejemplo)",
+    progresoResumen: "Datos inventados: sube de 60 a 72 kg en 8 semanas.",
+    progresoNota: "Gráfico de ejemplo con datos inventados.",
+    gratisTitulo: "Gratis de verdad.",
+    gratisTexto:
+      "Forja no cobra ni tiene planes de pago. No hay anuncios ni vendemos tus datos. Si te sirve, compártela con quien la pueda necesitar.",
+  },
   guias: {
     titulo: "Guías",
     descripcion: "Guías cortas para empezar a entrenar, comer mejor, descansar, crear el hábito y progresar, con sus fuentes.",

@@ -53,6 +53,13 @@ body {
   }
 }
 
+/* Barra de temple de la portada: el único movimiento automático de la web (se ve una vez al entrar). */
+.barra-temple {
+  background: linear-gradient(90deg, var(--acero), var(--temple) 55%, var(--azul));
+  transform-origin: left;
+  animation: barra-crece 1.2s var(--ease-out) both;
+}
+
 /* Menú móvil: aparece bajando un poco desde la cabecera. */
 .menu-entra {
   transition:
