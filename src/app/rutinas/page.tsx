@@ -61,6 +61,11 @@ export default function RutinasPage(props: PageProps<"/rutinas">) {
         {t.titulo}
       </h1>
       <p className="mt-3 max-w-[62ch] text-acero">{t.descripcion}</p>
+      <p className="mt-3">
+        <Link href="/rutinas/nueva" className="font-bold text-azul underline">
+          {es.constructor.crear}
+        </Link>
+      </p>
       <Suspense fallback={<p className="mt-8 text-acero">{es.ejercicios.cargando}</p>}>
         <Contenido searchParams={props.searchParams} />
       </Suspense>

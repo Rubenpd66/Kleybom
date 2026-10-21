@@ -19,6 +19,11 @@ async function Contenido() {
         {es.auth.sesionComo} <strong>{usuario.email}</strong>
       </p>
       <p className="mt-6">
+        <Link href="/panel/rutinas" className="font-bold text-azul underline">
+          {es.misRutinas.enlace}
+        </Link>
+      </p>
+      <p className="mt-3">
         <Link href="/panel/perfil" className="font-bold text-azul underline">
           {es.perfil.enlace}
         </Link>

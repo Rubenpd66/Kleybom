@@ -43,6 +43,53 @@ export async function listRoutines(
   return (data ?? []) as RoutineSummary[];
 }
 
+type Dia = { dia: number; ejercicios: RoutineDayExercise[] };
+
+// Días y ejercicios de varias rutinas a la vez (una sola consulta por tabla).
+async function diasDeRutinas(db: SupabaseClient, ids: number[]): Promise<Map<number, Dia[]>> {
+  const resultado = new Map<number, Dia[]>();
+  if (ids.length === 0) return resultado;
+
+  const { data: filas, error } = await db
+    .from("routine_exercises")
+    .select("routine_id, exercise_id, day_index, position, sets, reps_min, reps_max, rest_seconds, notes")
+    .in("routine_id", ids)
+    .order("position");
+  if (error) throw error;
+
+  const idsEj = [...new Set((filas ?? []).map((r) => r.exercise_id as number))];
+  const { data: ejercicios, error: e2 } = idsEj.length
+    ? await db.from("exercises").select("id, slug, name_es").in("id", idsEj)
+    : { data: [], error: null };
+  if (e2) throw e2;
+  const porId = new Map((ejercicios ?? []).map((x) => [x.id as number, x]));
+
+  const ordenadas = [...(filas ?? [])].sort(
+    (a, b) => a.day_index - b.day_index || a.position - b.position,
+  );
+  const porRutina = new Map<number, Map<number, RoutineDayExercise[]>>();
+  for (const r of ordenadas) {
+    const ej = porId.get(r.exercise_id as number);
+    if (!ej) continue;
+    const dias = porRutina.get(r.routine_id) ?? new Map<number, RoutineDayExercise[]>();
+    const lista = dias.get(r.day_index) ?? [];
+    lista.push({
+      exercise: { slug: ej.slug, name_es: ej.name_es },
+      sets: r.sets,
+      reps_min: r.reps_min,
+      reps_max: r.reps_max,
+      rest_seconds: r.rest_seconds,
+      notes: r.notes,
+    });
+    dias.set(r.day_index, lista);
+    porRutina.set(r.routine_id, dias);
+  }
+  for (const [id, dias] of porRutina) {
+    resultado.set(id, [...dias.entries()].map(([dia, ejercicios]) => ({ dia, ejercicios })));
+  }
+  return resultado;
+}
+
 export async function getRoutineBySlug(
   slug: string,
   client?: SupabaseClient,
@@ -57,41 +104,25 @@ export async function getRoutineBySlug(
   if (error) throw error;
   if (!rutina) return null;
 
-  const { data: filas, error: e2 } = await db
-    .from("routine_exercises")
-    .select("exercise_id, day_index, position, sets, reps_min, reps_max, rest_seconds, notes")
-    .eq("routine_id", rutina.id)
-    .order("position");
-  if (e2) throw e2;
-
-  const ids = [...new Set((filas ?? []).map((r) => r.exercise_id as number))];
-  const { data: ejercicios, error: e3 } = ids.length
-    ? await db.from("exercises").select("id, slug, name_es").in("id", ids)
-    : { data: [], error: null };
-  if (e3) throw e3;
-  const porId = new Map((ejercicios ?? []).map((x) => [x.id as number, x]));
-
-  const dias = new Map<number, RoutineDayExercise[]>();
-  const ordenadas = [...(filas ?? [])].sort(
-    (a, b) => a.day_index - b.day_index || a.position - b.position,
-  );
-  for (const r of ordenadas) {
-    const ej = porId.get(r.exercise_id as number);
-    if (!ej) continue;
-    const lista = dias.get(r.day_index) ?? [];
-    lista.push({
-      exercise: { slug: ej.slug, name_es: ej.name_es },
-      sets: r.sets,
-      reps_min: r.reps_min,
-      reps_max: r.reps_max,
-      rest_seconds: r.rest_seconds,
-      notes: r.notes,
-    });
-    dias.set(r.day_index, lista);
-  }
-
+  const dias = await diasDeRutinas(db, [rutina.id as number]);
   return {
     ...(rutina as RoutineSummary & { description: string | null }),
-    dias: [...dias.entries()].map(([dia, ejercicios]) => ({ dia, ejercicios })),
+    dias: dias.get(rutina.id as number) ?? [],
   };
+}
+
+// Rutinas propias de un usuario (no tienen slug), las más recientes primero.
+export type MyRoutine = Omit<RoutineDetail, "slug">;
+
+export async function getMyRoutines(userId: string, client?: SupabaseClient): Promise<MyRoutine[]> {
+  const db = client ?? (await createServerClient());
+  const { data, error } = await db
+    .from("routines")
+    .select("id, name, goal, level, days_per_week, description")
+    .eq("owner_id", userId)
+    .order("id", { ascending: false });
+  if (error) throw error;
+  const rutinas = (data ?? []) as Omit<MyRoutine, "dias">[];
+  const dias = await diasDeRutinas(db, rutinas.map((r) => r.id));
+  return rutinas.map((r) => ({ ...r, dias: dias.get(r.id) ?? [] }));
 }

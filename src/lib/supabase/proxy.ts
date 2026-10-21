@@ -1,7 +1,7 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
-const RUTAS_PRIVADAS = ["/panel"];
+const RUTAS_PRIVADAS = ["/panel", "/rutinas/nueva"];
 
 export async function updateSession(request: NextRequest) {
   let respuesta = NextResponse.next({ request });
