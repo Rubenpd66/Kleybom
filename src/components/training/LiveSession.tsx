@@ -7,6 +7,7 @@ import { formatNutriente } from "@/lib/foods/format";
 import { es } from "@/lib/i18n/es";
 import type { EjercicioDelDia, SerieGuardada } from "@/lib/training/queries";
 import { nuevaSesion, sessionReducer, type ActiveSession } from "@/lib/training/session";
+import { useRestTimer } from "@/lib/training/useRestTimer";
 import SetRow from "./SetRow";
 
 const t = es.entreno;
@@ -118,6 +119,8 @@ export default function LiveSession({
   const [errores, setErrores] = useState<Record<number, string | null>>({});
   const [errorGeneral, setErrorGeneral] = useState<string | null>(null);
   const [ocupado, empezar] = useTransition();
+  const descanso = useRestTimer();
+  const [avisarFin, setAvisarFin] = useState(false);
 
   function registrar(e: EjercicioDelDia, peso: number, reps: number) {
     // Primero se valida en el navegador con el reductor; si es válido, se guarda y luego se añade.
@@ -135,6 +138,8 @@ export default function LiveSession({
       ids.current = [...ids.current, r.id];
       dispatch({ type: "logSet", exercise_id: e.exercise_id, weight_kg: peso, reps });
       setErrores((x) => ({ ...x, [e.exercise_id]: null }));
+      descanso.start(e.rest_seconds);
+      setAvisarFin(e.rest_seconds > 0);
     });
   }
 
@@ -183,6 +188,29 @@ export default function LiveSession({
           onQuitar={quitar}
         />
       ))}
+      {(descanso.running || avisarFin) && (
+        <div className="sticky bottom-4 z-10 flex flex-wrap items-center justify-between gap-3 rounded-xl border-[1.5px] border-hierro bg-temple p-4 text-hierro">
+          {descanso.running ? (
+            <p role="timer" className="font-display text-2xl font-bold tabular-nums">
+              {t.descansoQueda(descanso.remaining)}
+            </p>
+          ) : (
+            <p aria-live="polite" className="font-bold">
+              {t.descansoFin}
+            </p>
+          )}
+          <button
+            type="button"
+            onClick={() => {
+              descanso.stop();
+              setAvisarFin(false);
+            }}
+            className="h-10 rounded-md border-[1.5px] border-hierro px-4 text-sm font-bold"
+          >
+            {descanso.running ? t.saltarDescanso : "✕"}
+          </button>
+        </div>
+      )}
       {errorGeneral && (
         <p role="alert" className="rounded-md border-[1.5px] border-hierro bg-papel p-3 text-sm">
           {errorGeneral}

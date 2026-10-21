@@ -89,6 +89,11 @@ test.describe("con una cuenta de prueba", () => {
     await expect(sentadillas.getByRole("listitem")).toHaveCount(3);
     await expect(sentadillas).toContainText("62,5 kg × 5");
 
+    // Tras registrar, arranca el descanso de la rutina (180 s en sentadillas) y se puede saltar.
+    await expect(page.getByRole("timer")).toContainText(/Quedan 1\d\d s de descanso/);
+    await page.getByRole("button", { name: "Saltar descanso" }).click();
+    await expect(page.getByRole("timer")).toHaveCount(0);
+
     // Se guarda al momento: al recargar, las series siguen ahí.
     await page.reload();
     await expect(page.getByRole("region", { name: "Sentadillas" }).getByRole("listitem")).toHaveCount(3);
