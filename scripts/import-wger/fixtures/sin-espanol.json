@@ -1,0 +1,93 @@
+{
+ "id": 9,
+ "uuid": "1b020b3a-3732-4c7e-92fd-a0cec90ed69b",
+ "created": "2023-08-06T10:17:17.422900+02:00",
+ "last_update": "2026-07-23T12:24:53.482746+02:00",
+ "last_update_global": "2026-10-14T19:35:46.021846+02:00",
+ "category": {
+  "id": 10,
+  "name": "Abs"
+ },
+ "muscles": [
+  {
+   "id": 11,
+   "name": "Biceps femoris",
+   "name_en": "Hamstrings",
+   "is_front": false,
+   "image_url_main": "https://wger.de/static/images/muscles/main/muscle-11.54ef31755917.svg",
+   "image_url_secondary": "https://wger.de/static/images/muscles/secondary/muscle-11.a2bc76fe157a.svg"
+  },
+  {
+   "id": 8,
+   "name": "Gluteus maximus",
+   "name_en": "Glutes",
+   "is_front": false,
+   "image_url_main": "https://wger.de/static/images/muscles/main/muscle-8.fbdfb46f3bc0.svg",
+   "image_url_secondary": "https://wger.de/static/images/muscles/secondary/muscle-8.605e4e1a0277.svg"
+  }
+ ],
+ "muscles_secondary": [
+  {
+   "id": 10,
+   "name": "Quadriceps femoris",
+   "name_en": "Quads",
+   "is_front": true,
+   "image_url_main": "https://wger.de/static/images/muscles/main/muscle-10.b1445ea1acf6.svg",
+   "image_url_secondary": "https://wger.de/static/images/muscles/secondary/muscle-10.55e36d852778.svg"
+  },
+  {
+   "id": 6,
+   "name": "Rectus abdominis",
+   "name_en": "Abs",
+   "is_front": true,
+   "image_url_main": "https://wger.de/static/images/muscles/main/muscle-6.592f938fa8c7.svg",
+   "image_url_secondary": "https://wger.de/static/images/muscles/secondary/muscle-6.370f77c2860e.svg"
+  }
+ ],
+ "equipment": [
+  {
+   "id": 10,
+   "name": "Kettlebell"
+  }
+ ],
+ "license": {
+  "id": 2,
+  "full_name": "Creative Commons Attribution Share Alike 4",
+  "short_name": "CC-BY-SA 4",
+  "url": "https://creativecommons.org/licenses/by-sa/4.0/deed.en"
+ },
+ "license_author": "deusinvictus",
+ "images": [],
+ "translations": [
+  {
+   "id": 345,
+   "uuid": "c788d643-150a-4ac7-97ef-84643c6419bf",
+   "name": "2 Handed Kettlebell Swing",
+   "exercise": 9,
+   "description": "<p>Two Handed Russian Style Kettlebell swing</p>\n",
+   "description_source": "Two Handed Russian Style Kettlebell swing",
+   "created": "2023-08-06T10:17:17.349574+02:00",
+   "language": 2,
+   "aliases": [],
+   "notes": [],
+   "license": 2,
+   "license_title": "",
+   "license_object_url": "",
+   "license_author": "deusinvictus",
+   "license_author_url": "",
+   "license_derivative_source_url": "",
+   "author_history": [
+    "deusinvictus"
+   ]
+  }
+ ],
+ "variation_group": "a30b1f92-7b73-477e-abb0-e91993c5fb05",
+ "videos": [],
+ "author_history": [
+  "deusinvictus"
+ ],
+ "total_authors_history": [
+  "aom44ja6w@mozmail.com",
+  "deusinvictus"
+ ]
+}

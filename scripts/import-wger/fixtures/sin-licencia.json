@@ -1,0 +1,108 @@
+{
+ "id": 41,
+ "uuid": "a6bced3c-72f5-42a3-9438-5569d46f49fd",
+ "created": "2023-08-06T10:17:17.422900+02:00",
+ "last_update": "2024-01-17T11:21:25.329270+01:00",
+ "last_update_global": "2026-10-14T19:41:43.778477+02:00",
+ "category": {
+  "id": 10,
+  "name": "Abs"
+ },
+ "muscles": [
+  {
+   "id": 14,
+   "name": "Obliquus externus abdominis",
+   "name_en": "",
+   "is_front": true,
+   "image_url_main": "https://wger.de/static/images/muscles/main/muscle-14.153978038d0b.svg",
+   "image_url_secondary": "https://wger.de/static/images/muscles/secondary/muscle-14.afd582849ae9.svg"
+  }
+ ],
+ "muscles_secondary": [],
+ "equipment": [
+  {
+   "id": 1,
+   "name": "Barbell"
+  }
+ ],
+ "license": null,
+ "license_author": null,
+ "images": [
+  {
+   "id": 674,
+   "uuid": "34b37423-269f-43d4-9d29-d2a90eeaa6b4",
+   "exercise": 41,
+   "exercise_uuid": "a6bced3c-72f5-42a3-9438-5569d46f49fd",
+   "image": "https://wger.de/media/exercise-images/41/34b37423-269f-43d4-9d29-d2a90eeaa6b4.png",
+   "thumbnails": {
+    "small": "https://wger.de/media/exercise-images/41/34b37423-269f-43d4-9d29-d2a90eeaa6b4.png.200x200_q85.png",
+    "medium": "https://wger.de/media/exercise-images/41/34b37423-269f-43d4-9d29-d2a90eeaa6b4.png.400x400_q85.png"
+   },
+   "is_main": true,
+   "style": "4",
+   "license": 2,
+   "license_title": "",
+   "license_object_url": "",
+   "license_author": "",
+   "license_author_url": "",
+   "license_derivative_source_url": "",
+   "author_history": [],
+   "is_ai_generated": true
+  }
+ ],
+ "translations": [
+  {
+   "id": 343,
+   "uuid": "1b9dc5bc-790b-4e21-a55d-f8b3115e94c5",
+   "name": "Barbell Ab Rollout",
+   "exercise": 41,
+   "description": "<p>Place a barbell on the floor at your feet.</p>\n<p>Bending at the waist, grip the barbell with a shoulder with overhand grip.</p>\n<p>With a slow controlled motion, roll the bar out so that your back is straight.</p>\n<p>Roll back up raising your hips and butt as you return to the starting position.</p>\n",
+   "description_source": "Place a barbell on the floor at your feet.\n\nBending at the waist, grip the barbell with a shoulder with overhand grip.\n\nWith a slow controlled motion, roll the bar out so that your back is straight.\n\nRoll back up raising your hips and butt as you return to the starting position.",
+   "created": "2023-08-06T10:17:17.349574+02:00",
+   "language": 2,
+   "aliases": [],
+   "notes": [],
+   "license": 2,
+   "license_title": "",
+   "license_object_url": "",
+   "license_author": "sevae",
+   "license_author_url": "",
+   "license_derivative_source_url": "",
+   "author_history": [
+    "sevae"
+   ]
+  },
+  {
+   "id": 2568,
+   "uuid": "362c5f8a-2818-417a-a858-e08abdf31639",
+   "name": "Rollout Abdominal con Barra",
+   "exercise": 41,
+   "description": "<p><strong>Cómo realizarlo:</strong></p>\n<ol>\n<li><strong>Preparación:</strong> Carga una barra con discos redondos (de 5 o 10 kg es suficiente para que ruede bien). Arrodíllate en el suelo, preferiblemente sobre una colchoneta. Agarra la barra con las palmas hacia abajo (agarre prono) y las manos separadas al ancho de los hombros.</li>\n<li><strong>El Despliegue (Rollout):</strong> Manteniendo el abdomen y los glúteos fuertemente contraídos, rueda la barra hacia adelante de manera lenta y controlada. Extiende tu cuerpo en una línea lo más recta posible, llegando tan lejos como puedas sin que tu espalda baja se arquee.</li>\n<li><strong>El Regreso:</strong> Haz una breve pausa en el punto de máxima extensión. Luego, usa la fuerza de tus abdominales para jalar la barra hacia ti, revirtiendo el movimiento hasta volver a la posición inicial de forma controlada.</li>\n</ol>\n",
+   "description_source": "**Cómo realizarlo:**\n\n1. **Preparación:** Carga una barra con discos redondos (de 5 o 10 kg es suficiente para que ruede bien). Arrodíllate en el suelo, preferiblemente sobre una colchoneta. Agarra la barra con las palmas hacia abajo (agarre prono) y las manos separadas al ancho de los hombros.\n2. **El Despliegue (Rollout):** Manteniendo el abdomen y los glúteos fuertemente contraídos, rueda la barra hacia adelante de manera lenta y controlada. Extiende tu cuerpo en una línea lo más recta posible, llegando tan lejos como puedas sin que tu espalda baja se arquee.\n3. **El Regreso:** Haz una breve pausa en el punto de máxima extensión. Luego, usa la fuerza de tus abdominales para jalar la barra hacia ti, revirtiendo el movimiento hasta volver a la posición inicial de forma controlada.",
+   "created": "2025-08-18T08:08:59.679592+02:00",
+   "language": 4,
+   "aliases": [],
+   "notes": [],
+   "license": 2,
+   "license_title": "",
+   "license_object_url": "",
+   "license_author": "wgerjhn",
+   "license_author_url": "",
+   "license_derivative_source_url": "",
+   "author_history": [
+    "wgerjhn"
+   ]
+  }
+ ],
+ "variation_group": null,
+ "videos": [],
+ "author_history": [
+  "sevae"
+ ],
+ "total_authors_history": [
+  "wgerjhn",
+  "aom44ja6w@mozmail.com",
+  "wger.de",
+  "sevae"
+ ]
+}
