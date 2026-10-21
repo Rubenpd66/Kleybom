@@ -1,7 +1,7 @@
 # PROGRESO
 
 ## Fase actual
-Fase 4 (Construcción), versión 0.1. Hechas: Tareas 1 a 8. Tareas 1 a 13 hechas y v0.1 desplegada. Tareas 14 y 15 hechas. Tareas 14-19 hechas. v0.2 terminada (Tareas 14-23). v0.3 terminada. v0.4: Tareas 35-41 hechas. Siguiente: Tarea 42 (página de estadísticas). El usuario pidió continuar sin parar hasta el final, avisando solo cuando haga falta su mano (claves o configuraciones en webs).
+Fase 4 (Construcción), versión 0.1. Hechas: Tareas 1 a 8. Tareas 1 a 13 hechas y v0.1 desplegada. Tareas 14 y 15 hechas. Tareas 14-19 hechas. v0.2 terminada (Tareas 14-23). v0.3 terminada. v0.4: Tareas 35-42 hechas. Siguiente: Tarea 43 (panel de inicio). El usuario pidió continuar sin parar hasta el final, avisando solo cuando haga falta su mano (claves o configuraciones en webs).
 
 ## Tareas del plan completadas
 - Tarea 1: proyecto Next.js 16 + Tailwind 4 + TypeScript creado y compilando (`npm run build` OK).
@@ -51,6 +51,7 @@ Fase 4 (Construcción), versión 0.1. Hechas: Tareas 1 a 8. Tareas 1 a 13 hechas
 - Tarea 39: temporizador de descanso. `createRestTimer` (lógica sin React, 7 tests con reloj simulado; calcula desde la hora de fin, así no se desajusta con la pestaña en segundo plano) y `useRestTimer` (hook con `useSyncExternalStore`). **Sin instalar librerías** (no hacía falta Testing Library). Conectado a `LiveSession`: al registrar una serie arranca el descanso de la rutina; aviso fijo abajo con "Saltar descanso" y mensaje al terminar.
 - Tarea 40: `/panel/medidas` (privado): formulario de peso, cintura, cadera y pecho (todo opcional, una medición por día: si ya existe se sustituye) e historial con editar y borrar. `validateMeasurement` (7 tests; mismos límites que la base, fecha no futura, todos los errores a la vez). Aviso de datos de salud. Enlace desde el panel. 3 tests de navegador.
 - Tarea 41: `src/lib/stats/aggregate.ts` (15 tests): `weeklyVolume`, `weeklyVolumeSeries`, `currentStreak` (desde ayer si hoy no hay entreno; cruza meses; ignora fechas futuras), `movingAverage` (la ventana usa lo que haya), `addDays`, `weekStartOf` (lunes).
+- Tarea 42: `/estadisticas` (privado): constancia (racha, entrenos de la semana y de 30 días), volumen semanal de 12 semanas (barras), 1RM estimado por ejercicio (selector) y peso corporal con media móvil de 7 registros. **Cambio respecto al plan:** no se instaló librería de gráficos (el plan pedía proponerla y esperar OK); se hicieron gráficos SVG propios (`src/components/stats/Charts.tsx`), sin dependencias, con resumen accesible, detalle al pasar el ratón y tabla de datos. Colores de las series validados con el validador de paletas (`#1f6fb8` y `#8a5f00`; el azul de marca no tenía saturación suficiente para datos). Revisado con capturas en escritorio y móvil. Escalas en `src/lib/stats/chart.ts` (4 tests); consultas en `src/lib/stats/queries.ts`. Estado vacío con enlaces a entreno y medidas. 3 tests de navegador.
 
 ## Hecho
 - Comprobado: node v24.22.0, npm 11.19.1, git 2.51.0.
