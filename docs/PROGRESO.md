@@ -1,7 +1,7 @@
 # PROGRESO
 
 ## Fase actual
-Fase 4 (Construcción), versión 0.1. Hechas: Tareas 1 a 8. Tareas 1 a 13 hechas y v0.1 desplegada. Tareas 14 y 15 hechas. Tareas 14-19 hechas. v0.2 terminada (Tareas 14-23). Siguiente: Tarea 24 (v0.3 Nutrición). El usuario pidió continuar sin parar hasta el final, avisando solo cuando haga falta su mano (claves o configuraciones en webs).
+Fase 4 (Construcción), versión 0.1. Hechas: Tareas 1 a 8. Tareas 1 a 13 hechas y v0.1 desplegada. Tareas 14 y 15 hechas. Tareas 14-19 hechas. v0.2 terminada (Tareas 14-23). v0.3: Tarea 24 hecha. Siguiente: Tarea 25 (importar alimentos de USDA). El usuario pidió continuar sin parar hasta el final, avisando solo cuando haga falta su mano (claves o configuraciones en webs).
 
 ## Tareas del plan completadas
 - Tarea 1: proyecto Next.js 16 + Tailwind 4 + TypeScript creado y compilando (`npm run build` OK).
@@ -31,6 +31,7 @@ Fase 4 (Construcción), versión 0.1. Hechas: Tareas 1 a 8. Tareas 1 a 13 hechas
 - Tarea 22: `src/lib/calendar/dates.ts` sin librerías: `toLocalDateKey(d, tz)` (con `Intl.DateTimeFormat`), `daysInMonth`, `monthGrid(year, month)` (meses 1–12, semanas de lunes a domingo con relleno) y `addMonths`. 14 tests, incluidos cambios de hora de Madrid, bisiestos (2028, 2000, 2100) y cambio de año.
 - Tarea 23: `/calendario` (privado). Cuadrícula mensual (`MonthView`, tabla accesible: cada día es un enlace con etiqueta tipo "lunes, 2 de noviembre de 2026, 1 sesión"), navegación por meses con `?mes=AAAA-MM` y día elegido con `&dia=AAAA-MM-DD` (funciona sin JavaScript). Formulario para planificar (`PlanSessionDialog`: no es ventana modal, es un panel; fecha, rutina —plantillas y propias—, día de la rutina, nota) y, por sesión, marcar hecha/saltada/planificada o borrar. El "hoy" usa la zona horaria del perfil (por defecto Europe/Madrid). Mensaje de inicio para usuarios sin nada planificado. `validarSesion` con 7 tests; 5 tests de navegador. **A revisar en la Fase 5 (accesibilidad):** en otros formularios el `<select>` va dentro del `<label>` y Chrome añade la opción elegida al nombre accesible; en el calendario ya se usa `htmlFor`.
 - **Cierre v0.2:** se despliega sola en Vercel al subir a `main`.
+- Tarea 24: tablas `foods` (por 100 g; nutrientes NULL si se desconocen; lectura pública, sin escritura desde la web; índice trigram en `search_text`; clave única fuente+id), `meal_entries` (diario; gramos 0–5000; comida desayuno/comida/cena/snack; `food_id` con `restrict`) y `nutrition_goals` (uno por usuario; kcal 800–6000). RLS de dueño y cascada con la cuenta. 6 tests de seguridad con cuentas reales. Avisos: ninguno.
 
 ## Hecho
 - Comprobado: node v24.22.0, npm 11.19.1, git 2.51.0.
