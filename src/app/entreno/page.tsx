@@ -103,7 +103,7 @@ async function Contenido({ searchParams }: { searchParams: Params }) {
     // Sin cuenta: se ve cómo empezar un entreno; al empezarlo se pide entrar.
     return (
       <>
-        <AvisoInvitado ruta="/entreno" que="el registro de entrenos" />
+        <AvisoInvitado ruta="/entreno" />
         <section className="mt-10">
           <h2 className="font-display text-[1.7rem] font-bold">{t.otraTitulo}</h2>
           <StartForm rutinas={await listRoutineOptions()} />
@@ -185,7 +185,6 @@ export default function EntrenoPage(props: PageProps<"/entreno">) {
   return (
     <main className="mx-auto w-full max-w-[1180px] flex-1 px-4 py-12 sm:px-6">
       <h1 className="font-display text-[clamp(2.2rem,6vw,3.6rem)] font-extrabold leading-none">{t.titulo}</h1>
-      <p className="mt-3 max-w-[62ch] text-acero">{t.descripcion}</p>
       <Suspense fallback={<p className="mt-8 text-acero">{es.ejercicios.cargando}</p>}>
         <Contenido searchParams={props.searchParams} />
       </Suspense>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import FiltrosEnVivo from "@/components/search/FiltrosEnVivo";
 import { Suspense } from "react";
 import { formatNutriente } from "@/lib/foods/format";
 import { FOODS_PAGE_SIZE, searchFoods } from "@/lib/foods/queries";
@@ -30,23 +31,24 @@ async function Contenido({ searchParams }: { searchParams: Params }) {
 
   return (
     <>
-      <form method="get" role="search" className="mt-8 flex max-w-2xl flex-col gap-3 sm:flex-row sm:items-end">
+      <FiltrosEnVivo etiqueta={t.titulo} className="mt-8 flex max-w-2xl flex-col gap-3 sm:flex-row sm:items-end">
         <label className="flex flex-1 flex-col gap-1 text-sm font-bold">
           {t.buscarEtiqueta}
           <input
             type="search"
             name="q"
             defaultValue={q}
-            className="h-11 w-full rounded-md border-[1.5px] border-hierro bg-papel px-3 font-normal"
+            placeholder={t.buscarEjemplo}
+            autoComplete="off"
+            className="h-11 w-full rounded-xl border-[1.5px] border-linea bg-papel/80 px-3 font-normal backdrop-blur-sm focus:border-temple"
           />
         </label>
-        <button type="submit" className="h-11 rounded-md bg-hierro px-6 font-bold text-tiza">
+        <button type="submit" className="solo-sin-js h-11 rounded-xl bg-hierro px-6 font-bold text-tiza">
           {t.buscar}
         </button>
-      </form>
-      <p className="mt-2 text-sm text-acero">
-        {t.ayuda}{" "}
-        <Link href="/alimentos/codigo" className="text-azul underline">
+      </FiltrosEnVivo>
+      <p className="mt-4 text-sm">
+        <Link href="/alimentos/codigo" className="font-bold text-azul underline">
           {t.codigoBuscar}
         </Link>
       </p>
@@ -99,9 +101,7 @@ async function Contenido({ searchParams }: { searchParams: Params }) {
 export default function AlimentosPage(props: PageProps<"/alimentos">) {
   return (
     <main className="mx-auto w-full max-w-[1180px] flex-1 px-6 py-12">
-      <h1 className="font-display text-[clamp(2.2rem,6vw,3.6rem)] font-extrabold leading-none">{t.titulo}</h1>
-      <p className="mt-3 max-w-[62ch] text-acero">{t.descripcion}</p>
-      <Suspense fallback={<CargandoLista />}>
+      <h1 className="font-display text-[clamp(2.2rem,6vw,3.6rem)] font-extrabold leading-none">{t.titulo}</h1>      <Suspense fallback={<CargandoLista />}>
         <Contenido searchParams={props.searchParams} />
       </Suspense>
     </main>

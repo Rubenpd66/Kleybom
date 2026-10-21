@@ -53,7 +53,6 @@ test.describe("con una cuenta de prueba", () => {
     await page.goto(`/nutricion?dia=${DIA}`);
 
     await page.getByLabel("Buscar alimento").fill("platanos crudos");
-    await page.getByRole("button", { name: "Buscar", exact: true }).click();
     await page.getByLabel("Comida del día").selectOption("comida");
     await page.getByLabel("Gramos").fill("150");
     await page.getByRole("button", { name: "Añadir Plátanos, crudos" }).click();

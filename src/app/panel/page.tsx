@@ -68,7 +68,7 @@ async function Contenido() {
           <ol aria-labelledby="pasos" className="mt-4 flex flex-col gap-4">
             {t.pasos.map((p, i) => (
               <li key={p.enlace} className="flex gap-4">
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-temple font-bold text-hierro">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-temple font-bold text-tinta">
                   {i + 1}
                 </span>
                 <span>
@@ -97,7 +97,7 @@ async function Contenido() {
               {sesionesHoy.map((s) => (
                 <li key={s.id}>
                   <strong>{s.routine?.name ?? es.calendario.actividadLibre}</strong>
-                  {s.status === "hecha" && <span className="ml-2 rounded-full bg-temple px-2 text-xs text-hierro">{t.hecha}</span>}
+                  {s.status === "hecha" && <span className="ml-2 rounded-full bg-temple px-2 text-xs text-tinta">{t.hecha}</span>}
                 </li>
               ))}
             </ul>

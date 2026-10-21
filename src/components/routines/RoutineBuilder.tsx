@@ -1,6 +1,6 @@
 "use client";
 
-import { useReducer, useState, useTransition } from "react";
+import { useEffect, useReducer, useRef, useState, useTransition } from "react";
 import {
   buscarEjercicios,
   guardarRutina,
@@ -28,8 +28,23 @@ export default function RoutineBuilder() {
   const dias = Array.from({ length: estado.days_per_week }, (_, i) => i + 1);
   const destino = Math.min(diaDestino, estado.days_per_week);
 
-  function lanzarBusqueda() {
-    buscar(async () => setResultados(await buscarEjercicios(texto)));
+  // Búsqueda en vivo: 300 ms después de la última tecla, desde 2 letras; solo vale la última respuesta.
+  const espera = useRef<number | undefined>(undefined);
+  const ultima = useRef(0);
+  useEffect(() => () => window.clearTimeout(espera.current), []);
+  function lanzarBusqueda(valor: string) {
+    window.clearTimeout(espera.current);
+    const n = ++ultima.current;
+    if (valor.trim().length < 2) {
+      setResultados(null);
+      return;
+    }
+    espera.current = window.setTimeout(() => {
+      buscar(async () => {
+        const r = await buscarEjercicios(valor);
+        if (n === ultima.current) setResultados(r);
+      });
+    }, 300);
   }
 
   function enviar() {
@@ -86,14 +101,15 @@ export default function RoutineBuilder() {
           <label className="flex flex-1 flex-col gap-1 text-sm font-bold">
             {t.buscarEtiqueta}
             <input
+              type="search"
               value={texto}
-              onChange={(e) => setTexto(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") {
-                  e.preventDefault();
-                  lanzarBusqueda();
-                }
+              onChange={(e) => {
+                setTexto(e.target.value);
+                lanzarBusqueda(e.target.value);
               }}
+              placeholder={es.ejercicios.buscarEjemplo}
+              autoComplete="off"
+              aria-busy={buscando}
               className={campo}
             />
           </label>
@@ -107,14 +123,6 @@ export default function RoutineBuilder() {
               ))}
             </select>
           </label>
-          <button
-            type="button"
-            onClick={lanzarBusqueda}
-            disabled={buscando}
-            className="h-11 rounded-md bg-hierro px-6 font-bold text-tiza disabled:opacity-60"
-          >
-            {t.buscar}
-          </button>
         </div>
         {resultados && (
           <ul className="mt-3 flex flex-col gap-2" aria-live="polite">
@@ -128,7 +136,7 @@ export default function RoutineBuilder() {
                     setNombres((n) => ({ ...n, [r.id]: r.name_es }));
                     dispatch({ type: "addExercise", exercise_id: r.id, day_index: destino });
                   }}
-                  className="w-full rounded-md border border-linea bg-papel px-3 py-2 text-left hover:bg-white"
+                  className="w-full rounded-md border border-linea bg-papel px-3 py-2 text-left hover:bg-realce"
                 >
                   + {r.name_es}
                 </button>

@@ -3,23 +3,22 @@ import { es } from "@/lib/i18n/es";
 
 const t = es.invitado;
 
-// Aviso para quien visita una sección personal sin cuenta: puede probarla, pero no se guarda nada.
+// Aviso corto para quien usa una sección personal sin cuenta: puede probarla, pero no se guarda nada.
 // `ruta` es la página actual: tras entrar o registrarse se vuelve a ella.
-export default function AvisoInvitado({ ruta, que }: { ruta: string; que: string }) {
+export default function AvisoInvitado({ ruta }: { ruta: string }) {
   const volver = `?volver=${encodeURIComponent(ruta)}`;
   return (
-    <aside aria-label={t.etiqueta} className="mt-6 max-w-[70ch] rounded-xl border-[1.5px] border-azul bg-papel p-4">
-      <p>
-        {t.texto(que)}{" "}
-        <Link href={`/entrar${volver}`} className="font-bold text-azul underline">
-          {t.entrar}
-        </Link>{" "}
-        {t.o}{" "}
-        <Link href={`/registro${volver}`} className="font-bold text-azul underline">
-          {t.registro}
-        </Link>
-        .
-      </p>
+    <aside
+      aria-label={t.etiqueta}
+      className="mt-6 flex w-fit flex-wrap items-center gap-x-4 gap-y-2 rounded-full border border-linea bg-papel/80 px-4 py-2 text-sm backdrop-blur-sm"
+    >
+      <span>{t.texto}</span>
+      <Link href={`/entrar${volver}`} className="font-bold text-azul underline">
+        {t.entrar}
+      </Link>
+      <Link href={`/registro${volver}`} className="font-bold text-azul underline">
+        {t.registro}
+      </Link>
     </aside>
   );
 }

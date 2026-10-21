@@ -59,7 +59,7 @@ async function Contenido({ searchParams }: { searchParams: Params }) {
 
   return (
     <>
-    {!usuario && <AvisoInvitado ruta="/panel/medidas" que="el registro de medidas" />}
+    {!usuario && <AvisoInvitado ruta="/panel/medidas" />}
     <div className="mt-8 grid gap-10 lg:grid-cols-2">
       <MeasurementForm valores={valores} titulo={titulo} />
       <section>
@@ -121,7 +121,6 @@ export default function MedidasPage(props: PageProps<"/panel/medidas">) {
         {es.perfil.volver}
       </Link>
       <h1 className="mt-4 font-display text-[clamp(2.2rem,6vw,3.6rem)] font-extrabold leading-none">{t.titulo}</h1>
-      <p className="mt-3 max-w-[62ch] text-acero">{t.descripcion}</p>
       <p className="mt-2 max-w-[62ch] text-sm">{t.aviso}</p>
       <Suspense fallback={<p className="mt-8 text-acero">{es.ejercicios.cargando}</p>}>
         <Contenido searchParams={props.searchParams} />

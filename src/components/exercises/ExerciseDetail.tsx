@@ -56,7 +56,7 @@ export default function ExerciseDetail({ ejercicio: e }: { ejercicio: Ficha }) {
             <h2 className="text-sm font-bold">{t.musculosPrincipales}</h2>
             <ul className="mt-2 flex flex-wrap gap-2">
               {principales.map((m) => (
-                <li key={m.slug} className="rounded-full bg-temple px-3 py-1 text-sm font-medium text-hierro">
+                <li key={m.slug} className="rounded-full bg-temple px-3 py-1 text-sm font-medium text-tinta">
                   {m.name_es}
                 </li>
               ))}

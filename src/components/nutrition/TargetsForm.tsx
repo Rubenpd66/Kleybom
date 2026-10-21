@@ -138,7 +138,7 @@ export default function TargetsForm({ iniciales }: { iniciales: ValoresIniciales
               </div>
             </dl>
             {resultado.floorApplied && (
-              <p className="mt-4 rounded-md bg-temple p-3 text-sm text-hierro">{t.minimo(MINIMO_KCAL[sex as Sexo])}</p>
+              <p className="mt-4 rounded-md bg-temple p-3 text-sm text-tinta">{t.minimo(MINIMO_KCAL[sex as Sexo])}</p>
             )}
           </>
         )}

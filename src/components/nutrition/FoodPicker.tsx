@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useId, useState, useTransition } from "react";
+import { useEffect, useId, useRef, useState, useTransition } from "react";
 import { anadirEntrada, buscarAlimentos, type AlimentoEncontrado } from "@/app/nutricion/actions";
 import { formatNutriente } from "@/lib/foods/format";
 import { es } from "@/lib/i18n/es";
@@ -19,8 +19,24 @@ export default function FoodPicker({ fecha }: { fecha: string }) {
   const [error, setError] = useState<string | null>(null);
   const [pendiente, empezar] = useTransition();
 
-  function buscar() {
-    empezar(async () => setResultados(await buscarAlimentos(texto)));
+  // Búsqueda en vivo: 300 ms después de la última tecla, desde 2 letras. Solo vale la respuesta
+  // de la última búsqueda (una respuesta lenta de antes no pisa a la nueva).
+  const espera = useRef<number | undefined>(undefined);
+  const ultima = useRef(0);
+  useEffect(() => () => window.clearTimeout(espera.current), []);
+  function buscar(valor: string) {
+    window.clearTimeout(espera.current);
+    const n = ++ultima.current;
+    if (valor.trim().length < 2) {
+      setResultados(null);
+      return;
+    }
+    espera.current = window.setTimeout(() => {
+      empezar(async () => {
+        const r = await buscarAlimentos(valor);
+        if (n === ultima.current) setResultados(r);
+      });
+    }, 300);
   }
 
   function anadir(a: AlimentoEncontrado) {
@@ -40,14 +56,15 @@ export default function FoodPicker({ fecha }: { fecha: string }) {
         <label className="flex flex-col gap-1 text-sm font-bold">
           {t.buscarEtiqueta}
           <input
+            type="search"
             value={texto}
-            onChange={(e) => setTexto(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") {
-                e.preventDefault();
-                buscar();
-              }
+            onChange={(e) => {
+              setTexto(e.target.value);
+              buscar(e.target.value);
             }}
+            placeholder={es.alimentos.buscarEjemplo}
+            autoComplete="off"
+            aria-busy={pendiente}
             className={campo}
           />
         </label>
@@ -66,14 +83,6 @@ export default function FoodPicker({ fecha }: { fecha: string }) {
           <input inputMode="decimal" value={gramos} onChange={(e) => setGramos(e.target.value)} className={campo} />
         </label>
       </div>
-      <button
-        type="button"
-        onClick={buscar}
-        disabled={pendiente}
-        className="mt-3 h-11 rounded-md bg-hierro px-6 font-bold text-tiza disabled:opacity-60"
-      >
-        {t.buscar}
-      </button>
 
       {error && (
         <p role="alert" className="mt-3 rounded-md border-[1.5px] border-hierro p-3 text-sm">
@@ -90,7 +99,7 @@ export default function FoodPicker({ fecha }: { fecha: string }) {
                 aria-label={t.anadir(a.name_es)}
                 onClick={() => anadir(a)}
                 disabled={pendiente}
-                className="flex w-full flex-wrap justify-between gap-2 rounded-md border border-linea bg-tiza px-3 py-2 text-left hover:bg-white"
+                className="flex w-full flex-wrap justify-between gap-2 rounded-md border border-linea bg-tiza px-3 py-2 text-left hover:bg-realce"
               >
                 <span>+ {a.name_es}</span>
                 <span className="text-sm text-acero">{t.porCien(formatNutriente(a.kcal, "kcal"))}</span>

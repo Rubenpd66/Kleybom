@@ -22,7 +22,6 @@ test("el listado muestra las 6 plantillas", async ({ page }) => {
 test("filtrar por objetivo cambia la URL y el resultado", async ({ page }) => {
   await page.goto("/rutinas");
   await page.getByLabel("Objetivo").selectOption("movilidad");
-  await page.getByRole("button", { name: "Filtrar" }).click();
   await expect(page).toHaveURL(/goal=movilidad/);
   await expect(lista(page)).toHaveCount(1);
   await expect(page.getByText("Movilidad en casa")).toBeVisible();

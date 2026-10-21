@@ -14,7 +14,7 @@ export const metadata: Metadata = { title: `${t.titulo} — ${es.marca}`, robots
 // Sin cuenta se puede montar la rutina; al guardarla se pide entrar.
 async function Aviso() {
   await connection();
-  return (await getCurrentUser()) ? null : <AvisoInvitado ruta="/rutinas/nueva" que="el creador de rutinas" />;
+  return (await getCurrentUser()) ? null : <AvisoInvitado ruta="/rutinas/nueva" />;
 }
 
 export default function NuevaRutinaPage() {
@@ -26,7 +26,6 @@ export default function NuevaRutinaPage() {
       <h1 className="mt-4 font-display text-[clamp(2.2rem,6vw,3.6rem)] font-extrabold leading-none">
         {t.titulo}
       </h1>
-      <p className="mt-3 max-w-[62ch] text-acero">{t.descripcion}</p>
       <Suspense>
         <Aviso />
       </Suspense>

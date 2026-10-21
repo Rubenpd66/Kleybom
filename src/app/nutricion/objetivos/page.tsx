@@ -30,7 +30,7 @@ async function Contenido() {
     const vacios: ValoresIniciales = { sex: "", age: "", height_cm: "", weight_kg: "" };
     return (
       <>
-        <AvisoInvitado ruta="/nutricion/objetivos" que="la calculadora de objetivos" />
+        <AvisoInvitado ruta="/nutricion/objetivos" />
         <TargetsForm iniciales={vacios} />
       </>
     );
@@ -74,7 +74,6 @@ export default function ObjetivosPage() {
         {es.nav.enlaces.find((e) => e.href === "/nutricion")?.label}
       </Link>
       <h1 className="mt-4 font-display text-[clamp(2.2rem,6vw,3.6rem)] font-extrabold leading-none">{t.titulo}</h1>
-      <p className="mt-3 max-w-[62ch] text-acero">{t.descripcion}</p>
       <p className="mt-4 max-w-[62ch] rounded-md border border-linea bg-papel p-3 text-sm">{t.aviso}</p>
       <Suspense fallback={<p className="mt-8 text-acero">{es.ejercicios.cargando}</p>}>
         <Contenido />

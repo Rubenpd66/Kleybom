@@ -1,50 +1,38 @@
 import { expect, test } from "@playwright/test";
 
-test("la portada presenta la web y lleva a ejercicios y al registro", async ({ page }) => {
+test("la portada es breve y lleva a ejercicios y al registro", async ({ page }) => {
   await page.goto("/");
-  await expect(page.getByRole("heading", { level: 1, name: /Entrena, come y progresa/ })).toBeVisible();
+  await expect(page.getByRole("heading", { level: 1, name: "Entrena. Come. Progresa." })).toBeVisible();
   await expect(page.getByRole("main").getByRole("link", { name: "Explorar ejercicios" })).toHaveAttribute("href", "/ejercicios");
   await expect(page.getByRole("main").getByRole("link", { name: "Crear mi cuenta" })).toHaveAttribute("href", "/registro");
+  // Sin fotos estáticas: la parte visual son el fondo 3D y los elementos interactivos.
+  await expect(page.getByRole("main").locator("img, picture")).toHaveCount(0);
+});
+
+test("los accesos muestran las cifras reales del catálogo", async ({ page }) => {
+  await page.goto("/");
+  const accesos = page.getByRole("navigation", { name: "Secciones" });
+  await expect(accesos.getByRole("link")).toHaveCount(6);
+  await expect(accesos.getByRole("link", { name: /Ejercicios/ })).toContainText(/\d{3}/);
+  // En español los números de 4 cifras van sin punto (6038); a partir de 5, con punto (10.000).
+  await expect(accesos.getByRole("link", { name: /Alimentos/ })).toContainText(/\d{4}/);
 });
 
 test("el selector de músculos cambia los ejercicios con datos reales", async ({ page }) => {
   await page.goto("/");
   const grupos = page.getByRole("group", { name: "Grupos musculares" });
   await expect(grupos.getByRole("button", { name: "Pecho" })).toHaveAttribute("aria-pressed", "true");
-  const lista = page.getByRole("region", { name: "¿Qué quieres trabajar hoy?" }).getByRole("list");
+  const lista = page.getByRole("region", { name: "¿Qué trabajas hoy?" }).getByRole("list");
   await expect(lista.getByRole("listitem")).toHaveCount(3);
   await expect(lista).toContainText("Press de banca con mancuernas");
 
   await grupos.getByRole("button", { name: "Piernas" }).click();
   await expect(grupos.getByRole("button", { name: "Piernas" })).toHaveAttribute("aria-pressed", "true");
-  await expect(grupos.getByRole("button", { name: "Pecho" })).toHaveAttribute("aria-pressed", "false");
   await expect(lista).toContainText("Sentadillas");
-  await expect(page.getByRole("link", { name: "Ver todos los ejercicios de piernas" })).toHaveAttribute("href", "/ejercicios?muscle=cuadriceps");
+  await expect(page.getByRole("link", { name: "Todos los de piernas" })).toHaveAttribute("href", "/ejercicios?muscle=cuadriceps");
 
   await lista.getByRole("link", { name: /Sentadillas/ }).click();
   await expect(page).toHaveURL(/\/ejercicios\/sentadillas$/);
-});
-
-test("muestra una ficha de ejercicio y un alimento reales, con su fuente", async ({ page }) => {
-  await page.goto("/");
-  const ficha = page.getByRole("article", { name: "Press de banca con mancuernas" });
-  await expect(ficha.getByRole("listitem").filter({ hasText: "Pectoral" })).toBeVisible();
-  await expect(ficha).toContainText("licencia CC-BY-SA");
-  const tabla = page.getByRole("table", { name: /Plátanos, crudos · por 100 g/ });
-  await expect(tabla.getByRole("row", { name: /Energía/ })).toContainText("89 kcal");
-  await expect(page.getByText("Gráfico de ejemplo con datos inventados.")).toBeVisible();
-});
-
-test("la foto carga con texto alternativo: vertical en móvil y horizontal en escritorio", async ({ page }) => {
-  const foto = page.getByRole("img", { name: /se ata las zapatillas/ });
-  for (const [ancho, archivo] of [[375, "entreno-vertical"], [1280, "entreno-horizontal"]] as const) {
-    await page.setViewportSize({ width: ancho, height: 800 });
-    await page.goto("/");
-    await foto.scrollIntoViewIfNeeded();
-    await expect(foto).toHaveJSProperty("complete", true);
-    expect(await foto.evaluate((i: HTMLImageElement) => i.currentSrc)).toContain(archivo);
-    expect(await foto.evaluate((i: HTMLImageElement) => i.naturalWidth)).toBeGreaterThan(0);
-  }
 });
 
 test("al compartir en redes se usa la imagen de 1200 × 630", async ({ page }) => {

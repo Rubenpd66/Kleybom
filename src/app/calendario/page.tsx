@@ -61,7 +61,7 @@ function SesionDelDia({ s }: { s: Sesion }) {
         </span>
         <span
           className={`rounded-full px-3 py-0.5 text-sm ${
-            s.status === "hecha" ? "bg-temple font-medium text-hierro" : "border border-hierro"
+            s.status === "hecha" ? "bg-temple font-medium text-tinta" : "border border-hierro"
           }`}
         >
           {t.estados[s.status]}
@@ -109,7 +109,7 @@ async function Contenido({ searchParams }: { searchParams: Params }) {
 
   return (
     <>
-      {!usuario && <AvisoInvitado ruta="/calendario" que="el calendario" />}
+      {!usuario && <AvisoInvitado ruta="/calendario" />}
       {usuario && total === 0 && (
         <p className="mt-6 max-w-[62ch] rounded-xl border border-linea bg-papel p-4">{t.vacio}</p>
       )}
@@ -160,9 +160,7 @@ export default function CalendarioPage(props: PageProps<"/calendario">) {
     <main className="mx-auto w-full max-w-[1180px] flex-1 px-4 py-12 sm:px-6">
       <h1 className="font-display text-[clamp(2.2rem,6vw,3.6rem)] font-extrabold leading-none">
         {t.titulo}
-      </h1>
-      <p className="mt-3 max-w-[62ch] text-acero">{t.descripcion}</p>
-      <p className="mt-3">
+      </h1>      <p className="mt-3">
         <Link href="/entreno" className="font-bold text-azul underline">
           {es.entreno.empezarEntreno}
         </Link>

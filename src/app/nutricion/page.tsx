@@ -44,14 +44,14 @@ async function Contenido({ searchParams }: { searchParams: Params }) {
 
   return (
     <>
-      {!usuario && <AvisoInvitado ruta="/nutricion" que="el diario de comidas" />}
+      {!usuario && <AvisoInvitado ruta="/nutricion" />}
       <nav aria-label="Días" className="mt-6 flex flex-wrap items-center justify-between gap-3">
         <Link href={`/nutricion?dia=${moverDia(dia, -1)}`} className="text-sm font-bold text-azul underline">
           {t.diaAnterior}
         </Link>
         <p className="font-bold first-letter:uppercase">
           {nombreDia.format(new Date(`${dia}T00:00:00Z`))}
-          {dia === hoy && <span className="ml-2 rounded-full bg-temple px-2 py-0.5 text-xs text-hierro">{t.hoy}</span>}
+          {dia === hoy && <span className="ml-2 rounded-full bg-temple px-2 py-0.5 text-xs text-tinta">{t.hoy}</span>}
         </p>
         <Link href={`/nutricion?dia=${moverDia(dia, 1)}`} className="text-sm font-bold text-azul underline">
           {t.diaSiguiente}
@@ -119,7 +119,6 @@ export default function DiarioPage(props: PageProps<"/nutricion">) {
   return (
     <main className="mx-auto w-full max-w-[1180px] flex-1 px-4 py-12 sm:px-6">
       <h1 className="font-display text-[clamp(2.2rem,6vw,3.6rem)] font-extrabold leading-none">{t.titulo}</h1>
-      <p className="mt-3 max-w-[62ch] text-acero">{t.descripcion}</p>
       <Suspense fallback={<p className="mt-8 text-acero">{es.ejercicios.cargando}</p>}>
         <Contenido searchParams={props.searchParams} />
       </Suspense>

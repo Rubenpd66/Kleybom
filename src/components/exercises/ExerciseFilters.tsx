@@ -1,8 +1,9 @@
+import FiltrosEnVivo from "@/components/search/FiltrosEnVivo";
 import type { CatalogItem, ExerciseFilters as Filtros } from "@/lib/exercises/queries";
 import { es } from "@/lib/i18n/es";
 
 const t = es.ejercicios;
-const campo = "h-11 w-full rounded-md border-[1.5px] border-hierro bg-papel px-3";
+const campo = "h-11 w-full rounded-xl border-[1.5px] border-linea bg-papel/80 px-3 backdrop-blur-sm focus:border-temple";
 
 function Selector({
   nombre,
@@ -30,7 +31,7 @@ function Selector({
   );
 }
 
-// Formulario GET: funciona sin JavaScript y deja los filtros en la URL.
+// Filtros que actualizan el listado mientras se escribe (FiltrosEnVivo). Sin JS es un formulario GET normal.
 export default function ExerciseFilters({
   filtros,
   musculos,
@@ -42,25 +43,17 @@ export default function ExerciseFilters({
 }) {
   const niveles = Object.entries(t.niveles).map(([slug, name_es]) => ({ slug, name_es }));
   return (
-    <form method="get" className="grid gap-4 sm:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1fr_auto] lg:items-end">
+    <FiltrosEnVivo etiqueta={t.titulo} className="grid gap-3 sm:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1fr] lg:items-end">
       <label className="flex flex-col gap-1 text-sm font-bold sm:col-span-2 lg:col-span-1">
         {t.buscarEtiqueta}
-        <input
-          type="search"
-          name="q"
-          defaultValue={filtros.q ?? ""}
-          className={`${campo} font-normal`}
-        />
+        <input type="search" name="q" defaultValue={filtros.q ?? ""} placeholder={t.buscarEjemplo} autoComplete="off" className={`${campo} font-normal`} />
       </label>
       <Selector nombre="muscle" etiqueta={t.musculo} opciones={musculos} valor={filtros.muscle} />
       <Selector nombre="equipment" etiqueta={t.material} opciones={material} valor={filtros.equipment} />
       <Selector nombre="level" etiqueta={t.nivel} opciones={niveles} valor={filtros.level} />
-      <button
-        type="submit"
-        className="h-11 rounded-md bg-hierro px-6 font-bold text-tiza sm:col-span-2 lg:col-span-1"
-      >
+      <button type="submit" className="solo-sin-js h-11 rounded-xl bg-hierro px-6 font-bold text-tiza sm:col-span-2 lg:col-span-1">
         {t.buscar}
       </button>
-    </form>
+    </FiltrosEnVivo>
   );
 }

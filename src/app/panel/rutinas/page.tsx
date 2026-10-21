@@ -38,7 +38,7 @@ async function Contenido() {
             <div>
               <h2 className="font-display text-2xl font-bold leading-tight">{r.name}</h2>
               <p className="mt-2 flex flex-wrap items-center gap-2">
-                <span className="rounded-full bg-temple px-3 py-0.5 text-sm font-medium text-hierro">
+                <span className="rounded-full bg-temple px-3 py-0.5 text-sm font-medium text-tinta">
                   {es.rutinas.objetivos[r.goal]}
                 </span>
                 <span className="rounded-full border border-hierro px-3 py-0.5 text-sm">

@@ -60,9 +60,7 @@ export default function RutinasPage(props: PageProps<"/rutinas">) {
     <main className="mx-auto w-full max-w-[1180px] flex-1 px-6 py-12">
       <h1 className="font-display text-[clamp(2.2rem,6vw,3.6rem)] font-extrabold leading-none">
         {t.titulo}
-      </h1>
-      <p className="mt-3 max-w-[62ch] text-acero">{t.descripcion}</p>
-      <p className="mt-3">
+      </h1>      <p className="mt-3">
         <Link href="/rutinas/nueva" className="font-bold text-azul underline">
           {es.constructor.crear}
         </Link>

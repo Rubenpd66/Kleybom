@@ -62,10 +62,10 @@ export default function MonthView({
                     aria-current={elegido ? "date" : undefined}
                     className={`flex min-h-14 flex-col gap-1 p-1 sm:min-h-24 sm:p-2 ${
                       delMes ? "bg-papel" : "bg-tiza text-acero"
-                    } ${elegido ? "outline outline-[3px] -outline-offset-[3px] outline-hierro" : ""} hover:bg-white`}
+                    } ${elegido ? "outline outline-[3px] -outline-offset-[3px] outline-hierro" : ""} hover:bg-realce`}
                   >
                     <span
-                      className={`w-fit rounded-full px-1.5 font-bold ${esHoy ? "bg-temple text-hierro" : ""}`}
+                      className={`w-fit rounded-full px-1.5 font-bold ${esHoy ? "bg-temple text-tinta" : ""}`}
                     >
                       {Number(dia.slice(8))}
                     </span>

@@ -42,7 +42,7 @@ async function Contenido({ params }: { params: Promise<{ slug: string }> }) {
         {r.name}
       </h1>
       <p className="mt-4 flex flex-wrap items-center gap-2">
-        <span className="rounded-full bg-temple px-3 py-0.5 text-sm font-medium text-hierro">
+        <span className="rounded-full bg-temple px-3 py-0.5 text-sm font-medium text-tinta">
           {t.objetivos[r.goal]}
         </span>
         <span className="rounded-full border border-hierro px-3 py-0.5 text-sm">{t.niveles[r.level]}</span>

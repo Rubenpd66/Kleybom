@@ -189,7 +189,7 @@ export default function LiveSession({
         />
       ))}
       {(descanso.running || avisarFin) && (
-        <div className="sticky bottom-4 z-10 flex flex-wrap items-center justify-between gap-3 rounded-xl border-[1.5px] border-hierro bg-temple p-4 text-hierro">
+        <div className="sticky bottom-4 z-10 flex flex-wrap items-center justify-between gap-3 rounded-xl border-[1.5px] border-hierro bg-temple p-4 text-tinta">
           {descanso.running ? (
             <p role="timer" className="font-display text-2xl font-bold tabular-nums">
               {t.descansoQueda(descanso.remaining)}
@@ -221,7 +221,7 @@ export default function LiveSession({
         type="button"
         onClick={terminar}
         disabled={ocupado}
-        className="h-12 w-full rounded-md bg-temple px-6 font-bold text-hierro disabled:opacity-60 sm:w-fit"
+        className="h-12 w-full rounded-md bg-temple px-6 font-bold text-tinta disabled:opacity-60 sm:w-fit"
       >
         {t.terminar}
       </button>

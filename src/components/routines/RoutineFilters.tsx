@@ -1,8 +1,9 @@
 import type { RoutineFilters as Filtros } from "@/lib/routines/queries";
+import FiltrosEnVivo from "@/components/search/FiltrosEnVivo";
 import { es } from "@/lib/i18n/es";
 
 const t = es.rutinas;
-const campo = "h-11 w-full rounded-md border-[1.5px] border-hierro bg-papel px-3 font-normal";
+const campo = "h-11 w-full rounded-xl border-[1.5px] border-linea bg-papel/80 px-3 font-normal backdrop-blur-sm focus:border-temple";
 
 function Selector({
   nombre,
@@ -30,15 +31,15 @@ function Selector({
   );
 }
 
-// Formulario GET: funciona sin JavaScript y deja los filtros en la URL.
+// Los desplegables filtran al momento (FiltrosEnVivo). Sin JavaScript es un formulario GET normal.
 export default function RoutineFilters({ filtros }: { filtros: Filtros }) {
   return (
-    <form method="get" className="grid gap-4 sm:grid-cols-[1fr_1fr_auto] sm:items-end">
+    <FiltrosEnVivo etiqueta={t.titulo} className="grid max-w-2xl gap-4 sm:grid-cols-[1fr_1fr_auto] sm:items-end">
       <Selector nombre="goal" etiqueta={t.objetivo} opciones={t.objetivos} valor={filtros.goal} />
       <Selector nombre="level" etiqueta={t.nivel} opciones={t.niveles} valor={filtros.level} />
-      <button type="submit" className="h-11 rounded-md bg-hierro px-6 font-bold text-tiza">
+      <button type="submit" className="solo-sin-js h-11 rounded-xl bg-hierro px-6 font-bold text-tiza">
         {t.filtrar}
       </button>
-    </form>
+    </FiltrosEnVivo>
   );
 }

@@ -18,8 +18,8 @@ test("sin cuenta se pueden ver el calendario, los registros y las estadísticas,
     expect(r?.status(), ruta).toBe(200);
     expect(new URL(page.url()).pathname, ruta).toBe(ruta);
     const aviso = page.getByRole("complementary", { name: "Sin cuenta" });
-    await expect(aviso, ruta).toContainText("no se guardará nada");
-    await expect(aviso.getByRole("link", { name: "entra" })).toHaveAttribute("href", `/entrar?volver=${encodeURIComponent(ruta)}`);
+    await expect(aviso, ruta).toContainText("no se guarda nada");
+    await expect(aviso.getByRole("link", { name: "Entrar" })).toHaveAttribute("href", `/entrar?volver=${encodeURIComponent(ruta)}`);
   }
 });
 
@@ -52,7 +52,7 @@ test.describe("volver tras entrar", () => {
 
   test("desde el aviso del calendario se entra y se vuelve al calendario", async ({ page }) => {
     await page.goto("/calendario");
-    await page.getByRole("complementary", { name: "Sin cuenta" }).getByRole("link", { name: "entra" }).click();
+    await page.getByRole("complementary", { name: "Sin cuenta" }).getByRole("link", { name: "Entrar" }).click();
     await expect(page).toHaveURL(/\/entrar\?volver=%2Fcalendario$/);
     await page.getByLabel("Correo electrónico").fill(correo);
     await page.getByLabel("Contraseña").fill(contrasena);

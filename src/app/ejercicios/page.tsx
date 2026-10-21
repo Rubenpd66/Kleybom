@@ -60,77 +60,64 @@ async function Contenido({ searchParams }: { searchParams: Params }) {
   const paginas = Math.max(1, Math.ceil(total / PAGE_SIZE));
 
   return (
-    <>
-      <div className="mt-8 grid items-start gap-6 lg:grid-cols-[1fr_22rem]">
+    // Escritorio: filtros y catálogo a la izquierda, el cuerpo fijo a la derecha. Móvil: filtros, cuerpo y catálogo.
+    <div className="mt-8 grid items-start gap-x-8 gap-y-6 lg:grid-cols-[1fr_20rem]">
+      <div className="lg:col-start-1">
         <ExerciseFilters
-          // Al elegir en el mapa cambia la URL sin recargar: la key rehace el formulario con los filtros nuevos.
-          key={JSON.stringify(filtros)}
+          // Al elegir en el mapa cambia la URL: la key rehace el formulario con los filtros nuevos.
+          // No incluye el texto, para no perder el foco mientras se escribe.
+          key={[filtros.muscle, filtros.equipment, filtros.level].join("|")}
           filtros={filtros}
           musculos={musculos}
           material={material}
         />
-        <BodyMap
-          seleccionado={filtros.muscle}
-          nombre={musculos.find((m) => m.slug === filtros.muscle)?.name_es}
-        />
       </div>
 
-      <p className="mt-8 text-sm text-acero" aria-live="polite">
-        {t.resultados(total)}
-      </p>
+      <aside className="lg:sticky lg:top-24 lg:col-start-2 lg:row-span-2 lg:row-start-1">
+        <BodyMap seleccionado={filtros.muscle} nombre={musculos.find((m) => m.slug === filtros.muscle)?.name_es} />
+      </aside>
 
-      {items.length === 0 ? (
-        <div className="mt-4 rounded-xl border border-linea bg-papel p-6">
-          <p>{t.vacio}</p>
-          <Link
-            href="/ejercicios"
-            className="mt-4 inline-block font-bold text-azul underline"
-          >
-            {t.quitarFiltros}
-          </Link>
-        </div>
-      ) : (
-        <ul
-          aria-label={t.listaEtiqueta}
-          className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
-        >
-          {items.map((e) => (
-            <ExerciseCard key={e.id} ejercicio={e} />
-          ))}
-        </ul>
-      )}
+      <section aria-label={t.listaEtiqueta} className="lg:col-start-1">
+        <p className="text-sm text-acero" aria-live="polite">
+          {t.resultados(total)}
+        </p>
 
-      {(pagina > 1 || pagina < paginas) && (
-        <nav
-          aria-label="Paginación"
-          className="mt-8 flex items-center justify-between gap-4"
-        >
-          {pagina > 1 ? (
-            <Link
-              href={enlace(filtros, pagina - 1)}
-              className="font-bold text-azul underline"
-            >
-              {t.anterior}
+        {items.length === 0 ? (
+          <div className="mt-4 rounded-2xl border border-linea bg-papel/80 p-6">
+            <p>{t.vacio}</p>
+            <Link href="/ejercicios" className="mt-4 inline-block font-bold text-azul underline">
+              {t.quitarFiltros}
             </Link>
-          ) : (
-            <span />
-          )}
-          <span className="text-sm text-acero">
-            {t.pagina(pagina, paginas)}
-          </span>
-          {pagina < paginas ? (
-            <Link
-              href={enlace(filtros, pagina + 1)}
-              className="font-bold text-azul underline"
-            >
-              {t.siguiente}
-            </Link>
-          ) : (
-            <span />
-          )}
-        </nav>
-      )}
-    </>
+          </div>
+        ) : (
+          <ul aria-label={t.listaEtiqueta} className="mt-4 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+            {items.map((e) => (
+              <ExerciseCard key={e.id} ejercicio={e} />
+            ))}
+          </ul>
+        )}
+
+        {(pagina > 1 || pagina < paginas) && (
+          <nav aria-label="Paginación" className="mt-8 flex items-center justify-between gap-4">
+            {pagina > 1 ? (
+              <Link href={enlace(filtros, pagina - 1)} className="font-bold text-azul underline">
+                {t.anterior}
+              </Link>
+            ) : (
+              <span />
+            )}
+            <span className="text-sm text-acero">{t.pagina(pagina, paginas)}</span>
+            {pagina < paginas ? (
+              <Link href={enlace(filtros, pagina + 1)} className="font-bold text-azul underline">
+                {t.siguiente}
+              </Link>
+            ) : (
+              <span />
+            )}
+          </nav>
+        )}
+      </section>
+    </div>
   );
 }
 
@@ -140,7 +127,6 @@ export default function EjerciciosPage(props: PageProps<"/ejercicios">) {
       <h1 className="font-display text-[clamp(2.2rem,6vw,3.6rem)] font-extrabold leading-none">
         {t.titulo}
       </h1>
-      <p className="mt-3 max-w-[62ch] text-acero">{t.descripcion}</p>
       <Suspense fallback={<CargandoLista />}>
         <Contenido searchParams={props.searchParams} />
       </Suspense>

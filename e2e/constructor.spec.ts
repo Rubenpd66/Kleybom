@@ -16,7 +16,6 @@ const contrasena = "contrasena-de-prueba-123";
 
 async function buscarYAnadir(page: Page, texto: string, nombre: string) {
   await page.getByLabel("Buscar ejercicio").fill(texto);
-  await page.getByRole("button", { name: "Buscar", exact: true }).click();
   await page.getByRole("button", { name: `Añadir ${nombre}`, exact: true }).click();
 }
 

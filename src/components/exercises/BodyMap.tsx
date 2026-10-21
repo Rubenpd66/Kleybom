@@ -7,8 +7,9 @@ import { enlaceConMusculo, musculoDeZona, zonasDeMusculo } from "@/lib/exercises
 import { es } from "@/lib/i18n/es";
 
 const t = es.ejercicios;
-const AMBAR = "#f0b429";
-const CUERPO = "#b4bdc3";
+// Variables del tema (la librería aplica el color con style, así que var() funciona).
+const AMBAR = "var(--temple)";
+const CUERPO = "var(--cuerpo)";
 
 // Mapa del cuerpo (delante y detrás): al pulsar un músculo se filtra el listado.
 // Es una ayuda visual para ratón y pantalla táctil; el selector "Músculo" del formulario

@@ -1,6 +1,4 @@
 import { cacheLife } from "next/cache";
-import { getExerciseBySlug, type ExerciseDetail } from "@/lib/exercises/queries";
-import { getFoodBySlug, type FoodDetail } from "@/lib/foods/queries";
 import { createPublicClient } from "@/lib/supabase/public";
 
 // Ejercicios del selector de la portada: elegidos entre los que usan las rutinas plantilla
@@ -14,12 +12,10 @@ export const GRUPOS = [
   { clave: "abdomen", nombre: "Abdomen", musculo: "abdominales", slugs: ["plancha-frontal", "abdominales", "bird-dog"] },
 ] as const;
 
-export const EJERCICIO_EJEMPLO = "press-de-banca-con-mancuernas";
-export const ALIMENTO_EJEMPLO = "platanos-crudos-173944";
-
 export type EjercicioBreve = { slug: string; name_es: string; principales: string[] };
 export type GrupoPortada = { clave: string; nombre: string; musculo: string; ejercicios: EjercicioBreve[] };
-export type DatosPortada = { grupos: GrupoPortada[]; ejemplo: ExerciseDetail | null; alimento: FoodDetail | null };
+export type Cifras = { ejercicios: number; alimentos: number; rutinas: number; recetas: number };
+export type DatosPortada = { grupos: GrupoPortada[]; cifras: Cifras };
 
 const SELECCION: string = "slug, name_es, exercise_muscles(role, muscles(name_es))";
 type Fila = { slug: string; name_es: string; exercise_muscles: { role: string; muscles: { name_es: string } | null }[] };
@@ -30,10 +26,13 @@ export async function getHomeData(): Promise<DatosPortada> {
   cacheLife("days");
   const db = createPublicClient();
   const todos = GRUPOS.flatMap((g) => g.slugs);
-  const [{ data, error }, ejemplo, alimento] = await Promise.all([
+  const contar = (tabla: string) => db.from(tabla).select("id", { count: "exact", head: true });
+  const [{ data, error }, ejercicios, alimentos, rutinas, recetas] = await Promise.all([
     db.from("exercises").select(SELECCION).in("slug", todos),
-    getExerciseBySlug(EJERCICIO_EJEMPLO, db),
-    getFoodBySlug(ALIMENTO_EJEMPLO, db),
+    contar("exercises"),
+    contar("foods"),
+    db.from("routines").select("id", { count: "exact", head: true }).is("owner_id", null),
+    contar("recipes"),
   ]);
   if (error) throw error;
   const porSlug = new Map((data as unknown as Fila[]).map((f) => [f.slug, f]));
@@ -50,5 +49,6 @@ export async function getHomeData(): Promise<DatosPortada> {
       return [{ slug: f.slug, name_es: f.name_es, principales }];
     }),
   }));
-  return { grupos, ejemplo, alimento };
+  const cifras = { ejercicios: ejercicios.count ?? 0, alimentos: alimentos.count ?? 0, rutinas: rutinas.count ?? 0, recetas: recetas.count ?? 0 };
+  return { grupos, cifras };
 }

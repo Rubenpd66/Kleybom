@@ -15,11 +15,10 @@ export default function MuscleSelector({ grupos }: { grupos: GrupoPortada[] }) {
   if (!grupo) return null;
 
   return (
-    <section aria-labelledby="selector-titulo" className="rounded-xl bg-hierro p-5 text-tiza sm:p-6">
+    <section aria-labelledby="selector-titulo" className="rounded-3xl border border-linea bg-papel/75 p-5 shadow-sm backdrop-blur-md sm:p-6">
       <h2 id="selector-titulo" className="font-display text-[2rem] font-bold leading-tight">
         {t.selectorTitulo}
       </h2>
-      <p className="mt-1 text-[0.95rem] text-[#b9c2c9]">{t.selectorAyuda}</p>
       <div role="group" aria-label={t.selectorGrupos} className="mt-4 flex flex-wrap gap-2">
         {grupos.map((g) => (
           <button
@@ -27,26 +26,27 @@ export default function MuscleSelector({ grupos }: { grupos: GrupoPortada[] }) {
             type="button"
             aria-pressed={g.clave === grupo.clave}
             onClick={() => setActivo(g.clave)}
-            className="min-h-10 rounded-full border-[1.5px] border-[#5d6a74] px-3.5 text-[0.95rem] font-medium aria-pressed:border-temple aria-pressed:bg-temple aria-pressed:text-hierro"
+            className="min-h-10 rounded-full border-[1.5px] border-linea px-3.5 text-[0.95rem] font-medium hover:border-hierro aria-pressed:border-temple aria-pressed:bg-temple aria-pressed:text-tinta"
           >
             {g.nombre}
           </button>
         ))}
       </div>
-      <ul aria-live="polite" aria-label={grupo.nombre} className="mt-5 flex flex-col gap-2">
-        {grupo.ejercicios.map((e) => (
-          <li key={e.slug}>
-            <Link
-              href={`/ejercicios/${e.slug}`}
-              className="tarjeta-hover flex flex-col rounded-lg bg-[#262d33] px-4 py-3 hover:bg-[#2f373e]"
-            >
-              <strong>{e.name_es}</strong>
-              {e.principales.length > 0 && <small className="text-[#b9c2c9]">{e.principales.join(" · ")}</small>}
+      {/* La key reinicia la lista al cambiar de grupo para que entre con su animación. */}
+      <ul key={grupo.clave} aria-live="polite" aria-label={grupo.nombre} className="mt-5 flex flex-col gap-2">
+        {grupo.ejercicios.map((e, i) => (
+          <li key={e.slug} className="lista-entra" style={{ animationDelay: `${i * 50}ms` }}>
+            <Link href={`/ejercicios/${e.slug}`} className="tarjeta-hover flex items-center justify-between rounded-xl bg-tiza/70 px-4 py-3 hover:bg-realce">
+              <span className="flex flex-col">
+                <strong>{e.name_es}</strong>
+                {e.principales.length > 0 && <small className="text-acero">{e.principales.join(" · ")}</small>}
+              </span>
+              <span aria-hidden="true" className="text-temple-osc">→</span>
             </Link>
           </li>
         ))}
       </ul>
-      <Link href={`/ejercicios?muscle=${grupo.musculo}`} className="mt-4 inline-block text-sm font-bold text-temple underline">
+      <Link href={`/ejercicios?muscle=${grupo.musculo}`} className="mt-4 inline-block text-sm font-bold text-azul underline">
         {t.verTodos(grupo.nombre)}
       </Link>
     </section>

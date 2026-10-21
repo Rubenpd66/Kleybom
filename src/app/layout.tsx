@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import Fondo3D from "@/components/fondo/Fondo3D";
 import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
+import { SCRIPT_TEMA } from "@/lib/tema";
 import { es } from "@/lib/i18n/es";
 import { IMAGEN_COMPARTIR, SITE_URL } from "@/lib/seo/site";
 import "./globals.css";
@@ -35,11 +36,15 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="es" className={`${titulos.variable} ${texto.variable} h-full`}>
+    // suppressHydrationWarning: el script del tema puede poner data-tema en <html> antes de que cargue React.
+    <html lang="es" className={`${titulos.variable} ${texto.variable} h-full`} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: SCRIPT_TEMA }} />
+      </head>
       <body className="flex min-h-full flex-col">
         <a
           href="#contenido"
-          className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:bg-temple focus:p-3"
+          className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:bg-temple focus:p-3 focus:text-tinta"
         >
           {es.nav.saltarAlContenido}
         </a>

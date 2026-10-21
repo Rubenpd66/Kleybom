@@ -11,8 +11,10 @@ const M = { arriba: 10, derecha: 14, abajo: 26, izquierda: 64 };
 const AREA_X = ANCHO - M.izquierda - M.derecha;
 const AREA_Y = ALTO - M.arriba - M.abajo;
 
-// Colores de las series validados con el validador de paletas (daltonismo, contraste y saturación).
-export const COLOR_SERIE = { principal: "#1f6fb8", secundaria: "#8a5f00" };
+// Colores de las series según el tema (--serie-1 ámbar, --serie-2 gris acero; ver globals.css), comprobados con el
+// validador de paletas: pasan contraste, daltonismo y separación. El gris "se lee gris" a propósito (paleta de la marca);
+// la segunda serie va además en discontinua y con leyenda. Se aplican con style: var() no es fiable en atributos SVG.
+export const COLOR_SERIE = { principal: "var(--serie-1)", secundaria: "var(--serie-2)" };
 
 type Formato = (v: number) => string;
 
@@ -139,7 +141,7 @@ export function BarChart({
                 width={Math.max(ancho - hueco, 1)}
                 height={h}
                 rx={Math.min(4, (ancho - hueco) / 2)}
-                fill={COLOR_SERIE.principal}
+                style={{ fill: COLOR_SERIE.principal }}
                 pointerEvents="none"
               />
             )}
@@ -178,7 +180,7 @@ export function LineChart({
           {series.map((s) => (
             <li key={s.nombre} className="flex items-center gap-2">
               <svg width="24" height="8" aria-hidden="true">
-                <line x1="0" x2="24" y1="4" y2="4" stroke={s.color} strokeWidth="2" strokeDasharray={s.discontinua ? "5 4" : undefined} />
+                <line x1="0" x2="24" y1="4" y2="4" style={{ stroke: s.color }} strokeWidth="2" strokeDasharray={s.discontinua ? "5 4" : undefined} />
               </svg>
               {s.nombre}
             </li>
@@ -209,7 +211,7 @@ export function LineChart({
               <polyline
                 points={pts.map((q) => `${q.x},${q.y}`).join(" ")}
                 fill="none"
-                stroke={s.color}
+                style={{ stroke: s.color }}
                 strokeWidth={2}
                 strokeDasharray={s.discontinua ? "5 4" : undefined}
                 strokeLinejoin="round"
@@ -217,7 +219,7 @@ export function LineChart({
               {!s.discontinua &&
                 pts.map((q) => (
                   <g key={q.p.date}>
-                    <circle cx={q.x} cy={q.y} r={4} fill={s.color} stroke="var(--papel)" strokeWidth={2} />
+                    <circle cx={q.x} cy={q.y} r={4} style={{ fill: s.color, stroke: "var(--papel)" }} strokeWidth={2} />
                     <circle cx={q.x} cy={q.y} r={12} fill="transparent">
                       <title>{`${formatoFecha(q.p.date)}: ${formato(q.p.value)}`}</title>
                     </circle>

@@ -15,7 +15,7 @@ async function Lista() {
     <ul aria-label={t.listaEtiqueta} className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {recetas.map((r) => (
         <li key={r.id} className="rounded-xl border border-linea bg-papel">
-          <Link href={`/recetas/${r.slug}`} className="flex h-full flex-col gap-2 p-4 tarjeta-hover hover:bg-white">
+          <Link href={`/recetas/${r.slug}`} className="flex h-full flex-col gap-2 p-4 tarjeta-hover hover:bg-realce">
             <span className="font-display text-2xl font-bold leading-tight">{r.name_es}</span>
             {r.description_es && <span className="text-sm text-acero">{r.description_es}</span>}
             <span className="mt-auto flex flex-wrap gap-2 pt-2 text-sm">
@@ -35,7 +35,6 @@ export default function RecetasPage() {
   return (
     <main className="mx-auto w-full max-w-[1180px] flex-1 px-6 py-12">
       <h1 className="font-display text-[clamp(2.2rem,6vw,3.6rem)] font-extrabold leading-none">{t.titulo}</h1>
-      <p className="mt-3 max-w-[62ch] text-acero">{t.descripcion}</p>
       <Suspense fallback={<CargandoLista />}>
         <Lista />
       </Suspense>

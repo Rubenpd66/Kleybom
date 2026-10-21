@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Suspense } from "react";
 import { es } from "@/lib/i18n/es";
 import MobileNav from "./MobileNav";
+import TemaToggle from "./TemaToggle";
 
 // Botón de cuenta: "Mi panel" si hay cookie de sesión de Supabase, "Entrar" si no.
 // Solo mira si existe la cookie (sin llamar a Supabase); si la sesión caducó, /panel redirige a /entrar.
@@ -27,15 +28,14 @@ async function Cuenta() {
 
 export default function Header() {
   return (
-    <header className="relative border-b border-linea bg-tiza">
+    <header className="sticky top-0 z-20 border-b border-linea bg-tiza/80 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-[1180px] items-center justify-between gap-6 px-6">
-        <Link href="/" className="flex items-center gap-2.5 font-display text-[1.9rem] font-extrabold leading-none tracking-[.02em]">
-          {/* Logo decorativo: el nombre ya va escrito al lado */}
-          <img src="/logo.svg" alt="" width={43} height={32} className="h-8 w-auto" />
-          <span>
-            {es.marca}
-            <span className="text-temple-osc">.</span>
-          </span>
+        {/* Solo el icono KB. Se dibuja con una máscara del logo y el color del texto: se ve en claro y en oscuro. */}
+        <Link href="/" aria-label={es.nav.inicio} className="flex h-10 items-center">
+          <span
+            aria-hidden="true"
+            className="block h-8 w-[43px] bg-hierro [mask:url(/logo.svg)_center/contain_no-repeat] hover:bg-temple-osc"
+          />
         </Link>
         <nav aria-label={es.nav.etiqueta} className="hidden md:block">
           <ul className="flex gap-6">
@@ -48,9 +48,12 @@ export default function Header() {
             ))}
           </ul>
         </nav>
-        <Suspense fallback={<BotonCuenta conSesion={false} />}>
-          <Cuenta />
-        </Suspense>
+        <div className="flex items-center gap-3">
+          <TemaToggle />
+          <Suspense fallback={<BotonCuenta conSesion={false} />}>
+            <Cuenta />
+          </Suspense>
+        </div>
       </div>
     </header>
   );
