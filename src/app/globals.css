@@ -1,26 +1,46 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --tiza: #edefea;
+  --papel: #f8f9f6;
+  --hierro: #1c2126;
+  --acero: #4f5d68;
+  --linea: #c9cfc8;
+  --temple: #f0b429;
+  --temple-osc: #8a5f00;
+  --azul: #2f5d8a;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-tiza: var(--tiza);
+  --color-papel: var(--papel);
+  --color-hierro: var(--hierro);
+  --color-acero: var(--acero);
+  --color-linea: var(--linea);
+  --color-temple: var(--temple);
+  --color-temple-osc: var(--temple-osc);
+  --color-azul: var(--azul);
+  --font-sans: var(--font-texto);
+  --font-display: var(--font-titulos);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--tiza);
+  color: var(--hierro);
+  font-family: var(--font-texto), system-ui, sans-serif;
+  font-size: 17px;
+}
+
+:focus-visible {
+  outline: 3px solid var(--azul);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
 }
