@@ -9,7 +9,7 @@ Leída por Claude Code, Codex y Gemini. Estado actual en `docs/PROGRESO.md`.
 - **Idioma:** español (España) de entrada. Otros idiomas: por decidir.
 - **Frontend:** animaciones y 3D solo donde aporten (p. ej. visor de ejercicios). Nunca deben complicar la lógica ni el rendimiento. Imágenes con Nano Banana (modelo de imágenes de Google).
 
-## Stack (PROPUESTO — pendiente de OK del usuario)
+## Stack (aprobado por el usuario)
 - Next.js + Tailwind CSS (la web necesita cuentas de usuario, calendario y estadísticas guardadas)
 - Supabase (base de datos, login, almacenamiento)
 - Vercel (despliegue)
