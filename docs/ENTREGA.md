@@ -24,7 +24,6 @@ Fecha: 21 de octubre de 2026.
 - **Guías:** 5 guías con fuentes (OMS, ACSM y otras).
 - **Cuenta:** perfil, medidas, descarga de tus datos en JSON y borrado de cuenta.
 - **Legal:** aviso legal, privacidad y cookies; consentimiento para los datos de salud.
-
 - **Fondos 3D:** cada sección tiene su propio fondo animado (en ordenador; en móvil no se dibuja para ahorrar batería y datos).
 
 Sin cuenta se puede ver y probar todo. Solo hace falta entrar para guardar.
