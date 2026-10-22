@@ -28,11 +28,16 @@ test("en móvil (375 px) el menú se abre con teclado y Escape lo cierra devolvi
   await page.setViewportSize({ width: 375, height: 700 });
   await page.goto("/");
   const boton = page.getByRole("button", { name: "Abrir menú" });
-  await boton.focus();
-  await page.keyboard.press("Enter");
-  await expect(page.locator("#menu-movil")).toBeVisible();
-  await expect(page.getByRole("button", { name: "Cerrar menú" })).toHaveAttribute("aria-expanded", "true");
+  // Hasta que la página no está lista (hidratada), Enter no hace nada: se reintenta.
+  await expect(async () => {
+    await boton.focus();
+    await page.keyboard.press("Enter");
+    await expect(boton).toHaveAttribute("aria-expanded", "true", { timeout: 1000 });
+  }).toPass();
+  const menu = page.locator("#menu-lateral");
+  await expect(menu.getByRole("link", { name: "Entrar" })).toBeFocused();
+  await expect(boton).toHaveAttribute("aria-expanded", "true");
   await page.keyboard.press("Escape");
-  await expect(page.locator("#menu-movil")).toHaveCount(0);
+  await expect(menu).toHaveAttribute("inert", "");
   await expect(page.getByRole("button", { name: "Abrir menú" })).toBeFocused();
 });

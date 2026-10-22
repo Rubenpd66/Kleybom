@@ -10,7 +10,11 @@ test("el selector cambia toda la web al inglés y vuelve al español, sin cambia
   await expect(page.getByRole("heading", { level: 1, name: "Train. Eat. Progress." })).toBeVisible();
   await expect(page).toHaveURL(/\/$/);
   await expect(page.locator("html")).toHaveAttribute("lang", "en");
-  await expect(page.getByRole("navigation", { name: "Main" }).getByRole("link", { name: "Exercises" })).toBeVisible();
+  // Tras recargar, el botón responde cuando la página está lista: se reintenta.
+  await expect(async () => {
+    await page.getByRole("button", { name: "Open menu" }).click();
+    await expect(page.locator("#menu-lateral").getByRole("link", { name: "Macro calculator" })).toBeVisible({ timeout: 1000 });
+  }).toPass();
 
   // Los datos también: ejercicios, recetas y guías salen en inglés.
   await page.goto("/ejercicios/sentadillas");

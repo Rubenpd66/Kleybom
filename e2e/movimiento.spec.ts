@@ -10,11 +10,11 @@ const movimiento = (page: Page, selector: string) =>
 test.describe("en 375 px con movimiento normal", () => {
   test.use({ viewport: { width: 375, height: 700 } });
 
-  test("el menú móvil entra con transición", async ({ page }) => {
+  test("el menú lateral entra con transición", async ({ page }) => {
     await page.goto("/guias");
     await page.getByRole("button", { name: "Abrir menú" }).click();
-    expect((await movimiento(page, "#menu-movil")).transicion).not.toBe("0s");
-    await expect(page.locator("#menu-movil")).toHaveCSS("opacity", "1");
+    expect((await movimiento(page, "#menu-lateral")).transicion).not.toBe("0s");
+    await expect(page.locator("#menu-lateral")).toHaveCSS("opacity", "1");
   });
 });
 
@@ -25,8 +25,8 @@ test.describe("en 375 px con prefers-reduced-motion: reduce", () => {
     await page.goto("/guias");
     expect(await movimiento(page, ".tarjeta-hover")).toEqual({ animacion: "none", transicion: "0s" });
     await page.getByRole("button", { name: "Abrir menú" }).click();
-    const menu = page.locator("#menu-movil");
-    expect(await movimiento(page, "#menu-movil")).toEqual({ animacion: "none", transicion: "0s" });
+    const menu = page.locator("#menu-lateral");
+    expect(await movimiento(page, "#menu-lateral")).toEqual({ animacion: "none", transicion: "0s" });
     await expect(menu).toHaveCSS("opacity", "1");
     await expect(menu.getByRole("link", { name: "Ejercicios" })).toBeVisible();
     expect(await page.evaluate(() => document.getAnimations().length)).toBe(0);

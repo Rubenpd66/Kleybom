@@ -34,7 +34,8 @@ test.describe("usuario nuevo", () => {
     const pasos = page.getByRole("list", { name: "Tres pasos para empezar" }).getByRole("listitem");
     await expect(pasos).toHaveCount(3);
     await expect(pasos.nth(0)).toContainText("objetivos");
-    await expect(page.getByRole("banner").getByRole("link", { name: "Mi panel" })).toBeVisible();
+    await page.getByRole("button", { name: "Abrir menú" }).click();
+    await expect(page.locator("#menu-lateral").getByRole("link", { name: "Mi panel" })).toBeVisible();
   });
 });
 
