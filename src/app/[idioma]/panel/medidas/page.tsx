@@ -121,7 +121,7 @@ export default async function MedidasPage(props: PageProps<"/[idioma]/panel/medi
   const es = await getT();
   const t = es.medidas;
   return (
-    <main className="mx-auto w-full max-w-[1180px] flex-1 px-4 py-12 sm:px-6">
+    <main className="mx-auto w-full lg:px-10 2xl:px-16 flex-1 px-4 py-12 sm:px-6">
       <Link href="/panel" className="text-sm font-bold text-azul underline">
         {es.perfil.volver}
       </Link>

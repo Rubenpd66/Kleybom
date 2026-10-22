@@ -29,7 +29,7 @@ export default async function Home() {
     <main className="flex-1">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(websiteLd()) }} />
 
-      <div className="mx-auto grid max-w-[1180px] items-center gap-10 px-6 py-14 md:min-h-[78vh] md:grid-cols-[1.15fr_1fr] md:py-20">
+      <div className="mx-auto grid lg:px-10 2xl:px-16 items-center gap-10 px-6 py-14 md:min-h-[78vh] md:grid-cols-[1.15fr_1fr] md:py-20">
         <div>
           <h1 className="font-display text-[clamp(3.4rem,10vw,7.5rem)] font-extrabold leading-[0.88]">{t.titular}</h1>
           <p className="mt-6 text-lg text-acero">{t.entradilla}</p>
@@ -45,7 +45,7 @@ export default async function Home() {
         <MuscleSelector grupos={grupos} />
       </div>
 
-      <nav aria-label={t.accesosEtiqueta} className="mx-auto max-w-[1180px] px-6 pb-16">
+      <nav aria-label={t.accesosEtiqueta} className="mx-auto lg:px-10 2xl:px-16 px-6 pb-16">
         <ul className="grid grid-cols-2 gap-3 md:grid-cols-3">
           {accesos.map((a) => (
             <li key={a.href}>

@@ -14,3 +14,9 @@ export function idiomaEnRuta(ruta: string): { idioma: Idioma; resto: string } | 
   if (!m || !esIdioma(m[1])) return null;
   return { idioma: m[1], resto: m[2] || "/" };
 }
+
+// La ruta que ve la persona. Al pintar en el servidor, usePathname() da la ruta interna (/es/guias)
+// y en el navegador la visible (/guias): sin quitar el idioma, el HTML no coincidiría al hidratar.
+export function sinIdioma(ruta: string): string {
+  return idiomaEnRuta(ruta)?.resto ?? ruta;
+}

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { idiomaEnRuta, llevaIdioma } from "./ruta";
+import { idiomaEnRuta, llevaIdioma, sinIdioma } from "./ruta";
 
 describe("llevaIdioma", () => {
   it("las páginas llevan idioma", () => {
@@ -21,5 +21,14 @@ describe("idiomaEnRuta", () => {
     expect(idiomaEnRuta("/ejercicios")).toBeNull();
     expect(idiomaEnRuta("/fr/algo")).toBeNull();
     expect(idiomaEnRuta("/entreno")).toBeNull();
+  });
+});
+
+describe("sinIdioma", () => {
+  it("quita el idioma de la ruta interna y deja igual la visible", () => {
+    expect(sinIdioma("/es/guias")).toBe("/guias");
+    expect(sinIdioma("/en")).toBe("/");
+    expect(sinIdioma("/guias")).toBe("/guias");
+    expect(sinIdioma("/entreno")).toBe("/entreno");
   });
 });

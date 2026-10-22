@@ -154,7 +154,7 @@ export default async function DiarioPage(props: PageProps<"/[idioma]/nutricion">
   const es = await getT();
   const t = es.diario;
   return (
-    <main className="mx-auto w-full max-w-[1180px] flex-1 px-4 py-12 sm:px-6">
+    <main className="mx-auto w-full lg:px-10 2xl:px-16 flex-1 px-4 py-12 sm:px-6">
       <h1 className="font-display text-[clamp(2.2rem,6vw,3.6rem)] font-extrabold leading-none">{t.titulo}</h1>
       <Suspense fallback={<p className="mt-8 text-acero">{es.ejercicios.cargando}</p>}>
         <Contenido searchParams={props.searchParams} />

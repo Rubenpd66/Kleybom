@@ -90,7 +90,7 @@ async function Contenido({ searchParams }: { searchParams: Params }) {
             </Link>
           </div>
         ) : (
-          <ul aria-label={t.listaEtiqueta} className="mt-4 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+          <ul aria-label={t.listaEtiqueta} className="mt-4 grid gap-3 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
             {items.map((e) => (
               <ExerciseCard key={e.id} ejercicio={e} />
             ))}
@@ -124,7 +124,7 @@ async function Contenido({ searchParams }: { searchParams: Params }) {
 export default async function EjerciciosPage(props: PageProps<"/[idioma]/ejercicios">) {
   const t = (await getT()).ejercicios;
   return (
-    <main className="mx-auto w-full max-w-[1180px] flex-1 px-6 py-12">
+    <main className="mx-auto w-full lg:px-10 2xl:px-16 flex-1 px-6 py-12">
       <h1 className="font-display text-[clamp(2.2rem,6vw,3.6rem)] font-extrabold leading-none">
         {t.titulo}
       </h1>

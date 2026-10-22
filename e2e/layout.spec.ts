@@ -32,6 +32,14 @@ test("el menú lateral tiene todas las secciones y se abre al acercar el ratón 
   await expect(menu).toHaveAttribute("inert", "");
 });
 
+test("el menú lateral se abre al pasar el ratón por el botón Menú", async ({ page }) => {
+  await page.goto("/");
+  const menu = page.locator("#menu-lateral");
+  await expect(menu).toHaveAttribute("inert", "");
+  await page.getByRole("banner").getByRole("button", { name: "Abrir menú" }).hover();
+  await expect(menu).not.toHaveAttribute("inert");
+});
+
 test("el buscador de la cabecera encuentra en toda la web y lleva a la página de resultados", async ({ page }) => {
   await page.goto("/");
   const caja = page.getByRole("banner").getByRole("combobox");

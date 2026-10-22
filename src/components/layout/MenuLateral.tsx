@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { createPortal } from "react-dom";
 import { useT } from "@/lib/i18n/cliente";
+import { sinIdioma } from "@/lib/i18n/ruta";
 import BuscadorGlobal from "./BuscadorGlobal";
 
 // Retrasos para que el menú no se abra ni se cierre por un roce del ratón.
@@ -18,7 +19,7 @@ const ZONA_PX = 40;
 export default function MenuLateral({ conSesion = false }: { conSesion?: boolean }) {
   const es = useT();
   const t = es.nav;
-  const ruta = usePathname();
+  const ruta = sinIdioma(usePathname());
   const [abierto, setAbierto] = useState(false);
   const [porRaton, setPorRaton] = useState(false);
   const boton = useRef<HTMLButtonElement>(null);
@@ -89,6 +90,13 @@ export default function MenuLateral({ conSesion = false }: { conSesion?: boolean
         aria-controls="menu-lateral"
         aria-label={t.abrirMenu}
         onClick={() => (abierto ? cerrar() : abrir(false))}
+        // Con ratón, basta con pasar por encima del botón para que el menú se deslice.
+        onPointerEnter={(e) => {
+          if (e.pointerType !== "mouse" || abierto) return;
+          window.clearTimeout(reloj.current);
+          reloj.current = window.setTimeout(() => abrir(true), ABRIR_MS);
+        }}
+        onPointerLeave={(e) => e.pointerType === "mouse" && !abierto && window.clearTimeout(reloj.current)}
         className="flex h-10 items-center gap-2 rounded-full border-[1.5px] border-hierro px-3 font-bold hover:border-temple"
       >
         <svg

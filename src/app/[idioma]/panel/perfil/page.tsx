@@ -45,7 +45,7 @@ export default async function PerfilPage() {
   const es = await getT();
   const t = es.perfil;
   return (
-    <main className="mx-auto w-full max-w-[1180px] flex-1 px-6 py-12">
+    <main className="mx-auto w-full lg:px-10 2xl:px-16 flex-1 px-6 py-12">
       <Link href="/panel" className="text-sm font-bold text-azul underline">
         {t.volver}
       </Link>

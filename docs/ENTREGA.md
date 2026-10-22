@@ -43,10 +43,7 @@ Sin cuenta se puede ver y probar todo. Solo hace falta entrar para guardar.
 
 ## Lo que falta por hacer (te toca a ti)
 
-1. **Activar el inicio de sesión con Google** (hasta entonces, el botón "Continuar con Google" da un aviso de error):
-   - En Google Cloud Console crea un "ID de cliente de OAuth" de tipo "Aplicación web".
-   - En "URI de redirección autorizados" pon `https://gftajanocydijwtzvjhe.supabase.co/auth/v1/callback`.
-   - Copia el ID de cliente y el secreto en Supabase → Authentication → Sign In / Providers → Google, y actívalo.
+1. ~~Activar el inicio de sesión con Google~~ (hecho el 22/10/2026).
 2. **Opcional:** cambiar el nombre del proyecto en Vercel a `kleybom`. Si lo haces, hay que actualizar la dirección en Supabase (Site URL y Redirect URLs) y en `NEXT_PUBLIC_SITE_URL` de Vercel.
 3. **Revisión profesional de los textos legales** antes de dar publicidad a la web (se añadieron Google y la cookie de idioma).
 

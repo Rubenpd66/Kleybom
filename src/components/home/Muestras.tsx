@@ -102,7 +102,7 @@ export default function Muestras({
   ];
 
   return (
-    <section aria-label={etiqueta} className="mx-auto flex max-w-[1180px] flex-col gap-6 px-6 pb-24">
+    <section aria-label={etiqueta} className="mx-auto flex lg:px-10 2xl:px-16 flex-col gap-6 px-6 pb-24">
       {muestras.map(({ href, t, dibujo }, i) => (
         <article
           key={href}

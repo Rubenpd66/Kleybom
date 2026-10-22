@@ -4,13 +4,14 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useSyncExternalStore } from "react";
 import { suscribirTema, temaActual } from "@/components/layout/TemaToggle";
 import { escenaDeRuta, modoFondo, type Escena } from "@/lib/fondo/rutas";
+import { sinIdioma } from "@/lib/i18n/ruta";
 
 // Fondo 3D de cada sección. No retrasa la carga: three.js se descarga cuando el navegador está libre
 // (en móvil, tras el primer toque o desplazamiento). Va detrás del contenido, no recibe clics y lo
 // ignoran los lectores de pantalla. Con "reducir movimiento" o sin tarjeta gráfica se ve quieto;
 // con ahorro de datos o sin WebGL no aparece. La página funciona igual en todos los casos.
 export default function Fondo3D() {
-  const escena = escenaDeRuta(usePathname());
+  const escena = escenaDeRuta(sinIdioma(usePathname()));
   const tema = useSyncExternalStore(suscribirTema, temaActual, () => "claro");
   if (!escena) return null;
   // La key crea un lienzo nuevo al cambiar de sección o de tema (cada escena lee los colores al montarse).

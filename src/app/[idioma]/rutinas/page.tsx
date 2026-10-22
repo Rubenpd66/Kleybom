@@ -47,7 +47,7 @@ async function Contenido({ searchParams }: { searchParams: Params }) {
           </Link>
         </div>
       ) : (
-        <ul aria-label={t.listaEtiqueta} className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <ul aria-label={t.listaEtiqueta} className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
           {rutinas.map((r) => (
             <RoutineCard key={r.id} rutina={r} />
           ))}
@@ -61,7 +61,7 @@ export default async function RutinasPage(props: PageProps<"/[idioma]/rutinas">)
   const es = await getT();
   const t = es.rutinas;
   return (
-    <main className="mx-auto w-full max-w-[1180px] flex-1 px-6 py-12">
+    <main className="mx-auto w-full lg:px-10 2xl:px-16 flex-1 px-6 py-12">
       <h1 className="font-display text-[clamp(2.2rem,6vw,3.6rem)] font-extrabold leading-none">
         {t.titulo}
       </h1>
