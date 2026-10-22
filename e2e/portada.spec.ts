@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test";
 
 test("la portada es breve y lleva a ejercicios y al registro", async ({ page }) => {
   await page.goto("/");
-  await expect(page.getByRole("heading", { level: 1, name: "Entrena. Come. Progresa." })).toBeVisible();
+  await expect(page.getByRole("heading", { level: 1, name: "Come. Entrena. Progresa." })).toBeVisible();
   await expect(page.getByRole("main").getByRole("link", { name: "Explorar ejercicios" })).toHaveAttribute("href", "/ejercicios");
   await expect(page.getByRole("main").getByRole("link", { name: "Crear mi cuenta" })).toHaveAttribute("href", "/registro");
   // Sin fotos estáticas: la parte visual son el fondo 3D y los elementos interactivos.
@@ -16,6 +16,15 @@ test("los accesos muestran las cifras reales del catálogo", async ({ page }) =>
   await expect(accesos.getByRole("link", { name: /Ejercicios/ })).toContainText(/\d{3}/);
   // En español los números de 4 cifras van sin punto (6038); a partir de 5, con punto (10.000).
   await expect(accesos.getByRole("link", { name: /Alimentos/ })).toContainText(/\d{4}/);
+});
+
+test("la portada muestra calendario, calculadora y guías con su enlace", async ({ page }) => {
+  await page.goto("/");
+  const muestras = page.getByRole("region", { name: "Más para ti" });
+  await expect(muestras.getByRole("heading", { level: 2 })).toHaveText(["Calendario", "Calculadora de macros", "Guías"]);
+  await expect(muestras.getByRole("link", { name: "Abrir el calendario" })).toHaveAttribute("href", "/calendario");
+  await expect(muestras.getByRole("link", { name: "Calcular mis macros" })).toHaveAttribute("href", "/nutricion/objetivos");
+  await expect(muestras.getByRole("link", { name: "Leer las guías" })).toHaveAttribute("href", "/guias");
 });
 
 test("el selector de músculos cambia los ejercicios con datos reales", async ({ page }) => {

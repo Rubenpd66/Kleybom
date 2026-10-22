@@ -10,6 +10,8 @@ import BuscadorGlobal from "./BuscadorGlobal";
 // Retrasos para que el menú no se abra ni se cierre por un roce del ratón.
 const ABRIR_MS = 150;
 const CERRAR_MS = 350;
+// Anchura (px) de la zona del borde derecho que abre el menú al acercar el ratón.
+const ZONA_PX = 40;
 
 // Menú lateral derecho con "Mi panel" (o "Entrar") y todas las secciones, en vertical.
 // Se abre con el botón o, con ratón, al acercarlo al borde derecho de la pantalla; Escape lo cierra.
@@ -55,6 +57,25 @@ export default function MenuLateral({ conSesion = false }: { conSesion?: boolean
     return () => document.removeEventListener("keydown", alPulsar);
   }, [abierto]);
 
+  // Con ratón (pantallas medianas o más), acercarlo al borde derecho abre el menú.
+  // Se escucha en todo el documento, sin franja invisible: así no lo anula la barra de desplazamiento.
+  useEffect(() => {
+    if (abierto || !window.matchMedia("(min-width: 768px) and (hover: hover) and (pointer: fine)").matches) return;
+    let esperando = false;
+    const alMover = (e: MouseEvent) => {
+      const cerca = e.clientX >= document.documentElement.clientWidth - ZONA_PX;
+      if (cerca && !esperando) {
+        esperando = true;
+        reloj.current = window.setTimeout(() => abrir(true), ABRIR_MS);
+      } else if (!cerca && esperando) {
+        esperando = false;
+        window.clearTimeout(reloj.current);
+      }
+    };
+    document.addEventListener("mousemove", alMover);
+    return () => document.removeEventListener("mousemove", alMover);
+  }, [abierto]);
+
   useEffect(() => () => window.clearTimeout(reloj.current), []);
 
   const enlaces = [{ href: conSesion ? "/panel" : "/entrar", label: conSesion ? t.miPanel : t.entrar }, ...t.secciones];
@@ -88,15 +109,10 @@ export default function MenuLateral({ conSesion = false }: { conSesion?: boolean
       {enNavegador &&
         createPortal(
           <>
-            {/* Franja invisible en el borde derecho: con ratón, acercarse abre el menú. */}
-            <div
+            {/* Pista en el borde derecho: con ratón, acercarse ahí abre el menú. */}
+            <span
               aria-hidden="true"
-              onMouseEnter={() => {
-                window.clearTimeout(reloj.current);
-                reloj.current = window.setTimeout(() => abrir(true), ABRIR_MS);
-              }}
-              onMouseLeave={() => !abierto && window.clearTimeout(reloj.current)}
-              className="fixed inset-y-0 right-0 z-30 hidden w-3 md:block"
+              className="pointer-events-none fixed right-1 top-1/2 z-30 hidden h-16 w-1 -translate-y-1/2 rounded-full bg-acero/40 [@media(hover:hover)_and_(pointer:fine)]:md:block"
             />
 
             {/* Fondo: un clic fuera cierra; si se abrió con el ratón, basta con alejarlo. */}

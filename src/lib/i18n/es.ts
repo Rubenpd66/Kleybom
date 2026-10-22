@@ -481,7 +481,7 @@ export const es = {
     registro: "Crear cuenta",
   },
   inicio: {
-    titular: "Entrena. Come. Progresa.",
+    titular: "Come. Entrena. Progresa.",
     entradilla: "Gratis, sin anuncios y sin letra pequeña.",
     explorar: "Explorar ejercicios",
     crearCuenta: "Crear mi cuenta",
@@ -491,6 +491,12 @@ export const es = {
     grupos: { pecho: "Pecho", espalda: "Espalda", piernas: "Piernas", hombros: "Hombros", brazos: "Brazos", abdomen: "Abdomen" } as Record<string, string>,
     accesosEtiqueta: "Secciones",
     accesos: { ejercicios: "Ejercicios", rutinas: "Rutinas", alimentos: "Alimentos", recetas: "Recetas", guias: "Guías", progreso: "Tu progreso" },
+    muestrasEtiqueta: "Más para ti",
+    muestras: {
+      calendario: { titulo: "Calendario", texto: "Planifica tus entrenos por días y marca los que ya has hecho.", enlace: "Abrir el calendario" },
+      calculadora: { titulo: "Calculadora de macros", texto: "Calcula tus calorías, proteínas, hidratos y grasas según tu objetivo.", enlace: "Calcular mis macros" },
+      guias: { titulo: "Guías", texto: "Lecturas cortas para entrenar, comer, descansar y progresar, con sus fuentes.", enlace: "Leer las guías" },
+    },
   },
   guias: {
     titulo: "Guías",

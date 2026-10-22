@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import MuscleSelector from "@/components/home/MuscleSelector";
+import Muestras from "@/components/home/Muestras";
 import Icono from "@/components/ui/Icono";
 import { GUIAS } from "@/lib/guides/content";
 import { getHomeData } from "@/lib/home/queries";
@@ -44,7 +45,7 @@ export default async function Home() {
         <MuscleSelector grupos={grupos} />
       </div>
 
-      <nav aria-label={t.accesosEtiqueta} className="mx-auto max-w-[1180px] px-6 pb-20">
+      <nav aria-label={t.accesosEtiqueta} className="mx-auto max-w-[1180px] px-6 pb-16">
         <ul className="grid grid-cols-2 gap-3 md:grid-cols-3">
           {accesos.map((a) => (
             <li key={a.href}>
@@ -65,6 +66,8 @@ export default async function Home() {
           ))}
         </ul>
       </nav>
+
+      <Muestras etiqueta={t.muestrasEtiqueta} textos={t.muestras} />
     </main>
   );
 }

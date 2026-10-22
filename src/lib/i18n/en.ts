@@ -473,7 +473,7 @@ export const en: typeof es = {
     registro: "Create account",
   },
   inicio: {
-    titular: "Train. Eat. Progress.",
+    titular: "Eat. Train. Progress.",
     entradilla: "Free, no ads and no small print.",
     explorar: "Explore exercises",
     crearCuenta: "Create my account",
@@ -483,6 +483,12 @@ export const en: typeof es = {
     grupos: { pecho: "Chest", espalda: "Back", piernas: "Legs", hombros: "Shoulders", brazos: "Arms", abdomen: "Abs" } as Record<string, string>,
     accesosEtiqueta: "Sections",
     accesos: { ejercicios: "Exercises", rutinas: "Routines", alimentos: "Foods", recetas: "Recipes", guias: "Guides", progreso: "Your progress" },
+    muestrasEtiqueta: "More for you",
+    muestras: {
+      calendario: { titulo: "Calendar", texto: "Plan your workouts by day and tick off the ones you have done.", enlace: "Open the calendar" },
+      calculadora: { titulo: "Macro calculator", texto: "Work out your calories, protein, carbs and fat for your goal.", enlace: "Calculate my macros" },
+      guias: { titulo: "Guides", texto: "Short reads on training, eating, resting and progressing, with their sources.", enlace: "Read the guides" },
+    },
   },
   guias: {
     titulo: "Guides",

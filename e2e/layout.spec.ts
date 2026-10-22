@@ -22,7 +22,8 @@ test("el menú lateral tiene todas las secciones y se abre al acercar el ratón 
   await expect(menu).toHaveAttribute("inert", "");
   const { width } = page.viewportSize()!;
   await page.mouse.move(width - 300, 300);
-  await page.mouse.move(width - 4, 300, { steps: 5 });
+  // La zona es ancha (40 px): no hace falta llegar al último píxel, donde está la barra de desplazamiento.
+  await page.mouse.move(width - 30, 300, { steps: 5 });
   await expect(menu).not.toHaveAttribute("inert");
   for (const nombre of ["Entrar", "Ejercicios", "Rutinas", "Calendario", "Diario de comidas", "Calculadora de macros", "Alimentos", "Recetas", "Guías", "Estadísticas"]) {
     await expect(menu.getByRole("link", { name: nombre, exact: true })).toBeVisible();

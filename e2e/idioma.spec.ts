@@ -7,7 +7,7 @@ test("el selector cambia toda la web al inglés y vuelve al español, sin cambia
   await expect(page.locator("html")).toHaveAttribute("lang", "es");
 
   await selector.getByRole("button", { name: "en" }).click();
-  await expect(page.getByRole("heading", { level: 1, name: "Train. Eat. Progress." })).toBeVisible();
+  await expect(page.getByRole("heading", { level: 1, name: "Eat. Train. Progress." })).toBeVisible();
   await expect(page).toHaveURL(/\/$/);
   await expect(page.locator("html")).toHaveAttribute("lang", "en");
   // Tras recargar, el botón responde cuando la página está lista: se reintenta.
@@ -35,7 +35,7 @@ test("una dirección con /en/ guarda el inglés y lleva a la dirección normal",
   await expect(page).toHaveURL(/\/recetas$/);
   await expect(page.getByRole("heading", { level: 1, name: "Recipes" })).toBeVisible();
   await page.goto("/es");
-  await expect(page.getByRole("heading", { level: 1, name: "Entrena. Come. Progresa." })).toBeVisible();
+  await expect(page.getByRole("heading", { level: 1, name: "Come. Entrena. Progresa." })).toBeVisible();
 });
 
 test("en móvil (375 px) el selector de idioma cabe en la cabecera", async ({ page }) => {
