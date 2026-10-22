@@ -105,7 +105,7 @@ Fase 4 (Construcción), versión 0.1. Hechas: Tareas 1 a 8. Tareas 1 a 13 hechas
 ## Siguiente tarea
 **Punto de parada (22/10/2026):** terminadas las cuatro fases pedidas (SEO, donaciones, anuncios, legalidad). Anuncios y donaciones están construidos pero apagados.
 
-**Al volver:** preguntar por (1) el dominio propio, (2) la decisión del alta de autónomo y (3) la revisión profesional de los textos legales. Con eso: activar donaciones (`NEXT_PUBLIC_DONACIONES_URL`) y seguir `docs/anuncios.md`. Pendiente de contenido: mejorar o poner `noindex` a las fichas flojas (ver `docs/seo.md`), revisión de los 223 ejercicios en inglés y traducciones de alimentos.
+**Al volver (el usuario aparcó todo esto el 22/10/2026 y pidió que se le recuerde):** preguntar por (1) el dominio propio, (2) la decisión del alta de autónomo y (3) la revisión profesional de los textos legales. Con eso: activar donaciones (`NEXT_PUBLIC_DONACIONES_URL`) y seguir `docs/anuncios.md`. Pendiente de contenido: mejorar o poner `noindex` a las fichas flojas (ver `docs/seo.md`), revisión de los 223 ejercicios en inglés y traducciones de alimentos.
 
 ## Decisiones tomadas
 - Sin pagos; solo donaciones voluntarias. Porqué: evitar las obligaciones legales de cobrar.
