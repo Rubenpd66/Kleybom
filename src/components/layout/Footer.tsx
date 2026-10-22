@@ -1,4 +1,6 @@
 import Link from "@/components/ui/Link";
+import AjustesPrivacidad from "@/components/ui/AjustesPrivacidad";
+import { ANUNCIOS_ACTIVOS } from "@/lib/anuncios";
 import { ENLACE_DONACIONES } from "@/lib/donaciones";
 import { getT } from "@/lib/i18n/servidor";
 
@@ -17,6 +19,11 @@ export default async function Footer() {
               </Link>
             </li>
           ))}
+          {ANUNCIOS_ACTIVOS && (
+            <li>
+              <AjustesPrivacidad etiqueta={es.footer.ajustesPrivacidad} />
+            </li>
+          )}
         </ul>
       </div>
     </footer>

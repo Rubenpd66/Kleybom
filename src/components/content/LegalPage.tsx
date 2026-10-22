@@ -3,13 +3,19 @@ import Secciones from "@/components/content/Secciones";
 import { LOCALE } from "@/lib/i18n";
 import { getIdioma, getT } from "@/lib/i18n/servidor";
 import { alternativas } from "@/lib/seo/site";
-import { AVISO_LEGAL, COOKIES, PRIVACIDAD, type TextoLegal } from "@/lib/legal/content";
-import { AVISO_LEGAL_EN, COOKIES_EN, PRIVACIDAD_EN } from "@/lib/legal/content-en";
+import { ID_ADSENSE } from "@/lib/anuncios";
+import { ENLACE_DONACIONES } from "@/lib/donaciones";
+import { avisoLegal, cookies, privacidad, type Activos, type TextoLegal } from "@/lib/legal/content";
+import { avisoLegalEn, cookiesEn, privacidadEn } from "@/lib/legal/content-en";
 import { ACTUALIZADO } from "@/lib/legal/titular";
 
+// Los textos cuentan la publicidad en cuanto hay ID de AdSense: Google revisa la política de privacidad
+// antes de aprobar la web, es decir, antes de que se vea ningún anuncio.
+const ACTIVOS: Activos = { anuncios: Boolean(ID_ADSENSE), donaciones: Boolean(ENLACE_DONACIONES) };
+
 const TEXTOS = {
-  es: { "aviso-legal": AVISO_LEGAL, privacidad: PRIVACIDAD, cookies: COOKIES },
-  en: { "aviso-legal": AVISO_LEGAL_EN, privacidad: PRIVACIDAD_EN, cookies: COOKIES_EN },
+  es: { "aviso-legal": avisoLegal(ACTIVOS), privacidad: privacidad(ACTIVOS), cookies: cookies(ACTIVOS) },
+  en: { "aviso-legal": avisoLegalEn(ACTIVOS), privacidad: privacidadEn(ACTIVOS), cookies: cookiesEn(ACTIVOS) },
 } as const;
 
 const ACTUALIZADO_EL = { es: "Actualizado el", en: "Updated on" } as const;

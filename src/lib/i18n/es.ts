@@ -74,6 +74,7 @@ export const es = {
       { href: "/cookies", label: "Cookies" },
     ] satisfies EnlaceNav[],
     apoyar: "Apoyar KleyBom",
+    ajustesPrivacidad: "Privacidad y cookies",
   },
   anuncios: { etiqueta: "Publicidad" },
   apoya: {

@@ -45,7 +45,7 @@ Sin cuenta se puede ver y probar todo. Solo hace falta entrar para guardar.
 
 1. ~~Activar el inicio de sesión con Google~~ (hecho el 22/10/2026).
 2. **Opcional:** cambiar el nombre del proyecto en Vercel a `kleybom`. Si lo haces, hay que actualizar la dirección en Supabase (Site URL y Redirect URLs) y en `NEXT_PUBLIC_SITE_URL` de Vercel.
-3. **Revisión profesional de los textos legales** antes de dar publicidad a la web (se añadieron Google y la cookie de idioma).
+3. **Revisión profesional de los textos legales** antes de dar publicidad a la web o activar anuncios o donaciones. Estado, pasos y fuentes en `docs/legal/README.md`; registro de actividades (obligatorio por los datos de salud) en `docs/legal/registro-actividades.md`.
 
 ## Pendiente para más adelante
 

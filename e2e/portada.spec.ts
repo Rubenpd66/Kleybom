@@ -71,4 +71,5 @@ test("sin AdSense configurado no hay anuncios, ni scripts de terceros, ni ads.tx
   await expect(page.locator('script[src*="googlesyndication"]')).toHaveCount(0);
   await expect(page.locator('meta[name="google-adsense-account"]')).toHaveCount(0);
   expect((await request.get("/ads.txt")).status()).toBe(404);
+  await expect(page.getByRole("contentinfo").getByRole("button", { name: "Privacidad y cookies" })).toHaveCount(0);
 });

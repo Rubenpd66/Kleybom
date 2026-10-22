@@ -2,7 +2,7 @@
 
 import Script from "next/script";
 import { useEffect, useRef } from "react";
-import { BLOQUE_ADSENSE, ID_ADSENSE } from "@/lib/anuncios";
+import { BLOQUE_ADSENSE, ID_ADSENSE, urlScriptAdsense } from "@/lib/anuncios";
 import { useT } from "@/lib/i18n/cliente";
 
 declare global {
@@ -47,7 +47,7 @@ export default function Anuncio() {
       </div>
       <Script
         id="adsense"
-        src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ID_ADSENSE}`}
+        src={urlScriptAdsense(ID_ADSENSE!)}
         strategy="lazyOnload"
         crossOrigin="anonymous"
       />

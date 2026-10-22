@@ -23,3 +23,7 @@ export function lineaAdsTxt(id: string): string {
 
 export const ID_ADSENSE = idAdsense(process.env.NEXT_PUBLIC_ADSENSE_ID);
 export const BLOQUE_ADSENSE = bloqueAdsense(process.env.NEXT_PUBLIC_ADSENSE_SLOT);
+// Con los dos valores se muestran anuncios (y hace falta el enlace para cambiar el consentimiento).
+export const ANUNCIOS_ACTIVOS = Boolean(ID_ADSENSE && BLOQUE_ADSENSE);
+
+export const urlScriptAdsense = (id: string) => `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${id}`;
