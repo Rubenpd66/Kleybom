@@ -71,6 +71,20 @@ export const en: typeof es = {
       { href: "/privacidad", label: "Privacy" },
       { href: "/cookies", label: "Cookies" },
     ] satisfies EnlaceNav[],
+    apoyar: "Support KleyBom",
+  },
+  apoya: {
+    titulo: "Support KleyBom",
+    descripcion: "KleyBom is free. If you find it useful, you can make a voluntary donation.",
+    intro: "KleyBom is free and aims to stay that way. If you find it useful, you can help keep it going with a voluntary donation.",
+    puntos: [
+      "It is entirely voluntary: you never need to donate to use anything on the site.",
+      "It gives no perks or extra content: everyone gets the same.",
+      "Stripe handles the payment on its own page: KleyBom never sees or stores your card details.",
+      "No donation receipts are issued.",
+    ],
+    boton: "Donate with Stripe",
+    nota: "Stripe's secure payment page opens in the same tab.",
   },
   ejercicios: {
     titulo: "Exercises",

@@ -57,3 +57,10 @@ test("en móvil (375 px) la portada no tiene scroll horizontal", async ({ page }
   await page.goto("/");
   expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(375);
 });
+
+test("sin enlace de donaciones configurado no aparece nada de donaciones", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.getByRole("contentinfo").getByRole("link", { name: "Apoyar KleyBom" })).toHaveCount(0);
+  const r = await page.goto("/apoya");
+  expect(r?.status()).toBe(404);
+});

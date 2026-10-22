@@ -3,6 +3,7 @@ import { cacheLife } from "next/cache";
 import { slugsPublicos } from "@/lib/cache/publico";
 import { listGuides } from "@/lib/guides";
 import { conIdioma } from "@/lib/i18n/ruta";
+import { ENLACE_DONACIONES } from "@/lib/donaciones";
 import { PAGINAS_ESTATICAS, url } from "@/lib/seo/site";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -22,7 +23,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       alternates: { languages: { es: url(ruta), en: url(conIdioma("en", ruta)), "x-default": url(ruta) } },
     }));
   return [
-    ...PAGINAS_ESTATICAS.flatMap((r) => bilingue(r)),
+    ...[...PAGINAS_ESTATICAS, ...(ENLACE_DONACIONES ? ["/apoya"] : [])].flatMap((r) => bilingue(r)),
     ...listGuides().flatMap((g) => bilingue(`/guias/${g.slug}`, g.actualizada)),
     ...rutinas.flatMap((s) => bilingue(`/rutinas/${s}`)),
     ...recetas.flatMap((s) => bilingue(`/recetas/${s}`)),

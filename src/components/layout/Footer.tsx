@@ -1,4 +1,5 @@
 import Link from "@/components/ui/Link";
+import { ENLACE_DONACIONES } from "@/lib/donaciones";
 import { getT } from "@/lib/i18n/servidor";
 
 // Pie en una sola franja: aviso de salud (obligatorio) a un lado y enlaces al otro.
@@ -9,7 +10,7 @@ export default async function Footer() {
       <div className="mx-auto flex lg:px-10 2xl:px-16 flex-col gap-3 px-6 py-6 text-sm sm:flex-row sm:items-center sm:justify-between">
         <p className="text-acero">{es.footer.aviso}</p>
         <ul className="flex flex-wrap gap-x-5 gap-y-2">
-          {es.footer.enlaces.map((e) => (
+          {[...(ENLACE_DONACIONES ? [{ href: "/apoya", label: es.footer.apoyar }] : []), ...es.footer.enlaces].map((e) => (
             <li key={e.href}>
               <Link href={e.href} className="hover:text-temple-osc hover:underline">
                 {e.label}
