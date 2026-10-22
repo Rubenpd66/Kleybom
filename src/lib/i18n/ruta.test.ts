@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { idiomaEnRuta, llevaIdioma, sinIdioma } from "./ruta";
+import { conIdioma, idiomaEnRuta, llevaIdioma, sinIdioma } from "./ruta";
 
 describe("llevaIdioma", () => {
   it("las páginas llevan idioma", () => {
@@ -30,5 +30,23 @@ describe("sinIdioma", () => {
     expect(sinIdioma("/en")).toBe("/");
     expect(sinIdioma("/guias")).toBe("/guias");
     expect(sinIdioma("/entreno")).toBe("/entreno");
+  });
+});
+
+describe("conIdioma", () => {
+  it("el español va sin prefijo y el inglés con /en", () => {
+    expect(conIdioma("es", "/ejercicios")).toBe("/ejercicios");
+    expect(conIdioma("en", "/ejercicios")).toBe("/en/ejercicios");
+    expect(conIdioma("en", "/")).toBe("/en");
+    expect(conIdioma("en", "/?cuenta=borrada")).toBe("/en?cuenta=borrada");
+    expect(conIdioma("en", "/ejercicios?muscle=pecho#lista")).toBe("/en/ejercicios?muscle=pecho#lista");
+  });
+  it("no toca lo que no es una página nuestra", () => {
+    expect(conIdioma("en", "/api/cuenta/borrar")).toBe("/api/cuenta/borrar");
+    expect(conIdioma("en", "/auth/callback")).toBe("/auth/callback");
+    expect(conIdioma("en", "/en/guias")).toBe("/en/guias");
+    expect(conIdioma("en", "https://otra.web/x")).toBe("https://otra.web/x");
+    expect(conIdioma("en", "//otra.web/x")).toBe("//otra.web/x");
+    expect(conIdioma("en", "#contenido")).toBe("#contenido");
   });
 });

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/ui/Link";
 import { monthGrid } from "@/lib/calendar/dates";
 import type { Sesion } from "@/lib/calendar/queries";
 import { LOCALE } from "@/lib/i18n";

@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/components/ui/Link";
 import { useState } from "react";
 import type { GrupoPortada } from "@/lib/home/queries";
 import { useT } from "@/lib/i18n/cliente";

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Secciones from "@/components/content/Secciones";
 import { LOCALE } from "@/lib/i18n";
 import { getIdioma, getT } from "@/lib/i18n/servidor";
+import { alternativas } from "@/lib/seo/site";
 import { AVISO_LEGAL, COOKIES, PRIVACIDAD, type TextoLegal } from "@/lib/legal/content";
 import { AVISO_LEGAL_EN, COOKIES_EN, PRIVACIDAD_EN } from "@/lib/legal/content-en";
 import { ACTUALIZADO } from "@/lib/legal/titular";
@@ -19,8 +20,8 @@ async function textoEnIdioma(slug: TextoLegal["slug"]) {
 }
 
 export async function metadataLegal(slug: TextoLegal["slug"]): Promise<Metadata> {
-  const [{ texto }, es] = await Promise.all([textoEnIdioma(slug), getT()]);
-  return { title: `${texto.titulo} — ${es.marca}`, description: texto.resumen, alternates: { canonical: `/${slug}` } };
+  const [{ idioma, texto }, es] = await Promise.all([textoEnIdioma(slug), getT()]);
+  return { title: `${texto.titulo} — ${es.marca}`, description: texto.resumen, alternates: alternativas(idioma, `/${slug}`) };
 }
 
 export default async function LegalPage({ slug }: { slug: TextoLegal["slug"] }) {

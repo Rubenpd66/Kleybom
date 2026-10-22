@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/components/ui/Link";
 import MuscleSelector from "@/components/home/MuscleSelector";
 import Muestras from "@/components/home/Muestras";
 import Icono from "@/components/ui/Icono";
@@ -7,9 +7,11 @@ import { GUIAS } from "@/lib/guides/content";
 import { getHomeData } from "@/lib/home/queries";
 import { LOCALE } from "@/lib/i18n";
 import { getIdioma, getT } from "@/lib/i18n/servidor";
-import { jsonLd, websiteLd } from "@/lib/seo/site";
+import { alternativas, jsonLd, websiteLd } from "@/lib/seo/site";
 
-export const metadata: Metadata = { alternates: { canonical: "/" } };
+export async function generateMetadata(): Promise<Metadata> {
+  return { alternates: alternativas(await getIdioma(), "/") };
+}
 
 export default async function Home() {
   const [{ grupos, cifras }, es, idioma] = await Promise.all([getHomeData(), getT(), getIdioma()]);

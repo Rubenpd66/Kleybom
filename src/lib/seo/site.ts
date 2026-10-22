@@ -1,13 +1,25 @@
 import type { Guia } from "@/lib/guides";
+import type { Idioma } from "@/lib/i18n";
 import { es } from "@/lib/i18n/es";
+import { conIdioma } from "@/lib/i18n/ruta";
 
 // Dirección pública de la web. En Vercel se define NEXT_PUBLIC_SITE_URL; si falta, la de producción.
 export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://forja-five-zeta.vercel.app").replace(/\/+$/, "");
 
 export const url = (ruta: string) => `${SITE_URL}${ruta === "/" ? "" : ruta}`;
 
+// Cada idioma tiene su dirección: el español sin prefijo y el inglés con /en. Para los buscadores,
+// la canónica es la de la propia página y `languages` (hreflang) enlaza las dos versiones.
+export function alternativas(idioma: Idioma, ruta: string) {
+  return {
+    canonical: conIdioma(idioma, ruta),
+    languages: { es: url(ruta), en: url(conIdioma("en", ruta)), "x-default": url(ruta) },
+  };
+}
+
 // Rutas con datos personales: fuera de buscadores (además, piden sesión).
-export const RUTAS_NO_INDEXABLES = ["/panel", "/rutinas/nueva", "/calendario", "/nutricion", "/entreno", "/estadisticas", "/api/", "/auth/"];
+const PRIVADAS = ["/panel", "/rutinas/nueva", "/calendario", "/nutricion", "/entreno", "/estadisticas"];
+export const RUTAS_NO_INDEXABLES = [...PRIVADAS, ...PRIVADAS.map((r) => conIdioma("en", r)), "/api/", "/auth/"];
 
 // Páginas públicas sin parámetros.
 export const PAGINAS_ESTATICAS = ["/", "/ejercicios", "/rutinas", "/alimentos", "/alimentos/codigo", "/recetas", "/guias", "/aviso-legal", "/privacidad", "/cookies"];

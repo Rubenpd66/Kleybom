@@ -1,5 +1,5 @@
 import { cookies } from "next/headers";
-import Link from "next/link";
+import Link from "@/components/ui/Link";
 import { Suspense } from "react";
 import { getT } from "@/lib/i18n/servidor";
 import BuscadorGlobal from "./BuscadorGlobal";

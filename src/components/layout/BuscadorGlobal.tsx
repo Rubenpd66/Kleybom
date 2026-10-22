@@ -4,7 +4,8 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useId, useRef, useState, useTransition } from "react";
 import { buscarRapido } from "@/app/[idioma]/buscar/actions";
-import { useT } from "@/lib/i18n/cliente";
+import { useIdioma, useT } from "@/lib/i18n/cliente";
+import { conIdioma } from "@/lib/i18n/ruta";
 import { GRUPOS, type Resultado, type Resultados } from "@/lib/search/tipos";
 
 const ESPERA_MS = 250;
@@ -15,6 +16,7 @@ const ESPERA_MS = 250;
 export default function BuscadorGlobal({ alElegir, autoFocus = false }: { alElegir?: () => void; autoFocus?: boolean }) {
   const t = useT().buscador;
   const router = useRouter();
+  const idioma = useIdioma();
   const id = useId();
   const [texto, setTexto] = useState("");
   const [resultados, setResultados] = useState<Resultados | null>(null);
@@ -65,7 +67,7 @@ export default function BuscadorGlobal({ alElegir, autoFocus = false }: { alEleg
     setTexto("");
     setResultados(null);
     alElegir?.();
-    router.push(href);
+    router.push(conIdioma(idioma, href));
   }
 
   function verTodos() {

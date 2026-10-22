@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/components/ui/Link";
 import { notFound } from "next/navigation";
 import Secciones from "@/components/content/Secciones";
 import { getGuideBySlug, listGuides, readingMinutes } from "@/lib/guides";
 import { LOCALE } from "@/lib/i18n";
 import { getIdioma, getT } from "@/lib/i18n/servidor";
-import { IMAGEN_COMPARTIR, articleLd, jsonLd } from "@/lib/seo/site";
+import { IMAGEN_COMPARTIR, alternativas, articleLd, jsonLd } from "@/lib/seo/site";
 
 const fecha = (iso: string, locale: string) =>
   new Intl.DateTimeFormat(locale, { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }).format(new Date(iso));
@@ -26,7 +26,7 @@ export async function generateMetadata(props: PageProps<"/[idioma]/guias/[slug]"
   return {
     title: `${g.titulo} — ${es.marca}`,
     description: g.resumen,
-    alternates: { canonical: `/guias/${g.slug}` },
+    alternates: alternativas(idioma, `/guias/${g.slug}`),
     openGraph: { type: "article", title: g.titulo, description: g.resumen, publishedTime: g.publicada, modifiedTime: g.actualizada, images: [IMAGEN_COMPARTIR] },
   };
 }

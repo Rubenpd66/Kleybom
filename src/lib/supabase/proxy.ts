@@ -1,8 +1,8 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 import { faltanConsentimientos } from "@/lib/auth/validate";
-import { COOKIE_IDIOMA, esIdioma } from "@/lib/i18n";
-import { idiomaEnRuta, llevaIdioma } from "@/lib/i18n/ruta";
+import { COOKIE_IDIOMA, esIdioma, type Idioma } from "@/lib/i18n";
+import { conIdioma, idiomaEnRuta, llevaIdioma } from "@/lib/i18n/ruta";
 
 // Solo la zona de cuenta exige sesión. El resto (calendario, diario, entreno, estadísticas, medidas,
 // crear rutina) se puede ver sin cuenta y pide entrar solo al guardar.
@@ -16,23 +16,36 @@ const UN_ANO = 60 * 60 * 24 * 365;
 
 export async function updateSession(request: NextRequest) {
   const ruta = request.nextUrl.pathname;
-
-  // /en/... o /es/...: se guarda ese idioma y se va a la dirección de siempre (sin prefijo).
   const conPrefijo = idiomaEnRuta(ruta);
-  if (conPrefijo) {
-    const url = request.nextUrl.clone();
-    url.pathname = conPrefijo.resto;
-    const r = NextResponse.redirect(url);
-    r.cookies.set(COOKIE_IDIOMA, conPrefijo.idioma, { path: "/", maxAge: UN_ANO, sameSite: "lax" });
+  // La página tal como la conoce la app, sin el prefijo de idioma: las reglas de acceso (/panel...)
+  // se aplican siempre sobre esta, para que /en/panel esté tan protegido como /panel.
+  const base = conPrefijo?.resto ?? ruta;
+  const cookieIdioma = request.cookies.get(COOKIE_IDIOMA)?.value;
+  const guardarIdioma = (r: NextResponse, idioma: Idioma) => {
+    if (cookieIdioma !== idioma) r.cookies.set(COOKIE_IDIOMA, idioma, { path: "/", maxAge: UN_ANO, sameSite: "lax" });
     return r;
+  };
+
+  // Cada idioma tiene su dirección (el español sin prefijo, el inglés con /en) para que los buscadores
+  // indexen los dos. /es/... no existe como dirección propia: va a la normal.
+  if (conPrefijo?.idioma === "es") {
+    const url = request.nextUrl.clone();
+    url.pathname = base;
+    return guardarIdioma(NextResponse.redirect(url), "es");
+  }
+  // Quien eligió inglés y entra por una dirección sin prefijo (un favorito, un enlace) pasa a la inglesa.
+  // Los buscadores no llevan la cookie, así que siempre ven la dirección sin prefijo en español.
+  if (!conPrefijo && llevaIdioma(ruta) && cookieIdioma === "en") {
+    const url = request.nextUrl.clone();
+    url.pathname = conIdioma("en", ruta);
+    return NextResponse.redirect(url);
   }
 
-  // Las páginas viven en app/[idioma]/: por dentro se sirve /es/... o /en/... según la cookie.
-  const elegido = request.cookies.get(COOKIE_IDIOMA)?.value;
-  const idioma = esIdioma(elegido) ? elegido : "es";
+  // Las páginas viven en app/[idioma]/: el español se sirve por dentro como /es/...; /en/... ya es la ruta real.
+  const idioma: Idioma = conPrefijo ? "en" : "es";
   const destino = request.nextUrl.clone();
-  if (llevaIdioma(ruta)) destino.pathname = `/${idioma}${ruta === "/" ? "" : ruta}`;
-  const seguir = () => (llevaIdioma(ruta) ? NextResponse.rewrite(destino, { request }) : NextResponse.next({ request }));
+  if (llevaIdioma(ruta) && !conPrefijo) destino.pathname = `/es${ruta === "/" ? "" : ruta}`;
+  const seguir = () => (llevaIdioma(ruta) && !conPrefijo ? NextResponse.rewrite(destino, { request }) : NextResponse.next({ request }));
 
   let respuesta = seguir();
 
@@ -54,18 +67,18 @@ export async function updateSession(request: NextRequest) {
 
   // No poner código entre createServerClient y getClaims: refresca la sesión.
   const { data } = await supabase.auth.getClaims();
-  const privada = RUTAS_PRIVADAS.some((r) => ruta.startsWith(r)) && !RUTAS_ABIERTAS.some((r) => ruta.startsWith(r));
+  const privada = RUTAS_PRIVADAS.some((r) => base.startsWith(r)) && !RUTAS_ABIERTAS.some((r) => base.startsWith(r));
   if (!data?.claims && privada) {
     const url = request.nextUrl.clone();
-    url.pathname = "/entrar";
-    url.search = `?volver=${encodeURIComponent(ruta)}`;
+    url.pathname = conIdioma(idioma, "/entrar");
+    url.search = `?volver=${encodeURIComponent(base)}`;
     return NextResponse.redirect(url);
   }
-  if (faltanConsentimientos(data?.claims) && !RUTAS_SIN_CONSENTIMIENTO.some((r) => ruta.startsWith(r))) {
+  if (faltanConsentimientos(data?.claims) && !RUTAS_SIN_CONSENTIMIENTO.some((r) => base.startsWith(r))) {
     const url = request.nextUrl.clone();
-    url.pathname = "/consentimiento";
-    url.search = `?volver=${encodeURIComponent(ruta)}`;
+    url.pathname = conIdioma(idioma, "/consentimiento");
+    url.search = `?volver=${encodeURIComponent(base)}`;
     return NextResponse.redirect(url);
   }
-  return respuesta;
+  return conPrefijo ? guardarIdioma(respuesta, "en") : respuesta;
 }

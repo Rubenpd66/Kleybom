@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { cacheLife } from "next/cache";
 import { slugsPublicos } from "@/lib/cache/publico";
 import { listGuides } from "@/lib/guides";
+import { conIdioma } from "@/lib/i18n/ruta";
 import { PAGINAS_ESTATICAS, url } from "@/lib/seo/site";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -13,12 +14,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     slugsPublicos("foods"),
     slugsPublicos("recipes"),
   ]);
+  // Cada página va dos veces (español e inglés), y cada una dice cuál es su versión en el otro idioma (hreflang).
+  const bilingue = (ruta: string, lastModified?: string): MetadataRoute.Sitemap =>
+    (["es", "en"] as const).map((idioma) => ({
+      url: url(conIdioma(idioma, ruta)),
+      ...(lastModified && { lastModified }),
+      alternates: { languages: { es: url(ruta), en: url(conIdioma("en", ruta)), "x-default": url(ruta) } },
+    }));
   return [
-    ...PAGINAS_ESTATICAS.map((r) => ({ url: url(r) })),
-    ...listGuides().map((g) => ({ url: url(`/guias/${g.slug}`), lastModified: g.actualizada })),
-    ...rutinas.map((s) => ({ url: url(`/rutinas/${s}`) })),
-    ...recetas.map((s) => ({ url: url(`/recetas/${s}`) })),
-    ...ejercicios.map((s) => ({ url: url(`/ejercicios/${s}`) })),
-    ...alimentos.map((s) => ({ url: url(`/alimentos/${s}`) })),
+    ...PAGINAS_ESTATICAS.flatMap((r) => bilingue(r)),
+    ...listGuides().flatMap((g) => bilingue(`/guias/${g.slug}`, g.actualizada)),
+    ...rutinas.flatMap((s) => bilingue(`/rutinas/${s}`)),
+    ...recetas.flatMap((s) => bilingue(`/recetas/${s}`)),
+    ...ejercicios.flatMap((s) => bilingue(`/ejercicios/${s}`)),
+    ...alimentos.flatMap((s) => bilingue(`/alimentos/${s}`)),
   ];
 }

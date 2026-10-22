@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import ExerciseDetail from "@/components/exercises/ExerciseDetail";
 import { ejercicioPublico, slugsPublicos } from "@/lib/cache/publico";
-import { getT } from "@/lib/i18n/servidor";
+import { getIdioma, getT } from "@/lib/i18n/servidor";
+import { alternativas } from "@/lib/seo/site";
 
 // Se generan al compilar las primeras fichas; el resto, en la primera visita (y quedan guardadas).
 // Los params se leen sin <Suspense> para que una ficha que no existe dé un 404 real.
@@ -13,10 +14,10 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata(props: PageProps<"/[idioma]/ejercicios/[slug]">): Promise<Metadata> {
-  const [e, es] = await Promise.all([props.params.then((p) => ejercicioPublico(p.slug)), getT()]);
+  const [e, es, idioma] = await Promise.all([props.params.then((p) => ejercicioPublico(p.slug)), getT(), getIdioma()]);
   if (!e) return { title: `${es.ficha.noEncontradoTitulo} — ${es.marca}` };
   const descripcion = e.description_es?.slice(0, 155) || es.ficha.descripcionPorDefecto(e.name_es);
-  return { title: `${e.name_es} — ${es.marca}`, description: descripcion, alternates: { canonical: `/ejercicios/${e.slug}` } };
+  return { title: `${e.name_es} — ${es.marca}`, description: descripcion, alternates: alternativas(idioma, `/ejercicios/${e.slug}`) };
 }
 
 export default async function FichaPage(props: PageProps<"/[idioma]/ejercicios/[slug]">) {

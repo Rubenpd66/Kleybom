@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/ui/Link";
 import type { ExerciseSummary } from "@/lib/exercises/queries";
 import { getT } from "@/lib/i18n/servidor";
 import ExerciseImage from "./ExerciseImage";

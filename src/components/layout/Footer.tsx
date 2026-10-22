@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/ui/Link";
 import { getT } from "@/lib/i18n/servidor";
 
 // Pie en una sola franja: aviso de salud (obligatorio) a un lado y enlaces al otro.

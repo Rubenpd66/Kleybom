@@ -3,7 +3,7 @@ import { expect, test } from "@playwright/test";
 test("robots.txt deja fuera las zonas privadas y enlaza el sitemap", async ({ request }) => {
   const texto = await (await request.get("/robots.txt")).text();
   expect(texto).toContain("Allow: /");
-  for (const ruta of ["/panel", "/nutricion", "/entreno", "/api/"]) expect(texto).toContain(`Disallow: ${ruta}`);
+  for (const ruta of ["/panel", "/nutricion", "/entreno", "/api/", "/en/panel", "/en/nutricion"]) expect(texto).toContain(`Disallow: ${ruta}`);
   expect(texto).toMatch(/Sitemap: https?:\/\/\S+\/sitemap\.xml/);
 });
 
@@ -14,10 +14,14 @@ test("el sitemap incluye guías, rutinas, recetas, ejercicios y alimentos, y nad
   const urls = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => new URL(m[1]).pathname);
   for (const ruta of ["/", "/guias", "/guias/empezar-a-entrenar", "/rutinas/movilidad-en-casa", "/recetas/tortilla-de-patatas", "/ejercicios/sentadillas", "/alimentos/platanos-crudos-173944"]) {
     expect(urls).toContain(ruta);
+    expect(urls).toContain(ruta === "/" ? "/en" : `/en${ruta}`);
   }
   expect(urls.length).toBeGreaterThan(6000);
   expect(new Set(urls).size).toBe(urls.length);
-  expect(urls.some((u) => /^\/(panel|nutricion|entreno|calendario|estadisticas)/.test(u))).toBe(false);
+  expect(urls.some((u) => /^(\/en)?\/(panel|nutricion|entreno|calendario|estadisticas)/.test(u))).toBe(false);
+  // Cada versión enlaza a la del otro idioma (hreflang).
+  expect(xml).toMatch(/<xhtml:link rel="alternate" hreflang="en" href="[^"]+\/en\/guias"/);
+  expect(xml).toMatch(/<xhtml:link rel="alternate" hreflang="x-default" href="[^"]+\/guias"/);
 });
 
 test("cada página pública tiene título y descripción propios", async ({ page }) => {
@@ -48,4 +52,13 @@ test("datos estructurados: WebSite y Organization en la portada, Article en las 
   expect(articulo["@type"]).toBe("Article");
   expect(articulo.headline).toBe("Crear el hábito");
   await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", /\/guias\/habitos$/);
+});
+
+test("cada idioma es su propia canónica y enlaza a la otra versión con hreflang", async ({ page }) => {
+  for (const ruta of ["/guias/descanso", "/en/guias/descanso"]) {
+    await page.goto(ruta);
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", new RegExp(`${ruta}$`));
+    await expect(page.locator('link[rel="alternate"][hreflang="es"]')).toHaveAttribute("href", /\/guias\/descanso$/);
+    await expect(page.locator('link[rel="alternate"][hreflang="en"]')).toHaveAttribute("href", /\/en\/guias\/descanso$/);
+  }
 });

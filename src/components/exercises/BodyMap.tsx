@@ -1,10 +1,11 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/components/ui/Link";
 import { useRouter, useSearchParams } from "next/navigation";
 import Model, { type IMuscleStats, type Muscle } from "react-body-highlighter";
 import { enlaceConMusculo, musculoDeZona, zonasDeMusculo } from "@/lib/exercises/bodymap";
-import { useT } from "@/lib/i18n/cliente";
+import { useIdioma, useT } from "@/lib/i18n/cliente";
+import { conIdioma } from "@/lib/i18n/ruta";
 
 // Variables del tema (la librería aplica el color con style, así que var() funciona).
 const AMBAR = "var(--temple)";
@@ -16,12 +17,13 @@ const CUERPO = "var(--cuerpo)";
 export default function BodyMap({ seleccionado, nombre }: { seleccionado?: string; nombre?: string }) {
   const t = useT().ejercicios;
   const router = useRouter();
+  const idioma = useIdioma();
   const params = useSearchParams();
   const datos = seleccionado ? [{ name: nombre ?? seleccionado, muscles: zonasDeMusculo(seleccionado) as Muscle[] }] : [];
 
   function pulsar({ muscle }: IMuscleStats) {
     const slug = musculoDeZona(muscle);
-    if (slug) router.push(enlaceConMusculo(params, slug), { scroll: false });
+    if (slug) router.push(conIdioma(idioma, enlaceConMusculo(params, slug)), { scroll: false });
   }
 
   return (

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/components/ui/Link";
 import { Suspense } from "react";
 import CalorieBar from "@/components/foods/CalorieBar";
 import NutritionTable from "@/components/foods/NutritionTable";

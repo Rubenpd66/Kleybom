@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import Link from "@/components/ui/Link";
 import { useActionState } from "react";
 import { borrarEntrada, editarGramos } from "@/app/[idioma]/nutricion/actions";
 import { formatNutriente } from "@/lib/foods/format";

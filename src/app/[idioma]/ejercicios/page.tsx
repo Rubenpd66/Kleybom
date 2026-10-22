@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/components/ui/Link";
 import { Suspense } from "react";
 import BodyMap from "@/components/exercises/BodyMap";
 import ExerciseCard from "@/components/exercises/ExerciseCard";

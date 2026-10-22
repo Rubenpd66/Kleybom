@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/components/ui/Link";
 import { Suspense } from "react";
 import RoutineCard from "@/components/routines/RoutineCard";
 import RoutineFilters from "@/components/routines/RoutineFilters";

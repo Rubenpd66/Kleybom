@@ -2,12 +2,14 @@
 
 import { COOKIE_IDIOMA, IDIOMAS, type Idioma } from "@/lib/i18n";
 import { useIdioma, useT } from "@/lib/i18n/cliente";
+import { conIdioma, sinIdioma } from "@/lib/i18n/ruta";
 
-// ES | EN. La elección se guarda en una cookie (un año) y se recarga la página: el proxy sirve
-// entonces la versión en ese idioma sin cambiar la dirección.
+// ES | EN. Cada idioma tiene su dirección (/ejercicios y /en/ejercicios): se va a la misma página en
+// el otro idioma. La elección se guarda también en una cookie (un año) para acciones y redirecciones.
 export function cambiarIdioma(idioma: Idioma) {
   document.cookie = `${COOKIE_IDIOMA}=${idioma}; path=/; max-age=${60 * 60 * 24 * 365}; samesite=lax`;
-  window.location.reload();
+  const { pathname, search, hash } = window.location;
+  window.location.assign(conIdioma(idioma, sinIdioma(pathname)) + search + hash);
 }
 
 export default function SelectorIdioma() {

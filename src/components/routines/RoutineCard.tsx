@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "@/components/ui/Link";
 import type { RoutineSummary } from "@/lib/routines/queries";
 import { getT } from "@/lib/i18n/servidor";
 

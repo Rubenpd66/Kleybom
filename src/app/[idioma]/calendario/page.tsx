@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/components/ui/Link";
 import { connection } from "next/server";
 import { Suspense } from "react";
 import AvisoInvitado from "@/components/auth/AvisoInvitado";

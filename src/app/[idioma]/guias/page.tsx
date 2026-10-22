@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import Link from "@/components/ui/Link";
 import { listGuides, readingMinutes } from "@/lib/guides";
 import { getIdioma, getT } from "@/lib/i18n/servidor";
 
