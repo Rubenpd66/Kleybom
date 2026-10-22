@@ -1,3 +1,4 @@
+import Anuncio from "@/components/ui/Anuncio";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "@/components/ui/Link";
@@ -94,6 +95,7 @@ async function Contenido({ params }: { params: Promise<{ slug: string }> }) {
         <p>{t.fuente}</p>
         {img && <CreditoFoto {...img.foto} />}
       </footer>
+      <Anuncio />
     </article>
   );
 }

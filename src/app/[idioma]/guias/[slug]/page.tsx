@@ -1,3 +1,4 @@
+import Anuncio from "@/components/ui/Anuncio";
 import type { Metadata } from "next";
 import Link from "@/components/ui/Link";
 import { notFound } from "next/navigation";
@@ -85,6 +86,7 @@ export default async function GuiaPage(props: PageProps<"/[idioma]/guias/[slug]"
             ))}
           </ol>
         </section>
+        <Anuncio />
       </article>
     </main>
   );

@@ -75,6 +75,7 @@ export const es = {
     ] satisfies EnlaceNav[],
     apoyar: "Apoyar KleyBom",
   },
+  anuncios: { etiqueta: "Publicidad" },
   apoya: {
     titulo: "Apoya KleyBom",
     descripcion: "KleyBom es gratis. Si te resulta útil, puedes hacer una donación voluntaria.",
@@ -496,7 +497,7 @@ export const es = {
   },
   inicio: {
     titular: "Come. Entrena. Progresa.",
-    entradilla: "Gratis, sin anuncios y sin letra pequeña.",
+    entradilla: "Gratis y sin letra pequeña.",
     explorar: "Explorar ejercicios",
     crearCuenta: "Crear mi cuenta",
     selectorTitulo: "¿Qué trabajas hoy?",

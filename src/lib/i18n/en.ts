@@ -73,6 +73,7 @@ export const en: typeof es = {
     ] satisfies EnlaceNav[],
     apoyar: "Support KleyBom",
   },
+  anuncios: { etiqueta: "Advertising" },
   apoya: {
     titulo: "Support KleyBom",
     descripcion: "KleyBom is free. If you find it useful, you can make a voluntary donation.",
@@ -488,7 +489,7 @@ export const en: typeof es = {
   },
   inicio: {
     titular: "Eat. Train. Progress.",
-    entradilla: "Free, no ads and no small print.",
+    entradilla: "Free and no small print.",
     explorar: "Explore exercises",
     crearCuenta: "Create my account",
     selectorTitulo: "What are you training today?",

@@ -211,3 +211,8 @@ body {
     transition: none !important;
   }
 }
+
+/* Anuncio sin relleno: Google marca el bloque como "unfilled"; se quita entero (también la etiqueta). */
+.anuncio:has(ins.adsbygoogle[data-ad-status="unfilled"]) {
+  display: none;
+}

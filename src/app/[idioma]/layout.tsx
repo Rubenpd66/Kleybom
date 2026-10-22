@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import Fondo3D from "@/components/fondo/Fondo3D";
 import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
+import { ID_ADSENSE } from "@/lib/anuncios";
 import { IDIOMAS } from "@/lib/i18n";
 import { IdiomaProvider } from "@/lib/i18n/cliente";
 import { getIdioma, getT } from "@/lib/i18n/servidor";
@@ -41,6 +42,8 @@ export async function generateMetadata(): Promise<Metadata> {
       images: [IMAGEN_COMPARTIR],
     },
     twitter: { card: "summary_large_image" },
+    // Verificación de la web en AdSense sin cargar ningún script (solo con NEXT_PUBLIC_ADSENSE_ID).
+    ...(ID_ADSENSE && { other: { "google-adsense-account": ID_ADSENSE } }),
   };
 }
 

@@ -64,3 +64,11 @@ test("sin enlace de donaciones configurado no aparece nada de donaciones", async
   const r = await page.goto("/apoya");
   expect(r?.status()).toBe(404);
 });
+
+test("sin AdSense configurado no hay anuncios, ni scripts de terceros, ni ads.txt", async ({ page, request }) => {
+  await page.goto("/guias/descanso");
+  await expect(page.locator("ins.adsbygoogle")).toHaveCount(0);
+  await expect(page.locator('script[src*="googlesyndication"]')).toHaveCount(0);
+  await expect(page.locator('meta[name="google-adsense-account"]')).toHaveCount(0);
+  expect((await request.get("/ads.txt")).status()).toBe(404);
+});

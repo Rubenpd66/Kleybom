@@ -5,7 +5,7 @@ Leída por Claude Code, Codex y Gemini. Estado actual en `docs/PROGRESO.md`.
 ## Proyecto
 - **Nombre:** KleyBom (elegido por el usuario el 21/10/2026; antes "Forja", nombre de trabajo). Logo y favicon a partir de su imagen, vectorizada en `public/logo.svg` y `src/app/icon.svg`.
 - **Idea:** web fitness y salud lo más completa posible: selector de ejercicios, calendario, rutinas, nutrición con una gran base de alimentos y estadísticas. Con información detallada de cada ejercicio, alimento y rutina.
-- **Modelo:** gratuita. SIN sistema de pagos (por la carga legal). Solo donaciones voluntarias.
+- **Modelo:** gratuita. SIN sistema de pagos (por la carga legal). Ingresos previstos: donaciones voluntarias (Stripe) y anuncios de AdSense por visitas, ambos preparados pero APAGADOS hasta que el usuario cierre la fase de legalidad y decida el alta de autónomo (ver `docs/anuncios.md`, `NEXT_PUBLIC_DONACIONES_URL`, `NEXT_PUBLIC_ADSENSE_ID`).
 - **Idioma:** español (España) de entrada. Otros idiomas: por decidir.
 - **Frontend:** animaciones y 3D solo donde aporten (p. ej. visor de ejercicios). Nunca deben complicar la lógica ni el rendimiento. Imágenes con Nano Banana (modelo de imágenes de Google).
 

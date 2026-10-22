@@ -2,7 +2,7 @@
 import { esIdioma, type Idioma } from "./index";
 
 // Lo que no es una página (API, vuelta del login, robots, sitemap, iconos) no lleva idioma.
-const SIN_IDIOMA = /^\/(api|auth)(\/|$)|^\/(robots\.txt|sitemap\.xml|favicon\.ico|icon|apple-icon)/;
+const SIN_IDIOMA = /^\/(api|auth)(\/|$)|^\/(robots\.txt|sitemap\.xml|ads\.txt|favicon\.ico|icon|apple-icon)/;
 
 export function llevaIdioma(ruta: string): boolean {
   return !SIN_IDIOMA.test(ruta);

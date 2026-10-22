@@ -6,7 +6,7 @@ describe("llevaIdioma", () => {
     for (const r of ["/", "/ejercicios", "/ejercicios/sentadillas", "/panel/perfil", "/autor"]) expect(llevaIdioma(r)).toBe(true);
   });
   it("la API, la vuelta del login y los archivos especiales no", () => {
-    for (const r of ["/api/health", "/auth/callback", "/robots.txt", "/sitemap.xml", "/favicon.ico", "/icon.svg", "/apple-icon.png"]) {
+    for (const r of ["/api/health", "/auth/callback", "/robots.txt", "/sitemap.xml", "/ads.txt", "/favicon.ico", "/icon.svg", "/apple-icon.png"]) {
       expect(llevaIdioma(r)).toBe(false);
     }
   });

@@ -1,3 +1,4 @@
+import Anuncio from "@/components/ui/Anuncio";
 import Link from "@/components/ui/Link";
 import type { ExerciseDetail as Ficha } from "@/lib/exercises/queries";
 import { getT } from "@/lib/i18n/servidor";
@@ -152,6 +153,7 @@ export default async function ExerciseDetail({ ejercicio: e }: { ejercicio: Fich
           </p>
         )}
       </footer>
+      <Anuncio />
     </article>
   );
 }

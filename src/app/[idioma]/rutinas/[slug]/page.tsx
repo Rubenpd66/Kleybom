@@ -1,3 +1,4 @@
+import Anuncio from "@/components/ui/Anuncio";
 import type { Metadata } from "next";
 import Link from "@/components/ui/Link";
 import { notFound } from "next/navigation";
@@ -96,6 +97,7 @@ async function Contenido({ params }: { params: Promise<{ slug: string }> }) {
           </section>
         ))
       )}
+      <Anuncio />
     </article>
   );
 }
