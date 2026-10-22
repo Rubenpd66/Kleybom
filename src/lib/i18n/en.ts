@@ -301,6 +301,11 @@ export const en: typeof es = {
     errorGeneral: "It couldn't be saved. Try again in a few minutes.",
     errorRutina: "That routine doesn't exist or you don't have access to it.",
     errorDia: (n: number) => `That routine only has ${n} ${n === 1 ? "day" : "days"}.`,
+    yaPlanificado: "Those days already have this routine in the calendar.",
+    repetir: "Repeat",
+    repetirOpciones: { dia: "Only this day", mes: "Until the end of the month", "4semanas": "The next 4 weeks" },
+    resumenPlan: (n: number, dias: string) => `${n} ${n === 1 ? "session" : "sessions"} will be added: ${dias}, with rest days in between.`,
+    diaInicio: "Routine day to start with",
     errores: {
       fecha: "Choose a valid date.",
       rutina: "Choose a routine from the list.",

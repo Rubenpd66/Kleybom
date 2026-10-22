@@ -48,6 +48,17 @@ test.describe("con una cuenta de prueba", () => {
     await expect(page.getByRole("table")).toBeVisible();
   });
 
+  test("con «Solo este día» se apunta una sola sesión y la vista previa explica el plan", async ({ page }) => {
+    await entrar(page);
+    await page.goto("/calendario?mes=2027-03&dia=2027-03-01");
+    await page.getByLabel("Rutina", { exact: true }).selectOption({ label: "Fuerza básica (3 días)" });
+    await expect(page.getByText(/Se apuntarán 14 sesiones: lunes, miércoles y viernes/)).toBeVisible();
+    await page.getByLabel("Repetir").selectOption({ label: "Solo este día" });
+    await expect(page.getByText(/Se apuntarán/)).toHaveCount(0);
+    await page.getByRole("button", { name: "Planificar" }).click();
+    await expect(page.getByRole("link", { name: /1 sesión/ })).toHaveCount(1);
+  });
+
   test("planificar una rutina en un día, marcarla como hecha y cambiar de mes", async ({ page }) => {
     await entrar(page);
     await page.goto("/calendario?mes=2026-11");
@@ -69,6 +80,15 @@ test.describe("con una cuenta de prueba", () => {
     await expect(sesion).toContainText("Ir temprano");
     await expect(sesion).toContainText("Planificada");
     await expect(page.getByRole("link", { name: /^lunes, 2 de noviembre.*1 sesión/ })).toBeVisible();
+    // Por defecto se apunta el mes entero: lunes, miércoles y viernes, rotando los días de la rutina.
+    await expect(page.getByRole("link", { name: /1 sesión/ })).toHaveCount(13);
+    await expect(page.getByRole("link", { name: /^martes, 3 de noviembre.*sin sesiones/ })).toBeVisible();
+    await page.getByRole("link", { name: /^miércoles, 4 de noviembre/ }).click();
+    await expect(page).toHaveURL(/dia=2026-11-04/);
+    await expect(page.getByRole("article").filter({ hasText: "Fuerza básica" })).toContainText("Día 2");
+    await page.getByRole("link", { name: /^lunes, 2 de noviembre/ }).click();
+    await expect(page).toHaveURL(/dia=2026-11-02/);
+    await expect(sesion).toContainText("Día 1");
 
     await sesion.getByRole("button", { name: "Marcar como hecha" }).click();
     await expect(page.getByRole("article").filter({ hasText: "Fuerza básica" })).toContainText("Hecha");

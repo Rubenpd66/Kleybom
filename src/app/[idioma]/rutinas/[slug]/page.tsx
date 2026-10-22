@@ -104,7 +104,7 @@ async function Contenido({ params }: { params: Promise<{ slug: string }> }) {
 
 export default function RutinaPage(props: PageProps<"/[idioma]/rutinas/[slug]">) {
   return (
-    <main className="mx-auto w-full lg:px-10 2xl:px-16 flex-1 px-6 py-12">
+    <main className="mx-auto w-full max-w-[1520px] lg:px-10 2xl:px-16 flex-1 px-6 py-12">
       <Contenido params={props.params} />
     </main>
   );

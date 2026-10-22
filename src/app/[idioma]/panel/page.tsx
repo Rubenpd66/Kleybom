@@ -177,7 +177,7 @@ async function Contenido() {
 export default async function PanelPage() {
   const es = await getT();
   return (
-    <main className="mx-auto w-full lg:px-10 2xl:px-16 flex-1 px-4 py-12 sm:px-6">
+    <main className="mx-auto w-full max-w-[1520px] lg:px-10 2xl:px-16 flex-1 px-4 py-12 sm:px-6">
       <h1 className="font-display text-[clamp(2.2rem,6vw,3.6rem)] font-extrabold leading-none">{es.auth.panel}</h1>
       <Suspense fallback={<p className="mt-3 text-acero">{es.ejercicios.cargando}</p>}>
         <Contenido />

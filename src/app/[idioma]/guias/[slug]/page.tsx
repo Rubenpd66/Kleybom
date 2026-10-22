@@ -39,7 +39,7 @@ export default async function GuiaPage(props: PageProps<"/[idioma]/guias/[slug]"
   if (!g) notFound();
 
   return (
-    <main className="mx-auto w-full lg:px-10 2xl:px-16 flex-1 px-6 py-12">
+    <main className="mx-auto w-full max-w-[1520px] lg:px-10 2xl:px-16 flex-1 px-6 py-12">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(articleLd(g)) }} />
       <article className="max-w-3xl">
         <Link href="/guias" className="text-sm font-bold text-azul underline">

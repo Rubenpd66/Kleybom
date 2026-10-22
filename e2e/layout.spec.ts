@@ -40,6 +40,35 @@ test("el menú lateral se abre al pasar el ratón por el botón Menú", async ({
   await expect(menu).not.toHaveAttribute("inert");
 });
 
+test("en pantalla grande el menú se abre en toda la franja derecha, pero no encima de un enlace", async ({ page }) => {
+  await page.setViewportSize({ width: 1900, height: 1000 });
+  await page.goto("/");
+  const menu = page.locator("#menu-lateral");
+  const boton = (await page.getByRole("banner").getByRole("button", { name: "Abrir menú" }).boundingBox())!;
+  // La página tiene un ancho máximo: a 1900 px queda margen a los lados.
+  const contenido = (await page.getByRole("main").locator("> div").first().boundingBox())!;
+  expect(contenido.x).toBeGreaterThan(150);
+  // Encima de un enlace de la tarjeta de músculos (dentro de la franja) no se abre.
+  const enlace = page.getByRole("region", { name: "¿Qué trabajas hoy?" }).getByRole("link").first();
+  const caja = (await enlace.boundingBox())!;
+  const x = Math.max(boton.x + 10, caja.x + 10);
+  await page.mouse.move(200, 500);
+  await page.mouse.move(x, caja.y + caja.height / 2, { steps: 4 });
+  await page.waitForTimeout(500);
+  await expect(menu).toHaveAttribute("inert", "");
+  // En un hueco libre de la franja (sin enlaces ni botones debajo), sí.
+  const libreY = await page.evaluate((px) => {
+    for (let y = 120; y < innerHeight; y += 10) {
+      const el = document.elementFromPoint(px, y);
+      if (el && !el.closest("a, button, input, select, textarea, label, [role='button']")) return y;
+    }
+    return -1;
+  }, boton.x + 20);
+  expect(libreY).toBeGreaterThan(0);
+  await page.mouse.move(boton.x + 20, libreY, { steps: 4 });
+  await expect(menu).not.toHaveAttribute("inert");
+});
+
 test("el buscador de la cabecera encuentra en toda la web y lleva a la página de resultados", async ({ page }) => {
   await page.goto("/");
   const caja = page.getByRole("banner").getByRole("combobox");

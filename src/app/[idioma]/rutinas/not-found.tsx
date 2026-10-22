@@ -4,7 +4,7 @@ import { getT } from "@/lib/i18n/servidor";
 export default async function NoEncontrada() {
   const es = await getT();
   return (
-    <main className="mx-auto w-full lg:px-10 2xl:px-16 flex-1 px-6 py-12">
+    <main className="mx-auto w-full max-w-[1520px] lg:px-10 2xl:px-16 flex-1 px-6 py-12">
       <h1 className="font-display text-[clamp(2.2rem,6vw,3.6rem)] font-extrabold leading-none">
         {es.rutinas.noEncontradaTitulo}
       </h1>

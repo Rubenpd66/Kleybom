@@ -22,7 +22,7 @@ export default async function NuevaRutinaPage() {
   const es = await getT();
   const t = es.constructor;
   return (
-    <main className="mx-auto w-full lg:px-10 2xl:px-16 flex-1 px-6 py-12">
+    <main className="mx-auto w-full max-w-[1520px] lg:px-10 2xl:px-16 flex-1 px-6 py-12">
       <Link href="/rutinas" className="text-sm font-bold text-azul underline">
         {es.rutinas.volver}
       </Link>

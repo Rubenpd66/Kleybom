@@ -24,7 +24,7 @@ export default async function FichaPage(props: PageProps<"/[idioma]/ejercicios/[
   const ejercicio = await ejercicioPublico((await props.params).slug);
   if (!ejercicio) notFound();
   return (
-    <main className="mx-auto w-full lg:px-10 2xl:px-16 flex-1 px-6 py-12">
+    <main className="mx-auto w-full max-w-[1520px] lg:px-10 2xl:px-16 flex-1 px-6 py-12">
       <ExerciseDetail ejercicio={ejercicio} />
     </main>
   );

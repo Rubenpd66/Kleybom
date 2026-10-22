@@ -18,7 +18,7 @@ export default async function Header() {
   const es = await getT();
   return (
     <header className="sticky top-0 z-20 border-b border-linea bg-tiza/80 backdrop-blur-md">
-      <div className="mx-auto flex h-16 lg:px-10 2xl:px-16 items-center justify-between gap-6 px-6">
+      <div className="mx-auto flex h-16 max-w-[1520px] lg:px-10 2xl:px-16 items-center justify-between gap-6 px-6">
         {/* Solo el icono KB. Se dibuja con una máscara del logo y el color del texto: se ve en claro y en oscuro. */}
         <Link href="/" aria-label={es.nav.inicio} className="flex h-10 items-center">
           <span

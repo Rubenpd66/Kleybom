@@ -305,6 +305,11 @@ export const es = {
     errorGeneral: "No se ha podido guardar. Inténtalo de nuevo en unos minutos.",
     errorRutina: "Esa rutina no existe o no tienes acceso a ella.",
     errorDia: (n: number) => `Esa rutina solo tiene ${n} ${n === 1 ? "día" : "días"}.`,
+    yaPlanificado: "Esos días ya tienen esta rutina en el calendario.",
+    repetir: "Repetir",
+    repetirOpciones: { dia: "Solo este día", mes: "Hasta final de mes", "4semanas": "Las próximas 4 semanas" },
+    resumenPlan: (n: number, dias: string) => `Se apuntarán ${n} ${n === 1 ? "sesión" : "sesiones"}: ${dias}, con días de descanso entre medias.`,
+    diaInicio: "Día de la rutina con el que empezar",
     errores: {
       fecha: "Elige una fecha válida.",
       rutina: "Elige una rutina de la lista.",
