@@ -1,10 +1,9 @@
 import Link from "next/link";
 import type { RoutineSummary } from "@/lib/routines/queries";
-import { es } from "@/lib/i18n/es";
+import { getT } from "@/lib/i18n/servidor";
 
-const t = es.rutinas;
-
-export default function RoutineCard({ rutina }: { rutina: RoutineSummary }) {
+export default async function RoutineCard({ rutina }: { rutina: RoutineSummary }) {
+  const t = (await getT()).rutinas;
   return (
     <li className="rounded-xl border border-linea bg-papel">
       <Link href={`/rutinas/${rutina.slug}`} className="flex h-full flex-col gap-3 p-4 tarjeta-hover hover:bg-realce">

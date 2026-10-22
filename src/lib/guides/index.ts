@@ -1,13 +1,17 @@
+import type { Idioma } from "@/lib/i18n";
 import { GUIAS, type Guia } from "./content";
+import { GUIAS_EN } from "./content-en";
 
 export type { Bloque, Guia } from "./content";
 
-export function listGuides(): Guia[] {
-  return GUIAS;
+const POR_IDIOMA: Record<Idioma, Guia[]> = { es: GUIAS, en: GUIAS_EN };
+
+export function listGuides(idioma: Idioma = "es"): Guia[] {
+  return POR_IDIOMA[idioma];
 }
 
-export function getGuideBySlug(slug: string): Guia | undefined {
-  return GUIAS.find((g) => g.slug === slug);
+export function getGuideBySlug(slug: string, idioma: Idioma = "es"): Guia | undefined {
+  return POR_IDIOMA[idioma].find((g) => g.slug === slug);
 }
 
 // Minutos de lectura a unas 200 palabras por minuto (mínimo 1).

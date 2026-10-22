@@ -49,6 +49,7 @@ export const AVISO_LEGAL: TextoLegal = {
           "Ejercicios: wger (wger.de), con licencias Creative Commons BY-SA y CC0. Cada ficha indica su autor y licencia; los textos derivados se comparten con la misma licencia.",
           "Alimentos: USDA FoodData Central, SR Legacy (dominio público, CC0). Nombres traducidos por KleyBom.",
           "Productos envasados: Open Food Facts (licencia ODbL), consultados en directo y con enlace a su ficha.",
+          "Fotos de alimentos y recetas: Wikimedia Commons, con licencias libres; cada ficha indica su autor y licencia.",
           "Guías, rutinas plantilla y recetas: redactadas por KleyBom, con sus fuentes citadas.",
         ),
         p("El diseño, el código y los textos propios de KleyBom pertenecen a su titular, salvo lo indicado arriba."),
@@ -145,9 +146,10 @@ export const COOKIES: TextoLegal = {
     {
       titulo: "Qué cookies usamos",
       bloques: [
-        p("KleyBom solo usa cookies técnicas, necesarias para que puedas entrar en tu cuenta. No usa cookies de analítica, de publicidad ni de redes sociales, y no hay contenido de terceros que las instale."),
+        p("KleyBom solo usa cookies técnicas, necesarias para que puedas entrar en tu cuenta y para recordar el idioma que eliges. No usa cookies de analítica, de publicidad ni de redes sociales, y no hay contenido de terceros que las instale."),
         lista(
           "sb-…-auth-token (propia, de Supabase): guarda tu sesión cuando entras. Se borra al cerrar sesión o cuando caduca la sesión.",
+          "idioma (propia): recuerda el idioma que eliges (español o inglés). Solo se crea si cambias de idioma y dura un año.",
         ),
         p("Las tipografías se sirven desde nuestro propio servidor, así que tu navegador no se conecta a Google Fonts."),
       ],
@@ -155,7 +157,7 @@ export const COOKIES: TextoLegal = {
     {
       titulo: "Por qué no hay banner de cookies",
       bloques: [
-        p("Las cookies técnicas necesarias para prestar un servicio que pides están exentas de consentimiento (artículo 22.2 de la LSSI). Por eso no te pedimos permiso; solo te informamos. Si algún día añadimos cookies que no sean técnicas, te pediremos tu consentimiento antes de instalarlas."),
+        p("Las cookies técnicas necesarias para prestar un servicio que pides, como mantener la sesión o recordar el idioma que has elegido, están exentas de consentimiento (artículo 22.2 de la LSSI). Por eso no te pedimos permiso; solo te informamos. Si algún día añadimos cookies que no sean técnicas, te pediremos tu consentimiento antes de instalarlas."),
       ],
     },
     {

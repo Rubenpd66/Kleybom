@@ -43,9 +43,9 @@ export async function getWeightSeries(userId: string, desde: string, client?: Su
   return (data ?? []).map((m) => ({ date: m.date as string, value: Number(m.weight_kg) }));
 }
 
-export async function getExerciseNames(ids: number[], client?: SupabaseClient): Promise<Map<number, string>> {
+export async function getExerciseNames(ids: number[], client?: SupabaseClient, idioma: "es" | "en" = "es"): Promise<Map<number, string>> {
   if (ids.length === 0) return new Map();
   const db = client ?? (await createServerClient());
-  const { data } = await db.from("exercises").select("id, name_es").in("id", ids);
-  return new Map((data ?? []).map((e) => [e.id as number, e.name_es as string]));
+  const { data } = await db.from("exercises").select("id, name_es, name_en").in("id", ids);
+  return new Map((data ?? []).map((e) => [e.id as number, ((idioma === "en" && e.name_en) || e.name_es) as string]));
 }

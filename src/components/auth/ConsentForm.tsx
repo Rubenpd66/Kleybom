@@ -3,12 +3,13 @@
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useActionState } from "react";
-import { aceptarConsentimientos } from "@/app/(auth)/actions";
-import { es } from "@/lib/i18n/es";
+import { aceptarConsentimientos } from "@/app/[idioma]/(auth)/actions";
+import { useT } from "@/lib/i18n/cliente";
 
-const t = es.auth;
 
 export default function ConsentForm() {
+  const es = useT();
+  const t = es.auth;
   const [estado, enviar, pendiente] = useActionState(aceptarConsentimientos, {});
   const volver = useSearchParams().get("volver") ?? "";
 

@@ -1,7 +1,5 @@
 import { formatNutriente } from "@/lib/foods/format";
-import { es } from "@/lib/i18n/es";
-
-const t = es.entreno;
+import { useIdioma, useT } from "@/lib/i18n/cliente";
 
 // Una serie ya registrada: número, peso × repeticiones y botón para quitarla.
 export default function SetRow({
@@ -17,12 +15,14 @@ export default function SetRow({
   onQuitar: () => void;
   deshabilitado?: boolean;
 }) {
+  const t = useT().entreno;
+  const idioma = useIdioma();
   return (
     <li className="flex items-center justify-between gap-3 py-2">
       <span>
         <span className="text-sm text-acero">{t.serie(numero)}</span>{" "}
         <strong className="tabular-nums">
-          {formatNutriente(weight_kg, "kg")} × {reps}
+          {formatNutriente(weight_kg, "kg", idioma)} × {reps}
         </strong>
       </span>
       <button

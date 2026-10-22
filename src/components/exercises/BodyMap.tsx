@@ -4,9 +4,8 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import Model, { type IMuscleStats, type Muscle } from "react-body-highlighter";
 import { enlaceConMusculo, musculoDeZona, zonasDeMusculo } from "@/lib/exercises/bodymap";
-import { es } from "@/lib/i18n/es";
+import { useT } from "@/lib/i18n/cliente";
 
-const t = es.ejercicios;
 // Variables del tema (la librería aplica el color con style, así que var() funciona).
 const AMBAR = "var(--temple)";
 const CUERPO = "var(--cuerpo)";
@@ -15,6 +14,7 @@ const CUERPO = "var(--cuerpo)";
 // Es una ayuda visual para ratón y pantalla táctil; el selector "Músculo" del formulario
 // hace lo mismo con teclado y lector de pantalla.
 export default function BodyMap({ seleccionado, nombre }: { seleccionado?: string; nombre?: string }) {
+  const t = useT().ejercicios;
   const router = useRouter();
   const params = useSearchParams();
   const datos = seleccionado ? [{ name: nombre ?? seleccionado, muscles: zonasDeMusculo(seleccionado) as Muscle[] }] : [];

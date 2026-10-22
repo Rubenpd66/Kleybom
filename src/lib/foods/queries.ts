@@ -1,4 +1,5 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
+import type { Idioma } from "@/lib/i18n";
 import { createServerClient } from "@/lib/supabase/server";
 import { normalizeText } from "@/lib/text/normalize";
 
@@ -24,6 +25,12 @@ export type FoodDetail = FoodSummary & {
 const NUTRIENTES = ["kcal", "protein_g", "carbs_g", "fat_g", "fiber_g", "sugar_g", "sodium_mg"] as const;
 const COLUMNAS: string = `id, slug, name_es, name_en, category, ${NUTRIENTES.join(", ")}`;
 
+// En inglés, `name_es` lleva el nombre original de USDA (lo que se muestra). `name_en` no cambia:
+// de él sale la foto del alimento.
+export function nombreEnIdioma<T extends { name_es: string; name_en?: string | null }>(fila: T, idioma: Idioma): T {
+  return idioma === "en" && fila.name_en ? { ...fila, name_es: fila.name_en } : fila;
+}
+
 // La base devuelve las columnas numeric como texto: se pasan a número y el vacío sigue siendo null.
 function conNumeros<T extends Record<string, unknown>>(fila: T): T & Nutrientes {
   const copia: Record<string, unknown> = { ...fila };
@@ -35,6 +42,7 @@ export async function searchFoods(
   q: string,
   page = 1,
   client?: SupabaseClient,
+  idioma: Idioma = "es",
 ): Promise<{ items: FoodSummary[]; total: number }> {
   const db = client ?? (await createServerClient());
   const pagina = Math.max(1, Math.floor(page) || 1);
@@ -42,8 +50,9 @@ export async function searchFoods(
 
   let consulta = db.from("foods").select(COLUMNAS, { count: "exact" });
   // Cada palabra debe aparecer (en cualquier orden): "pollo pechuga" encuentra "Pollo, …, pechuga".
+  // En inglés se busca además en el nombre original ("chicken breast").
   for (const palabra of normalizeText(q).split(" ").filter(Boolean).slice(0, 6)) {
-    consulta = consulta.like("search_text", `%${palabra}%`);
+    consulta = idioma === "en" ? consulta.or(`search_text.like.%${palabra}%,name_en.ilike.%${palabra}%`) : consulta.like("search_text", `%${palabra}%`);
   }
   const { data, error, count } = await consulta
     .order("name_len")
@@ -51,12 +60,12 @@ export async function searchFoods(
     .range(desde, desde + FOODS_PAGE_SIZE - 1);
   if (error) throw error;
   return {
-    items: (data ?? []).map((f) => conNumeros(f as unknown as Record<string, unknown>) as unknown as FoodSummary),
+    items: (data ?? []).map((f) => nombreEnIdioma(conNumeros(f as unknown as Record<string, unknown>) as unknown as FoodSummary, idioma)),
     total: count ?? 0,
   };
 }
 
-export async function getFoodBySlug(slug: string, client?: SupabaseClient): Promise<FoodDetail | null> {
+export async function getFoodBySlug(slug: string, client?: SupabaseClient, idioma: Idioma = "es"): Promise<FoodDetail | null> {
   const db = client ?? (await createServerClient());
   const { data, error } = await db
     .from("foods")
@@ -64,5 +73,5 @@ export async function getFoodBySlug(slug: string, client?: SupabaseClient): Prom
     .eq("slug", slug)
     .maybeSingle();
   if (error) throw error;
-  return data ? (conNumeros(data as unknown as Record<string, unknown>) as unknown as FoodDetail) : null;
+  return data ? nombreEnIdioma(conNumeros(data as unknown as Record<string, unknown>) as unknown as FoodDetail, idioma) : null;
 }

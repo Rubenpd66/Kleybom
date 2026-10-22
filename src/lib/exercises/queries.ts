@@ -1,4 +1,5 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
+import type { Idioma } from "@/lib/i18n";
 import { createServerClient } from "@/lib/supabase/server";
 import { normalizeText } from "@/lib/text/normalize";
 
@@ -40,6 +41,10 @@ export type ExerciseDetail = Omit<ExerciseSummary, "muscles"> & {
 
 export const PAGE_SIZE = 24;
 
+// Los campos *_es llevan el texto que se muestra: en inglés, el original de wger si existe.
+// Así el resto de la web no cambia según el idioma.
+const enIdioma = (idioma: Idioma, es: string, en: string | null | undefined) => (idioma === "en" && en ? en : es);
+
 // Ids de ejercicios que tienen el músculo/equipamiento con ese slug.
 async function idsDeEjercicios(
   db: SupabaseClient,
@@ -60,6 +65,7 @@ async function idsDeEjercicios(
 export async function listExercises(
   f: ExerciseFilters,
   client?: SupabaseClient,
+  idioma: Idioma = "es",
 ): Promise<{ items: ExerciseSummary[]; total: number }> {
   const db = client ?? (await createServerClient());
   const vacio = { items: [], total: 0 };
@@ -84,19 +90,24 @@ export async function listExercises(
 
   let consulta = db
     .from("exercises")
-    .select("id, slug, name_es, level, image_url, exercise_muscles(role, muscles(slug))", { count: "exact" });
+    .select("id, slug, name_es, name_en, level, image_url, exercise_muscles(role, muscles(slug))", { count: "exact" });
   if (ids) consulta = consulta.in("id", ids);
   if (f.level) consulta = consulta.eq("level", f.level);
   const q = normalizeText(f.q ?? "");
-  if (q) consulta = consulta.like("search_text", `%${q}%`);
+  // En español se busca en el nombre sin tildes; en inglés, también en el nombre original.
+  if (q) consulta = idioma === "en" ? consulta.or(`search_text.like.%${q}%,name_en.ilike.%${q}%`) : consulta.like("search_text", `%${q}%`);
 
   const { data, error, count } = await consulta
     .order("name_es")
     .range(desde, desde + PAGE_SIZE - 1);
   if (error) throw error;
-  type Fila = Omit<ExerciseSummary, "muscles"> & { exercise_muscles: { role: "principal" | "secundario"; muscles: { slug: string } | null }[] };
-  const items = ((data ?? []) as unknown as Fila[]).map(({ exercise_muscles, ...resto }) => ({
+  type Fila = Omit<ExerciseSummary, "muscles"> & {
+    name_en: string | null;
+    exercise_muscles: { role: "principal" | "secundario"; muscles: { slug: string } | null }[];
+  };
+  const items = ((data ?? []) as unknown as Fila[]).map(({ exercise_muscles, name_en, ...resto }) => ({
     ...resto,
+    name_es: enIdioma(idioma, resto.name_es, name_en),
     muscles: (exercise_muscles ?? []).flatMap((m) => (m.muscles ? [{ slug: m.muscles.slug, role: m.role }] : [])),
   }));
   return { items, total: count ?? 0 };
@@ -105,6 +116,7 @@ export async function listExercises(
 export async function getExerciseBySlug(
   slug: string,
   client?: SupabaseClient,
+  idioma: Idioma = "es",
 ): Promise<ExerciseDetail | null> {
   const db = client ?? (await createServerClient());
   const { data: ej, error } = await db
@@ -126,10 +138,10 @@ export async function getExerciseBySlug(
   const equipIds = (ue ?? []).map((r) => r.equipment_id as number);
   const [{ data: ms, error: e3 }, { data: es, error: e4 }] = await Promise.all([
     muscleIds.length
-      ? db.from("muscles").select("id, slug, name_es").in("id", muscleIds)
+      ? db.from("muscles").select("id, slug, name_es, name_en").in("id", muscleIds)
       : Promise.resolve({ data: [], error: null }),
     equipIds.length
-      ? db.from("equipment").select("id, slug, name_es").in("id", equipIds)
+      ? db.from("equipment").select("id, slug, name_es, name_en").in("id", equipIds)
       : Promise.resolve({ data: [], error: null }),
   ]);
   if (e3) throw e3;
@@ -137,11 +149,23 @@ export async function getExerciseBySlug(
 
   const muscles = (um ?? []).flatMap((r) => {
     const m = (ms ?? []).find((x) => x.id === r.muscle_id);
-    return m ? [{ slug: m.slug, name_es: m.name_es, role: r.role }] : [];
+    return m ? [{ slug: m.slug, name_es: enIdioma(idioma, m.name_es, m.name_en), role: r.role }] : [];
   });
-  const equipment = (es ?? []).map((x) => ({ slug: x.slug, name_es: x.name_es }));
+  const equipment = (es ?? []).map((x) => ({ slug: x.slug, name_es: enIdioma(idioma, x.name_es, x.name_en) }));
 
-  return { ...ej, muscles, equipment } as ExerciseDetail;
+  // En inglés: el nombre, la descripción y los pasos originales de wger (si los hay).
+  const textos =
+    idioma === "en" && ej.name_en
+      ? {
+          name_es: ej.name_en,
+          description_es: ej.description_en ?? ej.description_es,
+          instructions_es: ej.instructions_en?.length ? ej.instructions_en : ej.instructions_es,
+          tips_es: ej.tips_en?.length ? ej.tips_en : [],
+          common_mistakes_es: ej.common_mistakes_en?.length ? ej.common_mistakes_en : [],
+          needs_translation: false,
+        }
+      : {};
+  return { ...ej, ...textos, muscles, equipment } as ExerciseDetail;
 }
 
 export type CatalogItem = { slug: string; name_es: string };
@@ -149,9 +173,12 @@ export type CatalogItem = { slug: string; name_es: string };
 export async function listCatalog(
   tabla: "muscles" | "equipment",
   client?: SupabaseClient,
+  idioma: Idioma = "es",
 ): Promise<CatalogItem[]> {
   const db = client ?? (await createServerClient());
-  const { data, error } = await db.from(tabla).select("slug, name_es").order("name_es");
+  const { data, error } = await db.from(tabla).select("slug, name_es, name_en");
   if (error) throw error;
-  return (data ?? []) as CatalogItem[];
+  return (data ?? [])
+    .map((f) => ({ slug: f.slug as string, name_es: enIdioma(idioma, f.name_es, f.name_en) }))
+    .sort((a, b) => a.name_es.localeCompare(b.name_es, idioma));
 }

@@ -1,6 +1,8 @@
 // Datos públicos (iguales para todo el mundo) leídos con el cliente anónimo y guardados en caché un día.
+// El idioma sale de la ruta: cada idioma tiene su propia entrada en la caché.
 // Así las fichas se generan enteras en el servidor: rápidas, sin saltos y con sus metadatos en el <head>.
 import { cacheLife } from "next/cache";
+import { getIdioma } from "@/lib/i18n/servidor";
 import { getExerciseBySlug } from "@/lib/exercises/queries";
 import { getFoodBySlug } from "@/lib/foods/queries";
 import { getRecipeBySlug } from "@/lib/recipes/queries";
@@ -10,25 +12,25 @@ import { createPublicClient } from "@/lib/supabase/public";
 export async function ejercicioPublico(slug: string) {
   "use cache";
   cacheLife("days");
-  return getExerciseBySlug(slug, createPublicClient());
+  return getExerciseBySlug(slug, createPublicClient(), await getIdioma());
 }
 
 export async function rutinaPublica(slug: string) {
   "use cache";
   cacheLife("days");
-  return getRoutineBySlug(slug, createPublicClient());
+  return getRoutineBySlug(slug, createPublicClient(), await getIdioma());
 }
 
 export async function alimentoPublico(slug: string) {
   "use cache";
   cacheLife("days");
-  return getFoodBySlug(slug, createPublicClient());
+  return getFoodBySlug(slug, createPublicClient(), await getIdioma());
 }
 
 export async function recetaPublica(slug: string) {
   "use cache";
   cacheLife("days");
-  return getRecipeBySlug(slug, createPublicClient());
+  return getRecipeBySlug(slug, createPublicClient(), await getIdioma());
 }
 
 const POR_PAGINA = 1000; // máximo de filas que devuelve Supabase por consulta

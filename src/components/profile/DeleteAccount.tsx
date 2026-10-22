@@ -1,12 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { es } from "@/lib/i18n/es";
+import { useT } from "@/lib/i18n/cliente";
 
-const t = es.perfil;
 
 // Formulario normal (POST) a la ruta de borrado. El servidor vuelve a comprobar la palabra.
 export default function DeleteAccount() {
+  const es = useT();
+  const t = es.perfil;
   const [texto, setTexto] = useState("");
 
   return (

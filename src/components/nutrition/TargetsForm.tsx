@@ -1,8 +1,8 @@
 "use client";
 
 import { useId, useState, useTransition } from "react";
-import { guardarObjetivos, type EstadoObjetivos } from "@/app/nutricion/objetivos/actions";
-import { es } from "@/lib/i18n/es";
+import { guardarObjetivos, type EstadoObjetivos } from "@/app/[idioma]/nutricion/objetivos/actions";
+import { useT } from "@/lib/i18n/cliente";
 import {
   computeTargets,
   MINIMO_KCAL,
@@ -12,7 +12,6 @@ import {
   type Sexo,
 } from "@/lib/nutrition/targets";
 
-const t = es.objetivos;
 const campo = "h-11 w-full rounded-md border-[1.5px] border-hierro bg-papel px-3 font-normal";
 
 const aNumero = (s: string) => (s.trim() === "" ? Number.NaN : Number(s.replace(",", ".")));
@@ -20,6 +19,8 @@ const aNumero = (s: string) => (s.trim() === "" ? Number.NaN : Number(s.replace(
 export type ValoresIniciales = { sex: Sexo | ""; age: string; height_cm: string; weight_kg: string };
 
 export default function TargetsForm({ iniciales }: { iniciales: ValoresIniciales }) {
+  const es = useT();
+  const t = es.objetivos;
   const id = useId();
   const [sex, setSex] = useState<Sexo | "">(iniciales.sex);
   const [age, setAge] = useState(iniciales.age);

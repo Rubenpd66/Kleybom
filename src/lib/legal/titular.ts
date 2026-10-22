@@ -6,4 +6,4 @@ export const TITULAR = {
   correo: "rubenpd66@gmail.com",
 } as const;
 
-export const ACTUALIZADO = "2026-10-21";
+export const ACTUALIZADO = "2026-10-22";

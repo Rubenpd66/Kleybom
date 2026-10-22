@@ -1,4 +1,5 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
+import type { Idioma } from "@/lib/i18n";
 import { createServerClient } from "@/lib/supabase/server";
 
 export const ZONA_POR_DEFECTO = "Europe/Madrid";
@@ -28,11 +29,12 @@ export async function listSessions(
   desde: string,
   hasta: string,
   client?: SupabaseClient,
+  idioma: Idioma = "es",
 ): Promise<Sesion[]> {
   const db = client ?? (await createServerClient());
   const { data, error } = await db
     .from("planned_sessions")
-    .select("id, date, status, note, routine_day_index, routines(name, slug)")
+    .select("id, date, status, note, routine_day_index, routines(name, name_en, slug)")
     .eq("user_id", userId)
     .gte("date", desde)
     .lte("date", hasta)
@@ -47,7 +49,8 @@ export async function listSessions(
       status: s.status as Estado,
       note: s.note,
       routine_day_index: s.routine_day_index,
-      routine: r ? { name: r.name, slug: r.slug } : null,
+      // Las plantillas tienen nombre en inglés; las rutinas propias, el que les puso su dueño.
+      routine: r ? { name: (idioma === "en" && r.name_en) || r.name, slug: r.slug } : null,
     };
   });
 }
@@ -62,16 +65,16 @@ export async function countSessions(userId: string, client?: SupabaseClient): Pr
 }
 
 // Rutinas que el usuario puede planificar: las plantillas públicas y las suyas (lo filtra la base).
-export async function listRoutineOptions(client?: SupabaseClient): Promise<OpcionRutina[]> {
+export async function listRoutineOptions(client?: SupabaseClient, idioma: Idioma = "es"): Promise<OpcionRutina[]> {
   const db = client ?? (await createServerClient());
   const { data, error } = await db
     .from("routines")
-    .select("id, name, days_per_week, owner_id")
+    .select("id, name, name_en, days_per_week, owner_id")
     .order("id");
   if (error) throw error;
   return (data ?? []).map((r) => ({
     id: r.id,
-    name: r.name,
+    name: (idioma === "en" && r.name_en) || r.name,
     days_per_week: r.days_per_week,
     propia: r.owner_id !== null,
   }));

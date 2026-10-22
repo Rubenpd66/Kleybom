@@ -1,14 +1,15 @@
 "use client";
 
 import { useActionState, useId, useState } from "react";
-import { empezarConRutina } from "@/app/entreno/actions";
+import { empezarConRutina } from "@/app/[idioma]/entreno/actions";
 import type { OpcionRutina } from "@/lib/calendar/queries";
-import { es } from "@/lib/i18n/es";
+import { useT } from "@/lib/i18n/cliente";
 
-const t = es.entreno;
 const campo = "h-11 w-full rounded-md border-[1.5px] border-hierro bg-papel px-3 font-normal";
 
 export default function StartForm({ rutinas }: { rutinas: OpcionRutina[] }) {
+  const es = useT();
+  const t = es.entreno;
   const id = useId();
   const [estado, enviar, pendiente] = useActionState(empezarConRutina, {});
   const [rutina, setRutina] = useState(rutinas[0] ? String(rutinas[0].id) : "");

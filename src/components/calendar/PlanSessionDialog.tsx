@@ -1,11 +1,9 @@
 "use client";
 
 import { useActionState, useId, useState } from "react";
-import { planificarSesion } from "@/app/calendario/actions";
+import { planificarSesion } from "@/app/[idioma]/calendario/actions";
 import type { OpcionRutina } from "@/lib/calendar/queries";
-import { es } from "@/lib/i18n/es";
-
-const t = es.calendario;
+import { useT } from "@/lib/i18n/cliente";
 const campo =
   "h-11 w-full rounded-md border-[1.5px] border-hierro bg-papel px-3 font-normal";
 
@@ -17,6 +15,8 @@ export default function PlanSessionDialog({
   fecha: string;
   rutinas: OpcionRutina[];
 }) {
+  const es = useT();
+  const t = es.calendario;
   const [estado, enviar, pendiente] = useActionState(planificarSesion, {});
   const [rutina, setRutina] = useState("");
   const id = useId();

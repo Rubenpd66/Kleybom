@@ -3,11 +3,10 @@
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useActionState } from "react";
-import type { EstadoForm } from "@/app/(auth)/actions";
-import { es } from "@/lib/i18n/es";
+import type { EstadoForm } from "@/app/[idioma]/(auth)/actions";
+import { useT } from "@/lib/i18n/cliente";
 import BotonGoogle from "./BotonGoogle";
 
-const t = es.auth;
 const campo = "h-11 w-full rounded-md border-[1.5px] border-hierro bg-papel px-3 font-normal";
 
 export default function AuthForm({
@@ -17,6 +16,7 @@ export default function AuthForm({
   modo: "entrar" | "registro";
   action: (estado: EstadoForm, datos: FormData) => Promise<EstadoForm>;
 }) {
+  const t = useT().auth;
   const [estado, enviar, pendiente] = useActionState(action, {});
   const registro = modo === "registro";
   // Página desde la que se vino (p. ej. el calendario): el servidor solo acepta rutas internas.

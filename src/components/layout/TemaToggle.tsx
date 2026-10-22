@@ -1,7 +1,7 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
-import { es } from "@/lib/i18n/es";
+import { useT } from "@/lib/i18n/cliente";
 
 type Tema = "claro" | "oscuro";
 const EVENTO = "cambio-tema";
@@ -38,6 +38,7 @@ export function cambiarTema() {
 // Botón sol/luna. La elección se guarda en este navegador; SCRIPT_TEMA (src/lib/tema.ts) la aplica antes de pintar.
 export default function TemaToggle() {
   // En el servidor no se sabe el tema: se pinta la luna y se corrige al hidratar.
+  const es = useT();
   const tema = useSyncExternalStore(suscribirTema, temaActual, () => "claro" as Tema);
   const oscuro = tema === "oscuro";
   return (

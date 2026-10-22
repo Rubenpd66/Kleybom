@@ -2,15 +2,17 @@
 
 import Image from "next/image";
 import { useEffect, useId, useRef, useState, useTransition } from "react";
-import { anadirEntrada, buscarAlimentos, type AlimentoEncontrado } from "@/app/nutricion/actions";
+import { anadirEntrada, buscarAlimentos, type AlimentoEncontrado } from "@/app/[idioma]/nutricion/actions";
 import { formatNutriente } from "@/lib/foods/format";
-import { es } from "@/lib/i18n/es";
+import { useIdioma, useT } from "@/lib/i18n/cliente";
 import { MEALS, type Meal } from "@/lib/nutrition/diary";
 
-const t = es.diario;
 const campo = "h-11 w-full rounded-md border-[1.5px] border-hierro bg-papel px-3 font-normal";
 
 export default function FoodPicker({ fecha }: { fecha: string }) {
+  const es = useT();
+  const t = es.diario;
+  const idioma = useIdioma();
   const id = useId();
   const [texto, setTexto] = useState("");
   const [resultados, setResultados] = useState<AlimentoEncontrado[] | null>(null);
@@ -103,7 +105,7 @@ export default function FoodPicker({ fecha }: { fecha: string }) {
               >
                 {a.imagen && <Image src={a.imagen} alt="" width={40} height={30} className="h-8 w-10 shrink-0 rounded object-cover" />}
                 <span className="flex-1">+ {a.name_es}</span>
-                <span className="text-sm text-acero">{t.porCien(formatNutriente(a.kcal, "kcal"))}</span>
+                <span className="text-sm text-acero">{t.porCien(formatNutriente(a.kcal, "kcal", idioma))}</span>
               </button>
             </li>
           ))}

@@ -1,4 +1,5 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
+import type { Idioma } from "@/lib/i18n";
 import { createServerClient } from "@/lib/supabase/server";
 
 export type Workout = {
@@ -23,11 +24,11 @@ export type EjercicioDelDia = {
   rest_seconds: number;
 };
 
-export async function getWorkout(id: number, userId: string, client?: SupabaseClient): Promise<Workout | null> {
+export async function getWorkout(id: number, userId: string, client?: SupabaseClient, idioma: Idioma = "es"): Promise<Workout | null> {
   const db = client ?? (await createServerClient());
   const { data } = await db
     .from("workout_logs")
-    .select("id, date, routine_id, routine_day_index, planned_session_id, finished_at, routines(name)")
+    .select("id, date, routine_id, routine_day_index, planned_session_id, finished_at, routines(name, name_en)")
     .eq("id", id)
     .eq("user_id", userId)
     .maybeSingle();
@@ -40,7 +41,7 @@ export async function getWorkout(id: number, userId: string, client?: SupabaseCl
     routine_day_index: data.routine_day_index,
     planned_session_id: data.planned_session_id,
     finished_at: data.finished_at,
-    routine_name: (r as { name?: string } | null)?.name ?? null,
+    routine_name: (idioma === "en" && (r as { name_en?: string | null } | null)?.name_en) || ((r as { name?: string } | null)?.name ?? null),
   };
 }
 
@@ -55,19 +56,19 @@ export async function getSets(workoutId: number, client?: SupabaseClient): Promi
   return (data ?? []).map((s) => ({ ...s, weight_kg: Number(s.weight_kg) }));
 }
 
-export async function getDayExercises(routineId: number, day: number, client?: SupabaseClient): Promise<EjercicioDelDia[]> {
+export async function getDayExercises(routineId: number, day: number, client?: SupabaseClient, idioma: Idioma = "es"): Promise<EjercicioDelDia[]> {
   const db = client ?? (await createServerClient());
   const { data, error } = await db
     .from("routine_exercises")
-    .select("exercise_id, sets, reps_min, reps_max, rest_seconds, position, exercises(slug, name_es)")
+    .select("exercise_id, sets, reps_min, reps_max, rest_seconds, position, exercises(slug, name_es, name_en)")
     .eq("routine_id", routineId)
     .eq("day_index", day)
     .order("position");
   if (error) throw error;
   return (data ?? []).flatMap((r) => {
-    const e = (Array.isArray(r.exercises) ? r.exercises[0] : r.exercises) as { slug: string; name_es: string } | null;
+    const e = (Array.isArray(r.exercises) ? r.exercises[0] : r.exercises) as { slug: string; name_es: string; name_en: string | null } | null;
     return e
-      ? [{ exercise_id: r.exercise_id, slug: e.slug, name_es: e.name_es, sets: r.sets, reps_min: r.reps_min, reps_max: r.reps_max, rest_seconds: r.rest_seconds }]
+      ? [{ exercise_id: r.exercise_id, slug: e.slug, name_es: (idioma === "en" && e.name_en) || e.name_es, sets: r.sets, reps_min: r.reps_min, reps_max: r.reps_max, rest_seconds: r.rest_seconds }]
       : [];
   });
 }
@@ -116,18 +117,19 @@ export async function getPreviousSets(
 
 export type PlanificadaHoy = { id: number; routine_id: number; routine_day_index: number | null; routine_name: string };
 
-export async function listPlannedWithRoutine(userId: string, date: string, client?: SupabaseClient): Promise<PlanificadaHoy[]> {
+export async function listPlannedWithRoutine(userId: string, date: string, client?: SupabaseClient, idioma: Idioma = "es"): Promise<PlanificadaHoy[]> {
   const db = client ?? (await createServerClient());
   const { data } = await db
     .from("planned_sessions")
-    .select("id, routine_id, routine_day_index, status, routines(name)")
+    .select("id, routine_id, routine_day_index, status, routines(name, name_en)")
     .eq("user_id", userId)
     .eq("date", date)
     .not("routine_id", "is", null)
     .neq("status", "hecha")
     .order("id");
   return (data ?? []).flatMap((s) => {
-    const r = (Array.isArray(s.routines) ? s.routines[0] : s.routines) as { name: string } | null;
-    return r && s.routine_id ? [{ id: s.id, routine_id: s.routine_id, routine_day_index: s.routine_day_index, routine_name: r.name }] : [];
+    const r = (Array.isArray(s.routines) ? s.routines[0] : s.routines) as { name: string; name_en: string | null } | null;
+    const nombre = r ? (idioma === "en" && r.name_en) || r.name : "";
+    return r && s.routine_id ? [{ id: s.id, routine_id: s.routine_id, routine_day_index: s.routine_day_index, routine_name: nombre }] : [];
   });
 }

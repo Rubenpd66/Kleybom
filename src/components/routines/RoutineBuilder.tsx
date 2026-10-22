@@ -5,17 +5,18 @@ import {
   buscarEjercicios,
   guardarRutina,
   type ResultadoBusqueda,
-} from "@/app/rutinas/nueva/actions";
-import { es } from "@/lib/i18n/es";
+} from "@/app/[idioma]/rutinas/nueva/actions";
+import { useT } from "@/lib/i18n/cliente";
 import { builderReducer, emptyDraft } from "@/lib/routines/builder";
 import { GOALS, LEVELS } from "@/lib/routines/validate";
 
-const t = es.constructor;
 const campo = "h-11 w-full rounded-md border-[1.5px] border-hierro bg-papel px-3 font-normal";
 const numero = "h-10 w-20 rounded-md border-[1.5px] border-hierro bg-papel px-2";
 const boton = "h-10 rounded-md border-[1.5px] border-hierro px-3 text-sm font-bold";
 
 export default function RoutineBuilder() {
+  const es = useT();
+  const t = es.constructor;
   const [estado, dispatch] = useReducer(builderReducer, undefined, emptyDraft);
   const [nombres, setNombres] = useState<Record<number, string>>({});
   const [texto, setTexto] = useState("");
@@ -175,7 +176,7 @@ export default function RoutineBuilder() {
                         <span className="font-bold">{nombre}</span>
                         <div className="flex flex-wrap items-end gap-3 text-sm">
                           <label className="flex flex-col gap-1 font-bold">
-                            Series
+                            {t.colSeries}
                             <input
                               type="number"
                               aria-label={t.series(nombre)}
@@ -187,7 +188,7 @@ export default function RoutineBuilder() {
                             />
                           </label>
                           <label className="flex flex-col gap-1 font-bold">
-                            Rep. mín.
+                            {t.colRepsMin}
                             <input
                               type="number"
                               aria-label={t.repsMin(nombre)}
@@ -205,7 +206,7 @@ export default function RoutineBuilder() {
                             />
                           </label>
                           <label className="flex flex-col gap-1 font-bold">
-                            Rep. máx.
+                            {t.colRepsMax}
                             <input
                               type="number"
                               aria-label={t.repsMax(nombre)}
@@ -223,7 +224,7 @@ export default function RoutineBuilder() {
                             />
                           </label>
                           <label className="flex flex-col gap-1 font-bold">
-                            Descanso (s)
+                            {t.colDescanso}
                             <input
                               type="number"
                               aria-label={t.descanso(nombre)}

@@ -1,8 +1,11 @@
-import { conGoogle } from "@/app/(auth)/actions";
-import { es } from "@/lib/i18n/es";
+"use client";
+
+import { conGoogle } from "@/app/[idioma]/(auth)/actions";
+import { useT } from "@/lib/i18n/cliente";
 
 // Formulario aparte (no puede ir dentro del de correo): lleva a Google y vuelve a /auth/callback.
 export default function BotonGoogle({ volver }: { volver: string }) {
+  const es = useT();
   return (
     <form action={conGoogle} className="flex flex-col gap-4">
       <input type="hidden" name="volver" value={volver} />

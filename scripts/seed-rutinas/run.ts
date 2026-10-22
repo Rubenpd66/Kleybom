@@ -5,6 +5,7 @@ import { createClient } from "@supabase/supabase-js";
 import { writeFileSync } from "node:fs";
 import { validateRoutine } from "../../src/lib/routines/validate.ts";
 import { PLANTILLAS, aBorrador } from "./rutinas.ts";
+import { NOTAS_EN, RUTINAS_EN } from "./rutinas-en.ts";
 
 const dryRun = process.argv.includes("--dry-run");
 process.loadEnvFile(".env.local");
@@ -84,6 +85,8 @@ async function main() {
           owner_id: null,
           name: p.name,
           description: p.description,
+          name_en: RUTINAS_EN[p.slug]?.name ?? null,
+          description_en: RUTINAS_EN[p.slug]?.description ?? null,
           goal: p.goal,
           level: p.level,
           days_per_week: p.dias.length,
@@ -108,6 +111,7 @@ async function main() {
         reps_max: x.reps[1],
         rest_seconds: x.descanso,
         notes: x.nota ?? null,
+        notes_en: x.nota ? (NOTAS_EN[x.nota] ?? null) : null,
       })),
     );
     const { error: e3 } = await db.from("routine_exercises").insert(filas);

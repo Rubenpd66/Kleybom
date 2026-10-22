@@ -2,9 +2,10 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { es } from "@/lib/i18n/es";
+import { useT } from "@/lib/i18n/cliente";
 
 export default function MobileNav({ conSesion = false }: { conSesion?: boolean }) {
+  const es = useT();
   const [abierto, setAbierto] = useState(false);
   const boton = useRef<HTMLButtonElement>(null);
 

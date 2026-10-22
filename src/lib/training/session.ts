@@ -14,7 +14,7 @@ export type ActiveSession = {
   planned_session_id: number | null;
   sets: SerieRegistrada[];
   finished: boolean;
-  error: string | null;
+  error: ErrorSesion | null;
 };
 
 export type SessionAction =
@@ -23,13 +23,15 @@ export type SessionAction =
   | { type: "deleteSet"; exercise_id: number; set_index: number }
   | { type: "finish" };
 
+// Los errores son claves; la interfaz muestra el texto de entreno.errores en su idioma.
 export const ERRORES = {
-  peso: "El peso debe estar entre 0 y 1000 kg.",
-  reps: "Las repeticiones deben ser un número entero entre 1 y 200.",
-  rpe: "El esfuerzo percibido (RPE) debe estar entre 1 y 10.",
-  sinSeries: "Registra al menos una serie antes de terminar el entreno.",
-  noExiste: "Esa serie ya no existe.",
-};
+  peso: "peso",
+  reps: "reps",
+  rpe: "rpe",
+  sinSeries: "sinSeries",
+  noExiste: "noExiste",
+} as const;
+export type ErrorSesion = (typeof ERRORES)[keyof typeof ERRORES];
 
 export function nuevaSesion(o: Partial<Omit<ActiveSession, "sets" | "finished" | "error">> & { date: string }): ActiveSession {
   return {
@@ -43,7 +45,7 @@ export function nuevaSesion(o: Partial<Omit<ActiveSession, "sets" | "finished" |
   };
 }
 
-function validar(weight_kg: number, reps: number, rpe?: number): string | null {
+function validar(weight_kg: number, reps: number, rpe?: number): ErrorSesion | null {
   if (!Number.isFinite(weight_kg) || weight_kg < 0 || weight_kg > 1000) return ERRORES.peso;
   if (!Number.isInteger(reps) || reps < 1 || reps > 200) return ERRORES.reps;
   if (rpe !== undefined && (!Number.isFinite(rpe) || rpe < 1 || rpe > 10)) return ERRORES.rpe;

@@ -1,11 +1,17 @@
-const numero = new Intl.NumberFormat("es-ES", { maximumFractionDigits: 1, useGrouping: true });
+import { LOCALE, type Idioma } from "@/lib/i18n";
+
+const NUMERO: Record<Idioma, Intl.NumberFormat> = {
+  es: new Intl.NumberFormat(LOCALE.es, { maximumFractionDigits: 1, useGrouping: true }),
+  en: new Intl.NumberFormat(LOCALE.en, { maximumFractionDigits: 1, useGrouping: true }),
+};
 
 // Un dato desconocido se muestra como "—", nunca como 0.
-export function formatNutriente(valor: number | null, unidad: string): string {
+export function formatNutriente(valor: number | null, unidad: string, idioma: Idioma = "es"): string {
   if (valor === null) return "—";
+  const texto = NUMERO[idioma].format(valor);
   // es-ES no agrupa los números de 4 cifras por defecto; se fuerza el punto de miles a partir de 1.000.
-  const texto = valor >= 1000 && valor < 10000 ? numero.format(valor).replace(/^(\d)(\d{3})/, "$1.$2") : numero.format(valor);
-  return `${texto} ${unidad}`;
+  const agrupado = idioma === "es" && valor >= 1000 && valor < 10000 ? texto.replace(/^(\d)(\d{3})/, "$1.$2") : texto;
+  return `${agrupado} ${unidad}`;
 }
 
 export type Reparto = { proteina: number; hidratos: number; grasa: number };

@@ -1,8 +1,9 @@
 import Link from "next/link";
-import { es } from "@/lib/i18n/es";
+import { getT } from "@/lib/i18n/servidor";
 
 // Pie en una sola franja: aviso de salud (obligatorio) a un lado y enlaces al otro.
-export default function Footer() {
+export default async function Footer() {
+  const es = await getT();
   return (
     <footer className="mt-auto border-t border-linea bg-papel/80 backdrop-blur-sm">
       <div className="mx-auto flex max-w-[1180px] flex-col gap-3 px-6 py-6 text-sm sm:flex-row sm:items-center sm:justify-between">

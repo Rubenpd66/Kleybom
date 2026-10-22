@@ -1,4 +1,5 @@
 import { getCurrentUser } from "@/lib/auth/session";
+import { tDeCookie } from "@/lib/i18n/servidor";
 import { createServerClient } from "@/lib/supabase/server";
 
 // Descarga de todos los datos del usuario (derecho de portabilidad del RGPD, art. 20).
@@ -33,8 +34,7 @@ export async function GET() {
 
   const hoy = new Date().toISOString().slice(0, 10);
   const contenido = {
-    aviso:
-      "Copia de tus datos en KleyBom. Contiene datos personales y de salud: guárdala en un lugar seguro.",
+    aviso: (await tDeCookie()).comun.exportarNota,
     generado: new Date().toISOString(),
     cuenta: { email: usuario.email, creada: usuario.created_at },
     perfil: perfil.data,

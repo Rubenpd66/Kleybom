@@ -1,9 +1,10 @@
 import Link from "next/link";
 import type { ExerciseSummary } from "@/lib/exercises/queries";
-import { es } from "@/lib/i18n/es";
+import { getT } from "@/lib/i18n/servidor";
 import ExerciseImage from "./ExerciseImage";
 
-export default function ExerciseCard({ ejercicio }: { ejercicio: ExerciseSummary }) {
+export default async function ExerciseCard({ ejercicio }: { ejercicio: ExerciseSummary }) {
+  const es = await getT();
   return (
     <li className="rounded-xl border border-linea bg-papel">
       <Link

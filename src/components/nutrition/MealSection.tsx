@@ -2,15 +2,15 @@
 
 import Link from "next/link";
 import { useActionState } from "react";
-import { borrarEntrada, editarGramos } from "@/app/nutricion/actions";
+import { borrarEntrada, editarGramos } from "@/app/[idioma]/nutricion/actions";
 import { formatNutriente } from "@/lib/foods/format";
-import { es } from "@/lib/i18n/es";
+import { useIdioma, useT } from "@/lib/i18n/cliente";
 import type { MealEntryWithFood } from "@/lib/nutrition/diary";
 import { scaleNutrients, type Nutrients } from "@/lib/nutrition/portion";
 
-const t = es.diario;
-
 function Fila({ e }: { e: MealEntryWithFood }) {
+  const t = useT().diario;
+  const idioma = useIdioma();
   const [estado, enviar, pendiente] = useActionState(editarGramos.bind(null, e.id), {});
   const kcal = scaleNutrients(e.food, e.grams).kcal;
   return (
@@ -20,7 +20,7 @@ function Fila({ e }: { e: MealEntryWithFood }) {
           {e.food.name_es}
         </Link>
         <span className="text-sm text-acero">
-          {formatNutriente(e.grams, "g")} · {formatNutriente(kcal, "kcal")}
+          {formatNutriente(e.grams, "g", idioma)} · {formatNutriente(kcal, "kcal", idioma)}
         </span>
       </div>
       <div className="flex flex-wrap items-center gap-2">
@@ -28,7 +28,7 @@ function Fila({ e }: { e: MealEntryWithFood }) {
           <input
             name="gramos"
             inputMode="decimal"
-            defaultValue={String(e.grams).replace(".", ",")}
+            defaultValue={idioma === "es" ? String(e.grams).replace(".", ",") : String(e.grams)}
             aria-label={t.gramosDe(e.food.name_es)}
             className="h-9 w-24 rounded-md border-[1.5px] border-hierro bg-papel px-2 text-sm"
           />
@@ -68,6 +68,8 @@ export default function MealSection({
   entradas: MealEntryWithFood[];
   total: Nutrients;
 }) {
+  const t = useT().diario;
+  const idioma = useIdioma();
   const id = `comida-${titulo}`;
   return (
     <section aria-labelledby={id} className="rounded-xl border border-linea bg-papel">
@@ -75,7 +77,7 @@ export default function MealSection({
         <h2 id={id} className="font-display text-2xl font-bold">
           {titulo}
         </h2>
-        <span className="text-sm font-bold">{formatNutriente(total.kcal, "kcal")}</span>
+        <span className="text-sm font-bold">{formatNutriente(total.kcal, "kcal", idioma)}</span>
       </div>
       {entradas.length === 0 ? (
         <p className="p-3 text-sm text-acero">{t.sinEntradas}</p>

@@ -1,10 +1,8 @@
 import { repartoCalorias } from "@/lib/foods/format";
-import { es } from "@/lib/i18n/es";
-
-const t = es.alimentos;
+import { getT } from "@/lib/i18n/servidor";
 
 // Barra del reparto de calorías. El color nunca es la única pista: la leyenda lleva texto y %.
-export default function CalorieBar({
+export default async function CalorieBar({
   protein_g,
   carbs_g,
   fat_g,
@@ -13,6 +11,7 @@ export default function CalorieBar({
   carbs_g: number | null;
   fat_g: number | null;
 }) {
+  const t = (await getT()).alimentos;
   const r = repartoCalorias({ protein_g, carbs_g, fat_g });
   if (!r) return <p className="text-sm text-acero">{t.repartoNoDisponible}</p>;
 

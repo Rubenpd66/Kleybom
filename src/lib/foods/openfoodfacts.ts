@@ -5,7 +5,7 @@ import type { Nutrientes } from "./queries";
 
 export type ProductoOff = {
   codigo: string;
-  nombre: string;
+  nombre: string | null; // null: el producto no tiene nombre (la página pone "Producto sin nombre")
   marca: string | null;
   imagen: string | null;
   nutrientes: Nutrientes;
@@ -53,7 +53,7 @@ export function parseOffProduct(json: unknown): ResultadoOff {
     ok: true,
     producto: {
       codigo: String(p.code ?? ""),
-      nombre: texto(p.product_name_es) ?? texto(p.product_name) ?? "Producto sin nombre",
+      nombre: texto(p.product_name_es) ?? texto(p.product_name) ?? null,
       marca: texto(p.brands),
       imagen: texto(p.image_front_small_url),
       nutrientes,

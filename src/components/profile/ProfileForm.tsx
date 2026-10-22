@@ -1,15 +1,16 @@
 "use client";
 
 import { useActionState } from "react";
-import { guardarPerfil } from "@/app/panel/perfil/actions";
-import { es } from "@/lib/i18n/es";
+import { guardarPerfil } from "@/app/[idioma]/panel/perfil/actions";
+import { useT } from "@/lib/i18n/cliente";
 
-const t = es.perfil;
 const campo = "h-11 w-full rounded-md border-[1.5px] border-hierro bg-papel px-3 font-normal";
 
 type Valores = { display_name: string | null; sex: string | null; birth_date: string | null; height_cm: number | null };
 
 export default function ProfileForm({ valores }: { valores: Valores }) {
+  const es = useT();
+  const t = es.perfil;
   const [estado, enviar, pendiente] = useActionState(guardarPerfil, {});
 
   return (

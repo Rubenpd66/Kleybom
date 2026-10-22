@@ -1,21 +1,12 @@
 import Link from "next/link";
 import { monthGrid } from "@/lib/calendar/dates";
 import type { Sesion } from "@/lib/calendar/queries";
-import { es } from "@/lib/i18n/es";
-
-const t = es.calendario;
-
-const etiquetaDia = new Intl.DateTimeFormat("es-ES", {
-  weekday: "long",
-  day: "numeric",
-  month: "long",
-  year: "numeric",
-  timeZone: "UTC",
-});
+import { LOCALE } from "@/lib/i18n";
+import { getIdioma, getT } from "@/lib/i18n/servidor";
 
 const MARCA = { planificada: "•", hecha: "✓", saltada: "–" } as const;
 
-export default function MonthView({
+export default async function MonthView({
   year,
   month,
   sesiones,
@@ -28,6 +19,8 @@ export default function MonthView({
   hoy: string;
   seleccionado: string | null;
 }) {
+  const [t, idioma] = await Promise.all([getT().then((d) => d.calendario), getIdioma()]);
+  const etiquetaDia = new Intl.DateTimeFormat(LOCALE[idioma], { weekday: "long", day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
   const mes = `${year}-${String(month).padStart(2, "0")}`;
   const porDia = new Map<string, Sesion[]>();
   for (const s of sesiones) porDia.set(s.date, [...(porDia.get(s.date) ?? []), s]);
@@ -37,7 +30,7 @@ export default function MonthView({
       <thead>
         <tr>
           {t.diasSemana.map((d, i) => (
-            <th key={d} scope="col" className="pb-2 font-bold">
+            <th key={i} scope="col" className="pb-2 font-bold">
               <abbr title={t.diasSemanaLargos[i]} className="no-underline">
                 {d}
               </abbr>

@@ -1,8 +1,9 @@
 "use client";
 
-import { es } from "@/lib/i18n/es";
+import { useT } from "@/lib/i18n/cliente";
 
 export default function PrintButton() {
+  const es = useT();
   return (
     <button
       type="button"

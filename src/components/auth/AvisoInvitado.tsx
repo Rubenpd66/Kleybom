@@ -1,11 +1,10 @@
 import Link from "next/link";
-import { es } from "@/lib/i18n/es";
-
-const t = es.invitado;
+import { getT } from "@/lib/i18n/servidor";
 
 // Aviso corto para quien usa una sección personal sin cuenta: puede probarla, pero no se guarda nada.
 // `ruta` es la página actual: tras entrar o registrarse se vuelve a ella.
-export default function AvisoInvitado({ ruta }: { ruta: string }) {
+export default async function AvisoInvitado({ ruta }: { ruta: string }) {
+  const t = (await getT()).invitado;
   const volver = `?volver=${encodeURIComponent(ruta)}`;
   return (
     <aside

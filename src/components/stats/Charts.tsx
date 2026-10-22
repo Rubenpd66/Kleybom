@@ -3,6 +3,7 @@
 // y una tabla con los datos como alternativa.
 import type { ReactNode } from "react";
 import type { Punto } from "@/lib/stats/aggregate";
+import { getT } from "@/lib/i18n/servidor";
 import { escalaY } from "@/lib/stats/chart";
 
 const ANCHO = 400;
@@ -53,14 +54,15 @@ function etiquetasDispersas(n: number, xDe: (i: number) => number, texto: (i: nu
   return indices.map((i) => ({ x: xDe(i), texto: texto(i) }));
 }
 
-function Figura({ titulo, resumen, children, tabla }: { titulo: string; resumen: string; children: ReactNode; tabla: ReactNode }) {
+async function Figura({ titulo, resumen, children, tabla }: { titulo: string; resumen: string; children: ReactNode; tabla: ReactNode }) {
+  const t = (await getT()).estadisticas;
   return (
     <figure className="mt-3 max-w-xl">
       <svg viewBox={`0 0 ${ANCHO} ${ALTO}`} role="img" aria-label={`${titulo}. ${resumen}`} className="h-auto w-full">
         {children}
       </svg>
       <details className="mt-2 text-sm">
-        <summary className="cursor-pointer font-bold text-azul underline">Ver los datos en una tabla</summary>
+        <summary className="cursor-pointer font-bold text-azul underline">{t.verTabla}</summary>
         <div className="mt-2 max-h-72 overflow-auto rounded-md border border-linea">{tabla}</div>
       </details>
     </figure>
@@ -100,7 +102,7 @@ function Tabla({ cabeceras, filas }: { cabeceras: string[]; filas: string[][] })
   );
 }
 
-export function BarChart({
+export async function BarChart({
   titulo,
   resumen,
   puntos,
@@ -115,6 +117,7 @@ export function BarChart({
   formatoFecha: (fecha: string) => string;
   nombreValor: string;
 }) {
+  const t = (await getT()).estadisticas;
   const { min, max, marcas } = escalaY(puntos.map((p) => p.value), { desdeCero: true });
   const hueco = 2;
   const ancho = AREA_X / Math.max(puntos.length, 1);
@@ -123,7 +126,7 @@ export function BarChart({
     <Figura
       titulo={titulo}
       resumen={resumen}
-      tabla={<Tabla cabeceras={["Semana", nombreValor]} filas={puntos.map((p) => [formatoFecha(p.date), formato(p.value)])} />}
+      tabla={<Tabla cabeceras={[t.columnaSemana, nombreValor]} filas={puntos.map((p) => [formatoFecha(p.date), formato(p.value)])} />}
     >
       <Ejes marcas={marcas} min={min} max={max} formato={formato} etiquetasX={etiquetasDispersas(puntos.length, xDe, (i) => formatoFecha(puntos[i].date))} />
       {puntos.map((p, i) => {
@@ -154,7 +157,7 @@ export function BarChart({
 
 export type Serie = { nombre: string; color: string; puntos: Punto[]; discontinua?: boolean };
 
-export function LineChart({
+export async function LineChart({
   titulo,
   resumen,
   series,
@@ -167,6 +170,7 @@ export function LineChart({
   formato: Formato;
   formatoFecha: (fecha: string) => string;
 }) {
+  const t = (await getT()).estadisticas;
   const fechas = [...new Set(series.flatMap((s) => s.puntos.map((p) => p.date)))].sort();
   const { min, max, marcas } = escalaY(series.flatMap((s) => s.puntos.map((p) => p.value)));
   const xDe = (i: number) => (fechas.length <= 1 ? M.izquierda + AREA_X / 2 : M.izquierda + (i / (fechas.length - 1)) * AREA_X);
@@ -176,7 +180,7 @@ export function LineChart({
   return (
     <>
       {series.length > 1 && (
-        <ul className="mt-2 flex flex-wrap gap-4 text-sm" aria-label="Leyenda">
+        <ul className="mt-2 flex flex-wrap gap-4 text-sm" aria-label={t.leyenda}>
           {series.map((s) => (
             <li key={s.nombre} className="flex items-center gap-2">
               <svg width="24" height="8" aria-hidden="true">
@@ -192,7 +196,7 @@ export function LineChart({
         resumen={resumen}
         tabla={
           <Tabla
-            cabeceras={["Fecha", ...series.map((s) => s.nombre)]}
+            cabeceras={[t.columnaFecha, ...series.map((s) => s.nombre)]}
             filas={fechas.map((f) => [
               formatoFecha(f),
               ...series.map((s) => {

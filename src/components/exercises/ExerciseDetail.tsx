@@ -1,9 +1,8 @@
 import Link from "next/link";
 import type { ExerciseDetail as Ficha } from "@/lib/exercises/queries";
-import { es } from "@/lib/i18n/es";
+import { getT } from "@/lib/i18n/servidor";
 import ExerciseImage from "./ExerciseImage";
 
-const t = es.ficha;
 
 const URL_LICENCIA: Record<string, string> = {
   "CC-BY-SA 3": "https://creativecommons.org/licenses/by-sa/3.0/deed.es",
@@ -29,7 +28,9 @@ function Lista({ titulo, items, ordenada }: { titulo: string; items: string[]; o
   );
 }
 
-export default function ExerciseDetail({ ejercicio: e }: { ejercicio: Ficha }) {
+export default async function ExerciseDetail({ ejercicio: e }: { ejercicio: Ficha }) {
+  const es = await getT();
+  const t = es.ficha;
   const principales = e.muscles.filter((m) => m.role === "principal");
   const secundarios = e.muscles.filter((m) => m.role === "secundario");
   const urlLicencia = e.license ? URL_LICENCIA[e.license] : undefined;

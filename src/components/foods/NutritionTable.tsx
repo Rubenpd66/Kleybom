@@ -1,8 +1,6 @@
 import { formatNutriente } from "@/lib/foods/format";
 import type { Nutrientes } from "@/lib/foods/queries";
-import { es } from "@/lib/i18n/es";
-
-const t = es.alimentos;
+import { getIdioma, getT } from "@/lib/i18n/servidor";
 
 const FILAS: { clave: keyof Nutrientes; unidad: string; sangria?: boolean }[] = [
   { clave: "kcal", unidad: "kcal" },
@@ -15,10 +13,11 @@ const FILAS: { clave: keyof Nutrientes; unidad: string; sangria?: boolean }[] = 
 ];
 
 // Tabla por 100 g. Un dato que falta se muestra como "— sin dato", nunca como 0.
-export default function NutritionTable({ nutrientes, titulo = t.tablaTitulo }: { nutrientes: Nutrientes; titulo?: string }) {
+export default async function NutritionTable({ nutrientes, titulo }: { nutrientes: Nutrientes; titulo?: string }) {
+  const [t, idioma] = await Promise.all([getT().then((d) => d.alimentos), getIdioma()]);
   return (
     <table className="mt-8 w-full border-collapse overflow-hidden rounded-xl bg-papel text-left">
-      <caption className="mb-3 text-left font-display text-[1.7rem] font-bold">{titulo}</caption>
+      <caption className="mb-3 text-left font-display text-[1.7rem] font-bold">{titulo ?? t.tablaTitulo}</caption>
       <thead>
         <tr className="border-b-[1.5px] border-hierro">
           <th scope="col" className="p-3">
@@ -43,7 +42,7 @@ export default function NutritionTable({ nutrientes, titulo = t.tablaTitulo }: {
                     — <span className="text-sm">{t.sinDato}</span>
                   </span>
                 ) : (
-                  formatNutriente(v, f.unidad)
+                  formatNutriente(v, f.unidad, idioma)
                 )}
               </td>
             </tr>

@@ -2,15 +2,14 @@
 
 import { useRouter } from "next/navigation";
 import { useReducer, useRef, useState, useTransition } from "react";
-import { borrarSerie, registrarSerie, terminarEntreno } from "@/app/entreno/actions";
+import { borrarSerie, registrarSerie, terminarEntreno } from "@/app/[idioma]/entreno/actions";
 import { formatNutriente } from "@/lib/foods/format";
-import { es } from "@/lib/i18n/es";
+import { useIdioma, useT } from "@/lib/i18n/cliente";
 import type { EjercicioDelDia, SerieGuardada } from "@/lib/training/queries";
 import { nuevaSesion, sessionReducer, type ActiveSession } from "@/lib/training/session";
 import { useRestTimer } from "@/lib/training/useRestTimer";
 import SetRow from "./SetRow";
 
-const t = es.entreno;
 const campo = "h-11 w-full rounded-md border-[1.5px] border-hierro bg-papel px-3 font-normal tabular-nums";
 const aNumero = (s: string) => (s.trim() === "" ? Number.NaN : Number(s.trim().replace(",", ".")));
 
@@ -39,8 +38,10 @@ function Ejercicio({
   onRegistrar: (peso: number, reps: number) => void;
   onQuitar: (indiceGlobal: number) => void;
 }) {
+  const t = useT().entreno;
+  const idioma = useIdioma();
   const ultima = anterior?.[0];
-  const [peso, setPeso] = useState(ultima ? String(ultima.weight_kg).replace(".", ",") : "");
+  const [peso, setPeso] = useState(ultima ? (idioma === "es" ? String(ultima.weight_kg).replace(".", ",") : String(ultima.weight_kg)) : "");
   const [reps, setReps] = useState(ultima ? String(ultima.reps) : "");
   const id = `ej-${e.exercise_id}`;
   const rangoReps = e.reps_min === e.reps_max ? `${e.reps_min}` : `${e.reps_min}-${e.reps_max}`;
@@ -53,7 +54,7 @@ function Ejercicio({
       <p className="mt-1 text-sm text-acero">{t.objetivo(e.sets, rangoReps, e.rest_seconds)}</p>
       <p className="mt-1 text-sm">
         {anterior && anterior.length > 0
-          ? anterior.map((s) => t.ultimaVez(formatNutriente(s.weight_kg, "kg"), s.reps)).slice(0, 1)
+          ? anterior.map((s) => t.ultimaVez(formatNutriente(s.weight_kg, "kg", idioma), s.reps)).slice(0, 1)
           : t.primeraVez}
       </p>
 
@@ -112,6 +113,7 @@ export default function LiveSession({
   guardadas: SerieGuardada[];
   anteriores: Record<number, SerieGuardada[]>;
 }) {
+  const t = useT().entreno;
   const router = useRouter();
   const [estado, dispatch] = useReducer(sessionReducer, undefined, () => estadoInicial(fecha, guardadas));
   // ids de la base, en el mismo orden que estado.sets.
@@ -126,7 +128,7 @@ export default function LiveSession({
     // Primero se valida en el navegador con el reductor; si es válido, se guarda y luego se añade.
     const prueba = sessionReducer(estado, { type: "logSet", exercise_id: e.exercise_id, weight_kg: peso, reps });
     if (prueba.error) {
-      setErrores((x) => ({ ...x, [e.exercise_id]: prueba.error }));
+      setErrores((x) => ({ ...x, [e.exercise_id]: t.errores[prueba.error!] }));
       return;
     }
     empezar(async () => {
@@ -161,7 +163,7 @@ export default function LiveSession({
   function terminar() {
     const prueba = sessionReducer(estado, { type: "finish" });
     if (prueba.error) {
-      setErrorGeneral(prueba.error);
+      setErrorGeneral(t.errores[prueba.error]);
       return;
     }
     empezar(async () => {

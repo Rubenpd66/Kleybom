@@ -27,7 +27,8 @@ Leída por Claude Code, Codex y Gemini. Estado actual en `docs/PROGRESO.md`.
 Versiones instaladas: Next.js 16, React 19, Tailwind CSS 4, TypeScript 5.
 
 ## Estructura de carpetas
-- `src/app/` — páginas y rutas (App Router)
+- `src/app/[idioma]/` — páginas (App Router), una versión por idioma (es/en). Fuera quedan `api/`, `auth/callback`, `robots.ts` y `sitemap.ts`
+- `src/lib/i18n/` — diccionarios `es.ts` y `en.ts`; textos nuevos siempre en los dos
 - `src/lib/` — lógica pura y sus tests (cálculos, consultas)
 - `src/components/` — componentes de interfaz
 - `public/` — archivos estáticos

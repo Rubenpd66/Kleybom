@@ -3,13 +3,12 @@
 import Link from "next/link";
 import { useState } from "react";
 import type { GrupoPortada } from "@/lib/home/queries";
-import { es } from "@/lib/i18n/es";
-
-const t = es.inicio;
+import { useT } from "@/lib/i18n/cliente";
 
 // Selector de la portada: al pulsar un grupo muscular cambia la lista de ejercicios.
 // Sin JavaScript se ve el primer grupo y el enlace a todos los ejercicios.
 export default function MuscleSelector({ grupos }: { grupos: GrupoPortada[] }) {
+  const t = useT().inicio;
   const [activo, setActivo] = useState(grupos[0]?.clave);
   const grupo = grupos.find((g) => g.clave === activo) ?? grupos[0];
   if (!grupo) return null;
@@ -38,7 +37,7 @@ export default function MuscleSelector({ grupos }: { grupos: GrupoPortada[] }) {
           <li key={e.slug} className="lista-entra" style={{ animationDelay: `${i * 50}ms` }}>
             <Link href={`/ejercicios/${e.slug}`} className="tarjeta-hover flex items-center justify-between rounded-xl bg-tiza/70 px-4 py-3 hover:bg-realce">
               <span className="flex flex-col">
-                <strong>{e.name_es}</strong>
+                <strong>{e.nombre}</strong>
                 {e.principales.length > 0 && <small className="text-acero">{e.principales.join(" · ")}</small>}
               </span>
               <span aria-hidden="true" className="text-temple-osc">→</span>

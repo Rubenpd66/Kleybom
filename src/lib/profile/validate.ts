@@ -1,3 +1,5 @@
+import { es, type Diccionario } from "@/lib/i18n/es";
+
 export type PerfilEntrada = { nombre: string; sexo: string; nacimiento: string; altura: string };
 
 export type PerfilDatos = {
@@ -19,24 +21,25 @@ function fechaValida(texto: string, hoy: Date): boolean {
 export function validarPerfil(
   e: PerfilEntrada,
   hoy: Date = new Date(),
+  t: Diccionario["perfil"]["errores"] = es.perfil.errores,
 ): { datos: PerfilDatos } | { error: string } {
   const nombre = e.nombre.trim();
-  if (nombre.length > 60) return { error: "El nombre puede tener como máximo 60 caracteres." };
+  if (nombre.length > 60) return { error: t.nombre };
 
   const sexo = e.sexo.trim();
   if (sexo && !SEXOS.includes(sexo as (typeof SEXOS)[number]))
-    return { error: "Elige una de las opciones de sexo de la lista." };
+    return { error: t.sexo };
 
   const nacimiento = e.nacimiento.trim();
   if (nacimiento && !fechaValida(nacimiento, hoy))
-    return { error: "La fecha de nacimiento no es válida. Usa el formato día/mes/año y no pongas una fecha futura." };
+    return { error: t.nacimiento };
 
   const textoAltura = e.altura.trim().replace(",", ".");
   let altura: number | null = null;
   if (textoAltura) {
     altura = Number(textoAltura);
     if (!Number.isFinite(altura) || altura < 100 || altura > 250)
-      return { error: "La altura debe ser un número en centímetros entre 100 y 250." };
+      return { error: t.altura };
   }
 
   return {

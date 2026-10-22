@@ -1,13 +1,15 @@
 import { cookies } from "next/headers";
 import Link from "next/link";
 import { Suspense } from "react";
-import { es } from "@/lib/i18n/es";
+import { getT } from "@/lib/i18n/servidor";
 import MobileNav from "./MobileNav";
+import SelectorIdioma from "./SelectorIdioma";
 import TemaToggle from "./TemaToggle";
 
 // Botón de cuenta: "Mi panel" si hay cookie de sesión de Supabase, "Entrar" si no.
 // Solo mira si existe la cookie (sin llamar a Supabase); si la sesión caducó, /panel redirige a /entrar.
-function BotonCuenta({ conSesion }: { conSesion: boolean }) {
+async function BotonCuenta({ conSesion }: { conSesion: boolean }) {
+  const es = await getT();
   return (
     <>
       <Link
@@ -26,7 +28,8 @@ async function Cuenta() {
   return <BotonCuenta conSesion={conSesion} />;
 }
 
-export default function Header() {
+export default async function Header() {
+  const es = await getT();
   return (
     <header className="sticky top-0 z-20 border-b border-linea bg-tiza/80 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-[1180px] items-center justify-between gap-6 px-6">
@@ -48,7 +51,8 @@ export default function Header() {
             ))}
           </ul>
         </nav>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3">
+          <SelectorIdioma />
           <TemaToggle />
           <Suspense fallback={<BotonCuenta conSesion={false} />}>
             <Cuenta />

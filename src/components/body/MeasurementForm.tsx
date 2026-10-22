@@ -1,15 +1,16 @@
 "use client";
 
 import { useActionState } from "react";
-import { guardarMedidas } from "@/app/panel/medidas/actions";
-import { es } from "@/lib/i18n/es";
+import { guardarMedidas } from "@/app/[idioma]/panel/medidas/actions";
+import { useT } from "@/lib/i18n/cliente";
 
-const t = es.medidas;
 const campo = "h-11 w-full rounded-md border-[1.5px] border-hierro bg-papel px-3 font-normal";
 
 export type ValoresMedida = { fecha: string; peso: string; cintura: string; cadera: string; pecho: string };
 
 export default function MeasurementForm({ valores, titulo }: { valores: ValoresMedida; titulo: string }) {
+  const es = useT();
+  const t = es.medidas;
   const [estado, enviar, pendiente] = useActionState(guardarMedidas, {});
   return (
     <form action={enviar} noValidate key={valores.fecha} className="flex flex-col gap-4 rounded-xl border-[1.5px] border-hierro bg-papel p-5">

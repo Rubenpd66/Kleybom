@@ -35,3 +35,17 @@ describe("guías", () => {
     expect(readingMinutes(larga)).toBe(3);
   });
 });
+
+describe("guías en inglés", () => {
+  it("tienen las mismas guías, secciones y fuentes que en español", () => {
+    const es = listGuides("es");
+    const en = listGuides("en");
+    expect(en.map((g) => g.slug)).toEqual(es.map((g) => g.slug));
+    for (const g of en) {
+      const original = es.find((x) => x.slug === g.slug)!;
+      expect(g.secciones).toHaveLength(original.secciones.length);
+      expect(g.fuentes).toHaveLength(original.fuentes.length);
+      expect(g.resumen.length).toBeLessThanOrEqual(160);
+    }
+  });
+});

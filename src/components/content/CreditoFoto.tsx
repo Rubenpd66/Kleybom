@@ -1,7 +1,7 @@
-import { es } from "@/lib/i18n/es";
+import { getT } from "@/lib/i18n/servidor";
 
 // Atribución que exigen las licencias Creative Commons: autor, licencia (con enlace) y origen.
-export default function CreditoFoto({
+export default async function CreditoFoto({
   autor,
   licencia,
   licenciaUrl,
@@ -12,6 +12,7 @@ export default function CreditoFoto({
   licenciaUrl: string | null;
   fuente: string;
 }) {
+  const es = await getT();
   return (
     <p>
       {es.ficha.foto}: {autor} ·{" "}
