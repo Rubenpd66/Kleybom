@@ -15,6 +15,7 @@ test("buscar 'flexion' muestra resultados mientras se escribe, sin pulsar ningú
 
 test("filtrar por músculo cambia la URL", async ({ page }) => {
   await page.goto("/ejercicios");
+  await expect(page.locator('form[data-en-vivo="si"]')).toBeAttached(); // filtros ya activos (página hidratada)
   await page.getByLabel("Músculo").selectOption("pectoral");
   await expect(page).toHaveURL(/muscle=pectoral/);
   await expect(page.getByRole("list", { name: "Ejercicios" }).getByRole("listitem").first()).toBeVisible();

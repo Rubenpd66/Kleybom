@@ -4,9 +4,9 @@ import { getGuideBySlug, listGuides, readingMinutes, type Guia } from "./index";
 describe("guías", () => {
   const guias = listGuides();
 
-  it("hay 5 guías con slug único", () => {
-    expect(guias).toHaveLength(5);
-    expect(new Set(guias.map((g) => g.slug)).size).toBe(5);
+  it("hay 9 guías con slug único", () => {
+    expect(guias).toHaveLength(9);
+    expect(new Set(guias.map((g) => g.slug)).size).toBe(9);
   });
 
   it.each(guias.map((g) => [g.slug, g] as const))("%s tiene título, resumen, fechas, secciones y fuentes", (_, g) => {

@@ -9,7 +9,7 @@ const fuentes = (slug: string): Fuente[] =>
   GUIAS.find((g) => g.slug === slug)!.fuentes.map((f) =>
     f.url.includes("who.int/es/")
       ? { texto: "World Health Organization. Healthy diet (fact sheet, updated 26 January 2026).", url: f.url.replace("/es/", "/") }
-      : f,
+      : { ...f, texto: f.texto.replace("(actualizada en junio de 2022)", "(updated June 2022)") },
   );
 const fechas = (slug: string) => {
   const g = GUIAS.find((x) => x.slug === slug)!;
@@ -247,5 +247,171 @@ export const GUIAS_EN: Guia[] = [
       { texto: "Track your estimated strength in statistics", href: "/estadisticas" },
     ],
     fuentes: fuentes("progresion"),
+  },
+  {
+    slug: "meditacion",
+    titulo: "Meditation and mindfulness",
+    resumen: "What research says about meditation, how to start with a few minutes a day and what to watch out for.",
+    ...fechas("meditacion"),
+    secciones: [
+      {
+        titulo: "What the research says",
+        bloques: [
+          p("The US National Center for Complementary and Integrative Health (NCCIH) summarises the studies, many of them still preliminary or not very rigorous, like this:"),
+          lista(
+            "Anxiety and depression: in a 2018 analysis, mindfulness programmes worked better than no treatment and as well as other evidence-based therapies. Other analyses give mixed results and no clear long-term effect.",
+            "Sleep: mindfulness meditation may help reduce insomnia and improve sleep quality, although no more than other proven treatments such as cognitive behavioural therapy or exercise.",
+            "Blood pressure: there are few high-quality studies. It may have some benefit, but its specific effect has not been determined.",
+            "Pain: mixed results. There are short-term improvements in low-back pain, but not in fibromyalgia or in how often headaches happen.",
+          ),
+          p("In short: it can be a good complement for wellbeing, but it is not a treatment on its own."),
+        ],
+      },
+      {
+        titulo: "How to start",
+        bloques: [
+          lista(
+            "Choose a fixed moment of the day, for example when you get up or after training.",
+            "Start with a few minutes. Sit comfortably, close your eyes or lower your gaze and bring your attention to your breathing.",
+            "When your mind wanders (it will, many times), come back to your breath without judging yourself. That is meditating too.",
+            "If you want a course or a class, ask about the instructor's training and experience.",
+          ),
+        ],
+      },
+      {
+        titulo: "Precautions",
+        bloques: [
+          p("It is usually considered low-risk, although its safety has been little studied. In a 2020 review of 83 studies, about 8 % of participants had some negative effect, mostly anxiety or depression, a similar share to psychological therapies."),
+          p("Don't use meditation to replace medical care or to put off seeing a professional. If you notice it doesn't suit you, stop and talk to a health professional."),
+        ],
+      },
+    ],
+    enForja: [
+      { texto: "Finish your workout with the gentle yoga routine", href: "/rutinas/yoga-suave" },
+      { texto: "Read the rest and sleep guide", href: "/guias/descanso" },
+    ],
+    fuentes: fuentes("meditacion"),
+  },
+  {
+    slug: "yoga",
+    titulo: "Yoga",
+    resumen: "What yoga combines, what there is evidence it helps with and how to practise it safely.",
+    ...fechas("yoga"),
+    secciones: [
+      {
+        titulo: "What it is",
+        bloques: [p("Yoga as practised in the West usually combines physical postures (asanas), breathing techniques (pranayama) and meditation.")],
+      },
+      {
+        titulo: "What it may help with",
+        bloques: [
+          p("According to the NCCIH summary, research suggests yoga may:"),
+          lista(
+            "Improve general wellbeing: relieve stress, support good habits and improve mood, sleep and balance.",
+            "Low-back pain: a slight benefit, a little better than no exercise.",
+            "Neck pain: in a 2019 review it reduced pain intensity and improved range of motion.",
+            "Sleep: it has helped in several studies with older adults, women with sleep problems and cancer patients.",
+            "Depression: it can be a helpful addition to treatment. For anxiety disorders there is little evidence.",
+            "Balance: recent studies see a beneficial effect in older adults living at home.",
+          ),
+        ],
+      },
+      {
+        titulo: "Practising safely",
+        bloques: [
+          p("For healthy people it is a safe activity when done properly, ideally with a qualified instructor: learning on your own without supervision has been linked to more risk. The most common injuries are sprains and strains, mainly in the knee or lower leg; serious injuries are rare."),
+          lista(
+            "If you are starting out, avoid extreme practices: headstands, shoulder stands, the lotus position and forceful breathing.",
+            "Hot yoga has its own risks of overheating and dehydration.",
+            "From age 65, injuries that end up in A&E are more common: start gently.",
+            "If you are pregnant, check first; avoid hot yoga and poses that keep you still for long periods or lying on your back.",
+            "If you have knee or hip injuries, lumbar spine problems, very high blood pressure, balance problems or glaucoma, talk to your doctor and the instructor first to adapt the poses.",
+          ),
+        ],
+      },
+    ],
+    enForja: [
+      { texto: "Gentle yoga routine at home", href: "/rutinas/yoga-suave" },
+      { texto: "Mobility routine at home", href: "/rutinas/movilidad-en-casa" },
+    ],
+    fuentes: fuentes("yoga"),
+  },
+  {
+    slug: "flexibilidad-y-equilibrio",
+    titulo: "Flexibility and balance",
+    resumen: "How much to stretch each week and why to train balance, according to the ACSM and the WHO.",
+    ...fechas("flexibilidad-y-equilibrio"),
+    secciones: [
+      {
+        titulo: "Stretching: how much and how often",
+        bloques: [
+          p("The American College of Sports Medicine (ACSM) recommends, to maintain joint range of movement:"),
+          lista(
+            "Flexibility exercises for each of the major muscle-tendon groups.",
+            "About 60 seconds in total per exercise (for example, 2 or 3 holds of 20-30 seconds).",
+            "At least 2 days a week.",
+          ),
+          p("Stretch without pain: feeling tension is normal, feeling pain is not."),
+        ],
+      },
+      {
+        titulo: "Balance and coordination",
+        bloques: [
+          p("The ACSM adds neuromotor exercise (balance, agility and coordination) 2 or 3 days a week. The WHO recommends that people aged 65 or over do varied activity that works balance and strength on 3 or more days a week."),
+          lista(
+            "Simple examples: standing on one foot near a wall, walking in a straight line heel to toe, or yoga balance poses.",
+            "Do them near a support and on a floor free of obstacles.",
+          ),
+        ],
+      },
+    ],
+    enForja: [
+      { texto: "Mobility routine at home", href: "/rutinas/movilidad-en-casa" },
+      { texto: "Full body stretching", href: "/rutinas/estiramientos-cuerpo-completo" },
+      { texto: "Find stretches in the catalogue", href: "/ejercicios?q=stretch" },
+    ],
+    fuentes: fuentes("flexibilidad-y-equilibrio"),
+  },
+  {
+    slug: "cardio",
+    titulo: "Cardio: walking, running, cycling",
+    resumen: "How many minutes of aerobic exercise the WHO and the ACSM recommend and how to build up without injury.",
+    ...fechas("cardio"),
+    secciones: [
+      {
+        titulo: "How much",
+        bloques: [
+          p("Both recommendations agree:"),
+          lista(
+            "WHO: between 150 and 300 minutes a week of moderate aerobic activity, or between 75 and 150 of vigorous activity, or a combination.",
+            "ACSM: at least 30 minutes a day on 5 or more days a week at moderate intensity (150 minutes), or at least 20 minutes on 3 days a week at vigorous intensity (75 minutes).",
+          ),
+          p("Moderate is, for example, brisk walking; vigorous is running or cycling at a good pace."),
+        ],
+      },
+      {
+        titulo: "How to start and progress",
+        bloques: [
+          lista(
+            "If you can't reach those figures now, start with what you can: according to the ACSM, doing less than recommended still brings benefits.",
+            "Build up little by little: increasing intensity and duration gradually may reduce the risk.",
+            "Spend less time sitting and take short breaks to stand up and move, even if you already exercise.",
+            "Choose something you enjoy: exercise that is pleasant is easier to keep up.",
+          ),
+        ],
+      },
+      {
+        titulo: "When to stop",
+        bloques: [
+          p("Stop and see a health professional if you notice chest pain, dizziness or shortness of breath far out of proportion. If you have heart disease or haven't exercised for a long time, check before you start."),
+        ],
+      },
+    ],
+    enForja: [
+      { texto: "Zone 2 cardio routine", href: "/rutinas/cardio-zona-2" },
+      { texto: "HIIT at home", href: "/rutinas/hiit-en-casa" },
+      { texto: "Plan your sessions on the calendar", href: "/calendario" },
+    ],
+    fuentes: fuentes("cardio"),
   },
 ];

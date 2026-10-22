@@ -44,6 +44,48 @@ export const RUTINAS_EN: Record<string, { name: string; description: string }> =
       "How to follow it: train on alternate days. If a set feels very easy, do it more slowly or add reps; if you can't finish it, do fewer and rest longer. Consistency matters more than intensity. When you complete all sets comfortably for two weeks, move on to the full body routine.\n\n" +
       AVISO,
   },
+  "yoga-suave": {
+    name: "Gentle yoga (3 days)",
+    description:
+      "Three short sessions of simple yoga poses to gain mobility in the spine, hips and shoulders, and finish calmly. You don't need any equipment, just a mat.\n\n" +
+      "How to follow it: do it on alternate days or as a cool-down after another workout. Move into and out of each pose slowly and breathe through your nose without forcing. At first, avoid poses on your head or shoulders. Read the yoga guide before you start.\n\n" +
+      AVISO,
+  },
+  "pilates-y-core": {
+    name: "Pilates and core (3 days)",
+    description:
+      "Pilates-style floor exercises to strengthen the abs, lower back and glutes with control and no impact. You only need a mat.\n\n" +
+      "How to follow it: train on alternate days. Do each rep slowly, with your back in a comfortable position and without pulling on your neck. Fewer well-done reps are better than many rushed ones.\n\n" +
+      AVISO,
+  },
+  "hiit-en-casa": {
+    name: "HIIT at home (3 days)",
+    description:
+      "High-intensity interval training with your body weight: short rounds of hard effort with rests. It raises your heart rate in little time and needs no equipment.\n\n" +
+      "How to follow it: leave at least one day between sessions. Warm up for 5 minutes (marching or jogging on the spot) before you start. Do each exercise for the time shown at a good pace but with good technique; if you feel dizzy or notice chest pain, stop. It is not a routine for starting from scratch: do a few weeks of the getting-started routine first.\n\n" +
+      AVISO,
+  },
+  "cardio-zona-2": {
+    name: "Zone 2 cardio (3 days)",
+    description:
+      "Three cardio sessions at a gentle, steady pace at which you can still talk. A comfortable way to add up the minutes of aerobic activity the WHO and the ACSM recommend.\n\n" +
+      "How to follow it: spread the sessions over the week and choose the activity you prefer each day (running, cycling or cross-trainer). Start with the duration you can manage and add a few minutes each week. Read the cardio guide to see how much is advisable.\n\n" +
+      AVISO,
+  },
+  "estiramientos-cuerpo-completo": {
+    name: "Full body stretching (2 days)",
+    description:
+      "A stretching session for the major muscle groups: legs, hips, back, chest and shoulders. It follows the ACSM recommendation: about 60 seconds per exercise, at least two days a week.\n\n" +
+      "How to follow it: do it two or three days a week, or after another workout. Stretch until you feel tension, never pain, and breathe calmly.\n\n" +
+      AVISO,
+  },
+  "funcional-kettlebell": {
+    name: "Functional kettlebell training (3 days)",
+    description:
+      "Circuits with a kettlebell, dumbbells and a medicine ball that combine strength and endurance with whole-body movements.\n\n" +
+      "How to follow it: train on alternate days. First learn the kettlebell swing with a light weight: the movement comes from the hips, not the arms, and the back stays straight. Rest as indicated between sets and lower the weight if your technique gets worse.\n\n" +
+      AVISO,
+  },
 };
 
 export const NOTAS_EN: Record<string, string> = {
@@ -64,4 +106,20 @@ export const NOTAS_EN: Record<string, string> = {
   "Mantén la posición de 30 a 45 segundos.": "Hold the position for 30 to 45 seconds.",
   "Mantén la posición unos 30 segundos por lado.": "Hold the position for about 30 seconds per side.",
   "Mantén la posición unos 30 segundos.": "Hold the position for about 30 seconds.",
+  "Mantén la posición de 15 a 20 segundos.": "Hold the position for 15 to 20 seconds.",
+  "Sube y baja despacio, vértebra a vértebra.": "Lift and lower slowly, one vertebra at a time.",
+  "Mantén la posición de 15 a 30 segundos por lado.": "Hold the position for 15 to 30 seconds per side.",
+  "Cuenta cada pierna. Lumbares pegadas al suelo.": "Count each leg. Keep your lower back on the floor.",
+  "Cuenta cada lado. Sin tirar del cuello.": "Count each side. Don't pull on your neck.",
+  "Mantén la posición de 20 a 30 segundos por lado.": "Hold the position for 20 to 30 seconds per side.",
+  "5 minutos de calentamiento a ritmo suave.": "5-minute warm-up at an easy pace.",
+  "30 segundos a buen ritmo.": "30 seconds at a good pace.",
+  "30 segundos; aterriza suave con las rodillas flexionadas.": "30 seconds; land softly with your knees bent.",
+  "30 segundos.": "30 seconds.",
+  "30 segundos; haz la versión sin salto si lo necesitas.": "30 seconds; do the no-jump version if you need to.",
+  "40 segundos.": "40 seconds.",
+  "De 20 a 40 minutos a ritmo cómodo: debes poder hablar.": "20 to 40 minutes at a comfortable pace: you should be able to talk.",
+  "De 30 a 60 minutos a ritmo cómodo: debes poder hablar.": "30 to 60 minutes at a comfortable pace: you should be able to talk.",
+  "El impulso sale de la cadera, con la espalda recta.": "The drive comes from the hips, with a straight back.",
+  "Baja del cajón andando, no saltando.": "Step down from the box, don't jump.",
 };

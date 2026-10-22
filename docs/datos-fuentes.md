@@ -35,6 +35,7 @@ Textos redactados por Forja; las cifras salen de estas fuentes, comprobadas el 2
 - **OMS, alimentación sana:** nota descriptiva de 26/01/2026 (https://www.who.int/es/news-room/fact-sheets/detail/healthy-diet).
 - **Sueño:** Watson NF et al., Sleep 2015;38(6):843-844 (https://pmc.ncbi.nlm.nih.gov/articles/PMC4434546/).
 - **Fuerza:** ACSM, Med Sci Sports Exerc 2009;41(3):687-708 (resumen en PubMed 19204579). Existe una actualización de 2026 sin revisar todavía: revisarla al actualizar la guía de progresión.
+- **Guías nuevas (22/10/2026):** meditación y yoga con las páginas del NCCIH (EE. UU.) "Meditation and Mindfulness: Effectiveness and Safety" (actualizada en junio de 2022) y "Yoga: Effectiveness and Safety", leídas en el original; flexibilidad, equilibrio y cardio con el posicionamiento del ACSM de 2011 (Garber CE et al., Med Sci Sports Exerc 2011;43(7):1334-1359; resumen leído en Europe PMC) y la OMS 2020. Una guía de hidratación quedó fuera: no se pudo leer la fuente oficial (EFSA) para comprobar las cifras.
 - **Hábitos:** Lally P et al., Eur J Soc Psychol 2010;40(6):998-1009 (resumen leído vía OpenAlex). La cifra popular de "66 días" no aparece en el resumen, así que no se usa.
 
 ## Mapa del cuerpo (selector de músculos en /ejercicios)

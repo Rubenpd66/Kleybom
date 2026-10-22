@@ -1,11 +1,18 @@
 import { describe, expect, it } from "vitest";
 import { validateRoutine } from "../../src/lib/routines/validate";
 import { PLANTILLAS, aBorrador } from "./rutinas";
+import { NOTAS_EN, RUTINAS_EN } from "./rutinas-en";
 
 describe("plantillas de rutinas", () => {
-  it("hay 6 plantillas con slug único", () => {
-    expect(PLANTILLAS).toHaveLength(6);
-    expect(new Set(PLANTILLAS.map((p) => p.slug)).size).toBe(6);
+  it("hay 12 plantillas con slug único", () => {
+    expect(PLANTILLAS).toHaveLength(12);
+    expect(new Set(PLANTILLAS.map((p) => p.slug)).size).toBe(12);
+  });
+
+  it.each(PLANTILLAS.map((p) => [p.slug, p] as const))("%s tiene versión en inglés completa", (_, p) => {
+    expect(RUTINAS_EN[p.slug]?.name.length).toBeGreaterThan(3);
+    expect(RUTINAS_EN[p.slug].description.length).toBeLessThanOrEqual(2000);
+    for (const x of p.dias.flat()) if (x.nota) expect(NOTAS_EN[x.nota], x.nota).toBeDefined();
   });
 
   it.each(PLANTILLAS.map((p) => [p.slug, p] as const))("%s pasa validateRoutine", (_, p) => {

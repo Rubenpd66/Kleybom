@@ -15,13 +15,14 @@ Fecha: 22 de octubre de 2026.
 ## Qué tiene la web
 
 - **Ejercicios:** 810 fichas (wger) con buscador, filtros y mapa del cuerpo para elegir músculo. Cada una con imagen: foto de wger (164, revisadas) o dibujo de los músculos que trabaja.
-- **Rutinas:** 6 plantillas, creador de rutinas propias e impresión en PDF.
+- **Rutinas:** 12 plantillas (fuerza, hipertrofia, movilidad, yoga suave, pilates y core, HIIT, cardio en zona 2, estiramientos y funcional con kettlebell), creador de rutinas propias e impresión en PDF.
 - **Calendario:** planificar sesiones y marcarlas como hechas o saltadas.
 - **Entreno:** registro de series en directo, temporizador de descanso y comparación con la última vez.
 - **Nutrición:** 6.038 alimentos en español, cada uno con foto de su tipo (98 fotos de Wikimedia Commons), productos por código de barras (Open Food Facts), calculadora de calorías y diario de comidas con paneles de objetivos, alimentos y recetas.
 - **Recetas:** 30 recetas con foto y calorías por ración.
 - **Estadísticas:** constancia, volumen semanal, fuerza estimada y peso con media móvil.
-- **Guías:** 5 guías con fuentes (OMS, ACSM y otras).
+- **Guías:** 9 guías con fuentes (OMS, ACSM, NCCIH y otras), entre ellas meditación, yoga, flexibilidad y equilibrio, y cardio.
+- **Buscador y menú:** buscador de toda la web en la cabecera (secciones, ejercicios, rutinas, recetas, alimentos y guías; página completa en `/buscar`) y menú lateral con todas las secciones, que se abre con el botón "Menú" o al acercar el ratón al borde derecho.
 - **Cuenta:** con correo o con Google; perfil, medidas, descarga de tus datos en JSON y borrado de cuenta.
 - **Idiomas:** español e inglés (botón ES | EN junto al de tema). Cambia toda la web, también ejercicios, alimentos, recetas, rutinas, guías y textos legales.
 - **Legal:** aviso legal, privacidad y cookies; consentimiento para los datos de salud.

@@ -2,6 +2,7 @@ import { expect, test } from "@playwright/test";
 
 test("buscar 'platano' encuentra 'Plátanos, crudos' el primero", async ({ page }) => {
   await page.goto("/alimentos");
+  await expect(page.locator('form[data-en-vivo="si"]')).toBeAttached(); // filtros ya activos (página hidratada)
   await page.getByRole("searchbox", { name: "Buscar alimento" }).fill("platano");
   await expect(page).toHaveURL(/q=platano/);
   const primero = page.getByRole("list", { name: "Alimentos" }).getByRole("listitem").first();

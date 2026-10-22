@@ -1,4 +1,4 @@
-// Guías redactadas por KleyBom. Cada cifra sale de una fuente de `fuentes` (verificada el 2026-10-21).
+// Guías redactadas por KleyBom. Cada cifra sale de una fuente de `fuentes` (verificadas el 2026-10-21 y, las cuatro últimas, el 2026-10-22).
 // Si se cambia una cifra, revisar antes la fuente original.
 
 export type Bloque = { tipo: "p"; texto: string } | { tipo: "lista"; items: string[] };
@@ -38,6 +38,20 @@ const LALLY_2010: Fuente = {
   texto:
     "Lally P, van Jaarsveld CHM, Potts HWW, Wardle J. How are habits formed: Modelling habit formation in the real world. Eur J Soc Psychol. 2010;40(6):998-1009. doi:10.1002/ejsp.674",
   url: "https://doi.org/10.1002/ejsp.674",
+};
+
+const ACSM_2011: Fuente = {
+  texto:
+    "Garber CE, et al. American College of Sports Medicine position stand. Quantity and quality of exercise for developing and maintaining cardiorespiratory, musculoskeletal, and neuromotor fitness in apparently healthy adults. Med Sci Sports Exerc. 2011;43(7):1334-1359. doi:10.1249/MSS.0b013e318213fefb",
+  url: "https://doi.org/10.1249/MSS.0b013e318213fefb",
+};
+const NCCIH_MEDITACION: Fuente = {
+  texto: "National Center for Complementary and Integrative Health (NCCIH). Meditation and Mindfulness: Effectiveness and Safety (actualizada en junio de 2022).",
+  url: "https://www.nccih.nih.gov/health/meditation-and-mindfulness-effectiveness-and-safety",
+};
+const NCCIH_YOGA: Fuente = {
+  texto: "National Center for Complementary and Integrative Health (NCCIH). Yoga: Effectiveness and Safety.",
+  url: "https://www.nccih.nih.gov/health/yoga-effectiveness-and-safety",
 };
 
 const p = (texto: string): Bloque => ({ tipo: "p", texto });
@@ -287,5 +301,177 @@ export const GUIAS: Guia[] = [
       { texto: "Sigue tu fuerza estimada en estadísticas", href: "/estadisticas" },
     ],
     fuentes: [ACSM_2009],
+  },
+  {
+    slug: "meditacion",
+    titulo: "Meditación y mindfulness",
+    resumen: "Qué dice la investigación sobre meditar, cómo empezar con unos minutos al día y qué precauciones tener.",
+    publicada: "2026-10-22",
+    actualizada: "2026-10-22",
+    secciones: [
+      {
+        titulo: "Qué dice la investigación",
+        bloques: [
+          p("El Centro Nacional de Salud Complementaria e Integral de EE. UU. (NCCIH) resume así los estudios, muchos de ellos todavía preliminares o poco rigurosos:"),
+          lista(
+            "Ansiedad y depresión: en un análisis de 2018, los programas de mindfulness funcionaron mejor que no hacer nada y tan bien como otras terapias con base científica. Otros análisis dan resultados mixtos y sin efecto claro a largo plazo.",
+            "Sueño: la meditación de atención plena puede ayudar a reducir el insomnio y mejorar la calidad del sueño, aunque no más que otros tratamientos probados, como la terapia cognitivo-conductual o el ejercicio.",
+            "Tensión arterial: hay pocos estudios de calidad. Puede tener algún beneficio, pero su efecto concreto no está determinado.",
+            "Dolor: resultados mixtos. Hay mejoras a corto plazo en el dolor lumbar, pero no en la fibromialgia ni en la frecuencia de los dolores de cabeza.",
+          ),
+          p("En resumen: puede ser un buen complemento para el bienestar, pero no es un tratamiento por sí solo."),
+        ],
+      },
+      {
+        titulo: "Cómo empezar",
+        bloques: [
+          lista(
+            "Elige un momento fijo del día, por ejemplo al levantarte o al terminar de entrenar.",
+            "Empieza con pocos minutos. Siéntate cómodo, cierra los ojos o baja la mirada y lleva la atención a la respiración.",
+            "Cuando la mente se vaya a otra cosa (pasará muchas veces), vuelve a la respiración sin juzgarte. Eso también es meditar.",
+            "Si quieres un curso o una clase, pregunta por la formación y la experiencia de quien la imparte.",
+          ),
+        ],
+      },
+      {
+        titulo: "Precauciones",
+        bloques: [
+          p("Suele considerarse una práctica de pocos riesgos, aunque se ha estudiado poco su seguridad. En una revisión de 2020 de 83 estudios, alrededor del 8 % de los participantes tuvo algún efecto negativo, sobre todo ansiedad o depresión, una proporción parecida a la de las terapias psicológicas."),
+          p("No uses la meditación para sustituir la atención médica ni para retrasar una consulta. Si notas que te sienta mal, para y coméntalo con un profesional sanitario."),
+        ],
+      },
+    ],
+    enForja: [
+      { texto: "Termina el entreno con la rutina de yoga suave", href: "/rutinas/yoga-suave" },
+      { texto: "Lee la guía de descanso y sueño", href: "/guias/descanso" },
+    ],
+    fuentes: [NCCIH_MEDITACION],
+  },
+  {
+    slug: "yoga",
+    titulo: "Yoga",
+    resumen: "Qué combina el yoga, para qué hay pruebas de que ayuda y cómo practicarlo con seguridad.",
+    publicada: "2026-10-22",
+    actualizada: "2026-10-22",
+    secciones: [
+      {
+        titulo: "Qué es",
+        bloques: [
+          p("El yoga que se practica en Occidente suele combinar posturas físicas (asanas), técnicas de respiración (pranayama) y meditación."),
+        ],
+      },
+      {
+        titulo: "Para qué puede ayudar",
+        bloques: [
+          p("Según el resumen del NCCIH, la investigación sugiere que el yoga puede:"),
+          lista(
+            "Mejorar el bienestar general: aliviar el estrés, apoyar buenos hábitos y mejorar el estado de ánimo, el sueño y el equilibrio.",
+            "Dolor lumbar: un beneficio leve, algo mejor que no hacer ejercicio.",
+            "Dolor de cuello: en una revisión de 2019 redujo la intensidad del dolor y mejoró la movilidad.",
+            "Sueño: ha ayudado en varios estudios con personas mayores, mujeres con problemas de sueño y pacientes con cáncer.",
+            "Depresión: puede ser un complemento útil del tratamiento. Para los trastornos de ansiedad hay poca evidencia.",
+            "Equilibrio: estudios recientes ven un efecto beneficioso en personas mayores que viven en su casa.",
+          ),
+        ],
+      },
+      {
+        titulo: "Practicar con seguridad",
+        bloques: [
+          p("Para personas sanas es una actividad segura si se hace bien y, mejor, con un instructor cualificado: aprender solo y sin supervisión se ha asociado con más riesgo. Las lesiones más frecuentes son esguinces y distensiones, sobre todo en la rodilla y la parte baja de la pierna; las graves son raras."),
+          lista(
+            "Si empiezas, evita las prácticas extremas: posturas sobre la cabeza o sobre los hombros, la postura del loto y la respiración forzada.",
+            "El yoga caliente (hot yoga) tiene riesgos propios de calor excesivo y deshidratación.",
+            "A partir de los 65 años las lesiones que acaban en urgencias son más frecuentes: empieza con suavidad.",
+            "Si estás embarazada, consúltalo antes; evita el yoga caliente y las posturas que te obliguen a estar mucho rato quieta o tumbada boca arriba.",
+            "Si tienes lesiones de rodilla o cadera, problemas de columna lumbar, tensión arterial muy alta, problemas de equilibrio o glaucoma, habla antes con tu médico y con el instructor para adaptar las posturas.",
+          ),
+        ],
+      },
+    ],
+    enForja: [
+      { texto: "Rutina de yoga suave en casa", href: "/rutinas/yoga-suave" },
+      { texto: "Rutina de movilidad en casa", href: "/rutinas/movilidad-en-casa" },
+    ],
+    fuentes: [NCCIH_YOGA],
+  },
+  {
+    slug: "flexibilidad-y-equilibrio",
+    titulo: "Flexibilidad y equilibrio",
+    resumen: "Cuánto estirar a la semana y por qué entrenar el equilibrio, según el ACSM y la OMS.",
+    publicada: "2026-10-22",
+    actualizada: "2026-10-22",
+    secciones: [
+      {
+        titulo: "Estirar: cuánto y cada cuánto",
+        bloques: [
+          p("El Colegio Americano de Medicina del Deporte (ACSM) recomienda, para mantener la movilidad de las articulaciones:"),
+          lista(
+            "Ejercicios de flexibilidad para cada uno de los grandes grupos de músculos y tendones.",
+            "En total, unos 60 segundos por ejercicio (por ejemplo, 2 o 3 veces de 20-30 segundos).",
+            "Al menos 2 días a la semana.",
+          ),
+          p("Estira sin dolor: notar tensión es normal, notar dolor no."),
+        ],
+      },
+      {
+        titulo: "Equilibrio y coordinación",
+        bloques: [
+          p("El ACSM añade ejercicio neuromotor (equilibrio, agilidad y coordinación) 2 o 3 días a la semana. La OMS recomienda que las personas de 65 años o más hagan 3 o más días a la semana actividad variada que trabaje el equilibrio y la fuerza."),
+          lista(
+            "Ejemplos sencillos: mantenerte sobre un pie cerca de una pared, caminar en línea recta poniendo un pie delante del otro o las posturas de equilibrio del yoga.",
+            "Hazlos cerca de un apoyo y en un suelo sin obstáculos.",
+          ),
+        ],
+      },
+    ],
+    enForja: [
+      { texto: "Rutina de movilidad en casa", href: "/rutinas/movilidad-en-casa" },
+      { texto: "Estiramientos de todo el cuerpo", href: "/rutinas/estiramientos-cuerpo-completo" },
+      { texto: "Busca estiramientos en el catálogo", href: "/ejercicios?q=estiramiento" },
+    ],
+    fuentes: [ACSM_2011, OMS_ACTIVIDAD],
+  },
+  {
+    slug: "cardio",
+    titulo: "Cardio: caminar, correr, bici",
+    resumen: "Cuántos minutos de ejercicio aeróbico recomiendan la OMS y el ACSM y cómo ir sumando sin lesionarte.",
+    publicada: "2026-10-22",
+    actualizada: "2026-10-22",
+    secciones: [
+      {
+        titulo: "Cuánto",
+        bloques: [
+          p("Las dos recomendaciones coinciden:"),
+          lista(
+            "OMS: entre 150 y 300 minutos a la semana de actividad aeróbica moderada, o entre 75 y 150 de vigorosa, o una combinación.",
+            "ACSM: al menos 30 minutos al día, 5 o más días a la semana, de intensidad moderada (150 minutos), o al menos 20 minutos, 3 días a la semana, de intensidad vigorosa (75 minutos).",
+          ),
+          p("Moderada es, por ejemplo, caminar a paso ligero; vigorosa, correr o ir en bici a buen ritmo."),
+        ],
+      },
+      {
+        titulo: "Cómo empezar y progresar",
+        bloques: [
+          lista(
+            "Si ahora no llegas a esas cifras, empieza por lo que puedas: según el ACSM, hacer menos de lo recomendado también aporta beneficios.",
+            "Sube poco a poco: aumentar de forma gradual la intensidad y la duración puede reducir el riesgo.",
+            "Pasa menos tiempo sentado y haz pausas cortas para levantarte y moverte, aunque ya hagas ejercicio.",
+            "Elige algo que te guste: que el ejercicio sea agradable ayuda a mantenerlo.",
+          ),
+        ],
+      },
+      {
+        titulo: "Cuándo parar",
+        bloques: [
+          p("Para y consulta con un profesional sanitario si notas dolor en el pecho, mareo o una falta de aire muy desproporcionada. Si tienes una enfermedad del corazón o llevas mucho tiempo sin hacer ejercicio, consulta antes de empezar."),
+        ],
+      },
+    ],
+    enForja: [
+      { texto: "Rutina de cardio en zona 2", href: "/rutinas/cardio-zona-2" },
+      { texto: "HIIT en casa", href: "/rutinas/hiit-en-casa" },
+      { texto: "Planifica tus salidas en el calendario", href: "/calendario" },
+    ],
+    fuentes: [OMS_ACTIVIDAD, ACSM_2011],
   },
 ];

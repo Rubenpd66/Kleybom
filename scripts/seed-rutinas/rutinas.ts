@@ -34,6 +34,10 @@ const e = (
 const tiempo = (slug: string, series: number, segundos: string, descanso = 45): EjercicioPlantilla =>
   e(slug, series, 1, 1, descanso, `Mantén la posición ${segundos}.`);
 
+// Ejercicios por tiempo que no son posturas (intervalos, cardio): la nota dice cuánto y cómo.
+const intervalo = (slug: string, series: number, nota: string, descanso = 30): EjercicioPlantilla =>
+  e(slug, series, 1, 1, descanso, nota);
+
 export const PLANTILLAS: Plantilla[] = [
   {
     slug: "cuerpo-completo-principiante-3-dias",
@@ -257,6 +261,176 @@ export const PLANTILLAS: Plantilla[] = [
         e("flexiones-de-rodillas", 3, 6, 12, 60),
         tiempo("plancha-frontal", 3, "de 20 a 30 segundos"),
         e("elevacion-de-talones-a-dos-piernas", 3, 15, 15, 45),
+      ],
+    ],
+  },
+  {
+    slug: "yoga-suave",
+    name: "Yoga suave (3 días)",
+    description:
+      "Tres sesiones cortas de posturas sencillas de yoga para ganar movilidad en la columna, las caderas y los hombros, y terminar con calma. No necesitas material, solo una esterilla.\n\n" +
+      "Cómo seguirla: hazla en días alternos o como vuelta a la calma después de otro entreno. Entra y sal de cada postura despacio y respira por la nariz sin forzar. Evita al principio las posturas sobre la cabeza o los hombros. Lee la guía de yoga antes de empezar.\n\n" +
+      AVISO,
+    goal: "movilidad",
+    level: "principiante",
+    dias: [
+      [
+        e("gato-vaca-movilidad-espinal", 2, 8, 10, 20, "Mueve la columna despacio, coordinado con la respiración."),
+        tiempo("postura-de-la-cobra-en-yoga", 3, "de 15 a 20 segundos", 20),
+        tiempo("runners-lunge-stretch", 2, "unos 30 segundos por lado", 20),
+        tiempo("estiramiento-de-mariposa", 2, "unos 30 segundos", 20),
+        tiempo("estiramiento-de-rodilla-al-pecho", 2, "unos 30 segundos por lado", 20),
+      ],
+      [
+        tiempo("squat-sky-reach-stretch", 2, "unos 30 segundos", 20),
+        tiempo("side-stretch", 2, "unos 30 segundos por lado", 20),
+        tiempo("pigeon-stretch", 2, "unos 30 segundos por lado", 20),
+        e("puente-de-cadera", 2, 8, 10, 30, "Sube y baja despacio, vértebra a vértebra."),
+        tiempo("estiramiento-de-rotacion-del-torso", 2, "unos 30 segundos por lado", 20),
+      ],
+      [
+        e("gato-vaca-movilidad-espinal", 2, 8, 10, 20),
+        tiempo("lunge-with-twist-stretch", 2, "unos 30 segundos por lado", 20),
+        tiempo("postura-de-la-cobra-en-yoga", 3, "de 15 a 20 segundos", 20),
+        tiempo("estiramiento-de-oracion-elevado", 2, "unos 30 segundos", 20),
+        tiempo("estiramiento-de-cuatro-sentado", 2, "unos 30 segundos por lado", 20),
+      ],
+    ],
+  },
+  {
+    slug: "pilates-y-core",
+    name: "Pilates y core (3 días)",
+    description:
+      "Ejercicios en el suelo, al estilo del pilates, para fortalecer el abdomen, la zona lumbar y los glúteos con control y sin impacto. Solo necesitas una esterilla.\n\n" +
+      "Cómo seguirla: entrena en días alternos. Haz cada repetición despacio, con la espalda en una posición cómoda y sin tirar del cuello. Es mejor hacer menos repeticiones bien hechas que muchas deprisa.\n\n" +
+      AVISO,
+    goal: "resistencia",
+    level: "principiante",
+    dias: [
+      [
+        tiempo("plancha-frontal", 3, "de 20 a 40 segundos"),
+        e("bird-dog", 3, 8, 10, 30, "Repeticiones por cada lado, sin balancear la espalda."),
+        e("puente-de-gluteos", 3, 12, 15, 45),
+        e("crunch-inverso", 3, 10, 12, 45),
+        tiempo("plancha-de-lado-izquierdo", 2, "de 15 a 30 segundos por lado"),
+      ],
+      [
+        e("patadas-de-aleteo", 3, 20, 30, 45, "Cuenta cada pierna. Lumbares pegadas al suelo."),
+        e("superman", 3, 10, 12, 45),
+        e("abdominales-en-bicicleta", 3, 12, 16, 45, "Cuenta cada lado. Sin tirar del cuello."),
+        e("plancha-con-elevacion-de-pierna", 3, 8, 10, 45, "Repeticiones por cada pierna."),
+        e("puente-de-cadera", 3, 12, 15, 45),
+      ],
+      [
+        tiempo("plancha-frontal", 3, "de 30 a 45 segundos"),
+        e("bird-dog", 3, 10, 10, 30, "Repeticiones por cada lado."),
+        e("crunch-inverso", 3, 10, 12, 45),
+        tiempo("plancha-de-lado-izquierdo", 2, "de 20 a 30 segundos por lado"),
+        e("puente-de-gluteos", 3, 12, 15, 45),
+      ],
+    ],
+  },
+  {
+    slug: "hiit-en-casa",
+    name: "HIIT en casa (3 días)",
+    description:
+      "Entrenamiento por intervalos de alta intensidad con el peso del cuerpo: rondas cortas de mucho esfuerzo con descansos. Sube las pulsaciones en poco tiempo y no necesita material.\n\n" +
+      "Cómo seguirla: deja al menos un día entre sesiones. Calienta 5 minutos (marcha o trote en el sitio) antes de empezar. Haz cada ejercicio durante el tiempo indicado a buen ritmo, pero con buena técnica; si te mareas o notas dolor en el pecho, para. No es una rutina para empezar desde cero: antes lleva unas semanas con la de iniciación.\n\n" +
+      AVISO,
+    goal: "perdida_grasa",
+    level: "intermedio",
+    dias: [
+      [
+        intervalo("marcha-o-trote-en-el-lugar", 1, "5 minutos de calentamiento a ritmo suave.", 30),
+        intervalo("polichilenas", 4, "30 segundos a buen ritmo."),
+        intervalo("squat-jumps", 4, "30 segundos; aterriza suave con las rodillas flexionadas."),
+        intervalo("plank-jacks", 4, "30 segundos."),
+        intervalo("burpees", 4, "30 segundos; haz la versión sin salto si lo necesitas."),
+      ],
+      [
+        intervalo("marcha-o-trote-en-el-lugar", 1, "5 minutos de calentamiento a ritmo suave.", 30),
+        intervalo("saltar-a-la-comba-estandar", 5, "40 segundos."),
+        intervalo("marcha-con-rodillas-altas", 4, "30 segundos a buen ritmo."),
+        e("zancada-con-el-peso-corporal", 3, 10, 12, 45, "Repeticiones por cada pierna."),
+        e("flexiones-de-rodillas", 3, 8, 12, 45),
+      ],
+      [
+        intervalo("marcha-o-trote-en-el-lugar", 1, "5 minutos de calentamiento a ritmo suave.", 30),
+        intervalo("burpees", 4, "30 segundos; haz la versión sin salto si lo necesitas."),
+        intervalo("squat-jumps", 4, "30 segundos; aterriza suave con las rodillas flexionadas."),
+        intervalo("polichilenas", 4, "30 segundos a buen ritmo."),
+        tiempo("plancha-frontal", 3, "de 30 a 45 segundos"),
+      ],
+    ],
+  },
+  {
+    slug: "cardio-zona-2",
+    name: "Cardio en zona 2 (3 días)",
+    description:
+      "Tres sesiones de cardio a ritmo suave y constante, en el que todavía puedes hablar. Es una forma cómoda de sumar los minutos de actividad aeróbica que recomiendan la OMS y el ACSM.\n\n" +
+      "Cómo seguirla: reparte las sesiones en la semana y elige la actividad que prefieras de cada día (correr, bici o elíptica). Empieza por la duración que puedas y añade unos minutos cada semana. Lee la guía de cardio para saber cuánto conviene.\n\n" +
+      AVISO,
+    goal: "resistencia",
+    level: "principiante",
+    dias: [
+      [intervalo("carrera-en-zona-2", 1, "De 20 a 40 minutos a ritmo cómodo: debes poder hablar.", 0)],
+      [intervalo("ciclismo", 1, "De 30 a 60 minutos a ritmo cómodo: debes poder hablar.", 0)],
+      [intervalo("la-eliptica", 1, "De 20 a 40 minutos a ritmo cómodo: debes poder hablar.", 0)],
+    ],
+  },
+  {
+    slug: "estiramientos-cuerpo-completo",
+    name: "Estiramientos de cuerpo completo (2 días)",
+    description:
+      "Una sesión de estiramientos para los grandes grupos musculares: piernas, caderas, espalda, pecho y hombros. Sigue la recomendación del ACSM: unos 60 segundos por ejercicio, al menos dos días a la semana.\n\n" +
+      "Cómo seguirla: hazla dos o tres días a la semana, o al terminar otro entreno. Estira hasta notar tensión, nunca dolor, y respira con calma.\n\n" +
+      AVISO,
+    goal: "movilidad",
+    level: "principiante",
+    dias: [
+      [
+        tiempo("hamstring-stretch", 2, "unos 30 segundos por lado", 15),
+        tiempo("quad-stretch", 2, "unos 30 segundos por lado", 15),
+        tiempo("hip-flexor-stretch", 2, "unos 30 segundos por lado", 15),
+        tiempo("estiramiento-de-gemelos-de-pie", 2, "unos 30 segundos por lado", 15),
+        tiempo("estiramiento-del-piriforme-sentado", 2, "unos 30 segundos por lado", 15),
+      ],
+      [
+        tiempo("estiramiento-de-pectoral-en-el-marco-de-la-puerta", 2, "unos 30 segundos", 15),
+        tiempo("cross-body-stretch", 2, "unos 30 segundos por lado", 15),
+        tiempo("estiramiento-de-brazos-y-cuello", 2, "unos 30 segundos", 15),
+        tiempo("estiramiento-de-rotacion-del-torso", 2, "unos 30 segundos por lado", 15),
+        tiempo("estiramiento-de-rodilla-al-pecho", 2, "unos 30 segundos por lado", 15),
+      ],
+    ],
+  },
+  {
+    slug: "funcional-kettlebell",
+    name: "Funcional con kettlebell (3 días)",
+    description:
+      "Circuitos con pesa rusa, mancuernas y balón medicinal que combinan fuerza y resistencia con movimientos de todo el cuerpo.\n\n" +
+      "Cómo seguirla: entrena en días alternos. Aprende primero el balanceo de la kettlebell con poco peso: el movimiento sale de la cadera, no de los brazos, y la espalda va recta. Descansa lo indicado entre series y baja el peso si la técnica empeora.\n\n" +
+      AVISO,
+    goal: "perdida_grasa",
+    level: "intermedio",
+    dias: [
+      [
+        e("swing-con-kettlebell", 4, 12, 15, 60, "El impulso sale de la cadera, con la espalda recta."),
+        e("thruster-con-mancuernas", 3, 10, 12, 60),
+        e("box-jumps", 3, 6, 8, 75, "Baja del cajón andando, no saltando."),
+        intervalo("cuerdas-de-batalla", 4, "30 segundos.", 45),
+      ],
+      [
+        e("wall-balls", 4, 10, 15, 60),
+        e("swing-con-kettlebell", 4, 12, 15, 60, "El impulso sale de la cadera, con la espalda recta."),
+        e("zancadas-con-mancuernas", 3, 10, 10, 75, "Repeticiones por cada pierna."),
+        tiempo("plancha-frontal", 3, "de 30 a 45 segundos"),
+      ],
+      [
+        e("thruster-con-mancuernas", 4, 10, 12, 60),
+        e("box-jumps", 3, 6, 8, 75, "Baja del cajón andando, no saltando."),
+        e("remo-con-mancuernas", 3, 10, 12, 60, "Hazlo con cada brazo."),
+        intervalo("cuerdas-de-batalla", 4, "30 segundos.", 45),
       ],
     ],
   },

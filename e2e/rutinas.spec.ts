@@ -21,10 +21,12 @@ test("el listado muestra las 6 plantillas", async ({ page }) => {
 
 test("filtrar por objetivo cambia la URL y el resultado", async ({ page }) => {
   await page.goto("/rutinas");
+  await expect(page.locator('form[data-en-vivo="si"]')).toBeAttached(); // filtros ya activos (página hidratada)
   await page.getByLabel("Objetivo").selectOption("movilidad");
   await expect(page).toHaveURL(/goal=movilidad/);
-  await expect(lista(page)).toHaveCount(1);
+  await expect(lista(page)).toHaveCount(3);
   await expect(page.getByText("Movilidad en casa")).toBeVisible();
+  await expect(page.getByText("Yoga suave (3 días)")).toBeVisible();
 });
 
 test("filtrar por nivel", async ({ page }) => {
@@ -34,7 +36,7 @@ test("filtrar por nivel", async ({ page }) => {
 });
 
 test("sin resultados explica qué hacer", async ({ page }) => {
-  await page.goto("/rutinas?goal=perdida_grasa");
+  await page.goto("/rutinas?goal=fuerza&level=principiante");
   await expect(page.getByText("No hay rutinas con esos filtros")).toBeVisible();
   await expect(page.getByRole("link", { name: "Quitar filtros" })).toBeVisible();
 });

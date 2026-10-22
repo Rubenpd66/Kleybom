@@ -21,7 +21,8 @@ test("cada sección carga su propio fondo 3D, detrás del contenido y oculto a l
 test("el fondo no tapa nada: los enlaces se pueden pulsar encima", async ({ page }) => {
   await page.goto("/ejercicios");
   await expect(lienzo(page)).toHaveClass(/fondo-visible/, { timeout: 15000 });
-  await page.getByRole("banner").getByRole("link", { name: "Rutinas" }).click();
+  await page.getByRole("button", { name: "Abrir menú" }).click();
+  await page.locator("#menu-lateral").getByRole("link", { name: "Rutinas", exact: true }).click();
   await expect(page).toHaveURL(/\/rutinas$/);
   await expect(lienzo(page)).toHaveAttribute("data-escena", "series", { timeout: 15000 });
 });
